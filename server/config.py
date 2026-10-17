@@ -51,12 +51,18 @@ class Settings(BaseModel):
     server_port: int = Field(default=_env_int("OPENPOKE_PORT", 8001))
 
     # LLM model selection
-    MODEL : str = "openai/gpt-6-luna"
-    interaction_agent_model: str = Field(default=MODEL)
-    execution_agent_model: str = Field(default=MODEL)
-    execution_agent_search_model: str = Field(default=MODEL)
-    summarizer_model: str = Field(default=MODEL)
-    email_classifier_model: str = Field(default=MODEL)
+    interaction_agent_model: str = Field(default="anthropic/claude-haiku-5.5")
+    execution_agent_model: str = Field(default="anthropic/claude-haiku-5.5")
+    execution_agent_search_model: str = Field(default="anthropic/claude-haiku-5.5")
+    summarizer_model: str = Field(default="anthropic/claude-haiku-5.5")
+    email_classifier_model: str = Field(default="anthropic/claude-haiku-5.5")
+
+    # Completion budget; thinking tokens count toward it
+    llm_max_tokens: int = Field(default=16000)
+
+    # Anthropic prompt caching (top-level cache_control); TTL "5m" (default) or "1h"
+    prompt_cache_enabled: bool = Field(default=True)
+    prompt_cache_ttl: str = Field(default="5m")
 
     # Credentials / integrations
     openrouter_api_key: Optional[str] = Field(default=os.getenv("OPENROUTER_API_KEY"))

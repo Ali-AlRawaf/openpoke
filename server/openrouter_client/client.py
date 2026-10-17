@@ -6,6 +6,7 @@ from typing import Any, Dict, List, Optional
 import httpx
 
 from ..config import get_settings
+from ..logging_config import logger
 
 OpenRouterBaseURL = "https://openrouter.ai/api/v1"
 
@@ -46,6 +47,44 @@ def _handle_response_error(exc: httpx.HTTPStatusError) -> None:
     raise OpenRouterError(f"OpenRouter request failed ({response.status_code}): {detail}") from exc
 
 
+def _cache_control() -> Optional[Dict[str, str]]:
+    """Top-level Anthropic cache_control; OpenRouter moves the breakpoint to the last cacheable block."""
+    settings = get_settings()
+    if not settings.prompt_cache_enabled:
+        return None
+    control = {"type": "ephemeral"}
+    if settings.prompt_cache_ttl == "1h":
+        control["ttl"] = "1h"
+    return control
+
+
+def _log_completion(model: str, data: Dict[str, Any]) -> None:
+    """Log token usage (including cache hits) and surface refusals, which arrive as HTTP 200."""
+    choice = (data.get("choices") or [{}])[0]
+    finish_reason = choice.get("native_finish_reason") or choice.get("finish_reason")
+    if finish_reason == "refusal":
+        logger.warning("LLM refused request", extra={"model": model})
+    elif finish_reason in {"length", "max_tokens"}:
+        logger.warning("LLM response truncated at max_tokens", extra={"model": model})
+
+    usage = data.get("usage") or {}
+    prompt_details = usage.get("prompt_tokens_details") or {}
+    completion_details = usage.get("completion_tokens_details") or {}
+    logger.debug(
+        "LLM usage",
+        extra={
+            "model": model,
+            "finish_reason": finish_reason,
+            "prompt_tokens": usage.get("prompt_tokens"),
+            "cached_tokens": prompt_details.get("cached_tokens"),
+            "cache_write_tokens": prompt_details.get("cache_write_tokens"),
+            "completion_tokens": usage.get("completion_tokens"),
+            "reasoning_tokens": completion_details.get("reasoning_tokens"),
+            "cost": usage.get("cost"),
+        },
+    )
+
+
 async def request_chat_completion(
     *,
     model: str,
@@ -53,6 +92,7 @@ async def request_chat_completion(
     system: Optional[str] = None,
     api_key: Optional[str] = None,
     tools: Optional[List[Dict[str, Any]]] = None,
+    max_tokens: Optional[int] = None,
     base_url: str = OpenRouterBaseURL,
 ) -> Dict[str, Any]:
     """Request a chat completion and return the raw JSON payload."""
@@ -61,9 +101,14 @@ async def request_chat_completion(
         "model": model,
         "messages": _build_messages(messages, system),
         "stream": False,
+        "max_tokens": max_tokens or get_settings().llm_max_tokens,
     }
     if tools:
         payload["tools"] = tools
+    if model.startswith("anthropic/"):
+        cache_control = _cache_control()
+        if cache_control:
+            payload["cache_control"] = cache_control
 
     url = f"{base_url.rstrip('/')}/chat/completions"
 
@@ -79,7 +124,9 @@ async def request_chat_completion(
                 response.raise_for_status()
             except httpx.HTTPStatusError as exc:
                 _handle_response_error(exc)
-            return response.json()
+            data = response.json()
+            _log_completion(model, data)
+            return data
         except httpx.HTTPStatusError as exc:  # pragma: no cover - handled above
             _handle_response_error(exc)
         except httpx.HTTPError as exc:
