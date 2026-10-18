@@ -1,0 +1,139 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "c01_followup_named_counterpart",
+      "category": "followup_counterpart_in_name",
+      "rule": 1,
+      "message": "did harrow hill ever confirm they got the deposit?",
+      "expected": [
+        {
+          "task": "check for Harrow Hill's confirmation of the $4k second deposit",
+          "gold": "Harrow Hill Venue Deposit"
+        }
+      ],
+      "rationale": "On 2026-10-15 (recent entries) 'Harrow Hill Venue Deposit' drafted and sent the second-deposit note to Celeste Moreau <celeste@harrowhillestate.ca> in the Harrow Hill wedding thread (harrow-hill-venue-deposit.log). Asking whether the venue confirmed is a follow-up on that thread (rule 1). The counterpart is named in the agent name. Shared-word hard negatives such as 'Security Deposit Refund' concern a different counterpart."
+    },
+    {
+      "id": "c02_new_task_known_counterpart",
+      "category": "new_task_known_counterpart",
+      "rule": 2,
+      "message": "can you email priya and ask if she can run the client demo friday? im double booked",
+      "expected": [
+        {
+          "task": "ask Priya Natarajan to run Friday's client demo",
+          "gold": "Priya Roadmap Sync"
+        }
+      ],
+      "rationale": "Priya Natarajan <priya@northfoldstudio.ca> (Northfold engineering lead) is owned by 'Priya Roadmap Sync' (requests on 07-31, 08-14, 10-14, 10-16; the 10-14 and 10-16 exchanges are in the recent 80 entries). Running a client demo is a new work thread for the same colleague, so rule 2 applies. The other Priya (Priya Sandhu, photographer, owned by 'Engagement Shoot Booking') doesn't fit a work demo, and no agent owns 'demo' as a topic."
+    },
+    {
+      "id": "c03_counterpart_not_in_owner_name",
+      "category": "new_task_owner_name_unrelated",
+      "rule": 2,
+      "message": "ask dmitri if his guys do bathrooms too? the upstairs one is next on the list",
+      "expected": [
+        {
+          "task": "ask Dmitri Volkov whether Ironbark also does bathroom renovations",
+          "gold": "Kitchen Reno Quote Follow-up"
+        }
+      ],
+      "rationale": "Dmitri Volkov <dmitri@ironbarkreno.ca> (Ironbark Renovations) is owned by 'Kitchen Reno Quote Follow-up', which handled every Dmitri thread (quote 08-06/08-27, acceptance 09-09, cabinet-order check 10-16 in the recent entries, where the agent_message names Dmitri). The agent name doesn't mention Dmitri. A bathroom question is a new task for the same contractor, so person and topic (renovation) point to the same agent."
+    },
+    {
+      "id": "c04_reply_to_email_found_by_unrelated_agent",
+      "category": "reply_to_found_email",
+      "rule": 1,
+      "message": "ok reply to the tire place and tell them saturday 9am works",
+      "expected": [
+        {
+          "task": "reply to Bramblewood Auto's winter tire email booking Sat Oct 24 9:00",
+          "gold": "Inbox Catch-Up Scan"
+        }
+      ],
+      "rationale": "On 2026-10-17 (recent entries) 'Inbox Catch-Up Scan' found the Bramblewood Auto Service email 'Time to book your winter tire changeover' (slots Sat Oct 24 9:00 / Tue Oct 27 16:30) and reported its thread ID. Replying to that email goes to the agent that found it (rule 1). No other agent has ever touched Bramblewood or tires. Generic inbox distractors ('Inbox Summary', 'Unread Email Check', ...) never saw this email."
+    },
+    {
+      "id": "c05_confirm_pending_draft",
+      "category": "confirm_pending_draft",
+      "rule": 1,
+      "message": "yep looks good, send it",
+      "expected": [
+        {
+          "task": "send the pending Copperleaf reply draft",
+          "gold": "Copperleaf Renewal Thread"
+        }
+      ],
+      "rationale": "The last entries of the recent window (2026-10-19 ~19:39) show 'Copperleaf Renewal Thread' creating a draft reply to Hana Ishikawa <hana.ishikawa@copperleafdata.com> (two-year term at $18,400/yr), which Poke displayed and asked to confirm. 'Send it' refers to that draft (rule 1)."
+    },
+    {
+      "id": "c06_modify_existing_trigger",
+      "category": "modify_reminder",
+      "rule": 1,
+      "message": "can you push the sunday night rundown to 8:30 instead of 7? 7 is right when we sit down to eat",
+      "expected": [
+        {
+          "task": "move the Sunday 19:00 week-ahead trigger to 20:30",
+          "gold": "Sunday Week Ahead Brief"
+        }
+      ],
+      "rationale": "'Sunday Week Ahead Brief' created the weekly trigger (createTrigger succeeded, FREQ=WEEKLY;BYDAY=SU at 19:00) on 2026-08-05, and it fired on 2026-10-18 at 19:00 in the recent entries ('Week-ahead rundown'). Changing that trigger's time belongs to the agent that owns it (rule 1). The other trigger owners (Hydro Bill Reminder, monthly; Mom Thanksgiving Visit, one-off) aren't Sunday rundowns."
+    },
+    {
+      "id": "c07_revive_dormant_counterpart",
+      "category": "dormant_counterpart_summary_only",
+      "rule": 2,
+      "message": "can you ask wendell if we should lock the rate now or wait til after the nov 4 announcement",
+      "expected": [
+        {
+          "task": "ask Wendell Achebe about locking the renewal rate before Nov 4",
+          "gold": "Mortgage Renewal Paperwork"
+        }
+      ],
+      "rationale": "Wendell Achebe <wendell.achebe@brightmoorcu.ca> (Brightmoor Credit Union mortgage advisor) was handled only by 'Mortgage Renewal Paperwork' (08-25 to 09-10, older entries only). The summary keeps the mortgage renewal with Wendell, the Oct 30 offer, and the rate decision before Nov 4. He never appears in the recent 80. A new question to the same advisor goes to his owner (rule 2)."
+    },
+    {
+      "id": "c08_same_first_name_other_person",
+      "category": "same_first_name_other_person",
+      "rule": 1,
+      "message": "can you ask priya if she can send the engagement proofs early? jules keeps asking lol",
+      "expected": [
+        {
+          "task": "email Priya Sandhu asking for the engagement proofs gallery early",
+          "gold": "Engagement Shoot Booking"
+        }
+      ],
+      "rationale": "The engagement-shoot photographer is Priya Sandhu <priya@lumenandlinen.ca> (Lumen & Linen Photography), owned by 'Engagement Shoot Booking' (inquiry 07-27, booking 08-12, and on 10-15 in the recent entries the agent reported 'proofing gallery by Fri Oct 23'). That's rules 1 and 2 together. The hard negative is 'Priya Roadmap Sync', which owns a different Priya (Natarajan, priya@northfoldstudio.ca, engineering lead) and is more salient in the recent entries."
+    },
+    {
+      "id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "rule": 3,
+      "message": "can you email marco ferrante at keyhaven music (marco@keyhavenmusic.ca) and ask if he has saturday morning slots for adult beginner piano?",
+      "expected": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW"
+        }
+      ],
+      "rationale": "Marco Ferrante <marco@keyhavenmusic.ca> has never appeared. No agent has dealt with Keyhaven Music or piano lessons. 'Email to Marco Soccer League' owns a different Marco (Bellandi, marco@riverdalerecsoccer.ca), and 'Fernway Designer Search' owns Marcus Oyelaran. Rule 3 means a new agent."
+    },
+    {
+      "id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "rule": 3,
+      "message": "tell gabe ill be like 20 min late to the kickoff wednesday, train thing. also can you email halcyon chimney (service@halcyonchimney.ca) and see if they can do a sweep before mid nov",
+      "expected": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda"
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW"
+        }
+      ],
+      "rationale": "Gabe Lindqvist <gabe@northfoldstudio.ca> and the Oct 21-22 Cedar Hollow offsite (10:00 Wed kickoff) are owned by 'Email to Gabe Offsite Agenda' (agenda thread, final agenda sent 10-15 in the recent entries), so that part reuses it (rules 1 and 2). Halcyon Chimney has never appeared and no agent covers chimneys. It's an independent task that can run in parallel, so it gets a new agent (rule 3)."
+    }
+  ]
+}

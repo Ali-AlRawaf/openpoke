@@ -1,0 +1,1565 @@
+{
+  "meta": {
+    "run_id": "20261017T200920Z",
+    "git_commit": "e7c5df6",
+    "git_dirty": true,
+    "model": "anthropic/claude-haiku-5.5",
+    "started_at": "2026-10-17T20:09:20+00:00",
+    "git_dirty_files": [
+      ".gitignore",
+      "server/config.py",
+      "server/services/conversation/log.py",
+      "server/services/conversation/summarization/working_memory_log.py",
+      "server/services/execution/log_store.py",
+      "server/services/execution/roster.py",
+      "server/services/gmail/importance_watcher.py",
+      "server/services/timezone_store.py",
+      "server/services/triggers/__init__.py"
+    ],
+    "fixtures": "evals/routing/fixtures",
+    "sizes": [
+      25,
+      50,
+      100,
+      200,
+      400
+    ],
+    "cases": [
+      "c01_followup_named_counterpart",
+      "c02_new_task_known_counterpart",
+      "c03_counterpart_not_in_owner_name",
+      "c04_reply_to_email_found_by_unrelated_agent",
+      "c05_confirm_pending_draft",
+      "c06_modify_existing_trigger",
+      "c07_revive_dormant_counterpart",
+      "c08_same_first_name_other_person",
+      "c09_new_counterpart_overlapping_name",
+      "c10_parallel_known_and_new"
+    ],
+    "concurrency": 5,
+    "max_iterations": 3,
+    "llm_max_tokens": 16000,
+    "prompt_cache_enabled": true,
+    "prompt_cache_ttl": "5m",
+    "tools": [
+      "send_message_to_agent",
+      "send_message_to_user",
+      "send_draft",
+      "wait"
+    ],
+    "data_dir": "/tmp/openpoke-routing-eval-wq355xr2",
+    "python": "3.12.3",
+    "finished_at": "2026-10-17T20:10:02+00:00"
+  },
+  "sizes": [
+    25,
+    50,
+    100,
+    200,
+    400
+  ],
+  "total_cost": 0.134521,
+  "per_size": [
+    {
+      "size": 25,
+      "cases": 10,
+      "expected_entries": 11,
+      "accuracy": 0.818,
+      "outcomes": {
+        "correct": 9,
+        "wrong_reuse": 0,
+        "false_create": 2,
+        "false_reuse": 0,
+        "missed": 0,
+        "error": 0
+      },
+      "extra_delegations": 0,
+      "errors": 0,
+      "llm_calls": 10,
+      "mean_prompt_tokens": 16486,
+      "mean_cached_tokens": 0,
+      "mean_completion_tokens": 525,
+      "mean_reasoning_tokens": 191.7,
+      "mean_prompt_chars": 36496.1,
+      "total_cost": 0.023232,
+      "mean_latency_s": 3.0
+    },
+    {
+      "size": 50,
+      "cases": 10,
+      "expected_entries": 11,
+      "accuracy": 0.909,
+      "outcomes": {
+        "correct": 10,
+        "wrong_reuse": 0,
+        "false_create": 1,
+        "false_reuse": 0,
+        "missed": 0,
+        "error": 0
+      },
+      "extra_delegations": 0,
+      "errors": 0,
+      "llm_calls": 10,
+      "mean_prompt_tokens": 17009,
+      "mean_cached_tokens": 0,
+      "mean_completion_tokens": 542.3,
+      "mean_reasoning_tokens": 223,
+      "mean_prompt_chars": 37624.1,
+      "total_cost": 0.023972,
+      "mean_latency_s": 3.1
+    },
+    {
+      "size": 100,
+      "cases": 10,
+      "expected_entries": 11,
+      "accuracy": 0.636,
+      "outcomes": {
+        "correct": 7,
+        "wrong_reuse": 0,
+        "false_create": 3,
+        "false_reuse": 0,
+        "missed": 1,
+        "error": 0
+      },
+      "extra_delegations": 0,
+      "errors": 0,
+      "llm_calls": 11,
+      "mean_prompt_tokens": 18113,
+      "mean_cached_tokens": 1641,
+      "mean_completion_tokens": 520,
+      "mean_reasoning_tokens": 215.8,
+      "mean_prompt_chars": 39820.1,
+      "total_cost": 0.025688,
+      "mean_latency_s": 3.4
+    },
+    {
+      "size": 200,
+      "cases": 10,
+      "expected_entries": 11,
+      "accuracy": 0.818,
+      "outcomes": {
+        "correct": 9,
+        "wrong_reuse": 0,
+        "false_create": 1,
+        "false_reuse": 0,
+        "missed": 1,
+        "error": 0
+      },
+      "extra_delegations": 0,
+      "errors": 0,
+      "llm_calls": 11,
+      "mean_prompt_tokens": 20161.3,
+      "mean_cached_tokens": 1828.1,
+      "mean_completion_tokens": 513,
+      "mean_reasoning_tokens": 219.3,
+      "mean_prompt_chars": 44188.1,
+      "total_cost": 0.02823,
+      "mean_latency_s": 3.3
+    },
+    {
+      "size": 400,
+      "cases": 10,
+      "expected_entries": 11,
+      "accuracy": 0.818,
+      "outcomes": {
+        "correct": 9,
+        "wrong_reuse": 0,
+        "false_create": 2,
+        "false_reuse": 0,
+        "missed": 0,
+        "error": 0
+      },
+      "extra_delegations": 0,
+      "errors": 0,
+      "llm_calls": 10,
+      "mean_prompt_tokens": 24321,
+      "mean_cached_tokens": 0,
+      "mean_completion_tokens": 599.8,
+      "mean_reasoning_tokens": 250.2,
+      "mean_prompt_chars": 53043.1,
+      "total_cost": 0.033399,
+      "mean_latency_s": 3.5
+    }
+  ],
+  "matrix": [
+    {
+      "case_id": "c01_followup_named_counterpart",
+      "category": "followup_counterpart_in_name",
+      "cells": {
+        "25": "✓",
+        "50": "✓",
+        "100": "✓",
+        "200": "✓",
+        "400": "✓"
+      },
+      "pass_rates": {
+        "25": 1.0,
+        "50": 1.0,
+        "100": 1.0,
+        "200": 1.0,
+        "400": 1.0
+      },
+      "pattern": "pass at every size"
+    },
+    {
+      "case_id": "c02_new_task_known_counterpart",
+      "category": "new_task_known_counterpart",
+      "cells": {
+        "25": "false_create",
+        "50": "false_create",
+        "100": "false_create",
+        "200": "✓",
+        "400": "false_create"
+      },
+      "pass_rates": {
+        "25": 0.0,
+        "50": 0.0,
+        "100": 0.0,
+        "200": 1.0,
+        "400": 0.0
+      },
+      "pattern": "mixed"
+    },
+    {
+      "case_id": "c03_counterpart_not_in_owner_name",
+      "category": "new_task_owner_name_unrelated",
+      "cells": {
+        "25": "✓",
+        "50": "✓",
+        "100": "✓",
+        "200": "✓",
+        "400": "✓"
+      },
+      "pass_rates": {
+        "25": 1.0,
+        "50": 1.0,
+        "100": 1.0,
+        "200": 1.0,
+        "400": 1.0
+      },
+      "pattern": "pass at every size"
+    },
+    {
+      "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+      "category": "reply_to_found_email",
+      "cells": {
+        "25": "false_create",
+        "50": "✓",
+        "100": "false_create",
+        "200": "false_create",
+        "400": "✓"
+      },
+      "pass_rates": {
+        "25": 0.0,
+        "50": 1.0,
+        "100": 0.0,
+        "200": 0.0,
+        "400": 1.0
+      },
+      "pattern": "mixed"
+    },
+    {
+      "case_id": "c05_confirm_pending_draft",
+      "category": "confirm_pending_draft",
+      "cells": {
+        "25": "✓",
+        "50": "✓",
+        "100": "✓",
+        "200": "✓",
+        "400": "✓"
+      },
+      "pass_rates": {
+        "25": 1.0,
+        "50": 1.0,
+        "100": 1.0,
+        "200": 1.0,
+        "400": 1.0
+      },
+      "pattern": "pass at every size"
+    },
+    {
+      "case_id": "c06_modify_existing_trigger",
+      "category": "modify_reminder",
+      "cells": {
+        "25": "✓",
+        "50": "✓",
+        "100": "✓",
+        "200": "✓",
+        "400": "✓"
+      },
+      "pass_rates": {
+        "25": 1.0,
+        "50": 1.0,
+        "100": 1.0,
+        "200": 1.0,
+        "400": 1.0
+      },
+      "pattern": "pass at every size"
+    },
+    {
+      "case_id": "c07_revive_dormant_counterpart",
+      "category": "dormant_counterpart_summary_only",
+      "cells": {
+        "25": "✓",
+        "50": "✓",
+        "100": "✓",
+        "200": "✓",
+        "400": "false_create"
+      },
+      "pass_rates": {
+        "25": 1.0,
+        "50": 1.0,
+        "100": 1.0,
+        "200": 1.0,
+        "400": 0.0
+      },
+      "pattern": "passes small, fails large (overload?)"
+    },
+    {
+      "case_id": "c08_same_first_name_other_person",
+      "category": "same_first_name_other_person",
+      "cells": {
+        "25": "✓",
+        "50": "✓",
+        "100": "missed",
+        "200": "missed",
+        "400": "✓"
+      },
+      "pass_rates": {
+        "25": 1.0,
+        "50": 1.0,
+        "100": 0.0,
+        "200": 0.0,
+        "400": 1.0
+      },
+      "pattern": "mixed"
+    },
+    {
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "cells": {
+        "25": "✓",
+        "50": "✓",
+        "100": "✓",
+        "200": "✓",
+        "400": "✓"
+      },
+      "pass_rates": {
+        "25": 1.0,
+        "50": 1.0,
+        "100": 1.0,
+        "200": 1.0,
+        "400": 1.0
+      },
+      "pattern": "pass at every size"
+    },
+    {
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "cells": {
+        "25": "✓+✓",
+        "50": "✓+✓",
+        "100": "false_create+✓",
+        "200": "✓+✓",
+        "400": "✓+✓"
+      },
+      "pass_rates": {
+        "25": 1.0,
+        "50": 1.0,
+        "100": 0.0,
+        "200": 1.0,
+        "400": 1.0
+      },
+      "pattern": "mixed"
+    }
+  ],
+  "misses": [
+    {
+      "case_id": "c02_new_task_known_counterpart",
+      "size": 25,
+      "repeat": 0,
+      "outcome": "false_create",
+      "task": "ask Priya Natarajan to run Friday's client demo",
+      "gold": "Priya Roadmap Sync",
+      "chosen": "Priya Demo Coverage Request",
+      "instructions": "Draft (do not send) an email to priya@northfoldstudio.ca (Priya Natarajan, Northfold Studio). Subject: Client demo Friday. Body: Theo is double booked on Friday Oct 23 and can't run the client demo. Ask if she can cover the demo that day. Keep it short, casual, and friendly, signed Theo. If there is an existing thread with Priya Natarajan about client demos or the Friday schedule, reply on that thread; otherwise create a new draft. Return the exact To, Subject, and Body, plus the Draft ID. Wait for explicit approval before sending anything.",
+      "all_delegations": [
+        "Priya Demo Coverage Request"
+      ],
+      "case_pairing": [
+        {
+          "task": "ask Priya Natarajan to run Friday's client demo",
+          "gold": "Priya Roadmap Sync",
+          "outcome": "false_create",
+          "chosen": "Priya Demo Coverage Request"
+        }
+      ],
+      "error": null
+    },
+    {
+      "case_id": "c02_new_task_known_counterpart",
+      "size": 50,
+      "repeat": 0,
+      "outcome": "false_create",
+      "task": "ask Priya Natarajan to run Friday's client demo",
+      "gold": "Priya Roadmap Sync",
+      "chosen": "Priya Demo Request",
+      "instructions": "Draft a short email to priya@northfoldstudio.ca (Priya Natarajan, Northfold Studio, not Priya Sandhu). Subject: Client demo Friday. Body: Theo is double booked this Friday (Oct 23) and asks if she can run the client demo that day. Keep it brief, casual, and friendly, signed Theo. If possible, reply in the existing Priya Natarajan thread (1a13a8af27844303 or thread 19fb855805877548). Do NOT send. Create the draft only and return the exact recipient, subject, and body, plus the draft ID.",
+      "all_delegations": [
+        "Priya Demo Request"
+      ],
+      "case_pairing": [
+        {
+          "task": "ask Priya Natarajan to run Friday's client demo",
+          "gold": "Priya Roadmap Sync",
+          "outcome": "false_create",
+          "chosen": "Priya Demo Request"
+        }
+      ],
+      "error": null
+    },
+    {
+      "case_id": "c02_new_task_known_counterpart",
+      "size": 100,
+      "repeat": 0,
+      "outcome": "false_create",
+      "task": "ask Priya Natarajan to run Friday's client demo",
+      "gold": "Priya Roadmap Sync",
+      "chosen": "Priya Natarajan Demo Cover",
+      "instructions": "Draft an email (do not send) to priya@northfoldstudio.ca (Priya Natarajan, Northfold Studio). Subject: Client demo Friday. Body: Theo is double booked and asks whether she can run the client demo this Friday, Oct 23. Keep it short, casual, and friendly, signed Theo. Do not contact Priya Sandhu (Lumen & Linen), who is a different person. Return the exact draft text and draft ID, and note whether a demo time or details from prior threads should be included.",
+      "all_delegations": [
+        "Priya Natarajan Demo Cover"
+      ],
+      "case_pairing": [
+        {
+          "task": "ask Priya Natarajan to run Friday's client demo",
+          "gold": "Priya Roadmap Sync",
+          "outcome": "false_create",
+          "chosen": "Priya Natarajan Demo Cover"
+        }
+      ],
+      "error": null
+    },
+    {
+      "case_id": "c02_new_task_known_counterpart",
+      "size": 400,
+      "repeat": 0,
+      "outcome": "false_create",
+      "task": "ask Priya Natarajan to run Friday's client demo",
+      "gold": "Priya Roadmap Sync",
+      "chosen": "Priya Demo Coverage Request",
+      "instructions": "Draft (do not send) an email from Theo Marchetti to Priya Natarajan at priya@northfoldstudio.ca. Subject: \"Client demo Friday\". Ask if she can run the client demo this Friday, Oct 23, because Theo is double booked. Keep it short and casual, 2-3 sentences, signed Theo. Do not mention the Lumen & Linen Priya (Priya Sandhu). Return the exact To, Subject, Body, and draft ID so it can be shown to Theo for approval. Nothing should be sent.",
+      "all_delegations": [
+        "Priya Demo Coverage Request"
+      ],
+      "case_pairing": [
+        {
+          "task": "ask Priya Natarajan to run Friday's client demo",
+          "gold": "Priya Roadmap Sync",
+          "outcome": "false_create",
+          "chosen": "Priya Demo Coverage Request"
+        }
+      ],
+      "error": null
+    },
+    {
+      "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+      "size": 25,
+      "repeat": 0,
+      "outcome": "false_create",
+      "task": "reply to Bramblewood Auto's winter tire email booking Sat Oct 24 9:00",
+      "gold": "Inbox Catch-Up Scan",
+      "chosen": "Bramblewood Winter Tire Booking",
+      "instructions": "Draft a reply (do not send) to the Bramblewood Auto Service email \"Time to book your winter tire changeover\" (service@bramblewoodauto.ca, thread ID 1a13a9c097866746). Confirm Theo's winter tire changeover for Saturday October 24, 2026 at 9:00 AM. Keep it short and casual, signed Theo. Ask them to reply to confirm if the slot is held. Return the exact To, Subject, and Body, plus the Draft ID. Do not send anything.",
+      "all_delegations": [
+        "Bramblewood Winter Tire Booking"
+      ],
+      "case_pairing": [
+        {
+          "task": "reply to Bramblewood Auto's winter tire email booking Sat Oct 24 9:00",
+          "gold": "Inbox Catch-Up Scan",
+          "outcome": "false_create",
+          "chosen": "Bramblewood Winter Tire Booking"
+        }
+      ],
+      "error": null
+    },
+    {
+      "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+      "size": 100,
+      "repeat": 0,
+      "outcome": "false_create",
+      "task": "reply to Bramblewood Auto's winter tire email booking Sat Oct 24 9:00",
+      "gold": "Inbox Catch-Up Scan",
+      "chosen": "Bramblewood Winter Tire Booking",
+      "instructions": "Draft a reply to Bramblewood Auto Service (service@bramblewoodauto.ca) in the winter tire changeover thread (thread ID 1a13a9c097866746, subject \"Time to book your winter tire changeover\"). Book the Saturday Oct 24 at 9:00 AM slot for Theo's winter tire changeover ($89.95 + tax, they're storing his winter tires). Keep it short and polite, signed Theo. Do NOT send. Create the draft only and return the exact To, Subject, and Body, plus the draft ID.",
+      "all_delegations": [
+        "Bramblewood Winter Tire Booking"
+      ],
+      "case_pairing": [
+        {
+          "task": "reply to Bramblewood Auto's winter tire email booking Sat Oct 24 9:00",
+          "gold": "Inbox Catch-Up Scan",
+          "outcome": "false_create",
+          "chosen": "Bramblewood Winter Tire Booking"
+        }
+      ],
+      "error": null
+    },
+    {
+      "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+      "size": 200,
+      "repeat": 0,
+      "outcome": "false_create",
+      "task": "reply to Bramblewood Auto's winter tire email booking Sat Oct 24 9:00",
+      "gold": "Inbox Catch-Up Scan",
+      "chosen": "Bramblewood Tire Changeover Reply",
+      "instructions": "Draft a reply (do NOT send) on the Bramblewood Auto thread (thread ID 1a13a9c097866746, from service@bramblewoodauto.ca, subject \"Time to book your winter tire changeover\") booking the winter tire changeover for Saturday October 24, 2026 at 9:00 AM. Keep it short and polite, signed Theo. Return the exact draft (to, subject, body, draft ID) so it can be shown to the user for approval.",
+      "all_delegations": [
+        "Bramblewood Tire Changeover Reply"
+      ],
+      "case_pairing": [
+        {
+          "task": "reply to Bramblewood Auto's winter tire email booking Sat Oct 24 9:00",
+          "gold": "Inbox Catch-Up Scan",
+          "outcome": "false_create",
+          "chosen": "Bramblewood Tire Changeover Reply"
+        }
+      ],
+      "error": null
+    },
+    {
+      "case_id": "c07_revive_dormant_counterpart",
+      "size": 400,
+      "repeat": 0,
+      "outcome": "false_create",
+      "task": "ask Wendell Achebe about locking the renewal rate before Nov 4",
+      "gold": "Mortgage Renewal Paperwork",
+      "chosen": "Brightmoor Rate Lock Question",
+      "instructions": "Draft (do not send) an email to Wendell Achebe at wendell.achebe@brightmoorcu.ca asking whether Theo Marchetti should lock the mortgage rate now or wait until after the Nov 4 rate announcement. Context to reference: the Brightmoor mortgage term ends Dec 1, 2026; Wendell previously advised deciding before the Nov 4 announcement and that holds are allowed up to 120 days before maturity. Ask him to outline the rate-lock options and any cost or deadline for a hold, and what he recommends. Keep it short and casual, signed Theo. Reply in the existing Brightmoor renewal thread if one is found. Return the exact To, Subject, Body, Draft ID, and Thread ID.",
+      "all_delegations": [
+        "Brightmoor Rate Lock Question"
+      ],
+      "case_pairing": [
+        {
+          "task": "ask Wendell Achebe about locking the renewal rate before Nov 4",
+          "gold": "Mortgage Renewal Paperwork",
+          "outcome": "false_create",
+          "chosen": "Brightmoor Rate Lock Question"
+        }
+      ],
+      "error": null
+    },
+    {
+      "case_id": "c08_same_first_name_other_person",
+      "size": 100,
+      "repeat": 0,
+      "outcome": "missed",
+      "task": "check whether Priya Sandhu sent the engagement proofs gallery",
+      "gold": "Engagement Shoot Booking",
+      "chosen": null,
+      "instructions": null,
+      "all_delegations": [],
+      "case_pairing": [
+        {
+          "task": "check whether Priya Sandhu sent the engagement proofs gallery",
+          "gold": "Engagement Shoot Booking",
+          "outcome": "missed",
+          "chosen": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "case_id": "c08_same_first_name_other_person",
+      "size": 200,
+      "repeat": 0,
+      "outcome": "missed",
+      "task": "check whether Priya Sandhu sent the engagement proofs gallery",
+      "gold": "Engagement Shoot Booking",
+      "chosen": null,
+      "instructions": null,
+      "all_delegations": [],
+      "case_pairing": [
+        {
+          "task": "check whether Priya Sandhu sent the engagement proofs gallery",
+          "gold": "Engagement Shoot Booking",
+          "outcome": "missed",
+          "chosen": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "case_id": "c10_parallel_known_and_new",
+      "size": 100,
+      "repeat": 0,
+      "outcome": "false_create",
+      "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+      "gold": "Email to Gabe Offsite Agenda",
+      "chosen": "Gabe Kickoff Late Notice",
+      "instructions": "Draft a reply to Gabe (gabe@northfoldstudio.ca) in the existing Cedar Hollow offsite thread (thread 1a0e88ccde8db8a5, subject \"Re: Offsite agenda - Cedar Hollow, Oct 21-22\"). Tell him Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train delay. Keep it to 2 short sentences, signed Theo. Do NOT send it. Return the draft with its draft ID and recipient, subject, and body.",
+      "all_delegations": [
+        "Gabe Kickoff Late Notice",
+        "Halcyon Chimney Sweep Request"
+      ],
+      "case_pairing": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "false_create",
+          "chosen": "Gabe Kickoff Late Notice"
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request"
+        }
+      ],
+      "error": null
+    }
+  ],
+  "rows": [
+    {
+      "size": 25,
+      "repeat": null,
+      "case_id": "c01_followup_named_counterpart",
+      "category": "followup_counterpart_in_name",
+      "outcomes": [
+        {
+          "task": "check for Harrow Hill's confirmation of the $4k second deposit",
+          "gold": "Harrow Hill Venue Deposit",
+          "outcome": "correct",
+          "chosen": "Harrow Hill Venue Deposit",
+          "chosen_kind": "reuse",
+          "instructions": "Check the Harrow Hill Estate thread (thread ID 19f8505f1389e3b7, with celeste@harrowhillestate.ca and events@harrowhillestate.ca) for any reply since the second deposit note was sent on Oct 15, 2026 (sent message ID 1a13f757df8a294c). Report whether Celeste or anyone at Harrow Hill has confirmed receiving the $4,000 second deposit. If they have, give the date, the sender, and a one-line summary of what they said. If they have not replied, say so. Do not send or draft anything new."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": null,
+      "case_id": "c02_new_task_known_counterpart",
+      "category": "new_task_known_counterpart",
+      "outcomes": [
+        {
+          "task": "ask Priya Natarajan to run Friday's client demo",
+          "gold": "Priya Roadmap Sync",
+          "outcome": "false_create",
+          "chosen": "Priya Demo Coverage Request",
+          "chosen_kind": "create",
+          "instructions": "Draft (do not send) an email to priya@northfoldstudio.ca (Priya Natarajan, Northfold Studio). Subject: Client demo Friday. Body: Theo is double booked on Friday Oct 23 and can't run the client demo. Ask if she can cover the demo that day. Keep it short, casual, and friendly, signed Theo. If there is an existing thread with Priya Natarajan about client demos or the Friday schedule, reply on that thread; otherwise create a new draft. Return the exact To, Subject, and Body, plus the Draft ID. Wait for explicit approval before sending anything."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": null,
+      "case_id": "c03_counterpart_not_in_owner_name",
+      "category": "new_task_owner_name_unrelated",
+      "outcomes": [
+        {
+          "task": "ask Dmitri Volkov whether Ironbark also does bathroom renovations",
+          "gold": "Kitchen Reno Quote Follow-up",
+          "outcome": "correct",
+          "chosen": "Kitchen Reno Quote Follow-up",
+          "chosen_kind": "reuse",
+          "instructions": "Draft (do not send) a reply to Dmitri Volkov (dmitri@ironbarkreno.ca) on the existing kitchen renovation thread (thread 19fd813573036bfd). Ask whether his crew also does bathroom renovations, specifically the upstairs bathroom, which is next on the list after the kitchen (kitchen starts Nov 9). Keep it short and casual, signed Theo. Show the full draft to the user for approval before anything is sent."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": null,
+      "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+      "category": "reply_to_found_email",
+      "outcomes": [
+        {
+          "task": "reply to Bramblewood Auto's winter tire email booking Sat Oct 24 9:00",
+          "gold": "Inbox Catch-Up Scan",
+          "outcome": "false_create",
+          "chosen": "Bramblewood Winter Tire Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft a reply (do not send) to the Bramblewood Auto Service email \"Time to book your winter tire changeover\" (service@bramblewoodauto.ca, thread ID 1a13a9c097866746). Confirm Theo's winter tire changeover for Saturday October 24, 2026 at 9:00 AM. Keep it short and casual, signed Theo. Ask them to reply to confirm if the slot is held. Return the exact To, Subject, and Body, plus the Draft ID. Do not send anything."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": null,
+      "case_id": "c05_confirm_pending_draft",
+      "category": "confirm_pending_draft",
+      "outcomes": [
+        {
+          "task": "send the pending Copperleaf reply draft",
+          "gold": "Copperleaf Renewal Thread",
+          "outcome": "correct",
+          "chosen": "Copperleaf Renewal Thread",
+          "chosen_kind": "reuse",
+          "instructions": "The user has approved and confirmed \"send it.\" Send the existing draft r3449532902455624814 (To: hana.ishikawa@copperleafdata.com, Subject: Re: Your Copperleaf renewal - Northfold Studio) in thread 1a0a082e8e8b21e2 exactly as drafted, without changes. Do not create a new draft. Report back the sent message ID and confirm the label is SENT."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": null,
+      "case_id": "c06_modify_existing_trigger",
+      "category": "modify_reminder",
+      "outcomes": [
+        {
+          "task": "move the Sunday 19:00 week-ahead trigger to 20:30",
+          "gold": "Sunday Week Ahead Brief",
+          "outcome": "correct",
+          "chosen": "Sunday Week Ahead Brief",
+          "chosen_kind": "reuse",
+          "instructions": "Change the existing recurring Sunday week-ahead rundown (trigger ID 2) from 19:00 to 20:30 (8:30 PM) America/Toronto. Keep everything else the same (weekly on Sundays, same scope and summary format). Confirm the new time once it's saved."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": null,
+      "case_id": "c07_revive_dormant_counterpart",
+      "category": "dormant_counterpart_summary_only",
+      "outcomes": [
+        {
+          "task": "ask Wendell Achebe about locking the renewal rate before Nov 4",
+          "gold": "Mortgage Renewal Paperwork",
+          "outcome": "correct",
+          "chosen": "Mortgage Renewal Paperwork",
+          "chosen_kind": "reuse",
+          "instructions": "Draft (do NOT send) a reply to Wendell Achebe (wendell.achebe@brightmoorcu.ca) on the existing Brightmoor renewal thread. From Theo Marchetti. Ask whether we should lock the mortgage rate now or wait until after the Nov 4 rate announcement. Keep it short and polite. Mention that Jules is sending her pay stub and 2025 T4s separately only if it fits naturally. Return the exact To, Subject, Body, and Draft ID."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": null,
+      "case_id": "c08_same_first_name_other_person",
+      "category": "same_first_name_other_person",
+      "outcomes": [
+        {
+          "task": "check whether Priya Sandhu sent the engagement proofs gallery",
+          "gold": "Engagement Shoot Booking",
+          "outcome": "correct",
+          "chosen": "Engagement Shoot Booking",
+          "chosen_kind": "reuse",
+          "instructions": "Check the inbox for any email from Priya Sandhu (Lumen & Linen Photography, priya@lumenandlinen.ca) since Oct 12 about the engagement shoot proofs or online proofing gallery. Report whether the gallery or proofs have arrived, the date received, and any link or instructions included. Also note if she said anything new about timing. Do not send or draft anything."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": null,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email (do not send yet) to Marco Ferrante at Keyhaven Music, marco@keyhavenmusic.ca. Sign it as Theo. Ask whether he has any Saturday morning slots available for adult beginner piano lessons. Keep it short and friendly. Do not include any other requests. Return the full draft (to, subject, body) and wait for my confirmation before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": null,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft (do not send) a reply to Gabe (gabe@northfoldstudio.ca) on the existing offsite thread (Cedar Hollow, Oct 21-22). Message: Theo will be about 20 minutes late to the Wednesday 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Return the full draft text and draft ID for review."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep",
+          "chosen_kind": "create",
+          "instructions": "Draft (do not send) a new email to service@halcyonchimney.ca asking whether they can do a chimney sweep before mid-November 2026. Ask for their earliest available date and price. Keep it short, signed Theo Marchetti. Return the full draft text and draft ID for review. Do not send anything."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": null,
+      "case_id": "c01_followup_named_counterpart",
+      "category": "followup_counterpart_in_name",
+      "outcomes": [
+        {
+          "task": "check for Harrow Hill's confirmation of the $4k second deposit",
+          "gold": "Harrow Hill Venue Deposit",
+          "outcome": "correct",
+          "chosen": "Harrow Hill Venue Deposit",
+          "chosen_kind": "reuse",
+          "instructions": "Check the Harrow Hill Estate thread (thread ID 19f8505f1389e3b7, contacts celeste@harrowhillestate.ca and events@harrowhillestate.ca) for any reply from Celeste or the venue since the $4,000 second deposit note was sent on Oct 15, 2026. Report whether they confirmed receipt of the deposit, quoting the reply date and key wording. If there is no reply, say so. Do not send or draft anything."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": null,
+      "case_id": "c02_new_task_known_counterpart",
+      "category": "new_task_known_counterpart",
+      "outcomes": [
+        {
+          "task": "ask Priya Natarajan to run Friday's client demo",
+          "gold": "Priya Roadmap Sync",
+          "outcome": "false_create",
+          "chosen": "Priya Demo Request",
+          "chosen_kind": "create",
+          "instructions": "Draft a short email to priya@northfoldstudio.ca (Priya Natarajan, Northfold Studio, not Priya Sandhu). Subject: Client demo Friday. Body: Theo is double booked this Friday (Oct 23) and asks if she can run the client demo that day. Keep it brief, casual, and friendly, signed Theo. If possible, reply in the existing Priya Natarajan thread (1a13a8af27844303 or thread 19fb855805877548). Do NOT send. Create the draft only and return the exact recipient, subject, and body, plus the draft ID."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": null,
+      "case_id": "c03_counterpart_not_in_owner_name",
+      "category": "new_task_owner_name_unrelated",
+      "outcomes": [
+        {
+          "task": "ask Dmitri Volkov whether Ironbark also does bathroom renovations",
+          "gold": "Kitchen Reno Quote Follow-up",
+          "outcome": "correct",
+          "chosen": "Kitchen Reno Quote Follow-up",
+          "chosen_kind": "reuse",
+          "instructions": "Draft (do NOT send) a reply to dmitri@ironbarkreno.ca on the existing Ironbark kitchen thread (thread 19fd813573036bfd). Ask whether his crew also does bathroom renovations, since the upstairs bathroom is next on the list after the kitchen. Keep it short and casual, signed Theo. Do not send. Show me the draft for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": null,
+      "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+      "category": "reply_to_found_email",
+      "outcomes": [
+        {
+          "task": "reply to Bramblewood Auto's winter tire email booking Sat Oct 24 9:00",
+          "gold": "Inbox Catch-Up Scan",
+          "outcome": "correct",
+          "chosen": "Inbox Catch-Up Scan",
+          "chosen_kind": "reuse",
+          "instructions": "Draft (do NOT send) a reply in thread 1a13a9c097866746 to service@bramblewoodauto.ca about booking Theo's winter tire changeover. Tell them Saturday Oct 24 at 9:00 AM works. Keep it short, signed Theo. Return the exact draft text (to, subject, body) and draft ID."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": null,
+      "case_id": "c05_confirm_pending_draft",
+      "category": "confirm_pending_draft",
+      "outcomes": [
+        {
+          "task": "send the pending Copperleaf reply draft",
+          "gold": "Copperleaf Renewal Thread",
+          "outcome": "correct",
+          "chosen": "Copperleaf Renewal Thread",
+          "chosen_kind": "reuse",
+          "instructions": "The user approved the draft reply to Hana Ishikawa. Send draft r3449532902455624814 exactly as written, in thread 1a0a082e8e8b21e2, to hana.ishikawa@copperleafdata.com. Do not change the text. Report back the sent message ID and confirm it was sent."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": null,
+      "case_id": "c06_modify_existing_trigger",
+      "category": "modify_reminder",
+      "outcomes": [
+        {
+          "task": "move the Sunday 19:00 week-ahead trigger to 20:30",
+          "gold": "Sunday Week Ahead Brief",
+          "outcome": "correct",
+          "chosen": "Sunday Week Ahead Brief",
+          "chosen_kind": "reuse",
+          "instructions": "Change the existing recurring Sunday week-ahead rundown (trigger ID 2) so it runs at 20:30 (8:30pm) America/Toronto instead of 19:00. Keep everything else the same: weekly on Sundays, same content. Confirm the new time once it's saved. Don't send any emails."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": null,
+      "case_id": "c07_revive_dormant_counterpart",
+      "category": "dormant_counterpart_summary_only",
+      "outcomes": [
+        {
+          "task": "ask Wendell Achebe about locking the renewal rate before Nov 4",
+          "gold": "Mortgage Renewal Paperwork",
+          "outcome": "correct",
+          "chosen": "Mortgage Renewal Paperwork",
+          "chosen_kind": "reuse",
+          "instructions": "Draft (do NOT send) a reply to Wendell Achebe (wendell.achebe@brightmoorcu.ca) in the existing Brightmoor renewal thread. Ask whether Theo should lock the rate now or wait until after the Nov 4 rate announcement. Keep it short and polite, sign as Theo. Mention that Theo is ready to decide once he has the answer, and ask him to confirm the lock-hold timing and any fees or deadlines for locking. Do not send. Return the exact To, Subject, Body, and Draft ID."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": null,
+      "case_id": "c08_same_first_name_other_person",
+      "category": "same_first_name_other_person",
+      "outcomes": [
+        {
+          "task": "check whether Priya Sandhu sent the engagement proofs gallery",
+          "gold": "Engagement Shoot Booking",
+          "outcome": "correct",
+          "chosen": "Engagement Shoot Booking",
+          "chosen_kind": "reuse",
+          "instructions": "Check whether Priya Sandhu (Lumen & Linen Photography, priya@lumenandlinen.ca) has sent the engagement shoot proofs or online proofing gallery link. Look at the existing thread (ID 19fa469b96087153) and any newer emails from her since Oct 12. Report the date of any proofs/gallery email, the gallery link or access details if present, and whether anything is still pending. Do not send or draft anything."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": null,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Piano Lessons Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Draft (do not send) a short email from Theo Marchetti to Marco Ferrante at Keyhaven Music, marco@keyhavenmusic.ca. Ask whether he has Saturday morning openings for adult beginner piano lessons. Keep it brief and friendly, signed Theo. Do not include made-up details like dates or prices. Create the draft and return the exact To, Subject, and Body, plus the draft ID. Wait for explicit approval before sending anything."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": null,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Create a draft (do not send) reply to Gabe (gabe@northfoldstudio.ca) in the existing offsite thread (1a0e88ccde8db8a5, subject \"Re: Offsite agenda - Cedar Hollow, Oct 21-22\"). Short message: Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Sign off as Theo. Return the full draft text and draft ID. Do not send."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Create a draft (do not send) new email to service@halcyonchimney.ca asking whether they can do a chimney sweep before mid-November 2026. Ask for their earliest available dates and pricing. Sign off as Theo Marchetti, Leslieville address not needed. Keep it short and polite. Return the full draft text and draft ID. Do not send."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": null,
+      "case_id": "c01_followup_named_counterpart",
+      "category": "followup_counterpart_in_name",
+      "outcomes": [
+        {
+          "task": "check for Harrow Hill's confirmation of the $4k second deposit",
+          "gold": "Harrow Hill Venue Deposit",
+          "outcome": "correct",
+          "chosen": "Harrow Hill Venue Deposit",
+          "chosen_kind": "reuse",
+          "instructions": "The user asks whether Harrow Hill Estate (celeste@harrowhillestate.ca, events@harrowhillestate.ca) has confirmed receiving the $4,000 second deposit for the June 12, 2027 wedding. Theo sent the e-transfer on Oct 15, 2026 and sent a note to Celeste on the same day (thread 19f8505f1389e3b7, sent message 1a13f757df8a294c). Check the thread for any reply from Harrow Hill since Oct 15 and report back what they said, with dates. Do not send or draft anything."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": null,
+      "case_id": "c02_new_task_known_counterpart",
+      "category": "new_task_known_counterpart",
+      "outcomes": [
+        {
+          "task": "ask Priya Natarajan to run Friday's client demo",
+          "gold": "Priya Roadmap Sync",
+          "outcome": "false_create",
+          "chosen": "Priya Natarajan Demo Cover",
+          "chosen_kind": "create",
+          "instructions": "Draft an email (do not send) to priya@northfoldstudio.ca (Priya Natarajan, Northfold Studio). Subject: Client demo Friday. Body: Theo is double booked and asks whether she can run the client demo this Friday, Oct 23. Keep it short, casual, and friendly, signed Theo. Do not contact Priya Sandhu (Lumen & Linen), who is a different person. Return the exact draft text and draft ID, and note whether a demo time or details from prior threads should be included."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": null,
+      "case_id": "c03_counterpart_not_in_owner_name",
+      "category": "new_task_owner_name_unrelated",
+      "outcomes": [
+        {
+          "task": "ask Dmitri Volkov whether Ironbark also does bathroom renovations",
+          "gold": "Kitchen Reno Quote Follow-up",
+          "outcome": "correct",
+          "chosen": "Kitchen Reno Quote Follow-up",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply to Dmitri Volkov (dmitri@ironbarkreno.ca) on the existing kitchen renovation thread (thread 19fd813573036bfd). Ask whether his crew also does bathroom renovations, specifically the upstairs bathroom, which is next on the list after the kitchen. Keep it short and casual, signed Theo. Do not send it. Show me the draft for approval first."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": null,
+      "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+      "category": "reply_to_found_email",
+      "outcomes": [
+        {
+          "task": "reply to Bramblewood Auto's winter tire email booking Sat Oct 24 9:00",
+          "gold": "Inbox Catch-Up Scan",
+          "outcome": "false_create",
+          "chosen": "Bramblewood Winter Tire Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft a reply to Bramblewood Auto Service (service@bramblewoodauto.ca) in the winter tire changeover thread (thread ID 1a13a9c097866746, subject \"Time to book your winter tire changeover\"). Book the Saturday Oct 24 at 9:00 AM slot for Theo's winter tire changeover ($89.95 + tax, they're storing his winter tires). Keep it short and polite, signed Theo. Do NOT send. Create the draft only and return the exact To, Subject, and Body, plus the draft ID."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": null,
+      "case_id": "c05_confirm_pending_draft",
+      "category": "confirm_pending_draft",
+      "outcomes": [
+        {
+          "task": "send the pending Copperleaf reply draft",
+          "gold": "Copperleaf Renewal Thread",
+          "outcome": "correct",
+          "chosen": "Copperleaf Renewal Thread",
+          "chosen_kind": "reuse",
+          "instructions": "The user has approved and confirmed sending the drafted reply in the Copperleaf renewal thread (Draft ID r3449532902455624814, thread 1a0a082e8e8b21e2) to hana.ishikawa@copperleafdata.com with subject \"Re: Your Copperleaf renewal - Northfold Studio\". Send it exactly as drafted, without changes, and report the sent message ID and confirmation."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": null,
+      "case_id": "c06_modify_existing_trigger",
+      "category": "modify_reminder",
+      "outcomes": [
+        {
+          "task": "move the Sunday 19:00 week-ahead trigger to 20:30",
+          "gold": "Sunday Week Ahead Brief",
+          "outcome": "correct",
+          "chosen": "Sunday Week Ahead Brief",
+          "chosen_kind": "reuse",
+          "instructions": "Change the recurring Sunday week-ahead rundown (trigger ID 2) from 19:00 to 20:30 America/Toronto. Keep everything else the same (weekly on Sundays, same content). Confirm the new time once it's updated. Don't send any emails."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": null,
+      "case_id": "c07_revive_dormant_counterpart",
+      "category": "dormant_counterpart_summary_only",
+      "outcomes": [
+        {
+          "task": "ask Wendell Achebe about locking the renewal rate before Nov 4",
+          "gold": "Mortgage Renewal Paperwork",
+          "outcome": "correct",
+          "chosen": "Mortgage Renewal Paperwork",
+          "chosen_kind": "reuse",
+          "instructions": "Draft (do NOT send) a reply to Wendell Achebe (wendell.achebe@brightmoorcu.ca) in the existing Brightmoor renewal thread. Theo wants to know whether to lock the rate now or wait until after the Nov 4 rate announcement. Ask Wendell for his recommendation on locking now versus waiting, and what the rate-lock hold terms are (length, any fee, whether the locked rate can be kept if rates drop). Keep it short and casual, signed Theo. Also check whether Jules' pay stub and 2025 T4s have arrived yet and mention status only if they have. Return the draft for Theo's review."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": null,
+      "case_id": "c08_same_first_name_other_person",
+      "category": "same_first_name_other_person",
+      "outcomes": [
+        {
+          "task": "check whether Priya Sandhu sent the engagement proofs gallery",
+          "gold": "Engagement Shoot Booking",
+          "outcome": "missed",
+          "chosen": null,
+          "chosen_kind": null,
+          "instructions": null
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": null,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Email to Marco Keyhaven Piano",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email (do NOT send it) to Marco Ferrante at Keyhaven Music, marco@keyhavenmusic.ca. Ask whether he has any Saturday morning openings for adult beginner piano lessons. Keep it short and friendly, signed Theo. Sender is Theo Marchetti. Return the exact recipient, subject, and body, along with the draft ID, and wait for approval before anything is sent."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": null,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "false_create",
+          "chosen": "Gabe Kickoff Late Notice",
+          "chosen_kind": "create",
+          "instructions": "Draft a reply to Gabe (gabe@northfoldstudio.ca) in the existing Cedar Hollow offsite thread (thread 1a0e88ccde8db8a5, subject \"Re: Offsite agenda - Cedar Hollow, Oct 21-22\"). Tell him Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train delay. Keep it to 2 short sentences, signed Theo. Do NOT send it. Return the draft with its draft ID and recipient, subject, and body."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email to service@halcyonchimney.ca asking whether they can do a chimney sweep before mid-November 2026. Ask for their earliest available date and the price. Keep it short, signed Theo Marchetti, and do not invent an address. Do NOT send it. Return the draft with its draft ID and recipient, subject, and body."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": null,
+      "case_id": "c01_followup_named_counterpart",
+      "category": "followup_counterpart_in_name",
+      "outcomes": [
+        {
+          "task": "check for Harrow Hill's confirmation of the $4k second deposit",
+          "gold": "Harrow Hill Venue Deposit",
+          "outcome": "correct",
+          "chosen": "Harrow Hill Venue Deposit",
+          "chosen_kind": "reuse",
+          "instructions": "Check the Harrow Hill Estate thread (thread ID 19f8505f1389e3b7) for any reply from Celeste or events@harrowhillestate.ca since Oct 15, 2026 confirming receipt of the $4,000 second deposit. Report whether a reply exists, the date, and what it says. Do not send or draft anything."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": null,
+      "case_id": "c02_new_task_known_counterpart",
+      "category": "new_task_known_counterpart",
+      "outcomes": [
+        {
+          "task": "ask Priya Natarajan to run Friday's client demo",
+          "gold": "Priya Roadmap Sync",
+          "outcome": "correct",
+          "chosen": "Priya Roadmap Sync",
+          "chosen_kind": "reuse",
+          "instructions": "Draft (do not send) a short email to priya@northfoldstudio.ca (Priya Natarajan, Northfold, not Priya Sandhu). Subject: Client demo Friday? Ask if she can run the client demo this Friday because Theo is double booked. Keep it brief and friendly, and thank her. Sign off as Theo. Create the draft and return the full To, Subject, and Body for Theo's review. Do not send until Theo explicitly confirms."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": null,
+      "case_id": "c03_counterpart_not_in_owner_name",
+      "category": "new_task_owner_name_unrelated",
+      "outcomes": [
+        {
+          "task": "ask Dmitri Volkov whether Ironbark also does bathroom renovations",
+          "gold": "Kitchen Reno Quote Follow-up",
+          "outcome": "correct",
+          "chosen": "Kitchen Reno Quote Follow-up",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply to Dmitri Volkov (dmitri@ironbarkreno.ca) in the existing kitchen renovation thread (thread 19fd813573036bfd). Ask whether Ironbark Renovations also does bathroom renovations, specifically the upstairs bathroom, which is next on the list after the kitchen (kitchen start Nov 9). Ask for availability and whether they'd send a quote. Keep it short and casual, signed Theo. Do NOT send it. Show me the full draft (to, subject, body) for my approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": null,
+      "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+      "category": "reply_to_found_email",
+      "outcomes": [
+        {
+          "task": "reply to Bramblewood Auto's winter tire email booking Sat Oct 24 9:00",
+          "gold": "Inbox Catch-Up Scan",
+          "outcome": "false_create",
+          "chosen": "Bramblewood Tire Changeover Reply",
+          "chosen_kind": "create",
+          "instructions": "Draft a reply (do NOT send) on the Bramblewood Auto thread (thread ID 1a13a9c097866746, from service@bramblewoodauto.ca, subject \"Time to book your winter tire changeover\") booking the winter tire changeover for Saturday October 24, 2026 at 9:00 AM. Keep it short and polite, signed Theo. Return the exact draft (to, subject, body, draft ID) so it can be shown to the user for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": null,
+      "case_id": "c05_confirm_pending_draft",
+      "category": "confirm_pending_draft",
+      "outcomes": [
+        {
+          "task": "send the pending Copperleaf reply draft",
+          "gold": "Copperleaf Renewal Thread",
+          "outcome": "correct",
+          "chosen": "Copperleaf Renewal Thread",
+          "chosen_kind": "reuse",
+          "instructions": "The user has approved the draft reply to Hana Ishikawa (hana.ishikawa@copperleafdata.com) in thread 1a0a082e8e8b21e2. Send draft r3449532902455624814 exactly as written, with no changes. Subject: \"Re: Your Copperleaf renewal - Northfold Studio\". Report back the sent message ID and confirm it was sent."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": null,
+      "case_id": "c06_modify_existing_trigger",
+      "category": "modify_reminder",
+      "outcomes": [
+        {
+          "task": "move the Sunday 19:00 week-ahead trigger to 20:30",
+          "gold": "Sunday Week Ahead Brief",
+          "outcome": "correct",
+          "chosen": "Sunday Week Ahead Brief",
+          "chosen_kind": "reuse",
+          "instructions": "Update the recurring Sunday week-ahead rundown (trigger ID 2) so it runs at 20:30 (8:30 PM) America/Toronto instead of 19:00. Keep everything else the same: weekly on Sundays, same scope (bills, deliveries, appointments, RSVPs, renewals for the coming week). Confirm back the new time once it's saved."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": null,
+      "case_id": "c07_revive_dormant_counterpart",
+      "category": "dormant_counterpart_summary_only",
+      "outcomes": [
+        {
+          "task": "ask Wendell Achebe about locking the renewal rate before Nov 4",
+          "gold": "Mortgage Renewal Paperwork",
+          "outcome": "correct",
+          "chosen": "Mortgage Renewal Paperwork",
+          "chosen_kind": "reuse",
+          "instructions": "Draft (do not send) a reply to Wendell Achebe (wendell.achebe@brightmoorcu.ca) in the existing Brightmoor renewal thread. Ask whether Theo and Jules should lock the rate now or wait until after the Nov 4 rate announcement. Keep it short and polite, sign off as Theo. Mention that Theo and Jules are working on the renewal documents. Do not include any other details. Return the exact To, Subject, and Body, plus the draft ID, for review."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": null,
+      "case_id": "c08_same_first_name_other_person",
+      "category": "same_first_name_other_person",
+      "outcomes": [
+        {
+          "task": "check whether Priya Sandhu sent the engagement proofs gallery",
+          "gold": "Engagement Shoot Booking",
+          "outcome": "missed",
+          "chosen": null,
+          "chosen_kind": null,
+          "instructions": null
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": null,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Piano Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask whether they have Saturday morning availability for adult beginner piano lessons. Keep it short, friendly, and casual. Sign off as Theo. Create the draft only and do NOT send it. Return the exact To, Subject, and Body, plus the draft ID, for the user's review."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": null,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft (do not send) a reply to Gabe (gabe@northfoldstudio.ca) in the existing Cedar Hollow offsite thread (thread 1a0e88ccde8db8a5). Tell him Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train delay. Keep it short and casual, signed Theo. Don't send; return the exact draft with the draft ID."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft (do not send) a new email to Halcyon Chimney (service@halcyonchimney.ca) asking whether they can do a chimney sweep before mid-November 2026. Ask for their earliest available date and price. Keep it short, signed Theo Marchetti. Return the exact draft with the draft ID. Don't send."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": null,
+      "case_id": "c01_followup_named_counterpart",
+      "category": "followup_counterpart_in_name",
+      "outcomes": [
+        {
+          "task": "check for Harrow Hill's confirmation of the $4k second deposit",
+          "gold": "Harrow Hill Venue Deposit",
+          "outcome": "correct",
+          "chosen": "Harrow Hill Venue Deposit",
+          "chosen_kind": "reuse",
+          "instructions": "Check the Harrow Hill Estate thread (thread 19f8505f1389e3b7, contacts events@harrowhillestate.ca and celeste@harrowhillestate.ca) for any reply since the second deposit note was sent on Oct 15, 2026. Report whether Celeste or anyone at Harrow Hill has confirmed receipt of the $4,000 second deposit, and quote the date and key wording of any reply. If there is no reply, say so. Do not send or draft anything."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": null,
+      "case_id": "c02_new_task_known_counterpart",
+      "category": "new_task_known_counterpart",
+      "outcomes": [
+        {
+          "task": "ask Priya Natarajan to run Friday's client demo",
+          "gold": "Priya Roadmap Sync",
+          "outcome": "false_create",
+          "chosen": "Priya Demo Coverage Request",
+          "chosen_kind": "create",
+          "instructions": "Draft (do not send) an email from Theo Marchetti to Priya Natarajan at priya@northfoldstudio.ca. Subject: \"Client demo Friday\". Ask if she can run the client demo this Friday, Oct 23, because Theo is double booked. Keep it short and casual, 2-3 sentences, signed Theo. Do not mention the Lumen & Linen Priya (Priya Sandhu). Return the exact To, Subject, Body, and draft ID so it can be shown to Theo for approval. Nothing should be sent."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": null,
+      "case_id": "c03_counterpart_not_in_owner_name",
+      "category": "new_task_owner_name_unrelated",
+      "outcomes": [
+        {
+          "task": "ask Dmitri Volkov whether Ironbark also does bathroom renovations",
+          "gold": "Kitchen Reno Quote Follow-up",
+          "outcome": "correct",
+          "chosen": "Kitchen Reno Quote Follow-up",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants to ask Dmitri Volkov (dmitri@ironbarkreno.ca) whether Ironbark Renovations also does bathroom renovations. The upstairs bathroom is next on the list after the kitchen (kitchen starts Nov 9). Create a draft reply in the existing Ironbark thread (19fd813573036bfd). Keep it short and casual, signed Theo. Do not send. Return the exact draft text (to, subject, body) and draft ID, and ask for Theo's approval before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": null,
+      "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+      "category": "reply_to_found_email",
+      "outcomes": [
+        {
+          "task": "reply to Bramblewood Auto's winter tire email booking Sat Oct 24 9:00",
+          "gold": "Inbox Catch-Up Scan",
+          "outcome": "correct",
+          "chosen": "Inbox Catch-Up Scan",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply (do not send yet) in the Bramblewood Auto Service thread (thread ID 1a13a9c097866746, from service@bramblewoodauto.ca, \"Time to book your winter tire changeover\"). Tell them Saturday Oct 24 at 9:00 AM works for the winter tire changeover. Keep it short and casual, signed Theo. Return the full draft: to, subject, body, and draft ID. Nothing should be sent."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": null,
+      "case_id": "c05_confirm_pending_draft",
+      "category": "confirm_pending_draft",
+      "outcomes": [
+        {
+          "task": "send the pending Copperleaf reply draft",
+          "gold": "Copperleaf Renewal Thread",
+          "outcome": "correct",
+          "chosen": "Copperleaf Renewal Thread",
+          "chosen_kind": "reuse",
+          "instructions": "The user approved the draft reply to Hana Ishikawa. Send draft r3449532902455624814 now, unchanged, in thread 1a0a082e8e8b21e2 (To: hana.ishikawa@copperleafdata.com, Subject: Re: Your Copperleaf renewal - Northfold Studio). Do not edit the body. Report back the sent message ID and confirmation."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": null,
+      "case_id": "c06_modify_existing_trigger",
+      "category": "modify_reminder",
+      "outcomes": [
+        {
+          "task": "move the Sunday 19:00 week-ahead trigger to 20:30",
+          "gold": "Sunday Week Ahead Brief",
+          "outcome": "correct",
+          "chosen": "Sunday Week Ahead Brief",
+          "chosen_kind": "reuse",
+          "instructions": "Update the existing recurring Sunday week-ahead rundown (trigger ID 2) so it runs at 20:30 (8:30 PM) America/Toronto time instead of 19:00. Keep everything else the same: weekly on Sundays, same content (bills, deliveries, appointments, RSVPs, renewals for the coming week). Confirm the new schedule once it's saved. Nothing should be sent by email as part of this change."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": null,
+      "case_id": "c07_revive_dormant_counterpart",
+      "category": "dormant_counterpart_summary_only",
+      "outcomes": [
+        {
+          "task": "ask Wendell Achebe about locking the renewal rate before Nov 4",
+          "gold": "Mortgage Renewal Paperwork",
+          "outcome": "false_create",
+          "chosen": "Brightmoor Rate Lock Question",
+          "chosen_kind": "create",
+          "instructions": "Draft (do not send) an email to Wendell Achebe at wendell.achebe@brightmoorcu.ca asking whether Theo Marchetti should lock the mortgage rate now or wait until after the Nov 4 rate announcement. Context to reference: the Brightmoor mortgage term ends Dec 1, 2026; Wendell previously advised deciding before the Nov 4 announcement and that holds are allowed up to 120 days before maturity. Ask him to outline the rate-lock options and any cost or deadline for a hold, and what he recommends. Keep it short and casual, signed Theo. Reply in the existing Brightmoor renewal thread if one is found. Return the exact To, Subject, Body, Draft ID, and Thread ID."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": null,
+      "case_id": "c08_same_first_name_other_person",
+      "category": "same_first_name_other_person",
+      "outcomes": [
+        {
+          "task": "check whether Priya Sandhu sent the engagement proofs gallery",
+          "gold": "Engagement Shoot Booking",
+          "outcome": "correct",
+          "chosen": "Engagement Shoot Booking",
+          "chosen_kind": "reuse",
+          "instructions": "Check whether Priya Sandhu (Lumen & Linen Photography, priya@lumenandlinen.ca) has sent the engagement shoot online proofing gallery or proofs to Theo or Jules yet. Look at the existing thread (19fa469b96087153) and any newer emails from her. Report whether the proofs arrived, the date received, and any gallery link, passcode, or deadline to pick favourites. Also note if she said anything new about timing. Do not send or draft anything."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": null,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Piano Saturday Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email (do not send) to Marco Ferrante at Keyhaven Music, marco@keyhavenmusic.ca. Sign as Theo. Ask whether he has Saturday morning openings for adult beginner piano lessons. Keep it short and friendly. Ask for his availability and rates if available. Save as a draft and return the exact To, Subject, and Body, plus the Draft ID. Wait for explicit approval before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": null,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply in the existing Cedar Hollow offsite thread (thread 1a0e88ccde8db8a5) to gabe@northfoldstudio.ca saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train delay. Keep it short and casual, signed Theo. Do NOT send it. Return the exact draft (to, subject, body, draft ID) for Theo's approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email to service@halcyonchimney.ca asking whether they can do a chimney sweep before mid-November 2026. Ask for their earliest available date and price. Sign as Theo Marchetti. Include a line asking them to reply with availability. Do NOT send it. Return the exact draft (to, subject, body, draft ID) for Theo's approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    }
+  ]
+}

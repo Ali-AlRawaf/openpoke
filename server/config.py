@@ -28,6 +28,12 @@ def _load_env_file() -> None:
 _load_env_file()
 
 
+def data_dir() -> Path:
+    """Runtime data directory; OPENPOKE_DATA_DIR overrides it (used by evals)."""
+    override = os.getenv("OPENPOKE_DATA_DIR")
+    return Path(override) if override else Path(__file__).resolve().parent / "data"
+
+
 DEFAULT_APP_NAME = "OpenPoke Server"
 DEFAULT_APP_VERSION = "0.3.0"
 
