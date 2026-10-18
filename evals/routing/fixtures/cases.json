@@ -134,6 +134,186 @@
         }
       ],
       "rationale": "Gabe Lindqvist <gabe@northfoldstudio.ca> and the Oct 21-22 Cedar Hollow offsite (10:00 Wed kickoff) are owned by 'Email to Gabe Offsite Agenda' (agenda thread, final agenda sent 10-15 in the recent entries), so that part reuses it (rules 1 and 2). Halcyon Chimney has never appeared and no agent covers chimneys. It's an independent task that can run in parallel, so it gets a new agent (rule 3)."
+    },
+    {
+      "id": "c11_dormant_name_match_noor",
+      "category": "dormant_name_match",
+      "pair": "noor",
+      "split": "heldout",
+      "rule": [
+        1,
+        2
+      ],
+      "message": "can we bump the save the date printing to 140? guest list grew",
+      "expected": [
+        {
+          "task": "ask Noor (Inkwell & Vine) to raise the save-the-date order from 120 to 140",
+          "gold": "Save the Date Printing"
+        }
+      ],
+      "rationale": "Noor Hassan's quote for 120 letterpress save-the-dates (summary, Pending) belongs to 'Save the Date Printing'; the message shares 'save the date printing'. Dormant: not in the recent 80. Topic sibling 'Wedding Invitation Calligrapher' is a different vendor."
+    },
+    {
+      "id": "c12_dormant_inference_noor",
+      "category": "dormant_inference",
+      "pair": "noor",
+      "split": "heldout",
+      "rule": [
+        1,
+        2
+      ],
+      "message": "ask noor if she can do 140 instead of 120, guest list grew",
+      "expected": [
+        {
+          "task": "ask Noor (Inkwell & Vine) to raise the save-the-date order from 120 to 140",
+          "gold": "Save the Date Printing"
+        }
+      ],
+      "rationale": "Same owner as c11. Only the summary links Noor to the 120-piece save-the-date quote; the agent name never appears in the summary."
+    },
+    {
+      "id": "c13_dormant_name_match_tidewater",
+      "category": "dormant_name_match",
+      "pair": "tidewater",
+      "split": "heldout",
+      "rule": [
+        1,
+        2
+      ],
+      "message": "email the dentist and ask if my cleaning can be at 5 instead",
+      "expected": [
+        {
+          "task": "ask Tidewater Dental to move the cleaning to 17:00",
+          "gold": "Dentist Cleaning Reschedule"
+        }
+      ],
+      "rationale": "Tidewater Dental cleaning reschedule thread (summary, Pending) is owned by 'Dentist Cleaning Reschedule'; message shares 'dentist' and 'cleaning'. Topic sibling 'Orthodontist Consult for Nephew' is a different patient and practice."
+    },
+    {
+      "id": "c14_dormant_inference_tidewater",
+      "category": "dormant_inference",
+      "pair": "tidewater",
+      "split": "heldout",
+      "rule": [
+        1,
+        2
+      ],
+      "message": "email tidewater and ask if i can get a 5pm slot instead",
+      "expected": [
+        {
+          "task": "ask Tidewater Dental to move the cleaning to 17:00",
+          "gold": "Dentist Cleaning Reschedule"
+        }
+      ],
+      "rationale": "Same owner as c13. Only the summary links Tidewater to the cleaning reschedule thread."
+    },
+    {
+      "id": "c15_dormant_name_match_ironwood",
+      "category": "dormant_name_match",
+      "pair": "ironwood",
+      "split": "heldout",
+      "rule": [
+        1,
+        2
+      ],
+      "message": "can you extend my gym membership freeze through november",
+      "expected": [
+        {
+          "task": "ask Ironwood Athletic to extend the membership freeze through November",
+          "gold": "Gym Membership Freeze"
+        }
+      ],
+      "rationale": "Ironwood Athletic freeze request (summary, Pending) is owned by 'Gym Membership Freeze'; message shares 'gym membership freeze'. Topic sibling 'Climbing Gym Day Pass' is a different club."
+    },
+    {
+      "id": "c16_dormant_inference_ironwood",
+      "category": "dormant_inference",
+      "pair": "ironwood",
+      "split": "heldout",
+      "rule": [
+        1,
+        2
+      ],
+      "message": "ask ironwood if they can extend my hold through november",
+      "expected": [
+        {
+          "task": "ask Ironwood Athletic to extend the membership freeze through November",
+          "gold": "Gym Membership Freeze"
+        }
+      ],
+      "rationale": "Same owner as c15. Only the summary links Ironwood to the freeze."
+    },
+    {
+      "id": "c17_dormant_name_match_harold",
+      "category": "dormant_name_match",
+      "pair": "harold",
+      "split": "heldout",
+      "rule": [
+        1,
+        2
+      ],
+      "message": "tell the neighbour im good to split the fence repair, 575 each",
+      "expected": [
+        {
+          "task": "tell Harold Pemberton Theo agrees to split the $1,150 fence repair",
+          "gold": "Neighbour Fence Repair"
+        }
+      ],
+      "rationale": "Harold's request to split the $1,150 fence repair (summary, Pending) is owned by 'Neighbour Fence Repair'; message shares 'neighbour fence repair'. Topic siblings 'Backyard Shed Permit' and 'Email to Rui Deck Repair Quote' are other counterparts."
+    },
+    {
+      "id": "c18_dormant_inference_harold",
+      "category": "dormant_inference",
+      "pair": "harold",
+      "split": "heldout",
+      "rule": [
+        1,
+        2
+      ],
+      "message": "tell harold im good to split it, 575 each",
+      "expected": [
+        {
+          "task": "tell Harold Pemberton Theo agrees to split the $1,150 fence repair",
+          "gold": "Neighbour Fence Repair"
+        }
+      ],
+      "rationale": "Same owner as c17. Only the summary links Harold to the fence thread."
+    },
+    {
+      "id": "c19_dormant_name_match_marcus",
+      "category": "dormant_name_match",
+      "pair": "marcus",
+      "split": "heldout",
+      "rule": [
+        1,
+        2
+      ],
+      "message": "can you push the designer search call to friday morning",
+      "expected": [
+        {
+          "task": "ask Marcus Oyelaran (Fernway) to move the Thursday call to Friday morning",
+          "gold": "Fernway Designer Search"
+        }
+      ],
+      "rationale": "Marcus's Thursday 14:00 call about the senior designer search (summary, Pending) is owned by 'Fernway Designer Search'; message shares 'designer search'. Topic sibling 'Email to Imani Contract Designer Rates' is a freelancer, not the search."
+    },
+    {
+      "id": "c20_dormant_inference_marcus",
+      "category": "dormant_inference",
+      "pair": "marcus",
+      "split": "heldout",
+      "rule": [
+        1,
+        2
+      ],
+      "message": "ask marcus if we can move our call to friday morning",
+      "expected": [
+        {
+          "task": "ask Marcus Oyelaran (Fernway) to move the Thursday call to Friday morning",
+          "gold": "Fernway Designer Search"
+        }
+      ],
+      "rationale": "Same owner as c19. Only the summary links Marcus to the designer search."
     }
   ]
 }

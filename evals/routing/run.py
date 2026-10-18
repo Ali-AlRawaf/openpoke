@@ -363,7 +363,11 @@ def _build_prompt(case: Case) -> Tuple[str, List[Dict[str, Any]]]:
 
 
 def _prompt_chars(system_prompt: str, messages: List[Dict[str, Any]]) -> int:
-    return len(system_prompt) + sum(len(str(m.get("content") or "")) for m in messages)
+    def text_len(content: Any) -> int:
+        if isinstance(content, list):  # content blocks
+            return sum(len(b.get("text") or "") for b in content if isinstance(b, dict))
+        return len(str(content or ""))
+    return len(system_prompt) + sum(text_len(m.get("content")) for m in messages)
 
 
 # --------------------------------------------------------------------------- the routing loop
@@ -678,9 +682,12 @@ async def _live_run(fixtures: Path, sizes: List[int], cases: List[Case], args) -
         for size in sizes:
             roster = _prepare_size(fixtures, size)
             print(f"size {size}: roster {len(roster)}", flush=True)
-            rows = await asyncio.gather(
-                *(_run_case(c, size, roster, sem, {**base, "repeat": r}) for r in range(args.repeats) for c in cases)
-            )
+            jobs = [(c, r) for r in range(args.repeats) for c in cases]
+            # warm the prompt cache with one call, so the rest read the shared context instead of
+            # all writing it concurrently
+            first = await _run_case(jobs[0][0], size, roster, sem, {**base, "repeat": jobs[0][1]})
+            rest = await asyncio.gather(*(_run_case(c, size, roster, sem, {**base, "repeat": r}) for c, r in jobs[1:]))
+            rows = [first, *rest]
             for row in rows:
                 fh.write(json.dumps(row, ensure_ascii=False) + "\n")
             fh.flush()

@@ -1360,6 +1360,69 @@ CASES: List[Dict[str, Any]] = [
                      "(agenda thread, final agenda sent 10-15 in the recent entries), so that part reuses it (rules 1 and 2). Halcyon Chimney has never appeared and no "
                      "agent covers chimneys. It's an independent task that can run in parallel, so it gets a new agent (rule 3).",
     },
+    # ---- Dormant-owner pairs (held out). Same dormant owner, two phrasings: "name_match" shares
+    # words with the owner's name; "inference" names only the person/org, so the only bridge is the
+    # summary (which keeps the person but never the agent name). Every message asks for an action.
+    {
+        "id": "c11_dormant_name_match_noor", "category": "dormant_name_match", "pair": "noor", "split": "heldout", "rule": [1, 2],
+        "message": "can we bump the save the date printing to 140? guest list grew",
+        "expected": [{"task": "ask Noor (Inkwell & Vine) to raise the save-the-date order from 120 to 140", "gold": "Save the Date Printing"}],
+        "rationale": "Noor Hassan's quote for 120 letterpress save-the-dates (summary, Pending) belongs to 'Save the Date Printing'; the message shares 'save the date printing'. Dormant: not in the recent 80. Topic sibling 'Wedding Invitation Calligrapher' is a different vendor.",
+    },
+    {
+        "id": "c12_dormant_inference_noor", "category": "dormant_inference", "pair": "noor", "split": "heldout", "rule": [1, 2],
+        "message": "ask noor if she can do 140 instead of 120, guest list grew",
+        "expected": [{"task": "ask Noor (Inkwell & Vine) to raise the save-the-date order from 120 to 140", "gold": "Save the Date Printing"}],
+        "rationale": "Same owner as c11. Only the summary links Noor to the 120-piece save-the-date quote; the agent name never appears in the summary.",
+    },
+    {
+        "id": "c13_dormant_name_match_tidewater", "category": "dormant_name_match", "pair": "tidewater", "split": "heldout", "rule": [1, 2],
+        "message": "email the dentist and ask if my cleaning can be at 5 instead",
+        "expected": [{"task": "ask Tidewater Dental to move the cleaning to 17:00", "gold": "Dentist Cleaning Reschedule"}],
+        "rationale": "Tidewater Dental cleaning reschedule thread (summary, Pending) is owned by 'Dentist Cleaning Reschedule'; message shares 'dentist' and 'cleaning'. Topic sibling 'Orthodontist Consult for Nephew' is a different patient and practice.",
+    },
+    {
+        "id": "c14_dormant_inference_tidewater", "category": "dormant_inference", "pair": "tidewater", "split": "heldout", "rule": [1, 2],
+        "message": "email tidewater and ask if i can get a 5pm slot instead",
+        "expected": [{"task": "ask Tidewater Dental to move the cleaning to 17:00", "gold": "Dentist Cleaning Reschedule"}],
+        "rationale": "Same owner as c13. Only the summary links Tidewater to the cleaning reschedule thread.",
+    },
+    {
+        "id": "c15_dormant_name_match_ironwood", "category": "dormant_name_match", "pair": "ironwood", "split": "heldout", "rule": [1, 2],
+        "message": "can you extend my gym membership freeze through november",
+        "expected": [{"task": "ask Ironwood Athletic to extend the membership freeze through November", "gold": "Gym Membership Freeze"}],
+        "rationale": "Ironwood Athletic freeze request (summary, Pending) is owned by 'Gym Membership Freeze'; message shares 'gym membership freeze'. Topic sibling 'Climbing Gym Day Pass' is a different club.",
+    },
+    {
+        "id": "c16_dormant_inference_ironwood", "category": "dormant_inference", "pair": "ironwood", "split": "heldout", "rule": [1, 2],
+        "message": "ask ironwood if they can extend my hold through november",
+        "expected": [{"task": "ask Ironwood Athletic to extend the membership freeze through November", "gold": "Gym Membership Freeze"}],
+        "rationale": "Same owner as c15. Only the summary links Ironwood to the freeze.",
+    },
+    {
+        "id": "c17_dormant_name_match_harold", "category": "dormant_name_match", "pair": "harold", "split": "heldout", "rule": [1, 2],
+        "message": "tell the neighbour im good to split the fence repair, 575 each",
+        "expected": [{"task": "tell Harold Pemberton Theo agrees to split the $1,150 fence repair", "gold": "Neighbour Fence Repair"}],
+        "rationale": "Harold's request to split the $1,150 fence repair (summary, Pending) is owned by 'Neighbour Fence Repair'; message shares 'neighbour fence repair'. Topic siblings 'Backyard Shed Permit' and 'Email to Rui Deck Repair Quote' are other counterparts.",
+    },
+    {
+        "id": "c18_dormant_inference_harold", "category": "dormant_inference", "pair": "harold", "split": "heldout", "rule": [1, 2],
+        "message": "tell harold im good to split it, 575 each",
+        "expected": [{"task": "tell Harold Pemberton Theo agrees to split the $1,150 fence repair", "gold": "Neighbour Fence Repair"}],
+        "rationale": "Same owner as c17. Only the summary links Harold to the fence thread.",
+    },
+    {
+        "id": "c19_dormant_name_match_marcus", "category": "dormant_name_match", "pair": "marcus", "split": "heldout", "rule": [1, 2],
+        "message": "can you push the designer search call to friday morning",
+        "expected": [{"task": "ask Marcus Oyelaran (Fernway) to move the Thursday call to Friday morning", "gold": "Fernway Designer Search"}],
+        "rationale": "Marcus's Thursday 14:00 call about the senior designer search (summary, Pending) is owned by 'Fernway Designer Search'; message shares 'designer search'. Topic sibling 'Email to Imani Contract Designer Rates' is a freelancer, not the search.",
+    },
+    {
+        "id": "c20_dormant_inference_marcus", "category": "dormant_inference", "pair": "marcus", "split": "heldout", "rule": [1, 2],
+        "message": "ask marcus if we can move our call to friday morning",
+        "expected": [{"task": "ask Marcus Oyelaran (Fernway) to move the Thursday call to Friday morning", "gold": "Fernway Designer Search"}],
+        "rationale": "Same owner as c19. Only the summary links Marcus to the designer search.",
+    },
 ]
 
 # =============================================================================================
@@ -1427,6 +1490,92 @@ class Built:
 
 DISTRACTOR_START = "2026-07-20 08:00:00"
 
+# ---------------------------------------------------------------------------------------------
+# Real distractors: agents genuinely related to a core counterpart, modelled on the hybrid
+# reuse/create behaviour the real IA shows (it names fresh agents after the task, e.g.
+# "Email to Gabe Kickoff Delay", "Priya Demo Coverage Request" in our eval runs).
+#   same_person: same counterpart, different topic. Rare. Only for counterparts whose case gold
+#                is fixed by a specific thread/draft/trigger (rule 1) or that no case uses; never
+#                for counterparts whose gold rests on affinity alone (rule 2), which would make
+#                "which of their agents?" unanswerable.
+#   same_topic:  same topic/work-type, different person or vendor. Common. Anchored to a person
+#                or vendor (never a free-floating project) so person affinity still decides.
+# Each replaces one noise distractor in the same tier, so roster sizes are unchanged.
+# ---------------------------------------------------------------------------------------------
+REAL_DISTRACTORS: List[Dict[str, Any]] = [
+    # same person, different topic (8)
+    {"name": "Mom Flight Rebooking", "kind": "same_person", "relates_to": "Mom Thanksgiving Visit", "tier": 50, "created": "2026-09-29 20:14:05"},
+    {"name": "Harrow Hill Tasting Menu", "kind": "same_person", "relates_to": "Harrow Hill Venue Deposit", "tier": 200, "created": "2026-09-03 12:41:50"},
+    {"name": "Lakeport Hydro Outage Credit", "kind": "same_person", "relates_to": "Hydro Bill Reminder", "tier": 400, "created": "2026-09-08 09:22:31"},
+    {"name": "Copperleaf Invoice Copy", "kind": "same_person", "relates_to": "Copperleaf Renewal Thread", "tier": 400, "created": "2026-08-27 15:03:12"},
+    {"name": "Email to Marco Spring Registration", "kind": "same_person", "relates_to": "Email to Marco Soccer League", "tier": 800, "created": "2026-10-02 18:55:40"},
+    {"name": "Sofia Housewarming Gift", "kind": "same_person", "relates_to": "Email to Sofia Cottage Weekend", "tier": 800, "created": "2026-09-19 11:30:27"},
+    {"name": "Tomasz November Book Pick", "kind": "same_person", "relates_to": "Email to Tomasz Book Club", "tier": 1600, "created": "2026-10-06 21:12:09"},
+    {"name": "Oakhurst Chair Return", "kind": "same_person", "relates_to": "Standing Desk Receipt Lookup", "tier": 1600, "created": "2026-08-21 13:47:58"},
+    # same topic / work-type, different person or vendor (36)
+    {"name": "Backsplash Tile Order Stonehaven", "kind": "same_topic", "relates_to": "Kitchen Reno Quote Follow-up", "tier": 50, "created": "2026-10-05 10:18:44"},
+    {"name": "Email to Bianca Wedding Florist Quote", "kind": "same_topic", "relates_to": "Harrow Hill Venue Deposit", "tier": 100, "created": "2026-09-11 19:40:02"},
+    {"name": "Offsite Catering Cedar Hollow", "kind": "same_topic", "relates_to": "Email to Gabe Offsite Agenda", "tier": 100, "created": "2026-10-07 14:25:16"},
+    {"name": "Massage Therapy Receipt Lookup", "kind": "same_topic", "relates_to": "Physio Knee Appointment", "tier": 100, "created": "2026-09-14 08:51:33"},
+    {"name": "Email to Sam Birthday Party RSVP", "kind": "same_topic", "relates_to": "Jules Birthday Dinner", "tier": 200, "created": "2026-09-24 22:06:18"},
+    {"name": "Email to Owen Client Demo Recording", "kind": "same_topic", "relates_to": "Priya Roadmap Sync", "tier": 200, "created": "2026-09-30 16:12:57"},
+    {"name": "Property Tax Installment Reminder", "kind": "same_topic", "relates_to": "Mortgage Renewal Paperwork", "tier": 200, "created": "2026-08-14 09:05:00"},
+    {"name": "Email to Felix Meetup Talk Slot", "kind": "same_topic", "relates_to": "Prairie UX Talk Proposal", "tier": 200, "created": "2026-09-09 13:33:21"},
+    {"name": "Indoor Futsal Team Signup", "kind": "same_topic", "relates_to": "Email to Marco Soccer League", "tier": 200, "created": "2026-08-30 17:48:09"},
+    {"name": "Office Chair Warranty Claim", "kind": "same_topic", "relates_to": "Standing Desk Receipt Lookup", "tier": 200, "created": "2026-09-01 10:27:45"},
+    {"name": "Plumber Quote Basement Bathroom", "kind": "same_topic", "relates_to": "Kitchen Reno Quote Follow-up", "tier": 400, "created": "2026-09-21 12:09:38"},
+    {"name": "Email to Theresa Officiant Booking", "kind": "same_topic", "relates_to": "Harrow Hill Venue Deposit", "tier": 400, "created": "2026-09-26 20:31:14"},
+    {"name": "Email to Lena Sprint Retro Notes", "kind": "same_topic", "relates_to": "Priya Roadmap Sync", "tier": 400, "created": "2026-09-16 17:02:51"},
+    {"name": "Orthodontist Consult for Nephew", "kind": "same_topic", "relates_to": "Dentist Cleaning Reschedule", "tier": 400, "created": "2026-08-25 18:44:20"},
+    {"name": "Email to Imani Contract Designer Rates", "kind": "same_topic", "relates_to": "Fernway Designer Search", "tier": 400, "created": "2026-09-17 11:16:03"},
+    {"name": "Email to Ines Choir Audition", "kind": "same_topic", "relates_to": "Email to Tomasz Book Club", "tier": 400, "created": "2026-09-05 19:59:26"},
+    {"name": "Email to Aunt Gina Halifax Visit", "kind": "same_topic", "relates_to": "Mom Thanksgiving Visit", "tier": 400, "created": "2026-08-18 21:23:47"},
+    {"name": "Friday Work Wrap-Up Digest", "kind": "same_topic", "relates_to": "Sunday Week Ahead Brief", "tier": 400, "created": "2026-09-04 16:30:00"},
+    {"name": "Water Bill Autopay Setup", "kind": "same_topic", "relates_to": "Hydro Bill Reminder", "tier": 400, "created": "2026-08-11 08:39:12"},
+    {"name": "Email to Nadia Mortgage Broker Referral", "kind": "same_topic", "relates_to": "Mortgage Renewal Paperwork", "tier": 800, "created": "2026-09-22 20:47:35"},
+    {"name": "Engagement Ring Insurance Rider", "kind": "same_topic", "relates_to": "Engagement Shoot Booking", "tier": 800, "created": "2026-08-20 12:14:58"},
+    {"name": "Climbing Gym Day Pass", "kind": "same_topic", "relates_to": "Gym Membership Freeze", "tier": 800, "created": "2026-10-03 09:58:17"},
+    {"name": "Fireplace Insert Quote Ember & Co", "kind": "same_topic", "relates_to": None, "tier": 800, "created": "2026-09-27 15:36:42"},
+    {"name": "Roadmap Template Research", "kind": "same_topic", "relates_to": "Priya Roadmap Sync", "tier": 800, "created": "2026-08-12 14:21:30"},
+    {"name": "Quebec City Hotel Quote", "kind": "same_topic", "relates_to": "Montreal Weekend Hotel", "tier": 800, "created": "2026-09-13 22:10:05"},
+    {"name": "Backyard Shed Permit", "kind": "same_topic", "relates_to": "Neighbour Fence Repair", "tier": 800, "created": "2026-08-29 10:43:56"},
+    {"name": "Weekend Inbox Sweep", "kind": "same_topic", "relates_to": "Inbox Catch-Up Scan", "tier": 800, "created": "2026-09-06 10:02:14"},
+    {"name": "Email to Dev Running Club Signup", "kind": "same_topic", "relates_to": "Email to Tomasz Book Club", "tier": 800, "created": "2026-08-23 07:55:48"},
+    {"name": "Wedding Invitation Calligrapher", "kind": "same_topic", "relates_to": "Save the Date Printing", "tier": 1600, "created": "2026-09-15 18:26:11"},
+    {"name": "Videographer Quote Comparison", "kind": "same_topic", "relates_to": "Engagement Shoot Booking", "tier": 1600, "created": "2026-09-25 21:38:24"},
+    {"name": "Line of Credit Rate Change", "kind": "same_topic", "relates_to": "Mortgage Renewal Paperwork", "tier": 1600, "created": "2026-10-01 11:07:33"},
+    {"name": "Email to Rui Deck Repair Quote", "kind": "same_topic", "relates_to": "Neighbour Fence Repair", "tier": 1600, "created": "2026-09-02 16:59:01"},
+    {"name": "Northern Lights UX Summit Ticket", "kind": "same_topic", "relates_to": "Prairie UX Talk Proposal", "tier": 1600, "created": "2026-08-26 13:12:46"},
+    {"name": "Lake Cabin Rental Muskoka", "kind": "same_topic", "relates_to": "Email to Sofia Cottage Weekend", "tier": 1600, "created": "2026-08-16 19:20:39"},
+    {"name": "Supper Club Reservation Thornfield", "kind": "same_topic", "relates_to": "Jules Birthday Dinner", "tier": 1600, "created": "2026-10-09 17:45:52"},
+    {"name": "Gas Bill Due Date Reminder", "kind": "same_topic", "relates_to": "Hydro Bill Reminder", "tier": 1600, "created": "2026-08-07 09:00:00"},
+]
+
+# Counterparts whose case gold rests on affinity alone (current + held-out cases): never give
+# them a same_person sibling. NEW-gold case counterparts must have no agent at all.
+AFFINITY_GOLD_OWNERS = {
+    "Priya Roadmap Sync", "Kitchen Reno Quote Follow-up", "Mortgage Renewal Paperwork", "Email to Gabe Offsite Agenda",
+    "Engagement Shoot Booking", "Fernway Designer Search", "Prairie UX Talk Proposal", "Save the Date Printing",
+    "Dentist Cleaning Reschedule", "Gym Membership Freeze", "Neighbour Fence Repair", "Q3 Financials Elaine",
+    "Montreal Weekend Hotel",
+}
+NEW_CASE_TERMS = ("keyhaven", "ferrante", "halcyon", "bramblewood", "chimney")
+
+
+def real_distractor_violations(spec: Dict[str, Any]) -> List[str]:
+    problems = []
+    low = spec["name"].lower()
+    if spec["kind"] == "same_person" and spec["relates_to"] in AFFINITY_GOLD_OWNERS:
+        problems.append(f"same_person sibling for affinity-gold owner {spec['relates_to']!r}")
+    if spec["relates_to"] is not None and spec["relates_to"] not in {a.name for a in CORE_AGENTS}:
+        problems.append(f"relates_to {spec['relates_to']!r} is not a core agent")
+    problems += [f"mentions NEW-case term {t!r}" for t in NEW_CASE_TERMS if t in low]
+    if spec["tier"] not in TIER_COUNTS:
+        problems.append(f"bad tier {spec['tier']}")
+    if not (DISTRACTOR_START <= spec["created"] <= DISTRACTOR_END):
+        problems.append("created outside the distractor window")
+    return problems
+
 
 def name_only_distractors(raw: List[Dict[str, Any]]) -> Tuple[List[Agent], Dict[str, datetime]]:
     """Distractors are roster names only: the IA never reads execution logs, so none are generated.
@@ -1444,13 +1593,25 @@ def name_only_distractors(raw: List[Dict[str, Any]]) -> Tuple[List[Agent], Dict[
         assert len(group_names) == len(group_tiers), f"{group}: {len(group_names)} names for {len(group_tiers)} slots"
         names.extend(group_names)
         tiers.extend(group_tiers)
+    # Swap noise names for real distractors tier by tier (sizes unchanged). Seeds (hand-picked
+    # generic names like "Inbox Summary") are never dropped; the rest are dropped in hash order.
+    seeds = {spec["name"] for spec in raw if spec.get("seed")}
+    drop: set = set()
+    for tier in TIER_COUNTS:
+        need = sum(1 for r in REAL_DISTRACTORS if r["tier"] == tier)
+        pool = sorted((n for n, t in zip(names, tiers) if t == tier and n not in seeds), key=lambda n: _h("swap", n))
+        drop.update(pool[:need])
+    kept = [(n, t) for n, t in zip(names, tiers) if n not in drop]
     start, end = dt(DISTRACTOR_START), dt(DISTRACTOR_END)
     span = int((end - start).total_seconds())
     agents: List[Agent] = []
     created: Dict[str, datetime] = {}
-    for name, tier in zip(names, tiers):
+    for name, tier in kept:
         agents.append(Agent(name, [], core=False, tier=tier))
         created[name] = start + timedelta(seconds=_h("created", name) % span)
+    for spec in REAL_DISTRACTORS:
+        agents.append(Agent(spec["name"], [], core=False, tier=spec["tier"]))
+        created[spec["name"]] = dt(spec["created"])
     return agents, created
 
 
@@ -1691,7 +1852,7 @@ def check(built: Built) -> List[str]:
 
     # 6. cases
     cases = json.loads(CASES_PATH.read_text(encoding="utf-8"))["cases"]
-    if len(cases) != 10:
+    if len(cases) != 20:
         errors.append(f"{len(cases)} cases")
     for case in cases:
         for exp in case["expected"]:
@@ -1699,8 +1860,18 @@ def check(built: Built) -> List[str]:
                 errors.append(f"{case['id']}: gold {exp['gold']!r} not in roster_25")
 
     # 7. distractors never mention core counterparts
+    real = {r["name"]: r for r in REAL_DISTRACTORS}
+    if len(real) != len(REAL_DISTRACTORS):
+        errors.append("duplicate real distractor names")
+    for spec in REAL_DISTRACTORS:
+        for problem in real_distractor_violations(spec):
+            errors.append(f"real distractor {spec['name']!r}: {problem}")
+    for size in ROSTER_SIZES:  # each real distractor is present from its tier upward
+        for spec in REAL_DISTRACTORS:
+            if (spec["name"] in loaded[size]) != (spec["tier"] <= size):
+                errors.append(f"real distractor {spec['name']!r} wrong membership in roster_{size}")
     for agent in built.agents:
-        if agent.core:
+        if agent.core or agent.name in real:
             continue
         problems = distractor_violations(agent.name, agent.name)
         if problems:
@@ -1715,7 +1886,7 @@ def check(built: Built) -> List[str]:
                 m = re.match(r"\[(SUCCESS|FAILED)\] ([^:]+):", chunk)
                 if m and m.group(2) not in loaded[25]:
                     errors.append(f"recent agent_message from non-core agent {m.group(2)!r}")
-    for term in ("wendell", "brightmoor", "mortgage"):
+    for term in ("wendell", "brightmoor", "mortgage", "noor", "inkwell", "tidewater", "ironwood", "harold", "marcus", "fernway"):
         if term in recent_text.lower():
             errors.append(f"dormant counterpart term {term!r} appears in the recent 80 entries")
     last = parse_line(conv[-1])

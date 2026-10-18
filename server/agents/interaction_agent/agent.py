@@ -2,8 +2,9 @@
 
 from html import escape
 from pathlib import Path
-from typing import Dict, List
+from typing import Any, Dict, List, Optional
 
+from ...config import get_settings
 from ...services.execution import get_agent_roster
 
 _prompt_path = Path(__file__).parent / "system_prompt.md"
@@ -21,16 +22,32 @@ def prepare_message_with_history(
     latest_text: str,
     transcript: str,
     message_type: str = "user",
-) -> List[Dict[str, str]]:
-    """Compose a message that bundles history, roster, and the latest turn."""
-    sections: List[str] = []
+) -> List[Dict[str, Any]]:
+    """Compose a message that bundles history, roster, and the latest turn.
 
-    sections.append(_render_conversation_history(transcript))
-    sections.append(f"<active_agents>\n{_render_active_agents()}\n</active_agents>")
-    sections.append(_render_current_turn(latest_text, message_type))
+    The text is split into two content blocks: the shared context (history + roster) and the
+    current turn. The model sees the same text either way; the split lets the context block
+    carry a cache breakpoint so every call that shares it reads it from the prompt cache.
+    """
+    history = _render_conversation_history(transcript)
+    roster = f"<active_agents>\n{_render_active_agents()}\n</active_agents>"
+    context_block: Dict[str, Any] = {"type": "text", "text": f"{history}\n\n{roster}\n\n"}
+    cache_control = _context_cache_control()
+    if cache_control:
+        context_block["cache_control"] = cache_control
+    turn_block = {"type": "text", "text": _render_current_turn(latest_text, message_type)}
+    return [{"role": "user", "content": [context_block, turn_block]}]
 
-    content = "\n\n".join(sections)
-    return [{"role": "user", "content": content}]
+
+# Explicit cache breakpoint for the context block (Anthropic models only; others cache automatically)
+def _context_cache_control() -> Optional[Dict[str, str]]:
+    settings = get_settings()
+    if not settings.prompt_cache_enabled or not settings.interaction_agent_model.startswith("anthropic/"):
+        return None
+    control = {"type": "ephemeral"}
+    if settings.prompt_cache_ttl == "1h":
+        control["ttl"] = "1h"
+    return control
 
 
 # Format conversation transcript into XML tags for LLM context

@@ -119,7 +119,11 @@ The source is `server/agents/interaction_agent/system_prompt.md:19`:
 **Exactly one correct answer for each expected delegation:** an exact existing roster name, or `NEW` (any name not in the roster). A two-task message has two expected delegations.
 
 **Case design rules (these are what make a single answer possible):**
-- **Each counterpart has exactly one owner agent** across the **whole** 400 roster. Distractors must never be about a core counterpart, by name, email address or organization.
+- **Noise distractors** never concern a core counterpart (name, email address or organization).
+- **Real distractors** (`REAL_DISTRACTORS` in `build_fixtures.py`) model the hybrid reuse/create behaviour and replace noise one for one, so roster sizes stay fixed. There are two kinds:
+  - `same_topic`: a different person or vendor on the same kind of work. Common.
+  - `same_person`: the same counterpart on a different topic. Rare, and **only** for counterparts whose case gold is fixed by a specific thread, draft or trigger (rule 1) or that no case uses.
+- **Counterparts whose gold rests on affinity alone (rule 2) keep exactly one owner**, so every case keeps a single correct answer.
 - **Hard negatives look related but belong to a different counterpart:**
   - the **same first name on a different person**, told apart by email address and organization
   - similar wording ("Email to Alina", "AliExpress Order Tracking")

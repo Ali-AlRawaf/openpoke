@@ -22,7 +22,7 @@ locations.
 
 ## Core counterparts and their single owner agent
 
-Every counterpart has **exactly one** owner across the whole 400-agent roster.
+Each counterpart below has one **core** owner. Real distractors (`REAL_DISTRACTORS` in `build_fixtures.py`) add `same_topic` siblings (different person, same kind of work) and a few `same_person` siblings, but only for counterparts whose case gold is fixed by a thread, draft or trigger. Counterparts whose gold rests on affinity alone keep exactly one owner.
 
 | # | Counterpart | Email | Org | Owner agent (core) | Status at "now" |
 |---|-------------|-------|-----|--------------------|-----------------|
