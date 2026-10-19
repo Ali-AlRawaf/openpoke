@@ -1,0 +1,52 @@
+{
+  "run_id": "20261017T200920Z",
+  "git_commit": "e7c5df6",
+  "git_dirty": true,
+  "model": "anthropic/claude-haiku-5.5",
+  "started_at": "2026-10-17T20:09:20+00:00",
+  "git_dirty_files": [
+    ".gitignore",
+    "server/config.py",
+    "server/services/conversation/log.py",
+    "server/services/conversation/summarization/working_memory_log.py",
+    "server/services/execution/log_store.py",
+    "server/services/execution/roster.py",
+    "server/services/gmail/importance_watcher.py",
+    "server/services/timezone_store.py",
+    "server/services/triggers/__init__.py"
+  ],
+  "fixtures": "evals/routing/fixtures",
+  "sizes": [
+    25,
+    50,
+    100,
+    200,
+    400
+  ],
+  "cases": [
+    "c01_followup_named_counterpart",
+    "c02_new_task_known_counterpart",
+    "c03_counterpart_not_in_owner_name",
+    "c04_reply_to_email_found_by_unrelated_agent",
+    "c05_confirm_pending_draft",
+    "c06_modify_existing_trigger",
+    "c07_revive_dormant_counterpart",
+    "c08_same_first_name_other_person",
+    "c09_new_counterpart_overlapping_name",
+    "c10_parallel_known_and_new"
+  ],
+  "concurrency": 5,
+  "max_iterations": 3,
+  "llm_max_tokens": 16000,
+  "prompt_cache_enabled": true,
+  "prompt_cache_ttl": "5m",
+  "tools": [
+    "send_message_to_agent",
+    "send_message_to_user",
+    "send_draft",
+    "wait"
+  ],
+  "data_dir": "/tmp/openpoke-routing-eval-wq355xr2",
+  "python": "3.12.3",
+  "finished_at": "2026-10-17T20:10:02+00:00"
+}

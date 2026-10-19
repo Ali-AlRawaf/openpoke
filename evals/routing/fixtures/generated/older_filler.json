@@ -1,0 +1,31 @@
+{
+  "note": "Hand-written chit-chat padding the older conversation to exactly 300 entries (indices 0-299). No delegations, no counterparts.",
+  "distractor_episodes": [],
+  "chats": [
+    {"t": "2026-07-26 21:40:12", "entries": [
+      {"tag": "user_message", "text": "do u ever sleep"},
+      {"tag": "poke_reply", "text": "Never. It's mostly inbox triage and judging your subject lines."}]},
+    {"t": "2026-08-09 10:02:45", "entries": [
+      {"tag": "user_message", "text": "is it bad to ice a knee for like an hour"},
+      {"tag": "poke_reply", "text": "Yeah, too long. 15-20 minutes on, then give it a break. And maybe stop playing defense like it's the World Cup."}]},
+    {"t": "2026-08-23 18:31:09", "entries": [
+      {"tag": "user_message", "text": "rain all weekend apparently"},
+      {"tag": "poke_reply", "text": "Perfect excuse to do absolutely nothing productive."}]},
+    {"t": "2026-09-04 08:12:50", "entries": [
+      {"tag": "user_message", "text": "coffee or matcha today"},
+      {"tag": "poke_reply", "text": "Coffee. It's a Friday, you need the heavy artillery."}]},
+    {"t": "2026-09-13 22:47:33", "entries": [
+      {"tag": "user_message", "text": "jules is making me watch a wedding show for 'research'"},
+      {"tag": "poke_reply", "text": "Take notes. There will be a quiz."}]},
+    {"t": "2026-09-21 16:20:05", "entries": [
+      {"tag": "user_message", "text": "what temp for medium rare steak"},
+      {"tag": "poke_reply", "text": "Pull it at about 130°F and let it rest 5 minutes. It'll coast up to medium rare."}]},
+    {"t": "2026-09-30 23:05:18", "entries": [
+      {"tag": "user_message", "text": "cant sleep"},
+      {"tag": "poke_reply", "text": "Phone down, lights off. I'll still be here in the morning, unfortunately for your inbox."}]},
+    {"t": "2026-10-11 12:44:27", "entries": [
+      {"tag": "user_message", "text": "mom wants to go to the island today"},
+      {"tag": "poke_reply", "text": "Toronto Island in October is a great call. Bring a jacket, the ferry gets windy."},
+      {"tag": "user_message", "text": "she says ty lol"}]}
+  ]
+}

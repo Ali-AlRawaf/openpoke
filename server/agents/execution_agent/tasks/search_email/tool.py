@@ -166,6 +166,9 @@ async def _run_email_search(
         }
         if tool_calls:
             assistant_entry["tool_calls"] = tool_calls
+        # Thinking blocks must be passed back unmodified alongside tool results
+        if assistant.get("reasoning_details"):
+            assistant_entry["reasoning_details"] = assistant["reasoning_details"]
         messages.append(assistant_entry)
         
         # Handle case where LLM doesn't make tool calls

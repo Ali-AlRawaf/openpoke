@@ -1,0 +1,2017 @@
+{
+  "meta": {
+    "run_id": "20261019T100723Z",
+    "git_commit": "5a72891",
+    "git_dirty": true,
+    "model": "anthropic/claude-haiku-5.5",
+    "started_at": "2026-10-19T10:07:23+00:00",
+    "git_dirty_files": [
+      "evals/routing/build_fixtures.py",
+      "evals/routing/fixtures/cases.json"
+    ],
+    "fixtures": "evals/routing/fixtures",
+    "sizes": [
+      25,
+      50,
+      100,
+      200,
+      400,
+      800,
+      1600
+    ],
+    "cases": [
+      "c27_new_familiar_topic_restaurant"
+    ],
+    "concurrency": 8,
+    "repeats": 10,
+    "max_iterations": 6,
+    "agent_search_top_k": 10,
+    "embedding_model": "openai/text-embedding-3-small",
+    "embedding_dimensions": 512,
+    "baseline": "evals/routing/results/baseline_all_x10",
+    "llm_max_tokens": 16000,
+    "prompt_cache_enabled": true,
+    "prompt_cache_ttl": "5m",
+    "tools": [
+      "search_agents",
+      "create_agent",
+      "send_message_to_agent",
+      "send_message_to_user",
+      "send_draft",
+      "wait"
+    ],
+    "data_dir": "/tmp/openpoke-routing-eval-7nhdwkmq",
+    "python": "3.12.3",
+    "finished_at": "2026-10-19T10:09:41+00:00"
+  },
+  "sizes": [
+    25,
+    50,
+    100,
+    200,
+    400,
+    800,
+    1600
+  ],
+  "total_cost": 0.107286,
+  "per_size": [
+    {
+      "size": 25,
+      "cases": 10,
+      "expected_entries": 10,
+      "accuracy": 1.0,
+      "outcomes": {
+        "correct": 10,
+        "wrong_reuse": 0,
+        "false_create": 0,
+        "false_reuse": 0,
+        "missed": 0,
+        "error": 0
+      },
+      "extra_delegations": 0,
+      "errors": 0,
+      "llm_calls": 21,
+      "mean_prompt_tokens": 19949.9,
+      "mean_cached_tokens": 17678.1,
+      "mean_completion_tokens": 523.3,
+      "mean_reasoning_tokens": 163.3,
+      "mean_prompt_chars": 38079,
+      "total_cost": 0.015169,
+      "mean_latency_s": 7.1,
+      "search_rate": 1.0,
+      "mean_searches": 1.0,
+      "gold_retrieved": null,
+      "creates_without_search": 0,
+      "rejected_sends": 0,
+      "search_fallbacks": 0
+    },
+    {
+      "size": 50,
+      "cases": 10,
+      "expected_entries": 10,
+      "accuracy": 1.0,
+      "outcomes": {
+        "correct": 10,
+        "wrong_reuse": 0,
+        "false_create": 0,
+        "false_reuse": 0,
+        "missed": 0,
+        "error": 0
+      },
+      "extra_delegations": 0,
+      "errors": 0,
+      "llm_calls": 22,
+      "mean_prompt_tokens": 20028.3,
+      "mean_cached_tokens": 17864.8,
+      "mean_completion_tokens": 450.0,
+      "mean_reasoning_tokens": 123.3,
+      "mean_prompt_chars": 38079,
+      "total_cost": 0.014828,
+      "mean_latency_s": 6.4,
+      "search_rate": 1.0,
+      "mean_searches": 1.0,
+      "gold_retrieved": null,
+      "creates_without_search": 0,
+      "rejected_sends": 0,
+      "search_fallbacks": 0
+    },
+    {
+      "size": 100,
+      "cases": 10,
+      "expected_entries": 10,
+      "accuracy": 1.0,
+      "outcomes": {
+        "correct": 10,
+        "wrong_reuse": 0,
+        "false_create": 0,
+        "false_reuse": 0,
+        "missed": 0,
+        "error": 0
+      },
+      "extra_delegations": 0,
+      "errors": 0,
+      "llm_calls": 21,
+      "mean_prompt_tokens": 20011.7,
+      "mean_cached_tokens": 17681.6,
+      "mean_completion_tokens": 513.0,
+      "mean_reasoning_tokens": 156.7,
+      "mean_prompt_chars": 38079,
+      "total_cost": 0.015214,
+      "mean_latency_s": 7.1,
+      "search_rate": 1.0,
+      "mean_searches": 1.0,
+      "gold_retrieved": null,
+      "creates_without_search": 0,
+      "rejected_sends": 0,
+      "search_fallbacks": 0
+    },
+    {
+      "size": 200,
+      "cases": 10,
+      "expected_entries": 10,
+      "accuracy": 1.0,
+      "outcomes": {
+        "correct": 10,
+        "wrong_reuse": 0,
+        "false_create": 0,
+        "false_reuse": 0,
+        "missed": 0,
+        "error": 0
+      },
+      "extra_delegations": 0,
+      "errors": 0,
+      "llm_calls": 21,
+      "mean_prompt_tokens": 20005.4,
+      "mean_cached_tokens": 17678.3,
+      "mean_completion_tokens": 500,
+      "mean_reasoning_tokens": 144.8,
+      "mean_prompt_chars": 38079,
+      "total_cost": 0.01507,
+      "mean_latency_s": 6.5,
+      "search_rate": 1.0,
+      "mean_searches": 1.0,
+      "gold_retrieved": null,
+      "creates_without_search": 0,
+      "rejected_sends": 0,
+      "search_fallbacks": 0
+    },
+    {
+      "size": 400,
+      "cases": 10,
+      "expected_entries": 10,
+      "accuracy": 1.0,
+      "outcomes": {
+        "correct": 10,
+        "wrong_reuse": 0,
+        "false_create": 0,
+        "false_reuse": 0,
+        "missed": 0,
+        "error": 0
+      },
+      "extra_delegations": 0,
+      "errors": 0,
+      "llm_calls": 21,
+      "mean_prompt_tokens": 19903,
+      "mean_cached_tokens": 17669.9,
+      "mean_completion_tokens": 510.0,
+      "mean_reasoning_tokens": 149.8,
+      "mean_prompt_chars": 38079,
+      "total_cost": 0.014927,
+      "mean_latency_s": 6.9,
+      "search_rate": 1.0,
+      "mean_searches": 1.0,
+      "gold_retrieved": null,
+      "creates_without_search": 0,
+      "rejected_sends": 0,
+      "search_fallbacks": 0
+    },
+    {
+      "size": 800,
+      "cases": 10,
+      "expected_entries": 10,
+      "accuracy": 1.0,
+      "outcomes": {
+        "correct": 10,
+        "wrong_reuse": 0,
+        "false_create": 0,
+        "false_reuse": 0,
+        "missed": 0,
+        "error": 0
+      },
+      "extra_delegations": 0,
+      "errors": 0,
+      "llm_calls": 26,
+      "mean_prompt_tokens": 20438.7,
+      "mean_cached_tokens": 18563.7,
+      "mean_completion_tokens": 459.5,
+      "mean_reasoning_tokens": 132.8,
+      "mean_prompt_chars": 38079,
+      "total_cost": 0.016893,
+      "mean_latency_s": 7.6,
+      "search_rate": 1.0,
+      "mean_searches": 1.0,
+      "gold_retrieved": null,
+      "creates_without_search": 0,
+      "rejected_sends": 1,
+      "search_fallbacks": 0
+    },
+    {
+      "size": 1600,
+      "cases": 10,
+      "expected_entries": 10,
+      "accuracy": 1.0,
+      "outcomes": {
+        "correct": 10,
+        "wrong_reuse": 0,
+        "false_create": 0,
+        "false_reuse": 0,
+        "missed": 0,
+        "error": 0
+      },
+      "extra_delegations": 0,
+      "errors": 0,
+      "llm_calls": 22,
+      "mean_prompt_tokens": 19842.7,
+      "mean_cached_tokens": 17831.3,
+      "mean_completion_tokens": 521.2,
+      "mean_reasoning_tokens": 174.2,
+      "mean_prompt_chars": 38079,
+      "total_cost": 0.015186,
+      "mean_latency_s": 7.3,
+      "search_rate": 1.0,
+      "mean_searches": 1.0,
+      "gold_retrieved": null,
+      "creates_without_search": 0,
+      "rejected_sends": 0,
+      "search_fallbacks": 0
+    }
+  ],
+  "groups": [
+    {
+      "group": "overload target (dormant, inference)",
+      "cases": [
+        "c07",
+        "c12",
+        "c14",
+        "c16",
+        "c18",
+        "c20"
+      ],
+      "pass_rates": {
+        "25": null,
+        "50": null,
+        "100": null,
+        "200": null,
+        "400": null,
+        "800": null,
+        "1600": null
+      }
+    },
+    {
+      "group": "dormant control (name match)",
+      "cases": [
+        "c11",
+        "c13",
+        "c15",
+        "c17",
+        "c19"
+      ],
+      "pass_rates": {
+        "25": null,
+        "50": null,
+        "100": null,
+        "200": null,
+        "400": null,
+        "800": null,
+        "1600": null
+      }
+    },
+    {
+      "group": "easy recent",
+      "cases": [
+        "c01",
+        "c03",
+        "c05",
+        "c06",
+        "c08",
+        "c09"
+      ],
+      "pass_rates": {
+        "25": null,
+        "50": null,
+        "100": null,
+        "200": null,
+        "400": null,
+        "800": null,
+        "1600": null
+      }
+    },
+    {
+      "group": "policy-ambiguous",
+      "cases": [
+        "c02",
+        "c04"
+      ],
+      "pass_rates": {
+        "25": null,
+        "50": null,
+        "100": null,
+        "200": null,
+        "400": null,
+        "800": null,
+        "1600": null
+      }
+    },
+    {
+      "group": "multi-task",
+      "cases": [
+        "c10"
+      ],
+      "pass_rates": {
+        "25": null,
+        "50": null,
+        "100": null,
+        "200": null,
+        "400": null,
+        "800": null,
+        "1600": null
+      }
+    },
+    {
+      "group": "stress: paraphrase (dormant, no name)",
+      "cases": [
+        "c21",
+        "c22",
+        "c23",
+        "c24"
+      ],
+      "pass_rates": {
+        "25": null,
+        "50": null,
+        "100": null,
+        "200": null,
+        "400": null,
+        "800": null,
+        "1600": null
+      }
+    },
+    {
+      "group": "stress: new counterpart, familiar topic",
+      "cases": [
+        "c25",
+        "c26",
+        "c27"
+      ],
+      "pass_rates": {
+        "25": 1.0,
+        "50": 1.0,
+        "100": 1.0,
+        "200": 1.0,
+        "400": 1.0,
+        "800": 1.0,
+        "1600": 1.0
+      }
+    },
+    {
+      "group": "stress: typo (dormant name)",
+      "cases": [
+        "c28",
+        "c29",
+        "c30",
+        "c31"
+      ],
+      "pass_rates": {
+        "25": null,
+        "50": null,
+        "100": null,
+        "200": null,
+        "400": null,
+        "800": null,
+        "1600": null
+      }
+    }
+  ],
+  "matrix": [
+    {
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "cells": {
+        "25": "10/10",
+        "50": "10/10",
+        "100": "10/10",
+        "200": "10/10",
+        "400": "10/10",
+        "800": "10/10",
+        "1600": "10/10"
+      },
+      "pass_rates": {
+        "25": 1.0,
+        "50": 1.0,
+        "100": 1.0,
+        "200": 1.0,
+        "400": 1.0,
+        "800": 1.0,
+        "1600": 1.0
+      },
+      "pattern": "pass at every size"
+    }
+  ],
+  "misses": [],
+  "rows": [
+    {
+      "size": 25,
+      "repeat": 0,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Northfold Studio's office (Theo Marchetti's office; look up the address in his emails or calendar) suitable for a business lunch with a new client. Check whether it can seat a party of 2 at 12:00 PM on Tuesday, October 27, 2026. Do not make the reservation yet. Report back with 2-3 options: name, address, approximate walk time from the office, noise level/atmosphere, and whether the 12:00 table is available or how to book it. Keep the report brief. If a reservation can be made by email or online with no payment or commitment beyond the table, prepare it for Theo's approval and show the exact details before sending. Nothing should be booked or sent until Theo approves."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 1,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Reservation Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch reservation for 2 people on Tuesday, October 27, 2026 at 12:00 PM, under Theo Marchetti, for a lunch meeting with a new client (client name not yet known). Find a quiet restaurant near Northfold Studio's office (check Theo's emails for the office address; if unknown, search for Northfold Studio's location first). Prefer a quiet, low-noise spot suitable for a business lunch. If you can book directly, make the reservation and report the restaurant name, address, confirmation details, and the time. If booking requires an email to the restaurant, draft it and show it to Theo for approval before sending; do not send without his explicit go-ahead. Also check Theo's calendar/inbox for conflicts at noon on Oct 27 and report any."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 2,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Northfold Studio's office (Theo Marchetti, theo@northfoldstudio.ca) for a business lunch for 2 on Tuesday October 27, 2026 at 12:00 PM. Check the office location from Theo's emails if you can, and favour quiet spots suitable for a client conversation. Check whether a reservation is possible at that time. Do not book or send anything yet. Report back 2-3 options with name, address, why it suits a quiet client lunch, and whether they take reservations, plus a draft reservation request email for the top choice, marked as not sent. Wait for Theo's approval before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 3,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Northfold Studio's office for a business lunch for 2 on Tuesday, October 27, 2026 at 12:00 PM, for Theo Marchetti and a new client. Look up Northfold Studio's office location first (check the inbox/signature if needed). Prefer a quiet spot suitable for a client conversation. Check Theo's calendar/inbox for conflicts at that time. Do not book yet: report back the top 2-3 options (name, address, why it fits, and whether they accept reservations for that time). Do not send any emails or make reservations until Theo approves the choice."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 4,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Reservation Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Northfold Studio's office for a business lunch for 2 on Tuesday, October 27, 2026 at 12:00 PM (America/Toronto). Theo is hosting a new client; the client's name is not known yet. Check that the restaurant has a table at that time, and confirm the office location from Theo's emails if you can find it. Do not send anything. Report back to Theo with 2 or 3 options (name, address, why it's quiet, availability at 12:00). Then draft a reservation request email for Theo's top pick, addressed to the restaurant, and show it to him for approval. Keep the report short."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 5,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch for 2 people at noon on Tuesday, October 27, 2026 (America/Toronto) for Theo Marchetti and a new client, at a quiet restaurant near Northfold Studio's office. Theo's office location isn't in the logs, so first check his recent emails and calendar for the office address (Northfold Studio, Leslieville area) and find quiet, lunch-appropriate restaurants within walking distance. Check for any existing calendar conflicts at noon that day. Make the booking request by email or reservation form only after Theo approves: show him the top 1-2 options (name, address, why it's quiet), and the exact reservation request you'd send, and wait for his explicit confirmation. Do not send anything without approval. Report back briefly."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 6,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch for 2 people at 12:00 PM on Tuesday, October 27, 2026, for Theo Marchetti and a new client. Find a quiet restaurant near Northfold Studio's office (check Theo's records for the office address; if unknown, say so and pick a quiet spot in downtown Toronto near the office location you find). Check availability if you can. Draft the reservation request email to the restaurant (do not send). Show Theo the restaurant name, address, why it's quiet, and the full draft email. Do not send anything until Theo explicitly approves. Report the restaurant options briefly if there's more than one good fit."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 7,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Reservation Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch reservation for 2 people on Tuesday, October 27, 2026 at 12:00 PM, for Theo Marchetti (Northfold Studio) and a new client. Location: somewhere quiet near Theo's Northfold Studio office (look up the office address from his emails or profile). Find a quiet restaurant with a table for 2 at that time. If you can book it directly (online booking or existing reservation channel), book it and report the restaurant name, address, confirmation details. If it requires an email to the restaurant, do NOT send it: create the draft and report back for Theo's approval. Do not send any email without Theo's explicit approval. Report back briefly with the restaurant chosen (and one or two alternatives if available) and the status."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 8,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch for 2 people on Tuesday, October 27, 2026 at 12:00 PM for Theo Marchetti (Northfold Studio) with a new client. Requirements: a quiet restaurant near Northfold Studio's office (find the office location from Theo's emails/signature; if unclear, say so). Find 2-3 good options that fit and check whether they take reservations or can be contacted by email. Do NOT send anything. Once you've picked the best option, create a reservation request email draft under Theo's name for the 12:00 Tuesday Oct 27 table for 2, under Theo Marchetti, and report back to Theo with the restaurant name, address, why it fits, and the draft details (to, subject, body) for his approval. Also list the other options briefly in case he wants a different one."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 9,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch for 2 people on Tuesday, October 27, 2026 at 12:00 PM (America/Toronto) for Theo Marchetti and a new client. Location: a quiet restaurant near Northfold Studio's office (find the office address from Theo's existing Northfold emails or profile; if unknown, use Leslieville as the area). Prioritize quiet, good for a business conversation, not loud or brunchy. Make the reservation if an online booking or phone-free option exists; if the only way is emailing the restaurant, create a draft and do NOT send it. Do not send anything without Theo's explicit approval. Report back: the restaurant name, address, confirmed time, and confirmation details, or the draft for approval if it could not be booked directly. If the restaurant needs a client name, use Theo Marchetti. Keep the report short."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 0,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch table for 2 at noon on Tuesday October 27, 2026, for Theo Marchetti and a new client. Find a quiet restaurant near Northfold Studio's office (Theo's office location is not in the records, so check his office address from his email signature or calendar, or ask Theo if you can't find it). Prefer a calm spot where a business conversation is easy. Check availability and make the reservation if you can. If you can only send a booking request by email, draft it and show Theo the restaurant name, address, and time before sending. Report back the restaurant, address, and confirmation status. Do not send anything without Theo's explicit approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 1,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch reservation for 2 on Tuesday, October 27, 2026 at 12:00 PM for Theo Marchetti and a new client. Find a quiet restaurant near the Northfold Studio office (look up the office address from Theo's existing emails if needed). Prioritize a calm atmosphere suitable for a business lunch. Make the booking, then report back the restaurant name, address, confirmed time, party size, and any confirmation number or email. If the 12:00 PM slot is unavailable, report the nearest alternatives instead of booking a different time. Do not send anything to the client."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 2,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch for 2 at 12:00 PM on Tuesday, October 27, 2026 for Theo Marchetti and a new client. Find a quiet restaurant near Northfold Studio's office (use Theo's inbox and any office address in his emails to locate it; if the office location is unclear, say so). Check that the restaurant can take a reservation for that time. Draft the reservation request or booking email for Theo to review. Do not send anything until Theo confirms. Report the restaurant name, address, the proposed time, and the draft details. Mention if the restaurant can't take the booking and suggest one alternative."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 3,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Reservation Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet, good-quality restaurant near Northfold Studio's office (Theo Marchetti's office, Toronto; check theo@northfoldstudio.ca or the Northfold contact info in the inbox to confirm the location if needed) for a business lunch for 2 on Tuesday, October 27, 2026 at 12:00 PM. The guest is a new client; the lunch should be low-noise so they can talk. Check availability at noon if possible. Do not send anything yet. Report back the top 2-3 options with name, address, why it's quiet, and whether they take reservations and how (email or phone). For the top option, draft a reservation request email in Theo's name for a table for 2 at 12:00 PM on Tue Oct 27, 2026, and state it has not been sent so Theo can approve it."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 4,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Reservation Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch for 2 at noon on Tuesday, October 27, 2026, for Theo Marchetti and a new client. Find a quiet restaurant near Theo's office (Northfold Studio, Toronto; check Theo's inbox or calendar for the office address if needed). Prefer a calm, low-noise room suitable for a business conversation. Try to make the reservation (online or by email to the restaurant). If you can't confirm a booking directly, draft the reservation request email for Theo to approve instead of sending it. Report back: restaurant name, address, confirmation details, and anything Theo needs to know. Do not send any email without Theo's explicit approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 5,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Northfold Studio's office (use the office address from Theo's email/records) suitable for a business lunch with a new client. Look for a reservation for 2 people at 12:00 PM on Tuesday, October 27, 2026. Check availability and report back 2-3 best options with name, address, walking distance from the office, and why it's quiet. Do not book or send anything yet. Wait for Theo's confirmation of which restaurant to book."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 6,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch for 2 on Tuesday, October 27, 2026 at 12:00 PM for Theo Marchetti and a new client. Find a quiet restaurant near Theo's Northfold Studio office (check the office address in Theo's emails; if you can't find it, use Leslieville as the fallback area and say so). Prefer a quiet spot suitable for a business meeting. If you can make a reservation directly with the restaurant by email or online, do so and report the confirmation details (restaurant name, address, time, party size, confirmation reference). If you can't confirm a table, report the best options with contact details. Do not send any email that isn't a reservation request without Theo's approval; show any draft to Theo first."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 7,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Northfold Studio's office (Theo Marchetti's office; check his calendar/emails for the address if needed) and book a table for 2 at 12:00 PM on Tuesday, October 27, 2026, for Theo and a new client. Prefer a quiet, good-for-business-conversation spot. Book it if the restaurant offers online or email reservations; if a reservation requires Theo's approval first, draft the request email and do NOT send it. Report back the restaurant name, address, confirmed time, and any confirmation number, or the draft for Theo to approve. Do not send anything without Theo's explicit confirmation."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 8,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch for 2 people on Tuesday, October 27, 2026 at 12:00 PM (America/Toronto), for Theo Marchetti and a new client. Location: a quiet restaurant near Northfold Studio's office (Theo's office; find the address from his emails or the Northfold records). Prefer a quiet spot where they can talk business, not a loud or crowded one. Look for an online or emailed reservation option. Do not send any reservation request yet. Show Theo the restaurant name, address, and proposed booking details (or the draft email to the restaurant) for approval first. Report back with 2-3 options if you can find them, with a short reason for each."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 9,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a table for 2 at noon on Tuesday, October 27, 2026, for Theo Marchetti and a new client. Find a quiet restaurant near Northfold Studio's office (check Theo's inbox for the office address if needed). Prefer low-noise, good for a business conversation. If a booking can be made directly with a restaurant by email or online, draft the reservation request for Theo to approve first and do not send it until he confirms. Report the restaurant name, address, why you picked it, and the reservation status. Do not send anything without explicit approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 0,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Northfold Studio's office (Theo Marchetti's office; check his inbox and calendar for the office address if needed) that can seat 2 people at 12:00 PM on Tuesday, October 27, 2026. Prefer low-noise spots suitable for a business meeting with a new client. Make the reservation request if the restaurant accepts requests by email, or report back the options if you can't book directly. Do NOT send any email to the restaurant before Theo approves. Show Theo the full draft (to, subject, body) and the restaurant name, address, and proposed time, and wait for his confirmation. Also check Theo's calendar for conflicts at noon that day and report them."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 1,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Northfold Studio's office for a lunch for 2 on Tuesday, October 27, 2026 at 12:00 PM. Theo is meeting a new client. Pick a calm spot suitable for a business lunch (not loud or crowded). Check the restaurant's availability and any booking method (online form, email, or phone details). Do not make the reservation yet. Report back to me with 2-3 options: name, address, why it fits, and how to book. Then wait for Theo's pick before booking or sending anything."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 2,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Lunch Booking Tuesday Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Northfold Studio's office (Theo Marchetti, theo@northfoldstudio.ca; check his inbox/calendar for the office address if needed, otherwise assume Leslieville/downtown east) suitable for a business lunch with a new client. Book a table for 2 at 12:00 PM on Tuesday, October 27, 2026, under Theo Marchetti. Prefer a quiet table away from the noisiest area. If you can't complete a direct booking, do not send anything; instead report back 2-3 options with booking contact details. Report back to me with the restaurant name, address, confirmed time, and confirmation details, or the options if not booked. Do not send any email to the client without Theo's approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 3,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Northfold Studio's office (Theo Marchetti, theo@northfoldstudio.ca; check the office address in his emails if needed) suitable for a business lunch. Look for a table for 2 at 12:00 PM on Tuesday, October 27, 2026. Check availability if you can. Do NOT make a booking or send anything yet. Report back the top 1-2 options with name, address, phone/email, reservation availability at noon, and a draft reservation request (to the restaurant, for 2 at 12:00 PM Tue Oct 27, under Theo Marchetti) for Theo to approve. Keep the report short."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 4,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Northfold Studio's office (Theo Marchetti's office; check his email signature or prior Northfold emails for the address) and book a table for 2 at 12:00 noon on Tuesday October 27, 2026, for Theo Marchetti and a new client. Prefer a quiet spot suitable for a business lunch. If a booking can be made by email or an online form, draft the reservation request and show it to Theo for approval before sending anything. Do not send without his explicit confirmation. Report back the restaurant name, address, and whether the booking is confirmed or pending, plus the client's name is unknown so use Theo's name for the reservation."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 5,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch for 2 for Theo Marchetti (theo@northfoldstudio.ca) on Tuesday, October 27, 2026 at 12:00 PM. Theo is meeting a new client. Find a quiet restaurant near Northfold Studio's office (check Theo's inbox and calendar for the office address; if unclear, ask Theo via the report). Prefer a restaurant with a reservation option. Do not send any reservation request or email yet. Report back to Theo with the restaurant name, address, and how you'd book it (online or email), plus a draft reservation email for his approval if it needs to be emailed. Keep the report short."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 6,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Reservation Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a table for 2 at 12:00 PM on Tuesday, October 27, 2026, for Theo Marchetti and a new client. Location: near Northfold Studio's office, which is believed to be 41 Eastern Avenue, Toronto (verify from Theo's inbox if possible). Choose a quiet restaurant suited to a client business lunch (not loud, not a bar). Make the reservation under Theo Marchetti. If booking requires an email to the restaurant, create a draft and do not send it; show it to Theo for approval first. Once booked, report back the restaurant name, address, confirmation details, and the booked time. If no quiet option is available at noon, report the top 2-3 alternatives with times."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 7,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch for 2 at 12:00 PM on Tuesday, October 27, 2026, for Theo Marchetti and a new client. Find a quiet restaurant near Northfold Studio's office in Toronto (check Theo's emails or the studio address to locate it) that can take a reservation for that time. Prefer quieter spots suited to a business lunch. Check availability and, if possible, make the reservation request by email or the restaurant's booking channel. Do not confirm or pay anything without Theo's approval: if you can only draft an email to the restaurant, create the draft and report it back. Report back the restaurant name, address, why you picked it, and availability status, and send nothing without approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 8,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Reservation Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Northfold Studio's office (check Theo's inbox and calendar for the office address; if unclear, use theo@northfoldstudio.ca records) for a business lunch on Tuesday, October 27, 2026 at 12:00 PM for 2 people (Theo Marchetti and a new client). Look for a restaurant with a quiet dining room suitable for a business conversation. Check whether it takes reservations online or by email. If the restaurant accepts bookings by email, draft the reservation request under Theo Marchetti's name for a table of 2 at 12:00 on Oct 27 and show it to Theo for approval; do not send. If it can only be booked by phone or online, report the restaurant name, address, and booking method and let Theo know. Report back the top options and the drafted request, if any."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 9,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Northfold Studio's office in Toronto (check the office address in Theo's inbox if needed) suitable for a business lunch with a new client. Party of 2, Tuesday Oct 27, 2026 at 12:00 PM. Check whether the restaurant can take the reservation at that time, and whether any existing booking or calendar event conflicts with it. Do NOT make a reservation or send any email yet. Report back 2-3 good options with name, address, why it's quiet, and whether 12:00 PM Tuesday is available, then wait for Theo's approval before booking. Theo's client name isn't known yet; ask for it when we book."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 0,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Northfold Studio's office at 41 Eastern Avenue, Unit 2, Toronto (America/Toronto timezone) suitable for a business lunch with a new client. Party of 2, Tuesday October 27, 2026 at 12:00 PM. Check availability and whether they take reservations. Do NOT make the booking yet and do NOT send any email. Report back 2 or 3 options with name, address, walking distance from the office, noise/quietness notes, reservation method and contact, and whether the 12:00 slot is available. Recommend one. Theo will pick and approve before anything is booked."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 1,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch for 2 at 12:00 PM on Tuesday, October 27, 2026, for Theo Marchetti and a new client. Find a quiet restaurant near Northfold Studio's office (Toronto, Leslieville area if the office location is not found in the inbox). Check the inbox for Northfold's office address first. Prefer quiet seating suitable for a business lunch. Do not complete a booking without Theo's approval: report back the restaurant name, address, and how you would book (reservation email or site), and wait for his go-ahead. If it's a booking by email, show the draft to Theo before sending. Keep the report short."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 2,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Northfold Studio's office (check the office address in Theo's emails or Northfold records) for a lunch for 2 on Tuesday October 27, 2026 at 12:00 PM, with a new client of Theo Marchetti. Prefer quiet, low-noise spots suitable for a business conversation. Check whether the restaurant can take the reservation (via its website or email). Do NOT book or send any email yet. Report back to Theo with 2-3 options (name, address, why it's quiet, reservation method) and ask which one to book. Once Theo picks one, book it and confirm. If you need to email the restaurant, draft it first and wait for Theo's approval. Keep the report short."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 3,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Northfold Studio's office (Theo Marchetti, theo@northfoldstudio.ca; office address is in Theo's inbox or prior Northfold emails) suitable for a business lunch with a new client. Table for 2 at 12:00 PM on Tuesday, October 27, 2026. Check Theo's inbox/calendar for any conflicts that day. Do NOT send anything. Report back the top 1-2 restaurant options with address, why it's quiet, and whether it takes reservations by email/phone/online, and draft a reservation request email to the chosen restaurant for Theo's review (mention table for 2, Tue Oct 27 at 12:00 PM, under Theo Marchetti). Show the draft and wait for Theo's explicit approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 4,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch for 2 for Theo Marchetti (Northfold Studio) on Tuesday, October 27, 2026 at 12:00 PM (America/Toronto). Theo is meeting a new client. Find a quiet restaurant near Northfold Studio's office (find the office location from Theo's emails or calendar if not known). Check availability and report back the options with name, address, and whether a reservation can be made. Do not send any email or make a booking without Theo's explicit approval. If the restaurant needs an email to reserve, create a draft and show it to Theo for approval. Report the top 1-3 options briefly."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 5,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch reservation for 2 people on Tuesday, October 27, 2026 at 12:00 PM (America/Toronto), under the name Theo Marchetti, at a quiet restaurant near Northfold Studio's office. The office is believed to be at 41 Eastern Avenue, Unit 2, Toronto; confirm the neighbourhood and look for quiet, well-reviewed places within a short walk. Prioritize quiet seating (avoid loud bars, prefer a booth or corner table if possible). Check availability and make the reservation directly if the restaurant allows it. Do not send any emails. Report back: restaurant name, address, booking confirmation number or time, and any notes (e.g., if the booking could not be made online and needs a phone call, or if 12:00 wasn't available and what time was). If the booking is not possible, list 2-3 alternatives instead of booking."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 6,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Reservation Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch table for 2 at 12:00 PM on Tuesday, October 27, 2026, for Theo Marchetti and a new client. Theo wants somewhere quiet, near the Northfold Studio office (Toronto, Leslieville area; check the office address in Theo's emails if needed). Find a suitable restaurant with a quiet atmosphere, make the reservation under Theo Marchetti, and confirm the booking details (restaurant name, address, time, party size, confirmation number if any). If no reservation can be made online or by email, report back the best options instead. Do not send anything to the client. Report back the outcome briefly."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 7,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch for 2 people at 12:00 PM on Tuesday, October 27, 2026, for Theo Marchetti and a new client. Find a quiet restaurant near Northfold Studio's office (Theo's office; check the studio address in the mailbox if needed), suitable for a business lunch. If a reservation can be made, make it and report the restaurant name, address, confirmed time, party size, and any confirmation number. If no booking can be made, report the best quiet options with their reservation contact. Do not send any email to the client or anyone else without Theo's approval. Report back briefly."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 8,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Northfold Studio's office (Theo's office; check theo@northfoldstudio.ca and recent emails for the office address; default to Toronto downtown/Leslieville area if unclear) suitable for a business lunch. Book or request a table for 2 on Tuesday, October 27, 2026 at 12:00 PM for Theo Marchetti and a new client. Check the restaurant's email or booking channel, and if you can't find an email or booking option, report back. Do not send any email or confirm a booking without Theo's explicit approval: first report the restaurant name, address, and the exact draft or booking request you plan to send, and wait for Theo's go-ahead. Client name is not known; ask Theo for it in your report if the restaurant needs it."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 9,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch reservation for 2 people on Tuesday October 27, 2026 at 12:00 PM for Theo Marchetti (Northfold Studio) with a new client. Requirements: quiet, low-noise restaurant close to the Northfold Studio office (look up the office address from Theo's emails, e.g. signatures or Northfold threads). Check your tools for a way to confirm availability (e.g. booking platform or email to the restaurant). Do NOT send any reservation request or email yet. Report back to me with 2-3 best options (name, distance from office, why it's quiet, whether it takes reservations for that slot), and for your top pick, draft the reservation request for Theo to review. Do not contact the client."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 0,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book lunch for 2 people on Tuesday, October 27, 2026 at 12:00 PM for Theo Marchetti and a new client. Find a quiet restaurant near the Northfold Studio office (Theo's work location; check his inbox or calendar for the address if needed) that can take a reservation for that time. Prefer quieter spots suitable for a business lunch. Do not make the reservation by replying directly yet: draft the reservation request email to the restaurant and report back the restaurant name, address, why you picked it, and the draft for Theo to approve. Do not send anything until Theo explicitly approves."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 1,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Northfold Studio's downtown Toronto office (41 Eastern Avenue area, Leslieville/downtown east is fine if closer) suitable for a business lunch with a new client. Book or request a table for 2 on Tuesday October 27, 2026 at 12:00 PM under Theo Marchetti (theo@northfoldstudio.ca). Prefer a quiet table with room to talk. If you can book directly, draft the reservation request or confirmation email for Theo to approve, and do not send anything until Theo explicitly approves. Report back the restaurant name, address, why you picked it, and the draft details."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 2,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a table for 2 for lunch on Tuesday, October 27, 2026 at 12:00 PM for Theo Marchetti and a new client. Location: near Northfold Studio's downtown Toronto office (check the office address in Theo's emails if needed). Look for a quiet restaurant suited to a business lunch. Check whether a reservation can be made by email or online, and report back the top 2-3 options with name, address, and booking method. Do not send any booking request yet. Draft the reservation email for the chosen restaurant and show Theo the draft (to, subject, body) for approval before sending. The client's name is not yet known; leave it out of the booking unless Theo provides it."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 3,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a table for 2 for lunch on Tuesday, October 27, 2026 at 12:00 PM for Theo Marchetti, with a new client. Find a quiet restaurant near the Northfold Studio office in downtown Toronto (check the office address in Theo's emails if needed). Prefer a calm spot where a business conversation is easy. Do not make the reservation yet. Reply to Theo with 2 or 3 options (name, address, why it's quiet, and how to book: online, phone, or email). Ask which one to book. Only book after Theo approves. If a booking can be made by email, draft it for his review first and do not send it until he confirms. Also note the client's name is not known; ask Theo for it if the booking needs one."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 4,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch for 2 for Theo Marchetti (theo@northfoldstudio.ca) on Tuesday, October 27, 2026 at 12:00 PM. Theo is meeting a new client. Find a quiet restaurant near the Northfold Studio office (downtown Toronto, check Northfold's address in email if needed). Prefer a restaurant that takes reservations and has a quiet dining room suitable for a business lunch. Check whether the restaurant has online or email booking. Do not send any reservation request yet. Draft the reservation request and show Theo the restaurant name, address, and the draft text for approval. Include a short list of 2 to 3 alternatives if the first choice is not available at noon. Name of the client is not known; do not mention one in the booking unless Theo provides it."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 5,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Theo Marchetti's office (Northfold Studio, Toronto) for a client lunch for 2 people on Tuesday, October 27, 2026 at 12:00 PM (America/Toronto). Prioritize quiet, good for a business conversation, and availability at noon. Check if a table is available at 12:00 PM. Do NOT make the reservation or send any emails yet. Report back 2-3 options with name, neighbourhood, why it suits a quiet client lunch, and whether 12:00 PM is open (and how to book). Keep the report short. Theo will approve before anything is booked."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 6,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Reservation Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch reservation for 2 for Theo Marchetti on Tuesday, October 27, 2026 at 12:00 PM, with a new client. Office is Northfold Studio at 41 Eastern Avenue, Unit 2, Toronto. Find a quiet restaurant near the office that takes lunch reservations for that time, suitable for a business lunch. Check availability and any reservation details. Do not send anything yet. Draft the reservation request email (or booking) in Theo's name and show Theo the restaurant name, time, party size, and the exact draft for approval. Only send after Theo explicitly confirms. Report back the restaurant choice and the draft."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 7,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Northfold Studio's office for Theo Marchetti's lunch with a new client on Tuesday Oct 27, 2026 at 12:00 PM, party of 2. Determine the office location from Northfold-related emails if you can. Prioritize quiet, good for conversation, walkable from the office. Check for any existing reservation or booking emails that conflict on that date. Do NOT make a reservation or send any email yet. Report back 2-3 options with name, address, why it suits a quiet client lunch, and whether it takes reservations online or by email. Ask Theo to pick one and confirm the client's name for the booking."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 8,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Theo wants a lunch reservation for 2 at 12:00 PM on Tuesday, October 27, 2026, with a new client, at a quiet restaurant near the Northfold Studio office at 41 Eastern Avenue, Unit 2, Toronto. Find 2-3 quiet, good-for-business-lunch options within walking distance or a short distance, and check that they're open and take reservations for that time. Do NOT send any email or make a booking yet. Reply with the options (name, cuisine, distance, why it's quiet, reservation method) and wait for Theo to pick one. Keep the report short. If the restaurant needs an email request, create a draft for Theo to approve first."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 9,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Northfold Studio's office (Theo Marchetti, theo@northfoldstudio.ca) suitable for a business lunch with a new client. Target: Tuesday October 27, 2026 at 12:00 PM, party of 2, under Theo Marchetti. Check Theo's calendar and inbox for any conflicts on that day. Find a reservation option (online or by email to the restaurant). Do not send any booking request yet: show Theo the restaurant name, address, why it fits, and the draft reservation email for approval first. Only send after Theo explicitly approves. Report back with the options and the draft."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 0,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book lunch for 2 on Tuesday October 27, 2026 at 12:00 pm for Theo Marchetti (theo@northfoldstudio.ca), with a new client. Find a quiet restaurant near Northfold Studio's downtown office (Toronto) suitable for a business lunch. If an online reservation is possible, make it under Theo Marchetti. If the restaurant only takes bookings by email, draft the request and do NOT send it; show Theo the restaurant name, address, and exact draft text for approval. Report back the restaurant name, address, and booking status (confirmed or pending). If the noon slot is unavailable, report the nearest alternatives instead of booking."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 1,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch for 2 for Theo Marchetti on Tuesday, October 27, 2026 at 12:00 PM (America/Toronto). The guest is a new client, so the booking is under Theo's name. Find a quiet restaurant near the Northfold Studio office (check Theo's emails for the office address; if you can't find it, use the downtown Toronto studio location noted in past emails). Prefer a quiet spot suited to a business lunch. If a reservation can be made by email or online, make it and confirm the booking details. Do not send anything that requires Theo's approval without showing him the draft first. Report back the restaurant name, address, confirmed time, and confirmation details, or tell me if you could not book and why, along with the best alternatives."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 2,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Northfold Studio's office (believed to be 41 Eastern Avenue, Toronto; confirm if another address is in Theo's email signature or calendar) for a client lunch for 2 people on Tuesday, October 27, 2026 at 12:00 PM. Prioritize quiet, low-noise spots suitable for a business conversation. Check Theo's emails for any existing office address or prior client-lunch details. Do not make the booking or send any email yet. Report back to Theo with 2-3 options (name, address, why it suits a quiet client lunch, and whether it takes reservations by email or online). Then draft a reservation request for his top pick to be approved before sending. Note: Theo's Tuesday Oct 27 has a Bramblewood Auto appointment option at 4:30 PM, so noon is clear."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 3,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch for 2 people on Tuesday, October 27, 2026 at 12:00 PM for Theo Marchetti and a new client. Location: a quiet restaurant near Theo's office at Northfold Studio in Toronto (search for quiet, low-noise spots suitable for a business lunch). Check for existing emails or calendar conflicts on that day first. If you can make a reservation by email or online, prepare the request and show Theo the proposed restaurant and details (name, time, party size, any note asking for a quiet table) for approval before sending anything. Do not send any booking request until Theo explicitly approves. Report back with 2-3 restaurant options if possible, with your top pick."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 4,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch for 2 people on Tuesday, October 27, 2026 at 12:00 PM (America/Toronto) for Theo Marchetti (theo@northfoldstudio.ca) and a new client. Find a quiet restaurant near Northfold Studio's office (check Theo's inbox for the office address if needed). Check availability and reservation options, and if a booking can be made, draft the reservation request or confirmation email for Theo to review. Do not send anything until Theo explicitly approves. Report back the restaurant name, address, booking status, and the draft details (To, Subject, Body) if one is created. If the restaurant needs a client name, use Theo Marchetti and note that the client name is unknown."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 5,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Northfold Studio (downtown Toronto, office at 41 Eastern Avenue area, Toronto) suitable for a business lunch with a new client. Book a table for 2 on Tuesday, October 27, 2026 at 12:00 PM, under Theo Marchetti. If you can't book directly, draft a reservation request email to the restaurant for Theo's approval. Do not send anything without Theo's explicit confirmation. Report back the restaurant name, address, and booking status, plus two alternatives if the first choice is unavailable."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 6,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch for Theo Marchetti (theo@northfoldstudio.ca) for 2 people on Tuesday, October 27, 2026 at 12:00 PM (America/Toronto). It's a meeting with a new client. Find a quiet restaurant near Northfold Studio's office (look up the office address from Theo's email or signature). Prefer low-noise places suited to a business conversation. Check whether the restaurant takes reservations for that slot. Do not send any reservation request yet. Instead, report back with 2-3 options (name, address, why it's quiet, and availability if you can find it), and draft the reservation email for the top pick in Theo's name, to be sent only after Theo approves. The client's name isn't known, so leave it out unless Theo provides it."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 7,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Northfold Studio's office (Theo Marchetti, theo@northfoldstudio.ca; check his inbox or calendar for the office address) suitable for a business lunch with a new client. Look for a table for 2 on Tuesday, October 27, 2026 at 12:00 pm, America/Toronto. Check availability and whether the restaurant takes reservations by email or online. Do not send anything. Report back the top 2-3 options with name, address, why it's quiet, and booking contact. Then draft the reservation request for the best option under Theo's name, for his approval before it's sent. Do not send the email until Theo confirms."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 8,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch for 2 for Theo Marchetti (theo@northfoldstudio.ca) on Tuesday, October 27, 2026 at 12:00 PM, Toronto time. Theo is meeting a new client. Requirements: a quiet restaurant near Northfold Studio's office. Find the office address from Theo's emails or Northfold Studio mentions if you can. If you cannot find it, use Leslieville/downtown-east as a fallback and note that. Check the restaurant's hours and whether it takes reservations for that time. Do not make the booking yet. Reply to Theo with the top 2 or 3 options (name, address, why it's quiet, reservation method), and draft the reservation request for your top pick so Theo can approve it. Do not send anything until Theo explicitly approves. Name on the booking: Theo Marchetti."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 9,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch for 2 for Theo Marchetti (theo@northfoldstudio.ca) on Tuesday, Oct 27, 2026 at 12:00 PM, with a new client. Find a quiet restaurant near Theo's Northfold Studio office (look up the office location from his emails or the studio's details). Check for an existing reservation or invite already on that day that could conflict. If you can book directly, do so and report the restaurant, address, time, and party size. If booking requires an email to the restaurant, draft it and show it to Theo for approval before sending; do not send anything without his explicit confirmation. Report back the restaurant name, address, and status in a short summary. If the office location can't be found, say so."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 0,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch reservation for 2 for Theo Marchetti (Northfold Studio) on Tuesday, October 27, 2026 at 12:00 PM, with a new client. Find a quiet restaurant near Theo's office (Northfold Studio; check his email for the office address if needed). Prefer a calm room where they can talk business. If the restaurant takes reservations by email, draft the request for Theo to review and do not send it yet. Report back the restaurant name, address, why you picked it, and the drafted or booked details. Do not send anything without Theo's approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 1,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Theo Marchetti (theo@northfoldstudio.ca, America/Toronto) wants a lunch reservation for 2 on Tuesday October 27, 2026 at 12:00 PM with a new client. He wants somewhere quiet near the Northfold Studio office. First find the office address from his emails or the Northfold records. Then find 2-3 quiet, lunch-friendly restaurants within a short walk of the office. Check whether each can seat 2 at 12:00 PM on Oct 27 (by email to the restaurant if needed, but do NOT confirm a booking yet). Report back the options with name, address, why it suits a quiet client lunch, and availability. Do not send any email or make any reservation without Theo's explicit approval. If you draft an email to a restaurant, show the full draft first. Note the client's name is not known yet; ask Theo for it when we confirm the booking."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 2,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch for Theo Marchetti (theo@northfoldstudio.ca) on Tuesday, October 27, 2026 at 12:00 PM, party of 2, with a new client. Requirements: a quiet restaurant near Northfold Studio's office (check Theo's inbox and past emails for the office address; if you can't find it, say so). Look for a place suited to a business lunch with a quiet dining room. Check for any existing emails about the client or lunch first. Do NOT send any reservation request or email. Draft the reservation request to your top pick under Theo's name, and report back to me with: the restaurant name and address, why it fits, the draft's recipient, subject, and body, and 1-2 backup options. Wait for Theo's approval before sending anything."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 3,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Tue Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch for 2 for Theo Marchetti (theo@northfoldstudio.ca) on Tuesday, October 27, 2026 at 12:00 PM. The restaurant should be quiet (good for a business conversation) and close to Northfold Studio's office; find the office location from Theo's emails or the Northfold correspondence if needed. The guest is a new client, so the name is not yet known. Check the restaurant's booking channel and reserve the table if possible. If you can't book it directly, don't send any emails without approval; instead, report back the best 2-3 options with booking details. Do not send any emails to the restaurant without Theo's explicit confirmation. Report back the restaurant name, address, confirmation details, and whether the table is confirmed."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 4,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Tue Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Northfold Studio's office for a client lunch for 2 on Tuesday, October 27, 2026 at 12:00 PM, America/Toronto. Theo is meeting a new client. Check for reservation availability and report the top 2-3 options with name, address, why it's quiet, and whether they can take the booking at 12:00 PM for 2. Do NOT book or send any email yet; report back first so Theo can approve. If you can't determine the office location, say so."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 5,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Northfold Studio's office suitable for a business lunch, and book a table for 2 for Theo Marchetti (theo@northfoldstudio.ca) on Tuesday, October 27, 2026 at 12:00 PM. Check Theo's inbox and calendar for the office location and any conflicts on that day first. Do not send any reservation request yet. Instead, draft the request/confirmation email to the chosen restaurant and report back with the restaurant name, address, why you picked it, and the draft details (to, subject, body) so Theo can approve. Only send after Theo explicitly confirms. Note the guest is a new client, so the name on the booking should be Theo Marchetti."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 6,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Theo Marchetti's office (Northfold Studio; check his email for the office address if needed) suitable for a business lunch with a new client. Target: Tuesday, October 27, 2026 at 12:00 PM, party of 2, under Theo Marchetti. Check if Theo has a booking or conflicts already that day around noon. Pick the best single option that fits quiet, professional, near the office, and draft a reservation request email to the restaurant asking for a table for 2 at 12:00 PM on Oct 27 under Theo Marchetti, quiet table preferred. Do not send. Report back the restaurant name, address, why you picked it, and the draft details (To, Subject, Body, Draft ID) so Theo can approve."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 7,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch reservation for 2 people on Tuesday, October 27, 2026 at 12:00 PM (Toronto time), under Theo Marchetti. Location: a quiet restaurant near Northfold Studio's office (find the office address from Theo's emails or Northfold correspondence). Choose a calm, low-noise spot suitable for a business meeting with a new client. If you can make the booking directly, do so and report the restaurant name, address, confirmed time, and any confirmation number. If you cannot book directly, do not send anything; report the best 2-3 options with contact details so Theo can choose. Do not send any emails without Theo's explicit approval. Report back briefly."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 8,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Book a lunch reservation for 2 people on Tuesday, October 27, 2026 at 12:00 PM (Toronto time). Theo Marchetti (Northfold Studio) is hosting a new client. Pick a quiet restaurant near Northfold Studio's office (check Theo's inbox and calendar for the office address; if unknown, use Leslieville area as a fallback and say so). Prefer a calm, low-noise spot suitable for a business lunch. If a reservation can be made by email or an online form, prepare the request and report back the restaurant, address, and booking status with the confirmation details. If you need to send an email to the restaurant, create a draft and show it to Theo for approval before sending. Do not send anything without Theo's approval. Also report the top 2-3 alternatives if the first choice is unavailable."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 9,
+      "case_id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "outcomes": [
+        {
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Client Lunch Booking Oct 27",
+          "chosen_kind": "create",
+          "instructions": "Find a quiet restaurant near Northfold Studio's office (look up the office address in Theo's emails, e.g. Northfold Payroll or the offsite thread with Gabe) for a business lunch for 2 with a new client on Tuesday, Oct 27, 2026 at 12:00 PM (Toronto time). Prioritize quiet, good for conversation, a short walk from the office. Check for any existing bookings or calendar conflicts that day. Report back 2-3 options with name, address, why it suits, and whether noon is confirmed available. Do NOT make a reservation or send any email yet. Once Theo picks one, prepare the reservation request as a draft for his review and wait for his explicit approval before sending. Keep the report short."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    }
+  ],
+  "comparison": {
+    "baseline_run": "20261018T165232Z",
+    "sizes": [
+      25,
+      50,
+      100,
+      200,
+      400,
+      800,
+      1600
+    ],
+    "accuracy": [
+      {
+        "size": 25,
+        "before": 0.948,
+        "after": 1.0
+      },
+      {
+        "size": 50,
+        "before": 0.976,
+        "after": 1.0
+      },
+      {
+        "size": 100,
+        "before": 0.914,
+        "after": 1.0
+      },
+      {
+        "size": 200,
+        "before": 0.886,
+        "after": 1.0
+      },
+      {
+        "size": 400,
+        "before": 0.829,
+        "after": 1.0
+      },
+      {
+        "size": 800,
+        "before": 0.862,
+        "after": 1.0
+      },
+      {
+        "size": 1600,
+        "before": 0.781,
+        "after": 1.0
+      }
+    ],
+    "groups": [
+      {
+        "group": "overload target (dormant, inference)",
+        "rates": {
+          "25": {
+            "before": 0.983,
+            "after": null
+          },
+          "50": {
+            "before": 0.983,
+            "after": null
+          },
+          "100": {
+            "before": 0.933,
+            "after": null
+          },
+          "200": {
+            "before": 0.867,
+            "after": null
+          },
+          "400": {
+            "before": 0.767,
+            "after": null
+          },
+          "800": {
+            "before": 0.667,
+            "after": null
+          },
+          "1600": {
+            "before": 0.617,
+            "after": null
+          }
+        }
+      },
+      {
+        "group": "dormant control (name match)",
+        "rates": {
+          "25": {
+            "before": 1.0,
+            "after": null
+          },
+          "50": {
+            "before": 1.0,
+            "after": null
+          },
+          "100": {
+            "before": 1.0,
+            "after": null
+          },
+          "200": {
+            "before": 1.0,
+            "after": null
+          },
+          "400": {
+            "before": 0.92,
+            "after": null
+          },
+          "800": {
+            "before": 1.0,
+            "after": null
+          },
+          "1600": {
+            "before": 0.88,
+            "after": null
+          }
+        }
+      },
+      {
+        "group": "easy recent",
+        "rates": {
+          "25": {
+            "before": 0.967,
+            "after": null
+          },
+          "50": {
+            "before": 1.0,
+            "after": null
+          },
+          "100": {
+            "before": 1.0,
+            "after": null
+          },
+          "200": {
+            "before": 1.0,
+            "after": null
+          },
+          "400": {
+            "before": 0.983,
+            "after": null
+          },
+          "800": {
+            "before": 1.0,
+            "after": null
+          },
+          "1600": {
+            "before": 0.983,
+            "after": null
+          }
+        }
+      },
+      {
+        "group": "policy-ambiguous",
+        "rates": {
+          "25": {
+            "before": 0.6,
+            "after": null
+          },
+          "50": {
+            "before": 0.8,
+            "after": null
+          },
+          "100": {
+            "before": 0.3,
+            "after": null
+          },
+          "200": {
+            "before": 0.4,
+            "after": null
+          },
+          "400": {
+            "before": 0.4,
+            "after": null
+          },
+          "800": {
+            "before": 0.6,
+            "after": null
+          },
+          "1600": {
+            "before": 0.6,
+            "after": null
+          }
+        }
+      },
+      {
+        "group": "multi-task",
+        "rates": {
+          "25": {
+            "before": 1.0,
+            "after": null
+          },
+          "50": {
+            "before": 1.0,
+            "after": null
+          },
+          "100": {
+            "before": 1.0,
+            "after": null
+          },
+          "200": {
+            "before": 0.6,
+            "after": null
+          },
+          "400": {
+            "before": 0.5,
+            "after": null
+          },
+          "800": {
+            "before": 0.9,
+            "after": null
+          },
+          "1600": {
+            "before": 0.2,
+            "after": null
+          }
+        }
+      },
+      {
+        "group": "stress: paraphrase (dormant, no name)",
+        "rates": {
+          "25": {
+            "before": null,
+            "after": null
+          },
+          "50": {
+            "before": null,
+            "after": null
+          },
+          "100": {
+            "before": null,
+            "after": null
+          },
+          "200": {
+            "before": null,
+            "after": null
+          },
+          "400": {
+            "before": null,
+            "after": null
+          },
+          "800": {
+            "before": null,
+            "after": null
+          },
+          "1600": {
+            "before": null,
+            "after": null
+          }
+        }
+      },
+      {
+        "group": "stress: new counterpart, familiar topic",
+        "rates": {
+          "25": {
+            "before": null,
+            "after": 1.0
+          },
+          "50": {
+            "before": null,
+            "after": 1.0
+          },
+          "100": {
+            "before": null,
+            "after": 1.0
+          },
+          "200": {
+            "before": null,
+            "after": 1.0
+          },
+          "400": {
+            "before": null,
+            "after": 1.0
+          },
+          "800": {
+            "before": null,
+            "after": 1.0
+          },
+          "1600": {
+            "before": null,
+            "after": 1.0
+          }
+        }
+      },
+      {
+        "group": "stress: typo (dormant name)",
+        "rates": {
+          "25": {
+            "before": null,
+            "after": null
+          },
+          "50": {
+            "before": null,
+            "after": null
+          },
+          "100": {
+            "before": null,
+            "after": null
+          },
+          "200": {
+            "before": null,
+            "after": null
+          },
+          "400": {
+            "before": null,
+            "after": null
+          },
+          "800": {
+            "before": null,
+            "after": null
+          },
+          "1600": {
+            "before": null,
+            "after": null
+          }
+        }
+      }
+    ]
+  }
+}

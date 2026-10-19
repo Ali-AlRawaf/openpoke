@@ -70,6 +70,9 @@ class ExecutionAgentRuntime:
                 }
                 if raw_tool_calls:
                     assistant_entry["tool_calls"] = raw_tool_calls
+                # Thinking blocks must be passed back unmodified alongside tool results
+                if assistant_message.get("reasoning_details"):
+                    assistant_entry["reasoning_details"] = assistant_message["reasoning_details"]
                 messages.append(assistant_entry)
 
                 if not parsed_tool_calls:

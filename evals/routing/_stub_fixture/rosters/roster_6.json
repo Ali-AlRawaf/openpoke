@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Email to Priya Shah",
+    "summary": "Email Priya Shah (priya.shah@northwind-events.com) at Northwind Events asking for the revised venue contract for the Dec 5 offsite.",
+    "artifacts": [],
+    "created_at": "2026-10-02 10:01:12",
+    "last_active_at": "2026-10-02 10:01:18"
+  },
+  {
+    "name": "Nightly Digest Reminder",
+    "summary": "Set up a reminder every night at 9pm to send Ali a digest of unread important emails.",
+    "artifacts": [],
+    "created_at": "2026-10-03 21:00:02",
+    "last_active_at": "2026-10-03 21:00:07"
+  },
+  {
+    "name": "Japan Trip Flights",
+    "summary": "Find the flight confirmation for the Japan trip.",
+    "artifacts": [],
+    "created_at": "2026-10-05 12:30:00",
+    "last_active_at": "2026-10-05 12:30:08"
+  },
+  {
+    "name": "Landlord Lease Renewal",
+    "summary": "Email Marco Rossi (marco@rossiproperties.ca), the landlord, to say Ali wants to renew the lease for another year.",
+    "artifacts": [],
+    "created_at": "2026-10-08 09:15:40",
+    "last_active_at": "2026-10-08 09:15:47"
+  },
+  {
+    "name": "Dentist Appointment",
+    "summary": "Find the email from Bloor Dental about Ali's cleaning appointment.",
+    "artifacts": [],
+    "created_at": "2026-10-09 14:00:00",
+    "last_active_at": "2026-10-09 14:00:09"
+  },
+  {
+    "name": "AliExpress Order Tracking",
+    "summary": "Track the AliExpress order for the phone case.",
+    "artifacts": [],
+    "created_at": "2026-10-11 18:02:00",
+    "last_active_at": "2026-10-11 18:02:10"
+  }
+]

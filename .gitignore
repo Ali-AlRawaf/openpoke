@@ -44,3 +44,15 @@ server/venv/
 # Generated documentation / analysis artifacts
 server/repomix-output.txt
 server/plans/
+web/package-lock.json
+
+# Eval fixtures mirror server/data byte-for-byte (.log files) and must be tracked
+!evals/routing/fixtures/**
+!evals/routing/fixtures/**/*.log
+!evals/routing/_stub_fixture/**
+!evals/routing/_stub_fixture/**/*.log
+# ...but never their bytecode
+evals/**/__pycache__/
+evals/**/*.pyc
+# Prebuilt agent-search vectors (~35MB): python -m evals.routing.generate embeddings
+evals/routing/fixtures/embeddings/

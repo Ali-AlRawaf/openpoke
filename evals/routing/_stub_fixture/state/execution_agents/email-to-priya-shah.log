@@ -1,0 +1,4 @@
+<agent_request timestamp="2026-10-02 10:01:12">Email Priya Shah (priya.shah@northwind-events.com) at Northwind Events asking for the revised venue contract for the Dec 5 offsite.</agent_request>
+<agent_action timestamp="2026-10-02 10:01:15">Calling gmail_create_draft with: {"recipient_email": "priya.shah@northwind-events.com", "subject": "Revised venue contract", "body": "Hi Priya,\n\nCould you send the revised contract?", "is_html": false}</agent_action>
+<tool_response timestamp="2026-10-02 10:01:16">gmail_create_draft: {"successful": true, "data": {"id": "r111", "message": {"threadId": "1a2b3c"}}}</tool_response>
+<agent_response timestamp="2026-10-02 10:01:18">Draft created to priya.shah@northwind-events.com asking for the revised venue contract.</agent_response>

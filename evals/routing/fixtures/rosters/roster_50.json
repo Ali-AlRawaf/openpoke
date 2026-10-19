@@ -1,0 +1,747 @@
+[
+  {
+    "name": "Expense Receipts Export",
+    "summary": "Finds and lists Theo Marchetti's business expense receipts and invoices from Gmail for a given month, reporting vendor, date, CAD amount, and receipt number without sending or changing email. The April 2026 search found two receipts: Alder Print Works brochure printing ($412.60 CAD incl. HST, #AP-40817) and Sparrowgate Software seat renewal (invoice SG-2291, $1,128.00 CAD plus tax); nothing is pending.",
+    "artifacts": [
+      "Alder Print Works",
+      "Sparrowgate Software <receipts@sparrowgate.com>",
+      "Alder Print Works brochure printing (500 units)",
+      "Sparrowgate Pro annual renewal (12 seats)",
+      "April 2026 business expense receipts",
+      "Theo Marchetti <theo@northfoldstudio.ca>"
+    ],
+    "created_at": "2026-07-20 22:13:43",
+    "last_active_at": "2026-07-20 22:13:54"
+  },
+  {
+    "name": "Harrow Hill Venue Deposit",
+    "summary": "Harrow Hill Venue Deposit handles wedding venue planning for Theo Marchetti and partner Jules, targeting a June 12, 2027 wedding for about 110 guests at Harrow Hill Estate. The second $4,000 deposit was sent by e-transfer on Oct 15, 2026, and the receipt-confirmation email to Celeste Moreau was now sent, so Celeste's reply to it is pending. The Aug 8, 2027 11am tour offer is still unconfirmed.",
+    "artifacts": [
+      "Celeste Moreau <celeste@harrowhillestate.ca>",
+      "Harrow Hill Estate <events@harrowhillestate.ca>",
+      "Theo Marchetti",
+      "Jules (partner)",
+      "June 12, 2027 wedding booking",
+      "$4,000 second deposit sent Oct 15, 2026",
+      "Second deposit receipt confirmation sent",
+      "Harrow Hill tour on Aug 8, 2027 at 11am",
+      "Harrow Hill garden ceremony and barn package",
+      "Harrow Hill deposit schedule question",
+      "June 2027 wedding for about 110 guests",
+      "Harrow Hill wedding venue"
+    ],
+    "created_at": "2026-07-21 10:13:03",
+    "last_active_at": "2026-10-15 08:07:10"
+  },
+  {
+    "name": "Visa Application Reminder",
+    "summary": "Maintains a one-time reminder for Theo Marchetti (theo@northfoldstudio.ca) to submit the Westmarch visa application, set as trigger 6 to fire August 17, 2026 at 9:00 AM Toronto time, eight weeks before the October 12, 2026 departure. The reminder points him to Westmarch Consular Services (visas@westmarchconsular.com) for requirements; no email was sent.",
+    "artifacts": [
+      "Theo Marchetti <theo@northfoldstudio.ca>",
+      "Westmarch Consular Services <visas@westmarchconsular.com>",
+      "Westmarch visa application",
+      "Westmarch trip departing 2026-10-12",
+      "visa submission reminder on 2026-08-17"
+    ],
+    "created_at": "2026-07-21 17:39:26",
+    "last_active_at": "2026-07-21 17:39:36"
+  },
+  {
+    "name": "Hydro Bill Reminder",
+    "summary": "Sends Theo a monthly reminder on the 20th at 9:00 AM Toronto time, starting August 20, 2026, to review and pay his Lakeport Hydro bill. Each reminder checks the inbox for the latest Lakeport Hydro bill and includes the amount and due date. Trigger 1 is active.",
+    "artifacts": [
+      "Lakeport Hydro bill",
+      "monthly bill payment reminder",
+      "Theo",
+      "Lakeport Hydro",
+      "America/Toronto 9:00 AM reminder on the 20th"
+    ],
+    "created_at": "2026-07-24 08:40:13",
+    "last_active_at": "2026-09-20 09:00:14"
+  },
+  {
+    "name": "Lakeshore Inn Duplicate Charge",
+    "summary": "This agent searches Theo's inbox for Lakeshore Inn Kingston billing emails about his July stay and checks for duplicate charges, without sending or replying to anything. It found a Jul 8 payment receipt for CAD 468.90 (stay LSI-30817) but no second charge in email, so Theo may need to check his card statement for a duplicate Jul 8 charge.",
+    "artifacts": [
+      "Lakeshore Inn Billing <billing@lakeshoreinnkingston.ca>",
+      "Lakeshore Inn Kingston July stay",
+      "Lakeshore Inn payment CAD 468.90 on Jul 8",
+      "possible duplicate Lakeshore Inn charge",
+      "Theo Marchetti <theo@northfoldstudio.ca>"
+    ],
+    "created_at": "2026-07-25 02:42:11",
+    "last_active_at": "2026-07-25 02:42:22"
+  },
+  {
+    "name": "Engagement Shoot Booking",
+    "summary": "Books engagement shoots for Theo and his fianc\u00e9 Jules, who marry in June 2027. The October 10 golden-hour shoot at Humber Bay Park was booked with Priya Sandhu at Lumen & Linen Photography, and on Oct 12 she emailed that the online proofing gallery arrives by Friday, Oct 23, with final edits two weeks after. Nothing was sent in this task, and the retainer payment question from the booking email is not addressed in the reply seen.",
+    "artifacts": [
+      "Priya Sandhu <priya@lumenandlinen.ca>",
+      "Lumen & Linen Photography",
+      "October 10 2026 golden-hour shoot at Humber Bay Park",
+      "Online proofing gallery by Oct 23 2026",
+      "Final edits two weeks after proofing gallery",
+      "90-minute engagement shoot package",
+      "$300 retainer for engagement shoot",
+      "Engagement shoot inquiry thread",
+      "Theo and Jules wedding June 2027"
+    ],
+    "created_at": "2026-07-27 12:30:18",
+    "last_active_at": "2026-10-15 12:40:38"
+  },
+  {
+    "name": "Email to Sofia Cottage Weekend",
+    "summary": "Sends approved emails to Sofia Brandt, currently about the cottage weekend Aug 7-9, asking what to bring and for directions, with Theo offering to handle a dinner. The cottage email was sent as approved on the first try and is complete, with nothing pending.",
+    "artifacts": [
+      "Sofia Brandt <sofia.brandt@quaymail.net>",
+      "Cottage weekend Aug 7-9",
+      "cottage weekend trip Aug 7-9",
+      "directions to cottage",
+      "dinner for cottage weekend"
+    ],
+    "created_at": "2026-07-29 18:06:12",
+    "last_active_at": "2026-07-29 18:06:22"
+  },
+  {
+    "name": "Ember & Oak Split Shipment",
+    "summary": "Handles split-shipment issues for Ember & Oak order EO-48213 on Theo's behalf, asking the seller to combine the deliveries and avoid a second shipping fee. The draft was sent to Ember & Oak Orders in thread 19fb606586869637, and the agent is waiting for the seller's reply on combining the second box with the first.",
+    "artifacts": [
+      "Ember & Oak Orders <orders@emberandoak.ca>",
+      "Order EO-48213",
+      "split shipment combine request",
+      "second shipping fee avoidance",
+      "first box arrived July 28",
+      "second box in transit",
+      "combine request sent to seller"
+    ],
+    "created_at": "2026-07-30 22:34:50",
+    "last_active_at": "2026-07-30 22:37:27"
+  },
+  {
+    "name": "Priya Roadmap Sync",
+    "summary": "Handles Theo's correspondence with Priya Natarajan, Northfold's engineering lead, on the Q4 roadmap review and doc. Priya's Aug 13 proposal set a Tuesday Aug 25 10:00 AM review and asked for ranked Q4 epics, hard client deadlines, a dashboard migration decision, and estimates by Aug 21. On Oct 16 she replied to the doc nudge that the Q4 roadmap doc will be ready Monday Oct 19 EOD with two hiring asks and a client portal section, with the link to come in the thread.",
+    "artifacts": [
+      "Priya Natarajan <priya@northfoldstudio.ca>",
+      "Q4 roadmap doc ready Mon Oct 19 EOD",
+      "Two hiring asks in Q4 roadmap doc",
+      "Client portal rebuild section",
+      "Q4 roadmap doc draft request (sent)",
+      "Tuesday Aug 25 10:00 AM roadmap review slot",
+      "Q4 roadmap review, week of Aug 24, 2026",
+      "Northfold engineering lead",
+      "ranked Q4 epics request",
+      "hard client deadlines request",
+      "dashboard migration in or out of Q4 decision",
+      "eng estimates ready by Aug 21",
+      "Priya's reply of Aug 13, 2026",
+      "Q4 roadmap review proposal email (sent)"
+    ],
+    "created_at": "2026-07-31 09:20:33",
+    "last_active_at": "2026-10-16 17:10:23"
+  },
+  {
+    "name": "Email to Callum Trivia Team Roster",
+    "summary": "Drafts and sends emails for Theo to Callum Brewer about joining the trivia night team roster this Thursday. The casual roster-spot request was sent to Callum as of this task, so the draft is no longer pending and Callum's reply is awaited.",
+    "artifacts": [
+      "Callum Brewer <callum.brewer@quaymail.net>",
+      "trivia night this Thursday",
+      "trivia team roster spot request",
+      "roster request sent to Callum, awaiting reply"
+    ],
+    "created_at": "2026-08-02 23:25:29",
+    "last_active_at": "2026-08-02 23:27:52"
+  },
+  {
+    "name": "Standing Desk Receipt Lookup",
+    "summary": "Looks up Theo's receipts and order confirmations, such as for a standing desk purchase. Found Oakhurst Furniture order #OK-58213 from June 14, 2026 for a Halden 60\" walnut sit-stand desk, totaling $849.00 with HST. Nothing was sent and no follow-up is pending.",
+    "artifacts": [
+      "Oakhurst Furniture <orders@oakhurstfurniture.ca>",
+      "Oakhurst Furniture order #OK-58213",
+      "Halden Sit-Stand Desk, 60\" walnut",
+      "standing desk receipt, $849.00 incl. HST",
+      "Theo Marchetti <theo@northfoldstudio.ca>"
+    ],
+    "created_at": "2026-08-03 11:02:21",
+    "last_active_at": "2026-08-03 11:02:37"
+  },
+  {
+    "name": "Bastian Coworking Day Pass Refund",
+    "summary": "Handles refund requests for Cobble Works coworking day passes. Sent the refund request email from Theo to Bastian Reyes at Cobble Works for a $35.00 CAD refund on unused order CW-48213, charged Aug 1, 2026 due to a double-processed booking; awaiting a reply on refund status.",
+    "artifacts": [
+      "Bastian Reyes <hello@cobbleworks.ca>",
+      "Cobble Works",
+      "Order CW-48213 day pass refund",
+      "$35.00 CAD unused day pass",
+      "Aug 1, 2026 double-charge"
+    ],
+    "created_at": "2026-08-03 11:33:46",
+    "last_active_at": "2026-08-03 11:37:52"
+  },
+  {
+    "name": "Harbourfield Donation Confirmation",
+    "summary": "Monitors Theo Marchetti's monthly CAD $40 recurring gift to Harbourfield Youth Shelter, confirming receipts from giving@harbourfieldyouth.org. June and July 2026 gifts were processed normally, and the gift is active; no August receipt yet, expected around the 2nd. Nothing was sent or replied to.",
+    "artifacts": [
+      "Harbourfield Youth Shelter <giving@harbourfieldyouth.org>",
+      "Harbourfield Youth Shelter monthly gift",
+      "CAD $40.00 monthly recurring gift",
+      "Theo Marchetti <theo@northfoldstudio.ca>",
+      "Harbourfield receipt #HY-20260702",
+      "Harbourfield receipt #HY-20260602"
+    ],
+    "created_at": "2026-08-05 02:12:27",
+    "last_active_at": "2026-08-05 02:12:40"
+  },
+  {
+    "name": "Kitchen Reno Quote Follow-up",
+    "summary": "Handles follow-up emails for Theo Marchetti's Leslieville kitchen renovation, comparing contractor quotes. Dmitri Volkov at Ironbark Renovations was accepted at $36,800 with a November 9 start, and the agent sent Dmitri a check on the cabinet order and the Nov 9 start in the 'Kitchen renovation quote' thread. The sent body appears truncated after 'on track for the', so the signed closing may be missing. Still awaiting Dmitri's reply, contract, and deposit details.",
+    "artifacts": [
+      "Dmitri Volkov <dmitri@ironbarkreno.ca>",
+      "Ironbark Renovations",
+      "Accepted $36,800 price (Ironbark)",
+      "Cabinet order status check",
+      "November 9 start date",
+      "Ironbark kitchen quote $38,500 + HST",
+      "Full kitchen renovation, Leslieville",
+      "Theo Marchetti",
+      "Jules (Theo's partner)",
+      "30/40/30 payment schedule",
+      "Ironbark contract and deposit details"
+    ],
+    "created_at": "2026-08-06 13:16:11",
+    "last_active_at": "2026-10-16 10:31:07"
+  },
+  {
+    "name": "Email to Marco Soccer League",
+    "summary": "Sends email on behalf of Theo Marchetti to Marco at Riverdale Rec Soccer about the fall Sunday league on the Leslieville Lions team. The earlier sign-up request has been superseded: the agent sent a reply saying Theo's knee means he will sit out the rest of the fall season and return in spring, asking Marco to tell the Lions. The reply was sent in the existing thread; no response from Marco is recorded yet.",
+    "artifacts": [
+      "Marco <marco@riverdalerecsoccer.ca>",
+      "Riverdale Rec Soccer",
+      "Fall Sunday league withdrawal (knee injury)",
+      "Leslieville Lions",
+      "Fall Sunday league sign-up",
+      "Fall Sunday league registration payment",
+      "Theo Marchetti spring return"
+    ],
+    "created_at": "2026-08-11 08:51:13",
+    "last_active_at": "2026-10-13 18:21:05"
+  },
+  {
+    "name": "Termite Inspection Results",
+    "summary": "Sets one-off reminders for Theo about termite inspection follow-ups. Set trigger 67 for Wed Aug 12, 2026 at 9:00 AM ET to email Keystone Pest Inspections asking for the full report and whether treatment is recommended; nothing was sent.",
+    "artifacts": [
+      "Keystone Pest Inspections <reports@keystonepestinspect.ca>",
+      "termite inspection full report",
+      "termite treatment recommendation",
+      "reminder on 2026-08-12 9:00 AM ET"
+    ],
+    "created_at": "2026-08-11 19:38:40",
+    "last_active_at": "2026-08-11 19:38:48"
+  },
+  {
+    "name": "Mei Textile Order",
+    "summary": "Agent handles follow-up emails with Loomside Fabrics about linen order LF-48213, placed August 4 for a client project. It sent the approved status and ship-date request to sales@loomsidefabrics.com, offering a partial shipment; no reply from the supplier is recorded yet.",
+    "artifacts": [
+      "Loomside Fabrics <sales@loomsidefabrics.com>",
+      "linen order LF-48213",
+      "order placed August 4 for client project",
+      "ship date and status follow-up",
+      "partial shipment offer"
+    ],
+    "created_at": "2026-08-11 23:08:53",
+    "last_active_at": "2026-08-11 23:09:05"
+  },
+  {
+    "name": "Fernway Designer Search",
+    "summary": "Finds and drafts replies for Northfold's senior product designer search with Fernway Talent, a recruiting firm (20% fee, 90-day guarantee). Sent the approved reply to Marcus Oyelaran saying Northfold is interested and proposing a call Thursday, August 20 at 2:00 PM; awaiting confirmation of that call time from Marcus.",
+    "artifacts": [
+      "Marcus Oyelaran <marcus@fernwaytalent.com>",
+      "Fernway Talent",
+      "Northfold senior product designer search",
+      "Theo Marchetti <theo@northfoldstudio.ca>",
+      "call proposal Thursday August 20 2:00 PM",
+      "Fernway 20% fee and 90-day guarantee"
+    ],
+    "created_at": "2026-08-13 10:30:47",
+    "last_active_at": "2026-08-13 10:32:31"
+  },
+  {
+    "name": "Thistle Movers Quote Compare",
+    "summary": "Compares Thistle Movers quotes for Theo Marchetti's two-bedroom move on September 14, 2026, without contacting anyone or sending email. Found the Aug 12 estimate ($1,640 CAD + HST) and Aug 14 revision ($1,812 CAD + HST, adding a $95 parking permit and $120 third-flight stair fee); an 8% fuel surcharge is not included in either and may add roughly $115 to $130. No other moving companies' quotes were found, and nothing is pending.",
+    "artifacts": [
+      "Thistle Movers <quotes@thistlemovers.ca>",
+      "Theo Marchetti <theo@northfoldstudio.ca>",
+      "two-bedroom move on 2026-09-14",
+      "Thistle Movers revised quote $1,812 CAD + HST",
+      "Thistle Movers original quote $1,640 CAD + HST",
+      "Thistle Movers 8% fuel surcharge",
+      "third-flight stair fee $120 CAD",
+      "parking permit fee $95 CAD"
+    ],
+    "created_at": "2026-08-17 05:42:18",
+    "last_active_at": "2026-08-17 05:42:36"
+  },
+  {
+    "name": "Physio Knee Appointment",
+    "summary": "Books Theo Marchetti's left knee assessment (soccer injury) with Dr. Leena Haddad at Corktown Physio. Dr. Haddad replied Aug 20 offering Tuesday Aug 25 at 8:00 AM (60 min, $120, direct billing available, wear shorts); the appointment is confirmed in the thread and nothing further is pending.",
+    "artifacts": [
+      "Dr. Leena Haddad <leena@corktownphysio.ca>",
+      "Corktown Physio",
+      "Theo Marchetti",
+      "Left knee injury from soccer",
+      "Knee assessment appointment Tue 2026-08-25 8:00 AM",
+      "Knee assessment reply from Dr. Haddad (2026-08-20)",
+      "60-min assessment, $120, direct billing available"
+    ],
+    "created_at": "2026-08-18 07:55:43",
+    "last_active_at": "2026-08-21 12:20:19"
+  },
+  {
+    "name": "Mortgage Renewal Paperwork",
+    "summary": "Handles the Marchetti/Arden mortgage renewal, with the term ending December 1, 2026, through Wendell Achebe at Brightmoor Credit Union. Theo's latest pay stub and the 2026 property tax bill were forwarded to Wendell; Jules' pay stub and the 2025 T4s are still outstanding, and Wendell promised a renewal offer by Oct 30, with a rate lock decision ideally before the Nov 4 announcement.",
+    "artifacts": [
+      "Wendell Achebe <wendell.achebe@brightmoorcu.ca>",
+      "Brightmoor Credit Union",
+      "Marchetti/Arden mortgage renewal",
+      "mortgage term ends December 1, 2026",
+      "Theo's pay stub (Aug 16-31, 2026) forwarded",
+      "2026 property tax bill forwarded",
+      "Jules' pay stub still outstanding",
+      "2025 T4s still outstanding",
+      "renewal offer expected by Oct 30",
+      "rate lock decision before Nov 4 announcement",
+      "Northfold Payroll <payroll@northfoldstudio.ca>",
+      "Mortgage renewal - Dec 1 term end"
+    ],
+    "created_at": "2026-08-25 21:02:32",
+    "last_active_at": "2026-09-10 20:48:27"
+  },
+  {
+    "name": "Email to Tomasz Book Club",
+    "summary": "Handles sending email to Tomasz for the book club, coordinating the host details for the Sept 17 meeting. Sent the approved email proposing to host book club on Thursday, Sept 17 at 7pm in Leslieville and asking how many people are coming; the thread is awaiting Tomasz's reply on headcount.",
+    "artifacts": [
+      "Tomasz Wierzbicki <tomasz.wierzbicki@quaymail.net>",
+      "Book club hosting, Sept 17 in Leslieville at 7pm",
+      "Book club headcount question to Tomasz",
+      "Book club email thread with Tomasz"
+    ],
+    "created_at": "2026-08-26 20:16:00",
+    "last_active_at": "2026-08-26 20:16:08"
+  },
+  {
+    "name": "Thandi Yoga Studio Credit",
+    "summary": "Drafts and manages emails to Lotus Bend Studio's front desk for Theo's 10-class pack, asking whether the remaining 6 classes can be converted to account credit before the September 15 expiry. The email was sent to hello@lotusbendstudio.ca after Theo confirmed, and the thread is awaiting the studio's reply.",
+    "artifacts": [
+      "Lotus Bend Studio <hello@lotusbendstudio.ca>",
+      "Thandi Okonkwo-Reyes",
+      "Theo's 10-class pack",
+      "unused class credit conversion",
+      "class pack expiry September 15",
+      "email sent to Lotus Bend awaiting reply"
+    ],
+    "created_at": "2026-08-28 23:12:28",
+    "last_active_at": "2026-08-28 23:13:58"
+  },
+  {
+    "name": "Gym Membership Freeze",
+    "summary": "This agent handles Theo Marchetti's gym membership freeze requests with Ironwood Athletic. It sent the approved freeze request for September and October to members@ironwoodathletic.ca, asking for the freeze dates and any fee. The logged send body appears cut off after 'I'm rehabbing', so the user should verify what was actually delivered; the gym's confirmation of dates and fee is still pending.",
+    "artifacts": [
+      "Ironwood Athletic <members@ironwoodathletic.ca>",
+      "Theo Marchetti membership freeze",
+      "Sept/Oct membership freeze request",
+      "knee injury rehab freeze",
+      "freeze dates and fee confirmation"
+    ],
+    "created_at": "2026-09-01 07:31:09",
+    "last_active_at": "2026-09-01 07:31:19"
+  },
+  {
+    "name": "Cascade Expo Ticket Prices",
+    "summary": "Finds Cascade Design Expo ticket prices in Theo Marchetti's inbox for his team. Early-bird general admission is $189 CAD until Sept 15, 2026 at 11:59 PM ET, versus $245 CAD day-of, with a 15% team bundle discount for 5+ tickets during early-bird; nothing was sent.",
+    "artifacts": [
+      "Cascade Design Expo <tickets@cascadeexpo.com>",
+      "Cascade Design Expo ticket pricing",
+      "early-bird general admission $189 CAD",
+      "day-of general admission $245 CAD",
+      "weekend pass $329 early-bird / $399 on-site",
+      "early-bird deadline Sept 15, 2026",
+      "team bundle 15% off for 5+ tickets",
+      "Theo Marchetti <theo@northfoldstudio.ca>"
+    ],
+    "created_at": "2026-09-07 02:01:25",
+    "last_active_at": "2026-09-07 02:01:39"
+  },
+  {
+    "name": "Brenton Address Change Confirmation",
+    "summary": "Finds and reports on Brenton Trust Company's confirmation of Theo Marchetti's mailing address change, read-only with no replies sent. The address change took effect September 1, 2026 (reference BTC-770412), confirmed by email on September 3; a written letter is still pending, expected by about September 17, 2026.",
+    "artifacts": [
+      "Brenton Trust Company Letters <letters@brentontrust.ca>",
+      "Theo Marchetti <theo@northfoldstudio.ca>",
+      "Brenton Trust mailing address change",
+      "Reference BTC-770412",
+      "Address change effective 2026-09-01",
+      "Written letter pending by 2026-09-17"
+    ],
+    "created_at": "2026-09-08 05:40:39",
+    "last_active_at": "2026-09-08 05:40:55"
+  },
+  {
+    "name": "Sunday Week Ahead Brief",
+    "summary": "Sends Theo a recurring week-ahead rundown every Sunday at 7:00 PM America/Toronto by scanning his inbox for upcoming bills, deliveries, appointments, RSVPs, and renewals. Trigger ID 2 was created and is active, with the first run set for Sunday, September 13, 2026.",
+    "artifacts": [
+      "Theo's inbox",
+      "weekly week-ahead rundown",
+      "trigger ID 2",
+      "Sundays 7:00 PM America/Toronto",
+      "upcoming bills and renewals",
+      "deliveries and appointments",
+      "RSVPs due this week"
+    ],
+    "created_at": "2026-09-09 21:10:16",
+    "last_active_at": "2026-10-18 19:00:16"
+  },
+  {
+    "name": "Airport Parking Refund",
+    "summary": "Finds and tracks Harbourline Parking airport lot receipts and billing messages for Theo Marchetti, to support a shuttle-delay refund claim. Found receipt #HP-552901 ($87.00 CAD, Aug 19-29, 2026) and Harbourline's Sep 2 reply saying shuttle disputes must be filed via their online form within 14 days of exit, with credits going to the original card. The 14-day window closes Sep 12, 2026; nothing has been filed or sent yet.",
+    "artifacts": [
+      "Harbourline Parking Help <help@harbourlineparking.ca>",
+      "Harbourline Parking receipt HP-552901",
+      "Harbourline airport lot parking, Aug 19-29 2026",
+      "$87.00 CAD parking charge, card ending 4417",
+      "shuttle-delay refund dispute",
+      "Harbourline online dispute form, 14-day deadline",
+      "Refund deadline 2026-09-12",
+      "Theo Marchetti <theo@northfoldstudio.ca>"
+    ],
+    "created_at": "2026-09-10 10:28:28",
+    "last_active_at": "2026-09-10 10:28:46"
+  },
+  {
+    "name": "Quarterly Tax Instalment Reminder",
+    "summary": "Sets up a recurring reminder for Theo Marchetti, 10 days before each quarterly tax instalment (5th of Mar, Jun, Sep, Dec at 09:00 Toronto time), first firing 2026-12-05. The reminder tells him to check with Accord Tax Advisory before paying. No emails were sent and no pending drafts or threads exist.",
+    "artifacts": [
+      "Theo Marchetti <theo@northfoldstudio.ca>",
+      "Accord Tax Advisory <hello@accordtax.ca>",
+      "quarterly tax instalment reminder",
+      "quarterly tax instalments due Mar/Jun/Sep/Dec 15",
+      "first reminder 2026-12-05 09:00 America/Toronto"
+    ],
+    "created_at": "2026-09-14 15:28:52",
+    "last_active_at": "2026-09-14 15:29:02"
+  },
+  {
+    "name": "Mom Thanksgiving Visit",
+    "summary": "Coordinates visits and travel between Theo and his mom, Rosa Marchetti, by sending his approved emails to her. Sent 'Your flight on Oct 9' asking for her landing time; no reply is recorded yet. Created a one-time reminder (trigger 3) for Oct 9 at 2:40 PM Toronto time to leave for Pearson Terminal 1, where Rosa's flight 1180 from Halifax lands at 3:40 PM.",
+    "artifacts": [
+      "Rosa Marchetti <rosa.marchetti@quaymail.net>",
+      "Your flight on Oct 9 email",
+      "Rosa's flight 1180 from Halifax",
+      "Pearson Terminal 1 pick-up on 2026-10-09",
+      "leave-for-airport reminder at 2:40 PM",
+      "Mom's flight landing time on Oct 9",
+      "airport pick-up for Mom"
+    ],
+    "created_at": "2026-09-14 19:40:34",
+    "last_active_at": "2026-10-09 14:40:05"
+  },
+  {
+    "name": "Copperleaf Renewal Thread",
+    "summary": "Handles Northfold Studio's Copperleaf Team plan renewal with Hana Ishikawa (renewal Nov 30, 2026; her offer is $20,608/year, up 12% from $18,400; suggested response deadline Oct 31). Hana sent the usage report on Oct 19 (14 of 15 seats active), and a draft proposing a two-year term at $18,400/year, signed before Nov 30, is awaiting Theo's confirmation before it is sent.",
+    "artifacts": [
+      "Hana Ishikawa <hana.ishikawa@copperleafdata.com>",
+      "Copperleaf Data",
+      "Northfold Studio",
+      "Copperleaf Team plan renewal",
+      "Copperleaf two-year term at $18,400/year",
+      "Copperleaf renewal price $20,608/year (up 12%)",
+      "Copperleaf renewal on 2026-11-30",
+      "Copperleaf renewal response deadline 2026-10-31",
+      "Copperleaf renewal notice on 2026-09-14",
+      "Copperleaf usage report Oct 2025-Sep 2026",
+      "Copperleaf multi-year renewal options",
+      "Copperleaf forecasting module price increase"
+    ],
+    "created_at": "2026-09-15 14:05:54",
+    "last_active_at": "2026-10-19 19:39:04"
+  },
+  {
+    "name": "Prairie UX Talk Proposal",
+    "summary": "Drafts and tracks Theo Marchetti's (Northfold Studio) proposal for a 25-minute talk, \"Designing for Forecasts People Actually Trust\", at Prairie UX 2026 in Winnipeg (Nov 18-20). The talk was accepted by Adaeze Nwosu on Oct 1 for Thu Nov 19 at 11:00 in Main Hall; Theo must confirm by Oct 9, slides are due Nov 12, and a travel stipend of up to $600 is available.",
+    "artifacts": [
+      "Prairie UX 2026 talk acceptance",
+      "Adaeze Nwosu <cfp@prairieuxconf.org>",
+      "Designing for Forecasts People Actually Trust",
+      "Prairie UX Conference Winnipeg Nov 18-20",
+      "Talk slot Thu Nov 19 11:00 Main Hall",
+      "Confirm acceptance by Oct 9",
+      "Slides due Nov 12",
+      "Theo Marchetti, Northfold Studio",
+      "uncertainty displays for fintech clients"
+    ],
+    "created_at": "2026-09-15 21:10:34",
+    "last_active_at": "2026-10-02 08:56:05"
+  },
+  {
+    "name": "Q3 Financials Elaine",
+    "summary": "Q3 Financials Elaine handles Theo's email with Elaine Fairbanks at Ledgerline Partners about the Q3 close package, needed for the end-of-October board meeting. Elaine replied Oct 7 that the package (P&L, balance sheet, cash runway) will be ready Fri Oct 16, and she still needs the September corporate card export and two client invoices marked paid. Nothing was sent in this task.",
+    "artifacts": [
+      "Elaine Fairbanks <elaine@ledgerlinepartners.ca>",
+      "Ledgerline Partners",
+      "Q3 close package",
+      "Q3 close package ready Oct 16",
+      "September corporate card export",
+      "two client invoices marked paid",
+      "board meeting end of October",
+      "P&L, balance sheet, cash runway"
+    ],
+    "created_at": "2026-09-22 10:05:44",
+    "last_active_at": "2026-10-08 09:40:44"
+  },
+  {
+    "name": "Home Insurance Quote Compare",
+    "summary": "Compares home insurance quotes from Stonegate Mutual for Theo Marchetti's Leslieville home against his current $1,000,000 liability policy. Found the Sep 18, 2026 quote summary (Options A, B, C) and sent the reply in that thread asking the broker to confirm each option's personal liability limit. No further response from the broker is recorded yet.",
+    "artifacts": [
+      "Stonegate Mutual <brokers@stonegatemutual.ca>",
+      "Theo Marchetti <theo@northfoldstudio.ca>",
+      "Stonegate Mutual home insurance quote summary",
+      "Leslieville home insurance quotes",
+      "personal liability limit comparison",
+      "$1,000,000 current liability policy",
+      "Options A, B, and C quotes (Sep 18, 2026)",
+      "reply to Stonegate on liability limits"
+    ],
+    "created_at": "2026-09-22 22:06:09",
+    "last_active_at": "2026-09-22 22:09:47"
+  },
+  {
+    "name": "Save the Date Printing",
+    "summary": "Gets save-the-date printing quotes for a wedding on June 12, 2027 and reports them back. Noor Hassan at Inkwell and Vine replied on Oct 5, 2026 with $780 + tax for 120 A6 one-colour letterpress save-the-dates with kraft envelopes, 50% deposit, a digital proof within 5 business days, and printing 2 weeks after proof approval. Nothing has been sent since, and the user has not yet decided whether to order.",
+    "artifacts": [
+      "Noor Hassan <noor@inkwellandvine.ca>",
+      "Inkwell and Vine",
+      "Quote: 120 letterpress save-the-dates",
+      "120 A6 letterpress save-the-dates",
+      "Wedding date June 12, 2027",
+      "$780 + tax quote, 50% deposit",
+      "Kraft envelopes"
+    ],
+    "created_at": "2026-09-24 19:45:51",
+    "last_active_at": "2026-10-06 13:15:20"
+  },
+  {
+    "name": "Montreal Weekend Hotel",
+    "summary": "Finds and books hotel rooms for Theo Marchetti, including emailing hotels to check king room availability and rates. Sent Hotel Verri\u00e8re a request for a king room Friday Nov 6 to Sunday Nov 8 (2 nights), then confirmed the booking at $289/night under Theo Marchetti with a late check-in around 9pm Friday; the hotel has not yet replied to the confirmation.",
+    "artifacts": [
+      "Hotel Verri\u00e8re <reservations@hotelverriere.ca>",
+      "king room booking Nov 6-8 at $289/night",
+      "late check-in Friday around 9pm",
+      "Theo Marchetti",
+      "Montreal weekend trip",
+      "Friday Nov 6 to Sunday Nov 8 stay"
+    ],
+    "created_at": "2026-09-25 13:40:40",
+    "last_active_at": "2026-09-29 09:13:26"
+  },
+  {
+    "name": "Email to Gabe Offsite Agenda",
+    "summary": "Drafts and sends emails for Theo, most recently the Northfold team offsite agenda for Cedar Hollow Lodge, Oct 21-22, 2026, addressed to co-founder/CEO Gabe Lindqvist. The revised final agenda (30-minute client roadmap slot on Day 2, wrap-up moved to 3:30 PM) was sent to Gabe in the existing thread, so no draft is pending now.",
+    "artifacts": [
+      "Gabe Lindqvist <gabe@northfoldstudio.ca>",
+      "Northfold team offsite agenda",
+      "Cedar Hollow Lodge offsite, Oct 21-22 2026",
+      "Revised final offsite agenda sent to Gabe",
+      "Client roadmap review (30-min slot, Day 2)",
+      "Portal rebuild deep-dive",
+      "2026 retro",
+      "2027 planning",
+      "Hiring plan (senior designer, 2 engineers)"
+    ],
+    "created_at": "2026-09-28 11:05:34",
+    "last_active_at": "2026-10-15 16:22:39"
+  },
+  {
+    "name": "Hugo Pagewise Gift Card",
+    "summary": "Handles Pagewise gift card support requests for the user Theo. Sent an approved email on September 29, 2026 to support@pagewisebooks.com about order #PB-88213, a CAD $75.00 gift card showing a $0.00 balance; a check found no reply yet, so the thread is still awaiting Pagewise support.",
+    "artifacts": [
+      "Pagewise Books support <support@pagewisebooks.com>",
+      "Pagewise gift card order #PB-88213",
+      "Gift card zero balance issue",
+      "CAD $75.00 gift card purchase, 2026-09-22",
+      "Theo (user)",
+      "Order confirmation (available on request)"
+    ],
+    "created_at": "2026-09-29 01:30:04",
+    "last_active_at": "2026-10-03 05:13:18"
+  },
+  {
+    "name": "Dentist Cleaning Reschedule",
+    "summary": "Handles rescheduling Theo Marchetti's dentist cleaning booked for Tuesday, Oct 6, by asking for a late-afternoon slot the following week. The approved email was sent to the Tidewater Dental front desk; the thread is open and awaiting their reply with a new appointment time.",
+    "artifacts": [
+      "Tidewater Dental front desk <frontdesk@tidewaterdental.ca>",
+      "Oct 6 dentist cleaning reschedule",
+      "Tidewater Dental cleaning appointment",
+      "Late-afternoon slot the following week",
+      "Theo Marchetti"
+    ],
+    "created_at": "2026-09-29 13:03:22",
+    "last_active_at": "2026-09-29 13:03:30"
+  },
+  {
+    "name": "Mom Flight Rebooking",
+    "summary": "Finds and reports details of Rosa Marchetti's return flight from Toronto to Halifax after a Thanksgiving visit, booked under Northstar Regional confirmation NR7K2P, for Theo to review. Current flight is Monday October 12, 2026 departing 6:40 AM, with a $75 CAD change fee plus fare difference. Nothing sent or changed; Theo has not yet confirmed whether to draft a note to Rosa about rebooking options for Tuesday October 13.",
+    "artifacts": [
+      "Rosa Marchetti <rosa.marchetti@quaymail.net>",
+      "Northstar Regional booking NR7K2P",
+      "Toronto (YYZ) to Halifax (YHZ) return flight",
+      "Return flight Monday October 12, 2026 6:40 AM",
+      "Change fee $75 CAD plus fare difference",
+      "Airport ride timing for Rosa",
+      "Tuesday October 13 fare check"
+    ],
+    "created_at": "2026-09-29 20:14:05",
+    "last_active_at": "2026-09-29 20:14:17"
+  },
+  {
+    "name": "Soren Language Tutor Invoice",
+    "summary": "Handles billing correspondence for Theo's language lessons with tutor Soren Halvorsen, sent from theo@northfoldstudio.ca. Soren replied on 2026-10-01 acknowledging the error and sending a corrected September invoice (6 sessions at CAD $55.00, total CAD $330.00, attached as September_invoice_v2.pdf), so the agent is now awaiting Theo's review of that invoice.",
+    "artifacts": [
+      "Soren Halvorsen <soren.halvorsen@quaymail.net>",
+      "Corrected September 2026 invoice (v2)",
+      "September_invoice_v2.pdf",
+      "Invoice total CAD $330.00 (6 x $55.00)",
+      "Invoice session count dispute (6 vs 8)",
+      "September 2026 language lessons",
+      "theo@northfoldstudio.ca"
+    ],
+    "created_at": "2026-09-30 07:19:47",
+    "last_active_at": "2026-10-04 10:55:05"
+  },
+  {
+    "name": "Neighbour Fence Repair",
+    "summary": "Handles sending emails for Theo (next door) to Harold Pemberton about splitting the cost of repairing the shared fence after a storm. Sent the approved email proposing a $1,150 quote to reset posts and replace two panels, and the thread is awaiting Harold's reply.",
+    "artifacts": [
+      "Harold Pemberton <harold.pemberton@quaymail.net>",
+      "Shared fence repair between yards",
+      "Fence repair quote $1,150",
+      "Storm damage to back fence",
+      "Cost-splitting proposal to Harold"
+    ],
+    "created_at": "2026-09-30 18:40:59",
+    "last_active_at": "2026-09-30 18:41:05"
+  },
+  {
+    "name": "Scooter Rental Receipt",
+    "summary": "Finds and reports Brisk Scooter Co ride receipts for Theo Marchetti, such as the Sept 26, 2026 waterfront ride. Found receipt #BS-88310 ($19.75 CAD, card ending 4417, ride 2:40-4:31 PM from Harbourfront) and its trip summary (6.4 km, 14 km/h). Nothing was sent and nothing is pending.",
+    "artifacts": [
+      "Brisk Scooter Co <receipts@briskscooters.ca>",
+      "Theo Marchetti <theo@northfoldstudio.ca>",
+      "Brisk Scooter Co ride receipt September 26 2026",
+      "Brisk ride #BS-88310 waterfront",
+      "Harbourfront station",
+      "Brisk Scooter Co trip summary",
+      "Card ending 4417"
+    ],
+    "created_at": "2026-10-04 00:23:47",
+    "last_active_at": "2026-10-04 00:24:03"
+  },
+  {
+    "name": "Backsplash Tile Order Stonehaven",
+    "summary": "Tracks Theo Marchetti's backsplash order with Stonehaven Tile for 14 sq ft of Ember Glaze handmade ceramic tile under quote SH-40817 at $607.09 CAD including HST, with a 3 to 4 week lead time. Theo approved the order, and the quote was forwarded to Stonehaven's orders desk asking them to place it and confirm the delivery date in writing. Awaiting Stonehaven's confirmation and delivery date; the earlier sample shipment expected 2026-09-22 is no longer the pending item.",
+    "artifacts": [
+      "Stonehaven Tile <orders@stonehaventile.ca>",
+      "Ember Glaze handmade ceramic tile backsplash",
+      "Quote SH-40817 for 14 sq ft at $607.09 CAD incl. HST",
+      "Theo Marchetti approval of Stonehaven order",
+      "Stonehaven delivery date confirmation pending",
+      "Stonehaven sample shipment 2026-09-22"
+    ],
+    "created_at": "2026-10-05 10:18:44",
+    "last_active_at": "2026-10-05 10:23:23"
+  },
+  {
+    "name": "Jules Birthday Dinner",
+    "summary": "Handles a partner's birthday dinner reservation for two at Osteria Valdina on Saturday, November 14 at 7:30 PM, with a corner window table request. The restaurant confirmed the booking by email on October 6, noting they will bring something for the birthday, so the reservation is settled and nothing is pending.",
+    "artifacts": [
+      "Osteria Valdina <reservations@osteriavaldina.ca>",
+      "Saturday, November 14 at 7:30 PM table for 2",
+      "Corner window table request",
+      "Partner's birthday dinner reservation",
+      "Theo Marchetti",
+      "Birthday dinner confirmation from Osteria Valdina (Oct 6)"
+    ],
+    "created_at": "2026-10-05 12:19:05",
+    "last_active_at": "2026-10-07 18:02:31"
+  },
+  {
+    "name": "Snowmelt Storage Downgrade",
+    "summary": "Handles Theo's Snowmelt cloud storage account, downgrading from the 2 TB plan to 200 GB before the October 14, 2026 renewal (CAD $19.99 charged to card ending 4410). The reply asking Snowmelt Billing for written confirmation and any prorated charge was sent on Theo's go-ahead; the agent is now waiting for Snowmelt's response in that thread.",
+    "artifacts": [
+      "Snowmelt Billing <billing@snowmeltcloud.net>",
+      "Snowmelt 2 TB to 200 GB plan downgrade",
+      "Snowmelt renewal October 14, 2026",
+      "Snowmelt renewal charge CAD $19.99",
+      "Snowmelt prorated charge question",
+      "Theo Marchetti <theo@northfoldstudio.ca>"
+    ],
+    "created_at": "2026-10-08 05:55:41",
+    "last_active_at": "2026-10-08 05:57:55"
+  },
+  {
+    "name": "Sable Bay Renewal Notice",
+    "summary": "Finds and handles Sable Bay Software annual renewal notices for Northfold Studio in Theo's inbox. Found the Oct 2, 2026 notice (renewal Oct 30, 2026, CAD 1,284.00 plus tax, 12 seats) and, after Theo confirmed, sent the reply to billing asking them to confirm the seat count and send a line-item breakdown; now waiting for billing's response.",
+    "artifacts": [
+      "Sable Bay Software <billing@sablebaysoftware.com>",
+      "Sable Bay Software annual renewal",
+      "Northfold Studio annual plan renewal Oct 30, 2026",
+      "CAD 1,284.00 renewal charge",
+      "12-seat count confirmation",
+      "Theo Marchetti <theo@northfoldstudio.ca>",
+      "Sable Bay renewal line-item breakdown request"
+    ],
+    "created_at": "2026-10-11 16:17:27",
+    "last_active_at": "2026-10-11 16:18:42"
+  },
+  {
+    "name": "Felix Moving Van Booking",
+    "summary": "Felix Moving Van Booking arranges moving vans for Felix, including rental pickups and mileage terms with Crosstown Moving Co. Crosstown replied Oct 12 with booking reference CM-70592 for a 24 ft van on Sat Oct 17, 2026 at 9:00 AM, with 150 km included and $0.45 CAD per km beyond that; no further action is pending.",
+    "artifacts": [
+      "Crosstown Moving Co <bookings@crosstownmoving.ca>",
+      "24 ft moving van booking",
+      "Saturday van pickup on 2026-10-17 at 9:00 AM",
+      "88 Jones Ave, Toronto",
+      "Felix (cousin) booking name",
+      "Crosstown mileage cap 150 km included",
+      "Crosstown per-km overage $0.45 CAD",
+      "Crosstown booking reference CM-70592"
+    ],
+    "created_at": "2026-10-11 17:13:17",
+    "last_active_at": "2026-10-13 20:23:07"
+  },
+  {
+    "name": "Matteo Kayak Rental Deposit",
+    "summary": "Matteo Kayak Rental Deposit handles returning the CAD 150 damage deposit from the Oct 4 kayak rental at Leslie Street Spit. The user-approved email asking Matteo Lindahl to refund the deposit to the booking card was sent Oct 12 at 11:32 PM. A search found no reply yet, and nothing new was sent.",
+    "artifacts": [
+      "Matteo Lindahl <matteo.lindahl@kestrelpaddle.com>",
+      "Kestrel Paddle Co.",
+      "Damage deposit return for Oct 4 kayak rental",
+      "CAD 150 kayak damage deposit",
+      "Oct 4 kayak rental",
+      "Leslie Street Spit trip"
+    ],
+    "created_at": "2026-10-12 23:32:38",
+    "last_active_at": "2026-10-12 23:59:54"
+  },
+  {
+    "name": "Inbox Catch-Up Scan",
+    "summary": "Scans Theo Marchetti's inbox for emails needing his action (bookings, bills, deadlines, replies) and skips newsletters and promotions. The latest scan found three items: a Bramblewood Auto Service winter tire changeover booking awaiting Theo's reply (slots Oct 24 or Oct 27), a Riverdale Library hold pickup by Oct 22, and a Maplecrest Card Services statement due Nov 2. Nothing has been sent or drafted yet.",
+    "artifacts": [
+      "Bramblewood Auto Service <service@bramblewoodauto.ca>",
+      "winter tire changeover booking",
+      "Riverdale Library holds pickup by Oct 22",
+      "Maplecrest Card Services <statement>",
+      "Maplecrest October statement $1,284.16 due Nov 2",
+      "Theo Marchetti <theo@northfoldstudio.ca>"
+    ],
+    "created_at": "2026-10-17 11:20:36",
+    "last_active_at": "2026-10-17 11:20:52"
+  }
+]

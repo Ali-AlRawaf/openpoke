@@ -28,6 +28,12 @@ def _load_env_file() -> None:
 _load_env_file()
 
 
+def data_dir() -> Path:
+    """Runtime data directory; OPENPOKE_DATA_DIR overrides it (used by evals)."""
+    override = os.getenv("OPENPOKE_DATA_DIR")
+    return Path(override) if override else Path(__file__).resolve().parent / "data"
+
+
 DEFAULT_APP_NAME = "OpenPoke Server"
 DEFAULT_APP_VERSION = "0.3.0"
 
@@ -51,11 +57,24 @@ class Settings(BaseModel):
     server_port: int = Field(default=_env_int("OPENPOKE_PORT", 8001))
 
     # LLM model selection
-    interaction_agent_model: str = Field(default="anthropic/claude-sonnet-4")
-    execution_agent_model: str = Field(default="anthropic/claude-sonnet-4")
-    execution_agent_search_model: str = Field(default="anthropic/claude-sonnet-4")
-    summarizer_model: str = Field(default="anthropic/claude-sonnet-4")
-    email_classifier_model: str = Field(default="anthropic/claude-sonnet-4")
+    interaction_agent_model: str = Field(default="anthropic/claude-haiku-5.5")
+    execution_agent_model: str = Field(default="anthropic/claude-haiku-5.5")
+    execution_agent_search_model: str = Field(default="anthropic/claude-haiku-5.5")
+    summarizer_model: str = Field(default="anthropic/claude-haiku-5.5")
+    email_classifier_model: str = Field(default="anthropic/claude-haiku-5.5")
+    card_updater_model: str = Field(default="anthropic/claude-haiku-5.5")
+
+    # Agent search: rosters at or below top_k are returned whole; larger ones are ranked by embedding
+    embedding_model: str = Field(default="openai/text-embedding-3-small")
+    embedding_dimensions: int = Field(default=512)
+    agent_search_top_k: int = Field(default=10)
+
+    # Completion budget; thinking tokens count toward it
+    llm_max_tokens: int = Field(default=16000)
+
+    # Anthropic prompt caching (top-level cache_control); TTL "5m" (default) or "1h"
+    prompt_cache_enabled: bool = Field(default=True)
+    prompt_cache_ttl: str = Field(default="5m")
 
     # Credentials / integrations
     openrouter_api_key: Optional[str] = Field(default=os.getenv("OPENROUTER_API_KEY"))

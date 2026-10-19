@@ -10,6 +10,8 @@ from typing import Dict, List, Optional
 
 from .runtime import ExecutionAgentRuntime, ExecutionResult
 from ...logging_config import logger
+from ...services.execution import get_agent_roster
+from ...services.execution.card_updater import update_agent_card
 
 
 @dataclass
@@ -42,6 +44,7 @@ class ExecutionBatchManager:
         self._pending: Dict[str, PendingExecution] = {}
         self._batch_lock = asyncio.Lock()
         self._batch_state: Optional[_BatchState] = None
+        self._card_updates: set[asyncio.Task[None]] = set()
 
     # Run execution agent with timeout handling and batch coordination for interaction agent
     async def execute_agent(
@@ -85,8 +88,18 @@ class ExecutionBatchManager:
         finally:
             self._pending.pop(request_id, None)
 
+        get_agent_roster().touch(agent_name)
+        if result.success:
+            self._schedule_card_update(agent_name, instructions)
+
         await self._complete_execution(batch_id, result, agent_name)
         return result
+
+    # Refresh the agent's card in the background so results reach the interaction agent without waiting
+    def _schedule_card_update(self, agent_name: str, instructions: str) -> None:
+        task = asyncio.create_task(update_agent_card(agent_name, instructions))
+        self._card_updates.add(task)
+        task.add_done_callback(self._card_updates.discard)
 
     # Add execution request to current batch or create new batch if none exists
     async def _register_pending_execution(

@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "s01_known_counterpart",
+      "category": "new_task_known_counterpart",
+      "rule": 2,
+      "message": "can you email priya and ask if she's free for a call thursday?",
+      "expected": [
+        {
+          "task": "ask Priya about Thursday call",
+          "gold": "Email to Priya Shah"
+        }
+      ],
+      "rationale": "Priya Shah is owned by 'Email to Priya Shah' (summary + log)."
+    },
+    {
+      "id": "s02_trigger_change",
+      "category": "change_reminder",
+      "rule": 1,
+      "message": "push my nightly digest to 10pm",
+      "expected": [
+        {
+          "task": "move digest trigger to 10pm",
+          "gold": "Nightly Digest Reminder"
+        }
+      ],
+      "rationale": "nightly-digest-reminder.log has createTrigger succeeded | trigger_id=7."
+    },
+    {
+      "id": "s03_two_parallel",
+      "category": "two_parallel_tasks",
+      "rule": [
+        1,
+        3
+      ],
+      "message": "yep send the lease one. also email sam chen at hackclub and ask when the hackathon signup closes",
+      "expected": [
+        {
+          "task": "send the lease renewal draft",
+          "gold": "Landlord Lease Renewal"
+        },
+        {
+          "task": "ask Sam Chen about hackathon signup",
+          "gold": "NEW"
+        }
+      ],
+      "rationale": "Lease draft pending in recent entries; Sam Chen has no owner."
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "total_usd": 2.328078,
+  "calls": 2948,
+  "by_stage": {
+    "names": 0.067403,
+    "summary": 0.016625,
+    "names_more": 0.185848,
+    "logs": 1.304328,
+    "cards": 0.753874
+  }
+}

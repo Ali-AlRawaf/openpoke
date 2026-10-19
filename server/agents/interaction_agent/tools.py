@@ -3,11 +3,17 @@
 import asyncio
 import json
 from dataclasses import dataclass
-from typing import Any, Optional
+from html import escape
+from typing import Any, List, Optional
 
+from pydantic import ValidationError
+
+from ...config import get_settings
 from ...logging_config import logger
 from ...services.conversation import get_conversation_log
-from ...services.execution import get_agent_roster, get_execution_agent_logs
+from ...services.execution import AgentCard, RosterError, get_agent_roster, get_execution_agent_logs
+from ...services.execution.agent_search import search_agent_cards
+from ...services.execution.roster import ARTIFACTS_DESCRIPTION
 from ..execution_agent.batch_manager import ExecutionBatchManager
 
 
@@ -25,14 +31,68 @@ TOOL_SCHEMAS = [
     {
         "type": "function",
         "function": {
-            "name": "send_message_to_agent",
-            "description": "Deliver instructions to a specific execution agent. Creates a new agent if the name doesn't exist in the roster, or reuses an existing one.",
+            "name": "search_agents",
+            "description": (
+                "Search existing execution agents for one to reuse. Returns agent cards, each with the agent's name, "
+                "a summary of its work, and its artifacts: the specific things it's tied to. "
+                f"If there are {get_settings().agent_search_top_k} or fewer agents, returns all of them and the query "
+                f"isn't used. Otherwise, returns the {get_settings().agent_search_top_k} agents most similar to the "
+                "query, ordered by similarity; similar agents aren't necessarily relevant to the task."
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "query": {
+                        "type": "string",
+                        "description": "The task in specific terms: the names and topic it involves, with references from the conversation spelled out (e.g., 'Acme Supplies damaged gearbox replacement').",
+                    },
+                },
+                "required": ["query"],
+                "additionalProperties": False,
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "create_agent",
+            "description": "Create a new execution agent with a card describing it. Use only when no existing agent fits the task. Then call send_message_to_agent with the same name; both calls can go in the same response.",
+            # Strict: the API guarantees arguments match the schema (artifacts arrives as an array of
+            # strings, never a string that looks like one)
+            "strict": True,
             "parameters": {
                 "type": "object",
                 "properties": {
                     "agent_name": {
                         "type": "string",
-                        "description": "Human-readable agent name describing its purpose (e.g., 'Vercel Job Offer', 'Email to Sharanjeet'). This name will be used to identify and potentially reuse the agent."
+                        "description": "Human-readable agent name describing its purpose (e.g., 'Vercel Job Offer', 'Email to Sharanjeet'). Must not match an existing agent.",
+                    },
+                    "summary": {
+                        "type": "string",
+                        "description": "What this agent is for, in one or two sentences, at most 500 characters (e.g., 'Gets a replacement for the damaged gearbox from Acme Supplies.').",
+                    },
+                    "artifacts": {
+                        "type": "array",
+                        "description": f"{ARTIFACTS_DESCRIPTION} Empty if none.",
+                        "items": {"type": "string"},
+                    },
+                },
+                "required": ["agent_name", "summary", "artifacts"],
+                "additionalProperties": False,
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "send_message_to_agent",
+            "description": "Deliver instructions to an existing execution agent. The agent must already exist: find it with search_agents, or create it with create_agent first.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "agent_name": {
+                        "type": "string",
+                        "description": "Exact name of an existing agent, as returned by search_agents or create_agent.",
                     },
                     "instructions": {"type": "string", "description": "Instructions for the agent to execute."},
                 },
@@ -108,21 +168,108 @@ TOOL_SCHEMAS = [
 _EXECUTION_BATCH_MANAGER = ExecutionBatchManager()
 
 
-# Create or reuse execution agent and dispatch instructions asynchronously
+# Render one agent card as XML; cards without a summary or artifacts stay a single <agent /> tag
+def _render_agent_card(card: AgentCard) -> str:
+    attrs = f'name="{escape(card.name or "agent", quote=True)}"'
+    if card.last_active_at:
+        attrs += f' last_active="{escape(card.last_active_at, quote=True)}"'
+    if not card.summary and not card.artifacts:
+        return f"<agent {attrs} />"
+
+    lines: List[str] = [f"<agent {attrs}>"]
+    if card.summary:
+        lines.append(f"  <summary>{escape(card.summary, quote=False)}</summary>")
+    for artifact in card.artifacts:
+        lines.append(f"  <artifact>{escape(artifact, quote=False)}</artifact>")
+    lines.append("</agent>")
+    return "\n".join(lines)
+
+
+# Look up existing execution agents: the whole roster when small, otherwise the top matches by embedding
+async def search_agents(query: str) -> ToolResult:
+    """Return existing execution agents rendered as <agent> cards."""
+    roster = get_agent_roster()
+    roster.load()
+    cards = roster.get_cards()
+    top_k = get_settings().agent_search_top_k
+
+    if len(cards) <= top_k:
+        logger.info(f"Agent search returned all {len(cards)} agents", extra={"query": query})
+        if not cards:
+            return ToolResult(success=True, payload="<active_agents>\nNone\n</active_agents>")
+        body = "\n".join(_render_agent_card(card) for card in cards)
+        header = f"All {len(cards)} existing agents. No search was run, so this is the complete roster."
+        return ToolResult(success=True, payload=f"{header}\n<active_agents>\n{body}\n</active_agents>")
+
+    try:
+        matches = await search_agent_cards(query, cards, top_k)
+    except Exception as exc:
+        # Without embeddings, fall back to every agent's name (the pre-search roster format) so
+        # routing degrades to the old behaviour instead of failing
+        logger.error(f"Agent search failed, returning all agent names: {exc}", extra={"query": query})
+        body = "\n".join(f'<agent name="{escape(card.name, quote=True)}" />' for card in cards)
+        header = f"All {len(cards)} existing agents, names only. Search is unavailable, so this is the complete roster."
+        return ToolResult(success=True, payload=f"{header}\n<active_agents>\n{body}\n</active_agents>")
+
+    logger.info(
+        f"Agent search returned top {len(matches)} of {len(cards)} agents",
+        extra={"query": query, "matches": [card.name for card in matches]},
+    )
+    body = "\n".join(_render_agent_card(card) for card in matches)
+    header = (
+        f"Search results: the {len(matches)} agents most similar to your query, out of {len(cards)} existing agents, "
+        "ordered by similarity."
+    )
+    return ToolResult(success=True, payload=f"{header}\n<active_agents>\n{body}\n</active_agents>")
+
+
+# Register a new execution agent with its identity card
+def create_agent(agent_name: str, summary: str, artifacts: List[str]) -> ToolResult:
+    """Create a new execution agent card in the roster."""
+    roster = get_agent_roster()
+    roster.load()
+
+    try:
+        card = AgentCard(name=agent_name, summary=summary, artifacts=artifacts)
+    except ValidationError as exc:
+        return ToolResult(success=False, payload={"error": f"Invalid agent card: {exc}"})
+
+    try:
+        added = roster.add_card(card)
+    except RosterError as exc:
+        logger.error(str(exc))
+        return ToolResult(success=False, payload={"error": "Failed to save the new agent: the agent roster could not be written."})
+
+    if not added:
+        return ToolResult(
+            success=False,
+            payload={"error": f"An agent named '{agent_name}' already exists. Use send_message_to_agent to reuse it."},
+        )
+
+    logger.info(f"Created agent: {agent_name}")
+    return ToolResult(success=True, payload={"status": "created", "agent_name": agent_name})
+
+
+# Dispatch instructions to an existing execution agent asynchronously
 def send_message_to_agent(agent_name: str, instructions: str) -> ToolResult:
     """Send instructions to an execution agent."""
     roster = get_agent_roster()
     roster.load()
-    existing_agents = set(roster.get_agents())
-    is_new = agent_name not in existing_agents
+    if roster.get_card(agent_name) is None:
+        return ToolResult(
+            success=False,
+            payload={
+                "error": (
+                    f"No agent named '{agent_name}'. Use search_agents to find the existing agent, "
+                    "or create_agent if none fits."
+                )
+            },
+        )
 
-    if is_new:
-        roster.add_agent(agent_name)
-
+    roster.touch(agent_name)
     get_execution_agent_logs().record_request(agent_name, instructions)
 
-    action = "Created" if is_new else "Reused"
-    logger.info(f"{action} agent: {agent_name}")
+    logger.info(f"Dispatched to agent: {agent_name}")
 
     async def _execute_async() -> None:
         try:
@@ -145,7 +292,6 @@ def send_message_to_agent(agent_name: str, instructions: str) -> ToolResult:
         payload={
             "status": "submitted",
             "agent_name": agent_name,
-            "new_agent_created": is_new,
         },
     )
 
@@ -225,6 +371,10 @@ def handle_tool_call(name: str, arguments: Any) -> ToolResult:
         else:
             return ToolResult(success=False, payload={"error": "Invalid arguments format"})
 
+        if name == "search_agents":
+            return search_agents(**args)
+        if name == "create_agent":
+            return create_agent(**args)
         if name == "send_message_to_agent":
             return send_message_to_agent(**args)
         if name == "send_message_to_user":

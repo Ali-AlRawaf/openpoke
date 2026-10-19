@@ -1,0 +1,3751 @@
+{
+  "meta": {
+    "run_id": "20261019T085049Z",
+    "git_commit": "fb1c361",
+    "git_dirty": true,
+    "model": "anthropic/claude-haiku-5.5",
+    "started_at": "2026-10-19T08:50:49+00:00",
+    "git_dirty_files": [
+      ".gitignore",
+      "evals/routing/SPEC.md",
+      "evals/routing/_stub_fixture/build_stub.py",
+      "evals/routing/_stub_fixture/rosters/roster_3.json",
+      "evals/routing/_stub_fixture/rosters/roster_6.json",
+      "evals/routing/build_fixtures.py",
+      "evals/routing/fixtures/generated/cards.json",
+      "evals/routing/fixtures/generated/cost.json",
+      "evals/routing/fixtures/generated/distractors.json",
+      "evals/routing/fixtures/rosters/roster_100.json",
+      "evals/routing/fixtures/rosters/roster_1600.json",
+      "evals/routing/fixtures/rosters/roster_200.json",
+      "evals/routing/fixtures/rosters/roster_25.json",
+      "evals/routing/fixtures/rosters/roster_400.json",
+      "evals/routing/fixtures/rosters/roster_50.json",
+      "evals/routing/fixtures/rosters/roster_800.json",
+      "evals/routing/generate.py",
+      "evals/routing/recall.py",
+      "evals/routing/results/recall_case_messages/recall.json",
+      "evals/routing/results/recall_case_messages/recall.md",
+      "evals/routing/results/recall_solution_25_x3/recall.json",
+      "evals/routing/results/recall_solution_25_x3/recall.md",
+      "evals/routing/results/recall_solution_all_x10/recall.json",
+      "evals/routing/results/recall_solution_all_x10/recall.md",
+      "evals/routing/results/solution_25_x3/decisions.jsonl",
+      "evals/routing/results/solution_25_x3/report.json",
+      "evals/routing/results/solution_25_x3/report.md",
+      "evals/routing/results/solution_25_x3/run_meta.json",
+      "evals/routing/results/solution_all_x10/decisions.jsonl",
+      "evals/routing/results/solution_all_x10/report.json",
+      "evals/routing/results/solution_all_x10/report.md",
+      "evals/routing/results/solution_all_x10/run_meta.json",
+      "evals/routing/run.py",
+      "evals/routing/score.py",
+      "server/agents/interaction_agent/runtime.py",
+      "server/agents/interaction_agent/system_prompt.md",
+      "server/agents/interaction_agent/tools.py"
+    ],
+    "fixtures": "evals/routing/fixtures",
+    "sizes": [
+      25,
+      50,
+      100,
+      200,
+      400,
+      800,
+      1600
+    ],
+    "cases": [
+      "c09_new_counterpart_overlapping_name",
+      "c10_parallel_known_and_new"
+    ],
+    "concurrency": 8,
+    "repeats": 10,
+    "max_iterations": 6,
+    "agent_search_top_k": 10,
+    "embedding_model": "openai/text-embedding-3-small",
+    "embedding_dimensions": 512,
+    "baseline": "evals/routing/results/baseline_all_x10",
+    "llm_max_tokens": 16000,
+    "prompt_cache_enabled": true,
+    "prompt_cache_ttl": "5m",
+    "tools": [
+      "search_agents",
+      "create_agent",
+      "send_message_to_agent",
+      "send_message_to_user",
+      "send_draft",
+      "wait"
+    ],
+    "data_dir": "/tmp/openpoke-routing-eval-f7t8ro19",
+    "python": "3.12.3",
+    "finished_at": "2026-10-19T08:53:32+00:00"
+  },
+  "sizes": [
+    25,
+    50,
+    100,
+    200,
+    400,
+    800,
+    1600
+  ],
+  "total_cost": 0.223136,
+  "per_size": [
+    {
+      "size": 25,
+      "cases": 20,
+      "expected_entries": 30,
+      "accuracy": 1.0,
+      "outcomes": {
+        "correct": 30,
+        "wrong_reuse": 0,
+        "false_create": 0,
+        "false_reuse": 0,
+        "missed": 0,
+        "error": 0
+      },
+      "extra_delegations": 0,
+      "errors": 0,
+      "llm_calls": 42,
+      "mean_prompt_tokens": 20749.6,
+      "mean_cached_tokens": 17558.3,
+      "mean_completion_tokens": 467.2,
+      "mean_reasoning_tokens": 112.8,
+      "mean_prompt_chars": 38296.5,
+      "total_cost": 0.033937,
+      "mean_latency_s": 6.0,
+      "search_rate": 1.0,
+      "mean_searches": 1.2,
+      "gold_retrieved": 1.0,
+      "creates_without_search": 0,
+      "gated_creates": 0,
+      "rejected_sends": 0,
+      "search_fallbacks": 0
+    },
+    {
+      "size": 50,
+      "cases": 20,
+      "expected_entries": 30,
+      "accuracy": 1.0,
+      "outcomes": {
+        "correct": 30,
+        "wrong_reuse": 0,
+        "false_create": 0,
+        "false_reuse": 0,
+        "missed": 0,
+        "error": 0
+      },
+      "extra_delegations": 0,
+      "errors": 0,
+      "llm_calls": 48,
+      "mean_prompt_tokens": 21145.6,
+      "mean_cached_tokens": 18659.5,
+      "mean_completion_tokens": 418.0,
+      "mean_reasoning_tokens": 95.8,
+      "mean_prompt_chars": 38296.5,
+      "total_cost": 0.033903,
+      "mean_latency_s": 6.1,
+      "search_rate": 1.0,
+      "mean_searches": 1.25,
+      "gold_retrieved": 1.0,
+      "creates_without_search": 0,
+      "gated_creates": 0,
+      "rejected_sends": 1,
+      "search_fallbacks": 0
+    },
+    {
+      "size": 100,
+      "cases": 20,
+      "expected_entries": 30,
+      "accuracy": 1.0,
+      "outcomes": {
+        "correct": 30,
+        "wrong_reuse": 0,
+        "false_create": 0,
+        "false_reuse": 0,
+        "missed": 0,
+        "error": 0
+      },
+      "extra_delegations": 0,
+      "errors": 0,
+      "llm_calls": 42,
+      "mean_prompt_tokens": 20617.4,
+      "mean_cached_tokens": 17849.5,
+      "mean_completion_tokens": 458.1,
+      "mean_reasoning_tokens": 105.8,
+      "mean_prompt_chars": 38296.5,
+      "total_cost": 0.031645,
+      "mean_latency_s": 5.8,
+      "search_rate": 1.0,
+      "mean_searches": 1.3,
+      "gold_retrieved": 1.0,
+      "creates_without_search": 0,
+      "gated_creates": 0,
+      "rejected_sends": 0,
+      "search_fallbacks": 0
+    },
+    {
+      "size": 200,
+      "cases": 20,
+      "expected_entries": 30,
+      "accuracy": 1.0,
+      "outcomes": {
+        "correct": 30,
+        "wrong_reuse": 0,
+        "false_create": 0,
+        "false_reuse": 0,
+        "missed": 0,
+        "error": 0
+      },
+      "extra_delegations": 0,
+      "errors": 0,
+      "llm_calls": 42,
+      "mean_prompt_tokens": 20406.4,
+      "mean_cached_tokens": 17840.8,
+      "mean_completion_tokens": 466.5,
+      "mean_reasoning_tokens": 111.9,
+      "mean_prompt_chars": 38296.5,
+      "total_cost": 0.030757,
+      "mean_latency_s": 6.0,
+      "search_rate": 1.0,
+      "mean_searches": 1.25,
+      "gold_retrieved": 1.0,
+      "creates_without_search": 0,
+      "gated_creates": 0,
+      "rejected_sends": 0,
+      "search_fallbacks": 0
+    },
+    {
+      "size": 400,
+      "cases": 20,
+      "expected_entries": 30,
+      "accuracy": 1.0,
+      "outcomes": {
+        "correct": 30,
+        "wrong_reuse": 0,
+        "false_create": 0,
+        "false_reuse": 0,
+        "missed": 0,
+        "error": 0
+      },
+      "extra_delegations": 0,
+      "errors": 0,
+      "llm_calls": 44,
+      "mean_prompt_tokens": 20691.9,
+      "mean_cached_tokens": 18200.2,
+      "mean_completion_tokens": 451.0,
+      "mean_reasoning_tokens": 99.6,
+      "mean_prompt_chars": 38296.5,
+      "total_cost": 0.031631,
+      "mean_latency_s": 6.1,
+      "search_rate": 1.0,
+      "mean_searches": 1.3,
+      "gold_retrieved": 1.0,
+      "creates_without_search": 0,
+      "gated_creates": 0,
+      "rejected_sends": 0,
+      "search_fallbacks": 0
+    },
+    {
+      "size": 800,
+      "cases": 20,
+      "expected_entries": 30,
+      "accuracy": 1.0,
+      "outcomes": {
+        "correct": 30,
+        "wrong_reuse": 0,
+        "false_create": 0,
+        "false_reuse": 0,
+        "missed": 0,
+        "error": 0
+      },
+      "extra_delegations": 0,
+      "errors": 0,
+      "llm_calls": 44,
+      "mean_prompt_tokens": 20718.1,
+      "mean_cached_tokens": 18098.8,
+      "mean_completion_tokens": 451.0,
+      "mean_reasoning_tokens": 100.3,
+      "mean_prompt_chars": 38296.5,
+      "total_cost": 0.032288,
+      "mean_latency_s": 6.1,
+      "search_rate": 1.0,
+      "mean_searches": 1.35,
+      "gold_retrieved": 1.0,
+      "creates_without_search": 0,
+      "gated_creates": 0,
+      "rejected_sends": 0,
+      "search_fallbacks": 0
+    },
+    {
+      "size": 1600,
+      "cases": 20,
+      "expected_entries": 30,
+      "accuracy": 1.0,
+      "outcomes": {
+        "correct": 30,
+        "wrong_reuse": 0,
+        "false_create": 0,
+        "false_reuse": 0,
+        "missed": 0,
+        "error": 0
+      },
+      "extra_delegations": 0,
+      "errors": 0,
+      "llm_calls": 43,
+      "mean_prompt_tokens": 19967.6,
+      "mean_cached_tokens": 17833.8,
+      "mean_completion_tokens": 457.7,
+      "mean_reasoning_tokens": 104.4,
+      "mean_prompt_chars": 38296.5,
+      "total_cost": 0.028975,
+      "mean_latency_s": 5.9,
+      "search_rate": 1.0,
+      "mean_searches": 1.1,
+      "gold_retrieved": 1.0,
+      "creates_without_search": 0,
+      "gated_creates": 0,
+      "rejected_sends": 1,
+      "search_fallbacks": 0
+    }
+  ],
+  "groups": [
+    {
+      "group": "overload target (dormant, inference)",
+      "cases": [
+        "c07",
+        "c12",
+        "c14",
+        "c16",
+        "c18",
+        "c20"
+      ],
+      "pass_rates": {
+        "25": null,
+        "50": null,
+        "100": null,
+        "200": null,
+        "400": null,
+        "800": null,
+        "1600": null
+      }
+    },
+    {
+      "group": "dormant control (name match)",
+      "cases": [
+        "c11",
+        "c13",
+        "c15",
+        "c17",
+        "c19"
+      ],
+      "pass_rates": {
+        "25": null,
+        "50": null,
+        "100": null,
+        "200": null,
+        "400": null,
+        "800": null,
+        "1600": null
+      }
+    },
+    {
+      "group": "easy recent",
+      "cases": [
+        "c01",
+        "c03",
+        "c05",
+        "c06",
+        "c08",
+        "c09"
+      ],
+      "pass_rates": {
+        "25": 1.0,
+        "50": 1.0,
+        "100": 1.0,
+        "200": 1.0,
+        "400": 1.0,
+        "800": 1.0,
+        "1600": 1.0
+      }
+    },
+    {
+      "group": "policy-ambiguous",
+      "cases": [
+        "c02",
+        "c04"
+      ],
+      "pass_rates": {
+        "25": null,
+        "50": null,
+        "100": null,
+        "200": null,
+        "400": null,
+        "800": null,
+        "1600": null
+      }
+    },
+    {
+      "group": "multi-task",
+      "cases": [
+        "c10"
+      ],
+      "pass_rates": {
+        "25": 1.0,
+        "50": 1.0,
+        "100": 1.0,
+        "200": 1.0,
+        "400": 1.0,
+        "800": 1.0,
+        "1600": 1.0
+      }
+    }
+  ],
+  "matrix": [
+    {
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "cells": {
+        "25": "10/10",
+        "50": "10/10",
+        "100": "10/10",
+        "200": "10/10",
+        "400": "10/10",
+        "800": "10/10",
+        "1600": "10/10"
+      },
+      "pass_rates": {
+        "25": 1.0,
+        "50": 1.0,
+        "100": 1.0,
+        "200": 1.0,
+        "400": 1.0,
+        "800": 1.0,
+        "1600": 1.0
+      },
+      "pattern": "pass at every size"
+    },
+    {
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "cells": {
+        "25": "10/10",
+        "50": "10/10",
+        "100": "10/10",
+        "200": "10/10",
+        "400": "10/10",
+        "800": "10/10",
+        "1600": "10/10"
+      },
+      "pass_rates": {
+        "25": 1.0,
+        "50": 1.0,
+        "100": 1.0,
+        "200": 1.0,
+        "400": 1.0,
+        "800": 1.0,
+        "1600": 1.0
+      },
+      "pattern": "pass at every size"
+    }
+  ],
+  "misses": [],
+  "rows": [
+    {
+      "size": 25,
+      "repeat": 0,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft a short email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca) asking whether he has Saturday morning slots available for adult beginner piano lessons. Keep it brief, friendly, and casual. Do not send it. Create the draft and report the exact To, Subject, and Body back so Theo can review it before anything goes out."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 0,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a short reply in the existing offsite thread with Gabe (gabe@northfoldstudio.ca, thread 1a0e88ccde8db8a5) saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it brief and casual, sign as Theo. Do NOT send it. Return the draft text and draft ID for Theo's approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft an email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026, and ask for their earliest available dates and pricing. Keep it short and casual, sign as Theo. Do NOT send it. Return the draft text and draft ID so Theo can approve it."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 1,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email from Theo Marchetti to Marco Ferrante at marco@keyhavenmusic.ca at Keyhaven Music. Subject: Adult beginner piano lessons. Ask whether he has any Saturday morning openings for adult beginner piano lessons. Keep it short and friendly, signed Theo. Create the draft only and do NOT send it. Report back the full draft (to, subject, body) and draft ID so Theo can review it."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 1,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply on the existing thread with Gabe (gabe@northfoldstudio.ca, thread 1a0e88ccde8db8a5) saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Do not send it. Show me the exact draft (to, subject, body) and wait for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email to service@halcyonchimney.ca asking whether they can do a chimney sweep for Theo before mid-November 2026. Keep it short and casual, signed Theo. Do not send it. Show me the exact draft (to, subject, body) and wait for my approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 2,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Piano Lessons Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Subject: Adult beginner piano lessons. Body: a short, friendly note asking whether he has Saturday morning slots available for adult beginner piano lessons, and say Theo is happy to share his availability. Sign off as Theo. Create the draft only and do not send it. Show the full draft to the user for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 2,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply in the existing Cedar Hollow offsite thread (1a0e88ccde8db8a5) to Gabe telling him Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short, casual, signed Theo. Do not send; create the draft and show it for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to service@halcyonchimney.ca asking whether they can do a chimney sweep before mid-November 2026. Ask for earliest available date and price. Keep it short, signed Theo. Do not send; create the draft and show it for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 3,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft a short, friendly email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask whether they have Saturday morning slots available for adult beginner piano lessons. Keep it brief and casual, signed Theo. Create the draft only and do NOT send it. Report the exact draft text (to, subject, body) and draft ID back so Theo can review."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 3,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply to Gabe (gabe@northfoldstudio.ca) in the existing offsite thread (1a0e88ccde8db8a5). Tell him Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it to two or three short lines, signed Theo. Do not send. Show me the draft and wait for my confirmation."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to service@halcyonchimney.ca asking whether they can do a chimney sweep before mid-November 2026, and ask for the earliest available slot and the price. Keep it short and signed Theo. Do not send. Show me the draft and wait for my confirmation."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 4,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Draft a short email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Subject: Adult beginner piano lessons. Ask whether he has Saturday morning slots available for adult beginner piano lessons, and keep it brief and friendly. Create the draft only and do NOT send it. Return the exact To, Subject, and Body, plus the draft ID, and wait for Theo's explicit approval before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 4,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply on the existing thread with Gabe (gabe@northfoldstudio.ca, thread 1a0e88ccde8db8a5) saying Theo will be about 20 minutes late to the Wednesday Oct 21 kickoff because of a train. Keep it short and casual, sign as Theo. Do not send it. Show me the draft for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026. Ask for their earliest available date and price. Keep it short and casual, sign as Theo. Do not send it. Show me the draft for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 5,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Piano Lessons Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email on behalf of Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask whether he has any Saturday morning openings for adult beginner piano lessons. Keep it short, friendly, and casual, signed \"Theo\". Create the draft only and do NOT send it. Report back the full draft (to, subject, body) and wait for Theo's approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 5,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Create a draft (do NOT send) reply in the existing offsite thread (thread 1a0e88ccde8db8a5) to Gabe at gabe@northfoldstudio.ca. Tell him Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train delay. Keep it short, casual, in Theo's voice, signed Theo. Report back the draft details for Theo's review."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Create a draft (do NOT send) email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026. Ask for their earliest available date and the price. Keep it short and casual, signed Theo. Report back the draft details (to, subject, body, draft ID) for Theo's review."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 6,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante at marco@keyhavenmusic.ca asking whether Keyhaven Music has Saturday morning openings for adult beginner piano lessons. Keep it short, friendly, and casual. Do not send it yet. Create the draft and return the To, Subject, and Body so Theo can review it. Wait for Theo's explicit approval before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 6,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a short reply on the existing Cedar Hollow offsite thread (to gabe@northfoldstudio.ca, thread 1a0e88ccde8db8a5) telling Gabe Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it brief and casual, signed Theo. Do not send it; create the draft and wait for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft a short email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026, and ask for their earliest available slots and price. Keep it brief and casual, signed Theo. Do not send it; create the draft and wait for Theo's approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 7,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Create a draft (do not send) email from Theo Marchetti to Marco Ferrante at marco@keyhavenmusic.ca. Subject: Adult beginner piano lessons - Saturday mornings. Body: a short, friendly note asking whether Keyhaven has Saturday morning openings for adult beginner piano lessons, and asking what times and rates are available. Sign off as Theo. Keep it brief. Report back the full draft text, recipient, subject, and draft ID, and wait for approval before sending anything."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 7,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a short reply in the existing offsite thread (thread 1a0e88ccde8db8a5) to gabe@northfoldstudio.ca saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it brief, signed Theo. Do not send. Return the exact draft (to, subject, body, draft ID) for Theo's approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft an email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026, and ask for the earliest available date and price. Keep it short and casual, signed Theo. Do not send. Return the exact draft (to, subject, body, draft ID) for Theo's approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 8,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Create a draft email from Theo Marchetti to marco@keyhavenmusic.ca (Marco Ferrante, Keyhaven Music). Do not send it. Subject: Adult beginner piano lessons - Saturday mornings. Body: a short, friendly note from Theo asking whether Keyhaven has any Saturday morning openings for adult beginner piano lessons, and asking what the availability and rates look like. Sign off as Theo. Keep it brief. Return the exact to, subject, and body of the draft and the draft ID, and wait for Theo's approval before sending anything."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 8,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply on the Northfold offsite thread (thread 1a0e88ccde8db8a5, to gabe@northfoldstudio.ca) saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Do not send it; create the draft only and show it to me for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft an email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026, and ask for their earliest available slot and price. Keep it short and casual, signed Theo. Do not send it; create the draft only and show it to me for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 9,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Draft an email on behalf of Theo Marchetti to Marco Ferrante at marco@keyhavenmusic.ca. Subject: Adult beginner piano lessons. Ask whether he has any Saturday morning slots available for adult beginner piano lessons. Keep it short, friendly, and casual, signed Theo. Create the draft only and do NOT send it. Report back the full draft (to, subject, body, draft ID) and wait for Theo's explicit confirmation before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 9,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply on the Cedar Hollow offsite thread (thread 1a0e88ccde8db8a5) to gabe@northfoldstudio.ca saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, in Theo's voice. Create the draft only; do not send. Show me the exact subject and body."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026. Ask for the earliest available slot and pricing. Keep it short and casual, signed Theo. Create the draft only; do not send. Show me the exact subject and body."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 0,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask whether he has any Saturday morning openings for adult beginner piano lessons. Keep it short, casual, and friendly, signed Theo. Create the draft only and do not send it. Show me the exact to, subject, and body, and wait for my explicit approval before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 0,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply in the existing Northfold offsite thread with Gabe (gabe@northfoldstudio.ca, thread 1a0e88ccde8db8a5, subject \"Re: Offsite agenda - Cedar Hollow, Oct 21-22\"). Message: Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Do not send; create the draft only and show it to the user for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email to service@halcyonchimney.ca asking whether they can do a chimney sweep for Theo Marchetti before mid-November 2026. Ask for their earliest available slot and pricing. Keep it short and casual, signed Theo. Do not send; create the draft only and show it to the user for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 1,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Subject: Adult beginner piano lessons. Body: ask whether he has any Saturday morning slots available for adult beginner piano lessons. Keep it short and casual, signed Theo. Do NOT send it. Create the draft only and report the exact To, Subject, body, and Draft ID back so Theo can review it."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 1,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a short reply in the existing offsite thread (thread 1a0e88ccde8db8a5) to Gabe (gabe@northfoldstudio.ca) saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it brief, signed Theo. Create the draft only and do NOT send it. Show me the exact draft text and draft ID."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Halcyon Chimney (service@halcyonchimney.ca) asking whether they can do a chimney sweep before mid-November 2026, and ask for their earliest available slot and price. Keep it brief, signed Theo. Create the draft only and do NOT send it. Show me the exact draft text and draft ID."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 2,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask if he has Saturday morning slots available for adult beginner piano lessons. Keep it brief and casual, signed Theo. Create the draft only and do NOT send it. Show me the exact to, subject, and body so I can approve."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 2,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft (do not send) a short reply in the existing offsite thread (thread 1a0e88ccde8db8a5) to Gabe at gabe@northfoldstudio.ca. Theo will be about 20 minutes late to the Wed Oct 21 10:00 kickoff because of a train. Keep it to two or three casual lines in Theo's voice, signed Theo. Return the draft for Theo's approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft (do not send) a short email to service@halcyonchimney.ca from Theo Marchetti asking if they can do a chimney sweep before mid-November 2026, and ask for their earliest available date and price. Keep it brief and casual, signed Theo. Return the draft for Theo's approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 3,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft a short email from Theo Marchetti to Marco Ferrante at marco@keyhavenmusic.ca at Keyhaven Music. Ask whether they have Saturday morning slots for adult beginner piano lessons. Keep it brief and friendly, signed Theo. Create the draft only and do not send it. Report back the To, Subject, and full body, plus the draft ID, so Theo can review it."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 3,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a short reply in the existing offsite thread (thread 1a0e88ccde8db8a5) to gabe@northfoldstudio.ca telling him Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it brief and casual, sign as Theo. Do not send. Show me the draft and wait for my explicit confirmation before sending."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft an email to service@halcyonchimney.ca from Theo Marchetti asking whether they can book a chimney sweep before mid-November 2026, and ask for their earliest available slots and pricing. Keep it short and casual, signed Theo. Do not send. Show me the draft and wait for my explicit confirmation before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 4,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask if he has any Saturday morning openings for adult beginner piano lessons. Keep it short, casual, and polite, signed Theo. Create the draft only and do not send it. Report back the exact To, Subject, and Body, plus the draft ID."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 4,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a short reply to Gabe (gabe@northfoldstudio.ca) in the existing Cedar Hollow offsite thread (1a0e88ccde8db8a5). Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it brief and casual, sign as Theo. Create the draft only, do not send it, and wait for Theo's confirmation."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo to service@halcyonchimney.ca asking whether they can do a chimney sweep before mid-November 2026. Ask for their earliest available appointment and the price. Keep it short and casual, sign as Theo. Create the draft only, do not send it, and wait for Theo's confirmation."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 5,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante at marco@keyhavenmusic.ca. Subject: Adult beginner piano lessons. Ask whether they have Saturday morning slots available for adult beginner piano. Keep it short, friendly, and casual. Create the draft only and do not send it. Report the full draft text (to, subject, body) and the draft ID back so Theo can review it."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 5,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply in the existing Cedar Hollow offsite thread with Gabe (gabe@northfoldstudio.ca, thread 1a0e88ccde8db8a5). Tell him Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Do not send; create the draft only and show it for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email to service@halcyonchimney.ca from Theo Marchetti asking if they can do a chimney sweep before mid-November 2026. Keep it short and casual, signed Theo, and ask for their earliest available slot and price. Create the draft only and show it to Theo for approval. Do not send."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 6,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask if he has Saturday morning slots available for adult beginner piano lessons. Keep it short, casual and polite, signed Theo. Create the draft only and do NOT send it. Return the exact To, Subject and Body so Theo can review."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 6,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a short reply in the existing thread with Gabe (gabe@northfoldstudio.ca, thread 1a0e88ccde8db8a5) saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it brief and casual, signed Theo. Create the draft only; do not send. Return the draft to/subject/body and draft ID."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft an email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026, and ask for their earliest available date and price. Keep it short and casual, signed Theo. Create the draft only; do not send. Return the to/subject/body and draft ID."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 7,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft a short email from Theo Marchetti to Marco Ferrante at marco@keyhavenmusic.ca at Keyhaven Music. Ask whether he has any Saturday morning openings for adult beginner piano lessons. Keep it brief and friendly, signed Theo. Create the draft only and do not send it. Report the draft's To, Subject, and Body, and wait for Theo's explicit approval before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 7,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply to Gabe (gabe@northfoldstudio.ca) in the existing offsite thread (1a0e88ccde8db8a5, subject \"Re: Offsite agenda - Cedar Hollow, Oct 21-22\"). Say Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short, sign as Theo. Do not send it; create the draft only and show me the exact text."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026, and ask for their earliest available date and price. Keep it short, sign as Theo. Do not send it; create the draft only and show me the exact text."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 8,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask whether he has any Saturday morning openings for adult beginner piano lessons. Keep it short, casual, and signed Theo. Create the draft only and do not send it. Reply with the exact To, Subject, Body, and Draft ID."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 8,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply on the Northfold offsite thread (thread 1a0e88ccde8db8a5, to gabe@northfoldstudio.ca) saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train delay. Keep it short and casual, signed Theo. Create the draft only; do not send it."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep",
+          "chosen_kind": "create",
+          "instructions": "Draft an email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026, and ask for their earliest available slot and price. Keep it short and casual, signed Theo. Create the draft only; do not send it."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 9,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask whether he has Saturday morning openings for adult beginner piano lessons. Keep it short, friendly, and signed Theo. Create the draft only and do NOT send it. Report back the To, Subject, Body, and Draft ID so Theo can review it."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 50,
+      "repeat": 9,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a short reply to Gabe (gabe@northfoldstudio.ca) in the existing offsite thread (1a0e88ccde8db8a5). Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it brief and casual, sign as Theo. Create the draft only; do not send. Reply with the draft details."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo to Halcyon Chimney (service@halcyonchimney.ca) asking whether they can do a chimney sweep before mid-November 2026. Keep it short and polite, sign as Theo, and ask for their earliest available slot and price. Create the draft only; do not send. Reply with the draft details (to, subject, body, draft ID)."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 0,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask if he has Saturday morning openings for adult beginner piano lessons. Keep it short and friendly, signed Theo. Create the draft only and do NOT send it. Report back the To, Subject, Body, and Draft ID so Theo can review."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 0,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a short reply in the existing offsite thread (1a0e88ccde8db8a5) to gabe@northfoldstudio.ca saying Theo will be about 20 minutes late to the Day 1 10:00 kickoff on Wednesday Oct 21 because of a train delay. Keep it brief and casual. Do not send. Show me the draft for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft an email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026, and ask for the earliest available date and the price. Keep it short and casual, signed Theo. Do not send. Show me the draft for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 1,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Subject: Adult beginner piano lessons - Saturday mornings. Body: ask whether Keyhaven has Saturday morning openings for adult beginner piano lessons, and ask what times are available and what the rates are. Keep it short, friendly, and signed Theo. Create the draft only. Do not send it. Report back the full draft text (to, subject, body) and draft ID."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 1,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply to Gabe (gabe@northfoldstudio.ca) in the existing offsite thread (thread 1a0e88ccde8db8a5) telling him Theo will be about 20 minutes late to the Wednesday Oct 21 kickoff because of a train. Keep it short and casual, signed Theo. Create the draft only; do not send. Reply with the draft details."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft an email to service@halcyonchimney.ca from Theo asking whether they can do a chimney sweep before mid-November 2026. Ask for their earliest available slot and price. Keep it short and casual, signed Theo. Create the draft only; do not send. Reply with the draft details."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 2,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante (marco@keyhavenmusic.ca) at Keyhaven Music. Subject: Adult beginner piano lessons. Body: ask whether he has any Saturday morning slots available for adult beginner piano lessons. Keep it short, casual and polite, signed Theo. Create the draft only and do not send it. Report back the exact To, Subject, Body and Draft ID."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 2,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply in the existing thread (1a0e88ccde8db8a5) to Gabe Lindqvist (gabe@northfoldstudio.ca). Message: Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Create the draft only, do not send. Show me the exact subject and body."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email to service@halcyonchimney.ca asking whether they can do a chimney sweep for Theo Marchetti's home (Leslieville) before mid-November 2026, and ask for their earliest available date and price. Keep it short, casual, signed Theo. Create the draft only, do not send. Show me the exact subject and body."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 3,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft an email on behalf of Theo Marchetti to Marco Ferrante at marco@keyhavenmusic.ca asking whether Keyhaven Music has Saturday morning slots available for adult beginner piano lessons. Keep it short and casual, signed Theo. Create the draft only; do not send it. I will confirm with Theo before anything goes out."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 3,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a short reply to Gabe (gabe@northfoldstudio.ca) on the existing offsite thread (1a0e88ccde8db8a5) saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it brief and casual, signed Theo. Create the draft only; do not send it. Report the draft details back."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026, and ask for the earliest available date and price. Keep it short and casual, signed Theo. Create the draft only; do not send it. Report the draft details back."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 4,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante at marco@keyhavenmusic.ca asking whether Keyhaven Music has Saturday morning slots available for adult beginner piano lessons. Keep it short and friendly. Create the draft only and do not send it. Show the exact recipient, subject, and body in your reply so Theo can review it."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 4,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a short reply in the existing offsite thread (thread 1a0e88ccde8db8a5) to Gabe (gabe@northfoldstudio.ca) saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it casual and brief, sign off as Theo. Do NOT send it. Show me the draft for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft a brief new email to service@halcyonchimney.ca asking whether they can do a chimney sweep for Theo Marchetti before mid-November 2026, and ask for their earliest available date and price. Casual, short, signed Theo. Do NOT send it. Show me the draft for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 5,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft a short email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask whether he has Saturday morning slots available for adult beginner piano lessons. Keep it brief and friendly, signed Theo. Create the draft only; do not send it. Report the full draft (to, subject, body) back for Theo's review."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 5,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply on the existing Northfold offsite thread (thread 1a0e88ccde8db8a5, to gabe@northfoldstudio.ca) saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, in Theo's voice. Do not send it; create the draft and show it to me for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026. Ask for their earliest available slot and pricing. Keep it short and casual, signed Theo. Do not send it; create the draft and show it to me for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 6,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email from Theo Marchetti to Marco Ferrante at marco@keyhavenmusic.ca asking whether Keyhaven Music has Saturday morning slots available for adult beginner piano lessons. Keep it short, friendly, and casual. Sign off as Theo. Create the draft only and do not send it. Report the draft's To, Subject, Body, and Draft ID so Theo can review it."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 6,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply in the existing thread (1a0e88ccde8db8a5) to Gabe (gabe@northfoldstudio.ca) saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, sign as Theo. Do NOT send it. Create the draft and report the exact To, Subject, Body and Draft ID back."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026, and ask for the earliest available slot and the price. Keep it short and casual, sign as Theo. Do NOT send it. Create the draft and report the exact To, Subject, Body and Draft ID back."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 7,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft a short email from Theo Marchetti to Marco Ferrante at marco@keyhavenmusic.ca asking whether Keyhaven Music has any Saturday morning openings for adult beginner piano lessons. Keep it brief and friendly, signed Theo. Create the draft only and do not send it. Report back the recipient, subject, body, and draft ID."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 7,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a short reply in the existing offsite thread (thread 1a0e88ccde8db8a5) to Gabe Lindqvist (gabe@northfoldstudio.ca) saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it brief and casual, sign off as Theo. Do not send it; create the draft and wait for Theo's confirmation."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft an email to service@halcyonchimney.ca asking whether they can do a chimney sweep for Theo Marchetti before mid-November 2026, and ask for their earliest available date and price. Keep it brief and casual, sign off as Theo. Do not send it; create the draft and wait for Theo's confirmation."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 8,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Draft a short email on behalf of Theo Marchetti to Marco Ferrante at marco@keyhavenmusic.ca asking whether Keyhaven Music has Saturday morning slots available for adult beginner piano lessons. Keep it brief and friendly, signed Theo. Create the draft only and do not send it. Report back the exact To, Subject, and Body, plus the draft ID."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 8,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply in the existing thread with Gabe (gabe@northfoldstudio.ca, thread 1a0e88ccde8db8a5) saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Do not send it. Create the draft and report the exact To, Subject, and Body back."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft an email to service@halcyonchimney.ca from Theo Marchetti asking whether they can book a chimney sweep for him on a date before mid-November 2026, and ask for their earliest available slots and pricing. Keep it short and casual, signed Theo. Do not send it. Create the draft and report the exact To, Subject, and Body back."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 9,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante (marco@keyhavenmusic.ca) at Keyhaven Music asking whether he has Saturday morning slots available for adult beginner piano lessons. Keep it short, friendly, and casual. Do not send it. Create the draft only, then report the draft's To, Subject, and Body back so Theo can review it."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 100,
+      "repeat": 9,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply on the existing Gabe offsite thread (thread 1a0e88ccde8db8a5, to gabe@northfoldstudio.ca) telling him Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Do not send it. Show me the draft for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email to service@halcyonchimney.ca from Theo Marchetti asking if they can do a chimney sweep before mid-November 2026, and ask for their earliest available slot and pricing. Keep it short and casual, signed Theo. Do not send it. Show me the draft for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 0,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft a short email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask if he has Saturday morning openings for adult beginner piano lessons. Keep it brief and friendly, signed Theo. Create the draft only and do not send it. Report the draft's To, Subject, and Body back to me."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 0,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply to Gabe (gabe@northfoldstudio.ca) in the existing offsite thread (1a0e88ccde8db8a5) saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Do not send it. Show me the draft for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft an email to service@halcyonchimney.ca from Theo asking whether they can do a chimney sweep before mid-November 2026. Ask for their earliest available date and price. Keep it short and casual, signed Theo. Do not send it. Show me the draft for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 1,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante at marco@keyhavenmusic.ca asking whether he has Saturday morning slots available for adult beginner piano lessons. Keep it short, friendly, and casual. Ask about availability only; do not send it yet. Create the draft and report the recipient, subject, and full body back. Wait for Theo's explicit approval before sending anything."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 1,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a new reply to Gabe (gabe@northfoldstudio.ca) in the existing offsite thread (1a0e88ccde8db8a5) telling him Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Create the draft only, do not send, and show it to me for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026, and ask for their earliest available date and the price. Keep it short and polite, signed Theo. Create the draft only, do not send, and show it to me for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 2,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Draft a short email from Theo Marchetti to Marco Ferrante (marco@keyhavenmusic.ca) at Keyhaven Music asking whether he has Saturday morning slots available for adult beginner piano lessons. Keep it brief and friendly, sign as Theo. Create the draft only; do not send it. Report the to, subject, and body back so Theo can review it."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 2,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply on the Northfold offsite thread (thread 1a0e88ccde8db8a5, to gabe@northfoldstudio.ca) telling Gabe that Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it to two short lines, casual tone, signed Theo. Do not send it. Show me the draft and wait for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026, and asking for their earliest available slots and price. Keep it short and casual, signed Theo. Do NOT send it. Show me the draft and wait for Theo's approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 3,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email on behalf of Theo Marchetti to Marco Ferrante at marco@keyhavenmusic.ca. Subject: Adult beginner piano lessons - Saturday mornings. Ask whether Keyhaven has Saturday morning openings for adult beginner piano lessons, and ask what times are available and what the lesson rate is. Keep it short, friendly and casual, signed Theo. Create the draft only; do not send it. Report the full draft text back so Theo can review it."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 3,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply in the existing thread with Gabe (gabe@northfoldstudio.ca, thread 1a0e88ccde8db8a5) saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, in Theo's voice, signed Theo. Do not send it. Show me the draft for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to service@halcyonchimney.ca asking whether they can do a chimney sweep before mid-November 2026. Ask for their earliest available appointment and the price. Keep it short and casual, signed Theo. Do not send it. Show me the draft for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 4,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask whether they have Saturday morning slots available for adult beginner piano lessons. Keep it short and friendly, signed Theo. Create the draft only and do not send it. Report the recipient, subject, and body back so Theo can review."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 4,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a short reply in the existing offsite thread (thread 1a0e88ccde8db8a5) to Gabe Lindqvist (gabe@northfoldstudio.ca) saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it brief and casual, sign as Theo. Do not send. Show me the draft for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email to service@halcyonchimney.ca from Theo Marchetti asking if they can do a chimney sweep before mid-November 2026, and ask for their earliest available slot and price. Keep it short and casual, sign as Theo. Do not send. Show me the draft for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 5,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Draft a short email from Theo Marchetti to Marco Ferrante (marco@keyhavenmusic.ca) at Keyhaven Music asking whether he has Saturday morning slots available for adult beginner piano lessons. Keep it brief and friendly, signed Theo. Create the draft only; do not send it. Report the draft's recipient, subject, body, and draft ID."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 5,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply on the existing Offsite agenda thread (thread 1a0e88ccde8db8a5) to gabe@northfoldstudio.ca telling him Theo will be about 20 minutes late to the Wednesday Oct 21 kickoff (10:00) because of a train. Keep it short and casual, signed Theo. Do not send it; create the draft only and show me the exact text."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email to service@halcyonchimney.ca from Theo asking whether they can do a chimney sweep before mid November 2026, and ask for their earliest available slot and the price. Keep it short and casual, signed Theo. Do not send it; create the draft only and show me the exact text."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 6,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email from Theo Marchetti to Marco Ferrante at marco@keyhavenmusic.ca. Subject: Adult beginner piano - Saturday mornings. Body: a brief, friendly note from Theo asking whether Keyhaven has any Saturday morning slots available for adult beginner piano lessons, and whether he could share availability and pricing. Keep it short and casual. Create the draft only and do NOT send it. Return the full draft (to, subject, body, draft ID) so Theo can review it."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 6,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply to Gabe (gabe@northfoldstudio.ca) in the existing Cedar Hollow offsite thread (1a0e88ccde8db8a5). Message: Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, sign as Theo. Create the draft only, do not send, and show it to Theo for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft an email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026. Ask for their earliest available slot and their price. Keep it short and casual, sign as Theo. Create the draft only, do not send it. Show the draft to Theo for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 7,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Subject: Adult beginner piano lessons. Body should ask whether he has any Saturday morning slots open for adult beginner piano lessons, and ask what availability and pricing look like. Keep it short and friendly, signed Theo. Create the draft only and do not send it. Report back the draft details (to, subject, body, draft ID) and wait for Theo's explicit confirmation."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 7,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a short reply to Gabe (gabe@northfoldstudio.ca) in the existing offsite thread (1a0e88ccde8db8a5). Message: Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it brief and casual, signed Theo. Create the draft only, do not send. Return the exact To, Subject, and Body so I can show Theo for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft a short email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026 (before Nov 15). Ask for the earliest available date and the price. Keep it brief and casual, signed Theo. Create the draft only, do not send. Return the exact To, Subject, and Body so I can show Theo for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 8,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Create a draft email (do not send) from Theo Marchetti to Marco Ferrante at marco@keyhavenmusic.ca. Subject: Adult beginner piano lessons. Body: a short, friendly, casual note from Theo asking whether Keyhaven has any Saturday morning openings for adult beginner piano lessons, and say thanks. Sign off as Theo. Keep it to 3-4 sentences. Report back the full draft text (to, subject, body) and the draft ID, and wait for approval before sending anything."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 8,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a short reply in the existing Offsite agenda thread (thread 1a0e88ccde8db8a5) to gabe@northfoldstudio.ca saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it brief, signed Theo. Create the draft only; do not send. Show the full draft text in your reply."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to service@halcyonchimney.ca asking whether they can do a chimney sweep before mid-November 2026. Ask for their earliest available slot and pricing. Keep it short, signed Theo. Create the draft only; do not send. Show the full draft text in your reply."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 9,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante (marco@keyhavenmusic.ca) at Keyhaven Music. Ask whether he has Saturday morning slots available for adult beginner piano lessons. Keep it short, friendly, and casual. Create the draft only; do not send it. Report the exact recipient, subject, and body, and wait for Theo's approval before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 200,
+      "repeat": 9,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply to Gabe (gabe@northfoldstudio.ca) in the existing offsite thread (1a0e88ccde8db8a5). Tell him Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Do not send it. Show me the draft and wait for my explicit confirmation."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo to Halcyon Chimney (service@halcyonchimney.ca) asking whether they can do a chimney sweep before mid-November 2026, and ask for their earliest available slot and price. Keep it short and casual, signed Theo. Do not send it. Show me the draft and wait for my explicit confirmation before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 0,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email on behalf of Theo Marchetti to Marco Ferrante at marco@keyhavenmusic.ca. Subject: Adult beginner piano - Saturday mornings. Body: a short, friendly note asking whether Keyhaven has any Saturday morning openings for adult beginner piano lessons, and whether he could share the available times and rates. Sign off as Theo. Create the draft only and do NOT send it. Report back the exact To, Subject, Body, and Draft ID."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 0,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply on the Offsite agenda thread (thread 1a0e88ccde8db8a5) to gabe@northfoldstudio.ca saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Do not send it; create the draft and report back the exact To, Subject, and Body."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email to service@halcyonchimney.ca asking whether they can do a chimney sweep at Theo's home before mid-November 2026. Ask for their earliest available date and price. Keep it short, casual, signed Theo. Do not send it; create the draft and report back the exact To, Subject, and Body."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 1,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Email to Marco Keyhaven Music Piano",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask whether he has any Saturday morning openings for adult beginner piano lessons. Keep it short and friendly, signed Theo. Create the draft only and do not send it. Report the exact To, Subject, and Body back so Theo can review."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 1,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft (do not send) a short reply in the existing Cedar Hollow offsite thread to gabe@northfoldstudio.ca telling him Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it brief and casual, signed Theo. Return the draft text and draft ID for Theo's approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft (do not send) an email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026, and ask for their earliest available slot. Keep it short and casual, signed Theo. Return the draft text and draft ID for Theo's approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 2,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask whether he has Saturday morning openings for adult beginner piano lessons. Keep it short, casual and polite, signed Theo. Create the draft only and do not send it. Report the draft's to, subject and body back so Theo can review it."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 2,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a short reply in the existing offsite thread with Gabe (gabe@northfoldstudio.ca, thread 1a0e88ccde8db8a5) saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it casual and brief, sign as Theo. Do not send yet; show me the draft for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft an email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026, and asking for their earliest available date and quote. Keep it brief and casual, sign as Theo. Do not send yet; show the draft to Theo for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 3,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask whether he has Saturday morning slots available for adult beginner piano lessons. Keep it short, friendly, and casual, signed Theo. Create the draft only and do NOT send it. Report the full draft text (to, subject, body) and draft ID back to me."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 3,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply on the Northfold offsite thread (thread 1a0e88ccde8db8a5, to gabe@northfoldstudio.ca) telling Gabe Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Do not send it. Show me the draft for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft an email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026. Ask for their earliest available slot and pricing. Keep it short and casual, signed Theo. Do not send it. Show me the draft for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 4,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante at marco@keyhavenmusic.ca asking whether Keyhaven Music has Saturday morning slots available for adult beginner piano lessons. Keep it short, friendly, and casual. Create the draft only; do not send it. Return the exact recipient, subject, and body, and wait for Theo's explicit approval before sending anything."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 4,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a short reply in the existing Cedar Hollow offsite thread (thread 1a0e88ccde8db8a5) to Gabe saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it brief and casual, sign as Theo. Create the draft only and do NOT send it; wait for Theo's confirmation."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo to service@halcyonchimney.ca asking whether they can do a chimney sweep at Theo's Leslieville house before mid-November 2026, and ask for their earliest available slot and the price. Keep it short, casual, signed Theo. Create the draft only and do NOT send it; wait for Theo's explicit confirmation."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 5,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca) asking whether they have Saturday morning slots available for adult beginner piano lessons. Keep it short, friendly, and casual, signed Theo. Create the draft only and do not send it. Report the draft's To, Subject, and Body, and wait for Theo's explicit confirmation before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 5,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply to Gabe (gabe@northfoldstudio.ca) in the existing offsite thread (1a0e88ccde8db8a5). Tell him Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, sign as Theo. Create the draft only and do not send it. Return the full draft text to me for Theo's approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft an email to service@halcyonchimney.ca from Theo asking whether they can do a chimney sweep at Theo's house before mid-November 2026. Ask for their earliest available slot, the price, and whether they need anything from him. Keep it short and casual, sign as Theo. Create the draft only and do not send it. Return the full draft text to me for Theo's approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 6,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask whether they have Saturday morning slots available for adult beginner piano lessons. Keep it short, friendly, and casual, signed Theo. Create the draft only and do NOT send it. Report back the draft's To, Subject, Body, and Draft ID."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 6,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a short reply in the existing offsite thread (thread 1a0e88ccde8db8a5) to Gabe at gabe@northfoldstudio.ca saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it brief and casual, sign as Theo. Create the draft only. Do NOT send it. Report the draft details back so Theo can approve."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft an email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026. Ask for their earliest available slot and the price. Keep it short and casual, signed Theo. Create the draft only. Do NOT send it. Report the draft details back so Theo can approve."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 7,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Create a draft email to marco@keyhavenmusic.ca (Marco Ferrante, Keyhaven Music) from Theo Marchetti asking whether they have Saturday morning slots available for adult beginner piano lessons. Keep it short and friendly, signed Theo. Do not send it. Return the exact draft (to, subject, body) and the draft ID, and wait for my confirmation before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 7,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply in the existing offsite thread (thread 1a0e88ccde8db8a5) to gabe@northfoldstudio.ca saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Do not send it; create the draft and wait for Theo's confirmation."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email to service@halcyonchimney.ca from Theo asking whether they can do a chimney sweep before mid-November 2026, and ask for their earliest available slot and price. Keep it short and casual, signed Theo. Do not send it; create the draft and wait for Theo's confirmation."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 8,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Create a draft email (do not send yet) from Theo Marchetti to Marco Ferrante at marco@keyhavenmusic.ca. Subject: Adult beginner piano lessons. Body: a short, friendly note from Theo asking whether Keyhaven has any Saturday morning slots for adult beginner piano lessons, and signed Theo. Return the full draft text (to, subject, body) and draft ID, and wait for Theo's explicit confirmation before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 8,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply in the existing offsite thread (thread 1a0e88ccde8db8a5) to Gabe Lindqvist (gabe@northfoldstudio.ca). Message: Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff at Cedar Hollow because of a train. Keep it short, signed Theo. Do not send; create the draft only and return it for Theo's approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to service@halcyonchimney.ca asking whether they can do a chimney sweep before mid-November 2026, and ask for their earliest available date and price. Keep it short, signed Theo. Create the draft only, do not send, and return the full draft (to, subject, body, draft ID) for Theo's approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 9,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask whether he has any Saturday morning slots available for adult beginner piano lessons. Keep it short, friendly, and casual, signed Theo. Create the draft only; do not send it. Return the full draft (to, subject, body, draft ID) for Theo's review."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 400,
+      "repeat": 9,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply to Gabe (gabe@northfoldstudio.ca) on the Cedar Hollow offsite thread (1a0e88ccde8db8a5). Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, sign as Theo. Create the draft only and do not send it."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft an email to service@halcyonchimney.ca asking whether they can do a chimney sweep before mid-November 2026. Ask for their earliest available slot and pricing. Sign as Theo Marchetti. Create the draft only and do not send it."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 0,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca) asking whether he has Saturday morning slots available for adult beginner piano lessons. Keep it short, friendly, and casual. Create the draft only; do not send it. Return the full draft (to, subject, body, draft ID) and wait for Theo's explicit approval before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 0,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply to Gabe (gabe@northfoldstudio.ca) in the Cedar Hollow offsite thread (thread 1a0e88ccde8db8a5). Tell him Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Do not send it. Show me the draft and wait for my confirmation."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft an email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026. Ask for their earliest available slots and pricing. Keep it short and casual, signed Theo. Do not send it. Show me the draft and wait for my confirmation."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 1,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft an email on behalf of Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask whether he has Saturday morning slots available for adult beginner piano lessons. Keep it short, friendly, and signed \"Theo\". Create the draft only and do NOT send it. Report back the full draft (to, subject, body) and wait for Theo's explicit approval before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 1,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a short reply to Gabe (gabe@northfoldstudio.ca) in the existing offsite thread (1a0e88ccde8db8a5) saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it casual and brief, signed Theo. Do not send. Show me the draft for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft an email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep at his Leslieville home before mid-November 2026 (before Nov 15), and asking for their earliest available date and price. Keep it brief and casual, signed Theo. Do not send. Show me the draft for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 2,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask whether he has Saturday morning openings for adult beginner piano lessons. Keep it short, friendly, and casual, signed Theo. Create the draft only and do not send it. Report the exact recipient, subject, and body back so Theo can review."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 2,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a short reply to Gabe in the existing offsite thread (thread 1a0e88ccde8db8a5, gabe@northfoldstudio.ca) saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it brief and casual, signed Theo. Create the draft only and do NOT send it. Return the exact to, subject, body, and draft ID."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to service@halcyonchimney.ca asking whether they can do a chimney sweep before mid November 2026, and ask for their earliest available slot and price. Keep it short and casual, signed Theo. Create the draft only and do NOT send it. Return the exact to, subject, body, and draft ID."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 3,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante at marco@keyhavenmusic.ca asking whether Keyhaven Music has any Saturday morning slots available for adult beginner piano lessons. Keep it short and friendly, signed Theo. Create the draft only; do not send it. Report back the recipient, subject, and full body, and wait for Theo's explicit confirmation before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 3,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a short reply to Gabe (gabe@northfoldstudio.ca) in the existing offsite agenda thread (1a0e88ccde8db8a5). Tell him Theo will be about 20 minutes late to the Wednesday Oct 21 kickoff at Cedar Hollow because of a train delay. Keep it brief and casual, sign as Theo. Do not send. Show me the draft and wait for my confirmation."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email from Theo to Halcyon Chimney (service@halcyonchimney.ca) asking whether they can do a chimney sweep before mid-November 2026, and ask for their earliest available slot and price. Keep it brief and casual, sign as Theo. Do not send. Show me the draft and wait for my confirmation."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 4,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Create a draft email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask whether he has Saturday morning slots available for adult beginner piano lessons. Keep it short, friendly and casual, signed \"Theo\". Do not send it. Report the draft's To, Subject, and Body, and wait for Theo's explicit confirmation before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 4,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply in the existing thread with Gabe (gabe@northfoldstudio.ca, thread 1a0e88ccde8db8a5) saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Do not send it; create the draft and show it for review."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email to service@halcyonchimney.ca from Theo asking whether they can do a chimney sweep before mid-November 2026, and ask for their earliest available slot and price. Keep it short and casual, signed Theo. Do not send it; create the draft and show it to Theo for review."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 5,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft a short email from Theo Marchetti to Marco Ferrante at marco@keyhavenmusic.ca asking whether Keyhaven Music has Saturday morning openings for adult beginner piano lessons. Keep it brief and casual, signed Theo. Create the draft only and do not send it. Report the draft's To, Subject, Body, and Draft ID back to me."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 5,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply in the existing Cedar Hollow offsite thread (thread 1a0e88ccde8db8a5) to Gabe Lindqvist (gabe@northfoldstudio.ca). Tell him Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Do not send it. Show me the draft for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to service@halcyonchimney.ca asking whether they can do a chimney sweep before mid-November 2026, and ask for their earliest available date and price. Keep it short and casual, signed Theo. Do not send it. Show me the draft for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 6,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Create a draft email (do not send yet) to marco@keyhavenmusic.ca from Theo Marchetti. Address it to Marco Ferrante. Subject: Adult beginner piano lessons. Body: ask whether he has any Saturday morning slots available for adult beginner piano lessons. Keep it short and friendly, signed Theo. Return the full draft text (to, subject, body) and draft ID, and wait for Theo's explicit approval before sending anything."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 6,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply in the existing Cedar Hollow offsite thread (thread 1a0e88ccde8db8a5) to gabe@northfoldstudio.ca saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Do NOT send it. Return the draft ID, recipient, subject and body so I can show Theo for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft an email to service@halcyonchimney.ca from Theo Marchetti (theo@northfoldstudio.ca) asking whether they can do a chimney sweep before mid-November 2026, and asking for their earliest available slot and price. Keep it short, signed Theo. Do NOT send it. Return the draft ID, recipient, subject and body so I can show Theo for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 7,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask whether he has any Saturday morning openings for adult beginner piano lessons. Keep it short, friendly, and casual. Create the draft only and do not send it. Report back the exact To, Subject, and Body, plus the draft ID, and wait for Theo's explicit approval before sending anything."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 7,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply in the existing Cedar Hollow offsite thread (thread 1a0e88ccde8db8a5) to gabe@northfoldstudio.ca. Message: Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Create the draft only, do not send. Report the draft text back."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to service@halcyonchimney.ca asking whether they can do a chimney sweep before mid-November 2026, and ask for their earliest available date and the price. Keep it short and casual, signed Theo. Create the draft only, do not send. Report the draft text back."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 8,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email on behalf of Theo Marchetti (theo@northfoldstudio.ca) to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask whether they have Saturday morning slots available for adult beginner piano lessons. Keep it short, friendly, and casual. Sign off as Theo. Do not send it. Create the draft only and report the recipient, subject, and body back so Theo can review it."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 8,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply to Gabe (gabe@northfoldstudio.ca) on the existing offsite thread (1a0e88ccde8db8a5, Cedar Hollow, Oct 21-22). Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, sign as Theo. Do not send; only create the draft and report back the exact to/subject/body."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email from Theo Marchetti to service@halcyonchimney.ca asking whether they can do a chimney sweep at his Leslieville home before mid-November 2026. Ask for the earliest available slot and the price. Keep it short and casual, sign as Theo. Do not send; only create the draft and report back the exact to/subject/body."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 9,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email from Theo Marchetti to Marco Ferrante at marco@keyhavenmusic.ca. Ask whether he has Saturday morning slots available for adult beginner piano lessons. Keep it short, friendly, and casual. Sign off as Theo. Create the draft only and do not send it. Return the exact to, subject, and body, plus the draft ID."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 800,
+      "repeat": 9,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft (do not send) a short reply to Gabe in the existing Cedar Hollow offsite thread (1a0e88ccde8db8a5). Message: Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it brief and casual, signed Theo. Return the draft's To, Subject, Body and Draft ID. Wait for Theo's approval before sending."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft (do not send) an email to service@halcyonchimney.ca from Theo asking whether they can do a chimney sweep before mid-November 2026, and ask for their earliest available slot and price. Keep it short, signed Theo. Return the To, Subject, Body and Draft ID, and wait for Theo's approval before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 0,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Draft a short email from Theo Marchetti to Marco Ferrante at marco@keyhavenmusic.ca. Subject: Adult beginner piano lessons. Ask whether Keyhaven has any Saturday morning slots available for adult beginner piano lessons. Keep it brief and friendly, signed Theo. Create the draft only and do not send it. Report the full draft (to, subject, body, draft ID) back to me and wait for my explicit approval before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 0,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply in the existing Cedar Hollow offsite thread (thread 1a0e88ccde8db8a5) to Gabe Lindqvist (gabe@northfoldstudio.ca) saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, sign as Theo. Do not send. Show me the draft for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft an email to service@halcyonchimney.ca asking whether they can do a chimney sweep for Theo Marchetti's house before mid-November 2026. Ask for earliest available date and price. Sign as Theo, keep it short. Do not send. Show me the draft for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 1,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft a short email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask whether he has any Saturday morning slots available for adult beginner piano lessons. Sign it Theo. Keep it brief and friendly. Create the draft only and do not send it; Theo will review and approve before anything goes out. Report the full draft text back."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 1,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply on the existing thread with Gabe (gabe@northfoldstudio.ca, thread 1a0e88ccde8db8a5) saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Do not send it; create the draft only and show me the exact text for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft an email to service@halcyonchimney.ca asking whether they can do a chimney sweep before mid-November 2026, and ask for their earliest available date and price. Keep it short, casual, signed Theo. Do not send it; create the draft only and show me the exact text for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 2,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Create a draft email (do not send) from Theo Marchetti to Marco Ferrante at marco@keyhavenmusic.ca. Ask whether Keyhaven has any Saturday morning openings for adult beginner piano lessons. Keep it short and friendly, signed Theo. Return the exact To, Subject, and Body, plus the draft ID. Wait for Theo's explicit approval before sending anything."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 2,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply on the existing Northfold offsite thread with Gabe (gabe@northfoldstudio.ca, thread 1a0e88ccde8db8a5) saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Do not send it; create the draft and wait for Theo's confirmation."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft an email to service@halcyonchimney.ca asking whether they can do a chimney sweep before mid-November 2026. Ask for earliest availability and the price. Keep it short, signed Theo. Do not send it; create the draft and wait for Theo's confirmation."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 3,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft a short email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask if he has Saturday morning slots available for adult beginner piano lessons. Keep it brief and friendly, signed Theo. Create the draft only and do not send it. Report the draft's To, Subject, and Body, and wait for Theo's explicit confirmation before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 3,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply on the existing thread with Gabe (gabe@northfoldstudio.ca, thread 1a0e88ccde8db8a5) saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Do not send it; create the draft only and show it to me for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026, and ask for their earliest available dates and the price. Keep it short and casual, signed Theo. Do not send it; create the draft only and show it to me for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 4,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Draft an email on behalf of Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask whether he has any Saturday morning openings for adult beginner piano lessons. Keep it short, friendly, and casual, signed Theo. Create the draft only and do NOT send it. Report back the To, Subject, Body, and Draft ID so Theo can review it."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 4,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply to Gabe (gabe@northfoldstudio.ca) in the existing offsite thread (thread 1a0e88ccde8db8a5, subject \"Re: Offsite agenda - Cedar Hollow, Oct 21-22\"). Tell him Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Do not send it; create the draft and wait for confirmation."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email from Theo Marchetti to service@halcyonchimney.ca asking whether they can do a chimney sweep before mid-November 2026, and ask for their earliest available date and price. Keep it short and casual, signed Theo. Create the draft only; do not send it. Wait for Theo's explicit confirmation."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 5,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Create a draft email from Theo Marchetti to Marco Ferrante at marco@keyhavenmusic.ca asking whether Keyhaven Music has Saturday morning slots available for adult beginner piano lessons. Keep it short, friendly, and casual. Ask about availability and, if easy, pricing for the slot. Do not send it. Show me the exact subject and body for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 5,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply on the existing thread with Gabe (gabe@northfoldstudio.ca, thread 1a0e88ccde8db8a5) saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, in Theo's voice. Do not send. Show me the draft for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email to service@halcyonchimney.ca from Theo asking whether they can do a chimney sweep before mid-November 2026. Ask for their earliest available date and the total price. Keep it short and casual, signed Theo. Do not send. Show me the draft for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 6,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask whether he has Saturday morning slots available for adult beginner piano lessons. Keep it short, casual, and polite, signed Theo. Create the draft only and do not send it. Report the draft's To, Subject, and Body back so Theo can review it."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 6,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply on the existing offsite thread (thread 1a0e88ccde8db8a5, to gabe@northfoldstudio.ca) telling Gabe Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Create the draft only; do not send it. Show me the exact text when you're done."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email to service@halcyonchimney.ca asking whether they can do a chimney sweep for Theo before mid-November 2026, and asking for their earliest available dates and price. Keep it short and casual, signed Theo. Create the draft only; do not send it. Show me the exact text when you're done."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 7,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask whether he has Saturday morning slots available for adult beginner piano lessons. Keep it short, casual, and polite, signed Theo. Create the draft only and do not send it. Report the draft's To, Subject, and Body, and wait for Theo's explicit approval before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 7,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft (do not send) a short reply to Gabe in the existing offsite thread (1a0e88ccde8db8a5). Tell him Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it to two or three sentences, signed Theo. Show me the draft for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft (do not send yet) an email from Theo Marchetti to service@halcyonchimney.ca asking whether they can do a chimney sweep before mid-November 2026, and asking for their earliest available date and price. Keep it short, signed Theo. Show me the draft for approval and wait for my explicit confirmation before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 8,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons Email",
+          "chosen_kind": "create",
+          "instructions": "Draft a short email from Theo to Marco Ferrante at marco@keyhavenmusic.ca asking whether Keyhaven Music has Saturday morning slots available for adult beginner piano lessons. Keep it brief and friendly, signed Theo. Create the draft only and do not send it. Return the full draft (to, subject, body, draft ID) so Theo can review it."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 8,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply on the Cedar Hollow offsite thread (thread 1a0e88ccde8db8a5) to gabe@northfoldstudio.ca. Tell him Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Create the draft only, do not send it."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft an email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026, and ask for their earliest available slot and the price. Keep it short and casy, signed Theo. Create the draft only, do not send it, and show it to me for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 9,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons Inquiry",
+          "chosen_kind": "create",
+          "instructions": "Create a draft email to marco@keyhavenmusic.ca (Marco Ferrante at Keyhaven Music) from Theo Marchetti asking whether they have Saturday morning slots available for adult beginner piano lessons. Keep it short and casual, signed Theo. Do not send it. Return the exact draft (to, subject, body) and the draft ID, and wait for Theo's explicit approval before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 1600,
+      "repeat": 9,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply on the Northfold offsite thread (thread 1a0e88ccde8db8a5, to gabe@northfoldstudio.ca) saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Create the draft only and do not send it. Report the draft details back."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft an email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026. Keep it short and casual, signed Theo, and ask them to reply with their earliest available slot and price. Create the draft only and do not send it. Report the draft details back so Theo can approve."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    }
+  ],
+  "comparison": {
+    "baseline_run": "20261018T165232Z",
+    "sizes": [
+      25,
+      50,
+      100,
+      200,
+      400,
+      800,
+      1600
+    ],
+    "accuracy": [
+      {
+        "size": 25,
+        "before": 0.948,
+        "after": 1.0
+      },
+      {
+        "size": 50,
+        "before": 0.976,
+        "after": 1.0
+      },
+      {
+        "size": 100,
+        "before": 0.914,
+        "after": 1.0
+      },
+      {
+        "size": 200,
+        "before": 0.886,
+        "after": 1.0
+      },
+      {
+        "size": 400,
+        "before": 0.829,
+        "after": 1.0
+      },
+      {
+        "size": 800,
+        "before": 0.862,
+        "after": 1.0
+      },
+      {
+        "size": 1600,
+        "before": 0.781,
+        "after": 1.0
+      }
+    ],
+    "groups": [
+      {
+        "group": "overload target (dormant, inference)",
+        "rates": {
+          "25": {
+            "before": 0.983,
+            "after": null
+          },
+          "50": {
+            "before": 0.983,
+            "after": null
+          },
+          "100": {
+            "before": 0.933,
+            "after": null
+          },
+          "200": {
+            "before": 0.867,
+            "after": null
+          },
+          "400": {
+            "before": 0.767,
+            "after": null
+          },
+          "800": {
+            "before": 0.667,
+            "after": null
+          },
+          "1600": {
+            "before": 0.617,
+            "after": null
+          }
+        }
+      },
+      {
+        "group": "dormant control (name match)",
+        "rates": {
+          "25": {
+            "before": 1.0,
+            "after": null
+          },
+          "50": {
+            "before": 1.0,
+            "after": null
+          },
+          "100": {
+            "before": 1.0,
+            "after": null
+          },
+          "200": {
+            "before": 1.0,
+            "after": null
+          },
+          "400": {
+            "before": 0.92,
+            "after": null
+          },
+          "800": {
+            "before": 1.0,
+            "after": null
+          },
+          "1600": {
+            "before": 0.88,
+            "after": null
+          }
+        }
+      },
+      {
+        "group": "easy recent",
+        "rates": {
+          "25": {
+            "before": 0.967,
+            "after": 1.0
+          },
+          "50": {
+            "before": 1.0,
+            "after": 1.0
+          },
+          "100": {
+            "before": 1.0,
+            "after": 1.0
+          },
+          "200": {
+            "before": 1.0,
+            "after": 1.0
+          },
+          "400": {
+            "before": 0.983,
+            "after": 1.0
+          },
+          "800": {
+            "before": 1.0,
+            "after": 1.0
+          },
+          "1600": {
+            "before": 0.983,
+            "after": 1.0
+          }
+        }
+      },
+      {
+        "group": "policy-ambiguous",
+        "rates": {
+          "25": {
+            "before": 0.6,
+            "after": null
+          },
+          "50": {
+            "before": 0.8,
+            "after": null
+          },
+          "100": {
+            "before": 0.3,
+            "after": null
+          },
+          "200": {
+            "before": 0.4,
+            "after": null
+          },
+          "400": {
+            "before": 0.4,
+            "after": null
+          },
+          "800": {
+            "before": 0.6,
+            "after": null
+          },
+          "1600": {
+            "before": 0.6,
+            "after": null
+          }
+        }
+      },
+      {
+        "group": "multi-task",
+        "rates": {
+          "25": {
+            "before": 1.0,
+            "after": 1.0
+          },
+          "50": {
+            "before": 1.0,
+            "after": 1.0
+          },
+          "100": {
+            "before": 1.0,
+            "after": 1.0
+          },
+          "200": {
+            "before": 0.6,
+            "after": 1.0
+          },
+          "400": {
+            "before": 0.5,
+            "after": 1.0
+          },
+          "800": {
+            "before": 0.9,
+            "after": 1.0
+          },
+          "1600": {
+            "before": 0.2,
+            "after": 1.0
+          }
+        }
+      }
+    ]
+  }
+}

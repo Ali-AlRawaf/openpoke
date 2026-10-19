@@ -1,5 +1,6 @@
 """Interaction Agent Runtime - handles LLM calls for user and agent turns."""
 
+import inspect
 import json
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional, Set
@@ -158,6 +159,9 @@ class InteractionAgentRuntime:
             }
             if raw_tool_calls:
                 assistant_entry["tool_calls"] = raw_tool_calls
+            # Thinking blocks must be passed back unmodified alongside tool results
+            if assistant_message.get("reasoning_details"):
+                assistant_entry["reasoning_details"] = assistant_message["reasoning_details"]
             messages.append(assistant_entry)
 
             if not parsed_tool_calls:
@@ -171,7 +175,7 @@ class InteractionAgentRuntime:
                     if isinstance(agent_name, str) and agent_name:
                         summary.execution_agents.add(agent_name)
 
-                result = self._execute_tool(tool_call)
+                result = await self._execute_tool(tool_call)
 
                 if result.user_message:
                     summary.user_messages.append(result.user_message)
@@ -284,7 +288,7 @@ class InteractionAgentRuntime:
         return {}, f"unsupported argument type: {type(raw_arguments).__name__}"
 
     # Execute tool calls with error handling and logging, returning standardized results
-    def _execute_tool(self, tool_call: _ToolCall) -> ToolResult:
+    async def _execute_tool(self, tool_call: _ToolCall) -> ToolResult:
         """Execute a tool call and convert low-level errors into structured results."""
 
         if "__invalid_arguments__" in tool_call.arguments:
@@ -295,6 +299,9 @@ class InteractionAgentRuntime:
         try:
             self._log_tool_invocation(tool_call, stage="start")
             result = handle_tool_call(tool_call.name, tool_call.arguments)
+            # Async tools (e.g. search_agents) return a coroutine
+            if inspect.isawaitable(result):
+                result = await result
         except Exception as exc:  # pragma: no cover - defensive
             logger.error(
                 "Tool execution crashed",
@@ -330,6 +337,10 @@ class InteractionAgentRuntime:
     # Format tool execution results into JSON for LLM consumption
     def _format_tool_result(self, tool_call: _ToolCall, result: ToolResult) -> str:
         """Render a tool execution result back to the LLM."""
+
+        # Text payloads (e.g. the search_agents roster) go back verbatim rather than JSON-escaped
+        if result.success and isinstance(result.payload, str):
+            return result.payload
 
         payload: Dict[str, Any] = {
             "tool": tool_call.name,
