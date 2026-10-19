@@ -239,7 +239,7 @@ The source is `server/agents/interaction_agent/system_prompt.md:19`:
 
 ---
 
-## 5. Harness contract (summary; the engineer brief has details)
+## 5. Harness contract
 
 - **Per size N:**
   - fresh temp `OPENPOKE_DATA_DIR`
@@ -261,8 +261,8 @@ The source is `server/agents/interaction_agent/system_prompt.md:19`:
 
 ```bash
 # fixtures (LLM stages are one-off and frozen under fixtures/generated/; spend in generated/cost.json)
-python -m evals.routing.generate logs          # synthetic task logs for every distractor (Haiku, ~$1.30)
-python -m evals.routing.generate cards         # every card via the production card updater (~$1)
+python -m evals.routing.generate logs          # synthetic task logs for every distractor (Haiku; $1.30 actual)
+python -m evals.routing.generate cards         # every card via the production card updater ($0.75 actual)
 python -m evals.routing.generate embeddings    # prebuilt search vectors, gitignored (~$0.01)
 python -m evals.routing.build_fixtures --check # write state/, rosters/ (cards), cases.json + self-check
 
@@ -271,7 +271,7 @@ python -m evals.routing.run validate
 python -m evals.routing.recall                 # offline: is each gold in the top 10? (queries = case messages)
 
 # the eval (compare against the names-only baseline in the report)
-python -m evals.routing.run run --repeats 10 --concurrency 8 --out evals/routing/results/<name>
+python -m evals.routing.run run --repeats 10 --concurrency 8 --out evals/routing/results/<name>   # ~$2.40 for all 31 cases
 python -m evals.routing.recall --from-run evals/routing/results/<name>   # recall with the IA's own queries
 ```
 
