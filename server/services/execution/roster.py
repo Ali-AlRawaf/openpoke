@@ -18,6 +18,14 @@ _TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 T = TypeVar("T")
 
+# What artifacts are, shared by the create_agent tool schema and the card updater prompt
+ARTIFACTS_DESCRIPTION = (
+    "Short strings for the specific things this agent is tied to, whatever they are: names, email addresses, "
+    "dates, events, objects, subjects, places, reference numbers (e.g., 'Acme Supplies <support@acmesupplies.com>', "
+    "'order #A-55210', 'damaged gearbox from that order', 'courier pick-up on 2026-11-15'). "
+    "At most 15 artifacts, each at most 50 characters."
+)
+
 
 class RosterError(Exception):
     """roster.json could not be read or written."""
@@ -30,8 +38,8 @@ def _now() -> str:
 class AgentCard(BaseModel):
     """Identity of an execution agent, used to find it again for reuse.
 
-    `artifacts` are free-form strings for anything the agent is anchored to: people, organizations,
-    email addresses, events and dates, threads, places.
+    `artifacts` are free-form strings for the specific things the agent is tied to (see
+    ARTIFACTS_DESCRIPTION).
     """
 
     name: str

@@ -11,6 +11,7 @@ from pydantic import ValidationError
 from ...logging_config import logger
 from ...services.conversation import get_conversation_log
 from ...services.execution import AgentCard, RosterError, get_agent_roster, get_execution_agent_logs
+from ...services.execution.roster import ARTIFACTS_DESCRIPTION
 from ..execution_agent.batch_manager import ExecutionBatchManager
 
 
@@ -29,13 +30,13 @@ TOOL_SCHEMAS = [
         "type": "function",
         "function": {
             "name": "search_agents",
-            "description": "Search existing execution agents to find one to reuse before creating a new one. Returns matching agent cards: name, summary, and the artifacts (people, organizations, events, threads, ...) each agent is tied to.",
+            "description": "Search existing execution agents for one to reuse. Returns agent cards, each with the agent's name, a summary of its work, and its artifacts: the specific things it's tied to.",
             "parameters": {
                 "type": "object",
                 "properties": {
                     "query": {
                         "type": "string",
-                        "description": "What the task involves: the people, organizations, and topic (e.g., 'Ali Al Rawaf lunch invite', 'Ironwood gym membership hold').",
+                        "description": "The task in specific terms: the names, identifiers, and topic it involves, with references from the conversation spelled out (e.g., 'Acme Supplies order #A-55210 replacement part').",
                     },
                 },
                 "required": ["query"],
@@ -47,7 +48,7 @@ TOOL_SCHEMAS = [
         "type": "function",
         "function": {
             "name": "create_agent",
-            "description": "Create a new execution agent. Only do this when search_agents found no relevant existing agent. Then call send_message_to_agent with the same name to give it instructions; both calls can go in the same response.",
+            "description": "Create a new execution agent with a card describing it. Use only when no existing agent fits the task. Then call send_message_to_agent with the same name; both calls can go in the same response.",
             "parameters": {
                 "type": "object",
                 "properties": {
@@ -57,17 +58,11 @@ TOOL_SCHEMAS = [
                     },
                     "summary": {
                         "type": "string",
-                        "description": "One or two sentences on what this agent is for and who it deals with, at most 500 characters (e.g., 'Handles booking and rescheduling Theo's dental cleanings with Tidewater Dental.').",
+                        "description": "What this agent is for, in one or two sentences, at most 500 characters (e.g., 'Gets a replacement for the damaged gearbox in Acme Supplies order #A-55210.').",
                     },
                     "artifacts": {
                         "type": "array",
-                        "description": (
-                            "Short strings for anything this agent is tied to: people, organizations, email addresses, "
-                            "events and dates, threads, places. Include identifiers when known (e.g., "
-                            "'Ironwood Fitness <members@ironwoodfit.ca>, Theo's gym', 'membership hold through Nov 30', "
-                            "'Wedding at Harrow Hill, 2027-06-12'). At most 15 artifacts, each at most 150 characters. "
-                            "Empty if none."
-                        ),
+                        "description": f"{ARTIFACTS_DESCRIPTION} Empty if none.",
                         "items": {"type": "string"},
                     },
                 },

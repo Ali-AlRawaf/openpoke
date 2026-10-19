@@ -12,18 +12,18 @@ from ...config import get_settings
 from ...logging_config import logger
 from ...openrouter_client import request_chat_completion
 from .log_store import get_execution_agent_logs
-from .roster import AgentCard, get_agent_roster
+from .roster import ARTIFACTS_DESCRIPTION, AgentCard, get_agent_roster
 
 _MAX_ENTRY_CHARS = 1000
 _MAX_TASK_ENTRIES = 40
 
-_SYSTEM_PROMPT = """You maintain the card that identifies an execution agent, so an assistant can find and reuse the right agent later. You get the agent's current card and the log of the task it just finished. Return the updated card.
+_SYSTEM_PROMPT = f"""You maintain the card that identifies an execution agent, so an assistant can find and reuse the right agent later. You get the agent's current card and the log of the task it just finished. Return the updated card.
 
 Rules:
 - summary: at most 3 sentences and 500 characters. Keep what the agent is for, then what it has done and anything still pending. Don't restate the agent's name.
-- artifacts: short strings, each at most 150 characters, for what the agent is tied to: people, organizations, email addresses, events and dates, email threads (subject and counterpart), places. Include identifiers such as email addresses, dates, and subjects.
+- artifacts: {ARTIFACTS_DESCRIPTION} Prefer exact identifiers over general descriptions.
 - Only include things the agent acted on or was asked about. If it searched or read many emails, include only the ones the task was about, not everything it saw.
-- Keep existing artifacts unless the task superseded them (e.g. a date that changed). Merge duplicates. At most 15, most important first."""
+- Keep existing artifacts unless the task superseded them (e.g. a date that changed). Merge duplicates. List the most important first."""
 
 
 class _CardUpdate(BaseModel):
