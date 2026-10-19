@@ -334,6 +334,10 @@ class InteractionAgentRuntime:
     def _format_tool_result(self, tool_call: _ToolCall, result: ToolResult) -> str:
         """Render a tool execution result back to the LLM."""
 
+        # Text payloads (e.g. the search_agents roster) go back verbatim rather than JSON-escaped
+        if result.success and isinstance(result.payload, str):
+            return result.payload
+
         payload: Dict[str, Any] = {
             "tool": tool_call.name,
             "status": "success" if result.success else "error",

@@ -93,9 +93,14 @@ async def request_chat_completion(
     api_key: Optional[str] = None,
     tools: Optional[List[Dict[str, Any]]] = None,
     max_tokens: Optional[int] = None,
+    response_format: Optional[Dict[str, Any]] = None,
     base_url: str = OpenRouterBaseURL,
 ) -> Dict[str, Any]:
-    """Request a chat completion and return the raw JSON payload."""
+    """Request a chat completion and return the raw JSON payload.
+
+    `response_format` is passed through for structured outputs, e.g.
+    {"type": "json_schema", "json_schema": {"name": ..., "strict": True, "schema": ...}}.
+    """
 
     payload: Dict[str, object] = {
         "model": model,
@@ -105,6 +110,8 @@ async def request_chat_completion(
     }
     if tools:
         payload["tools"] = tools
+    if response_format:
+        payload["response_format"] = response_format
     if model.startswith("anthropic/"):
         cache_control = _cache_control()
         if cache_control:

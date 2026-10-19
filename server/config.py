@@ -62,6 +62,7 @@ class Settings(BaseModel):
     execution_agent_search_model: str = Field(default="anthropic/claude-haiku-5.5")
     summarizer_model: str = Field(default="anthropic/claude-haiku-5.5")
     email_classifier_model: str = Field(default="anthropic/claude-haiku-5.5")
+    card_updater_model: str = Field(default="anthropic/claude-haiku-5.5")
 
     # Completion budget; thinking tokens count toward it
     llm_max_tokens: int = Field(default=16000)
