@@ -33,16 +33,20 @@ The baseline (`results/baseline_all_x10`: names-only system, 20 cases × 7 roste
 
 **Why this fixes the overload failure.** The link the IA lost lived only in the summary ("Ironwood → gym freeze"). Now the IA turns that link into a query, and the owner's card carries the counterpart ("Ironwood Athletic <members@…>"), so search returns the owner at the top whatever the roster size. The IA chooses among ~10 cards, the size at which it never failed.
 
-### 0.3 Results (`results/solution_all_x10`, same 20 cases, sizes and repeats)
+### 0.3 Results (`results/final_all_x10`: 31 cases × 7 sizes × 10 repeats, 2,170 decisions)
 | Pass rate (baseline → solution) | 25 | 400 | 800 | 1600 |
 |---|---|---|---|---|
-| **All cases (accuracy)** | 95% → 100% | 83% → 100% | 86% → 100% | 78% → 100% |
+| **Original 20 cases (accuracy)** | 95% → 100% | 83% → 100% | 86% → 100% | 78% → 100% |
 | **Overload target** | 98% → 100% | 77% → 100% | 67% → 100% | **62% → 100%** |
 | Dormant control | 100% → 100% | 92% → 100% | 100% → 100% | 88% → 100% |
+| Stress: paraphrase (no name) | → 100% | → 100% | → 100% | → 100% |
+| Stress: typo | → 100% | → 100% | → 100% | → 100% |
+| Stress: new counterpart, familiar topic | → 100%* | → 100%* | → 100%* | → 100%* |
 
-- 1,469 of 1,470 expected delegations correct; 0 wrong reuses, 0 false reuses. The one miss was the harness stopping before the IA retried a rejected `create_agent` (since fixed).
-- **Retrieval** (`recall --from-run`): for all 974 searches the IA made, the gold agent was in the top 10 at every size (worst rank 4 at 1,600).
-- **Cost of the design:** ~1.8 LLM calls per decision (a search, then the delegation) instead of 1; ~4s instead of ~3s at 25 agents; at 1,600 agents cost per decision is about the same as the baseline, which paid for 1,600 names on every call.
+- **0 wrong reuses, 0 false reuses, 0 false creates** in 2,170 decisions. The only misses (65, all `missed`) were c27, a **case bug**: its "this thursday" fell on the Cedar Hollow offsite day, and the IA rightly asked which Thursday instead of booking. *With the date made explicit, c27 passed 70/70 (`results/final_c27_fixed_x10`); the run itself is kept as recorded.
+- **Retrieval** (`results/recall_final_all_x10`): for all 1,544 searches the IA made, the gold agent was in the top 10 at every size (worst rank 4 at 1,600, production `max` scoring; `top2 mean` would have ranked it at most 2nd).
+- **Cost of the design:** ~1.8 LLM calls per decision (a search, then the delegation) instead of 1; ~4.2s instead of ~3.0s at 25 agents; about $0.0011 per decision, roughly flat across roster sizes, where the baseline paid for every name on every call.
+- Earlier runs: `results/solution_all_x10` (the original 20 cases, same result), `results/gate_new_cases_x10` (c09/c10 with a search-before-create gate, since removed for latency).
 
 ### 0.4 Case groups: what each tests
 Groups are defined in `score.py` (`GROUPS`) and reported as pass rates per size.
@@ -58,14 +62,14 @@ Groups are defined in `score.py` (`GROUPS`) and reported as pass rates per size.
 | **Stress: new, familiar topic** | c25–c27 | A **new** counterpart on a topic existing agents already cover (a different dentist, a mechanic other than "the tire place", a lunch with a new client), no name or email given | The solution's new risk is false reuse of a similar agent (the "Starbucks agent used for Mary" bug); these must create |
 | **Stress: typo** | c28–c31 | The overload targets with the name misspelled ("wendel", "tidwater", "ironwod", "harrold") | Embedding search and the IA must tolerate misspelled names |
 
-The stress groups (split `stress`) were written **after** the solution was built, to probe it where it is likely weakest. Offline recall on their raw messages already finds every stress gold in the top 10 at 1,600 agents (`results/recall_case_messages`). **They have not been run end to end yet**: record that run's results in §0.3 when it's done.
+The stress groups (split `stress`) were written **after** the solution was built, to probe it where it is likely weakest. They pass end to end at every size (§0.3); the one failure found was a case bug (c27's date clashed with the persona's calendar), fixed and rerun.
 
 ### 0.5 Coverage and limits
 What the evidence supports: on the reproduced overload failure, routing no longer degrades with roster size, without regressions or new error types.
 
 What it does **not** cover:
 - **One world.** One persona, one conversation, 31 cases. Repeats measure model variance, not variety of requests.
-- **Saturation.** The original 20 cases are at 100%: they show the failure is fixed, not where the new design breaks; the stress groups are there to find that.
+- **Saturation.** Every group, stress groups included, is at 100%: the suite shows the failure is fixed and the obvious weak spots hold, but not where the design breaks. Finding that needs harder cases (vaguer paraphrases, several plausible owners, longer multi-step requests).
 - **Clean cards.** Fixture cards come from complete synthetic task histories; real early cards are thinner (one create, one update) and see tool arguments cut to 200 chars.
 - **Excluded by design:** near-duplicate agents left over from the old fragmentation, and two agents for the same counterpart in an affinity case (the policy can't pick one).
 - **Routing only.** The harness stops once routing is done; execution, card updates and later turns are not exercised.

@@ -420,14 +420,14 @@
       "category": "new_counterpart_familiar_topic",
       "split": "stress",
       "rule": 3,
-      "message": "book lunch for me and a new client somewhere quiet near the office this thursday",
+      "message": "book lunch for 2 at noon on tuesday the 27th, me and a new client, somewhere quiet near the office",
       "expected": [
         {
-          "task": "book a quiet lunch near the office on Thursday for Theo and a new client",
+          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
           "gold": "NEW"
         }
       ],
-      "rationale": "Restaurant bookings are familiar ('Jules Birthday Dinner' at Osteria Valdina; many reservation distractors, and from 1600 'Email to Dara Whitcomb Lunch Receipt', a past client lunch). This is a new client and no restaurant is named, so nothing owns it. Rule 3: a new agent."
+      "rationale": "Restaurant bookings are familiar ('Jules Birthday Dinner' at Osteria Valdina; many reservation distractors, and from 1600 'Email to Dara Whitcomb Lunch Receipt', a past client lunch). This is a new client and no restaurant is named, so nothing owns it. Rule 3: a new agent. (The date is explicit and clear in the calendar: an earlier 'this thursday' fell on the Cedar Hollow offsite, and the IA rightly asked instead of booking.)"
     },
     {
       "id": "c28_dormant_typo_wendell",
