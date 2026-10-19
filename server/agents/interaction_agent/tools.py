@@ -8,9 +8,11 @@ from typing import Any, List, Optional
 
 from pydantic import ValidationError
 
+from ...config import get_settings
 from ...logging_config import logger
 from ...services.conversation import get_conversation_log
 from ...services.execution import AgentCard, RosterError, get_agent_roster, get_execution_agent_logs
+from ...services.execution.agent_search import search_agent_cards
 from ...services.execution.roster import ARTIFACTS_DESCRIPTION
 from ..execution_agent.batch_manager import ExecutionBatchManager
 
@@ -30,13 +32,19 @@ TOOL_SCHEMAS = [
         "type": "function",
         "function": {
             "name": "search_agents",
-            "description": "Search existing execution agents for one to reuse. Returns agent cards, each with the agent's name, a summary of its work, and its artifacts: the specific things it's tied to.",
+            "description": (
+                "Search existing execution agents for one to reuse. Returns agent cards, each with the agent's name, "
+                "a summary of its work, and its artifacts: the specific things it's tied to. "
+                f"If there are {get_settings().agent_search_top_k} or fewer agents, returns all of them and the query "
+                f"isn't used. Otherwise, returns the {get_settings().agent_search_top_k} agents most similar to the "
+                "query, ordered by similarity; similar agents aren't necessarily relevant to the task."
+            ),
             "parameters": {
                 "type": "object",
                 "properties": {
                     "query": {
                         "type": "string",
-                        "description": "The task in specific terms: the names, identifiers, and topic it involves, with references from the conversation spelled out (e.g., 'Acme Supplies order #A-55210 replacement part').",
+                        "description": "The task in specific terms: the names and topic it involves, with references from the conversation spelled out (e.g., 'Acme Supplies damaged gearbox replacement').",
                     },
                 },
                 "required": ["query"],
@@ -58,7 +66,7 @@ TOOL_SCHEMAS = [
                     },
                     "summary": {
                         "type": "string",
-                        "description": "What this agent is for, in one or two sentences, at most 500 characters (e.g., 'Gets a replacement for the damaged gearbox in Acme Supplies order #A-55210.').",
+                        "description": "What this agent is for, in one or two sentences, at most 500 characters (e.g., 'Gets a replacement for the damaged gearbox from Acme Supplies.').",
                     },
                     "artifacts": {
                         "type": "array",
@@ -174,17 +182,42 @@ def _render_agent_card(card: AgentCard) -> str:
     return "\n".join(lines)
 
 
-# Look up existing execution agents; for now returns the full roster regardless of query
-def search_agents(query: str) -> ToolResult:
+# Look up existing execution agents: the whole roster when small, otherwise the top matches by embedding
+async def search_agents(query: str) -> ToolResult:
     """Return existing execution agents rendered as <agent> cards."""
     roster = get_agent_roster()
     roster.load()
     cards = roster.get_cards()
+    top_k = get_settings().agent_search_top_k
 
-    body = "\n".join(_render_agent_card(card) for card in cards) if cards else "None"
+    if len(cards) <= top_k:
+        logger.info(f"Agent search returned all {len(cards)} agents", extra={"query": query})
+        if not cards:
+            return ToolResult(success=True, payload="<active_agents>\nNone\n</active_agents>")
+        body = "\n".join(_render_agent_card(card) for card in cards)
+        header = f"All {len(cards)} existing agents. No search was run, so this is the complete roster."
+        return ToolResult(success=True, payload=f"{header}\n<active_agents>\n{body}\n</active_agents>")
 
-    logger.info(f"Agent search returned {len(cards)} agents", extra={"query": query})
-    return ToolResult(success=True, payload=f"<active_agents>\n{body}\n</active_agents>")
+    try:
+        matches = await search_agent_cards(query, cards, top_k)
+    except Exception as exc:
+        # Without embeddings, fall back to every agent's name (the pre-search roster format) so
+        # routing degrades to the old behaviour instead of failing
+        logger.error(f"Agent search failed, returning all agent names: {exc}", extra={"query": query})
+        body = "\n".join(f'<agent name="{escape(card.name, quote=True)}" />' for card in cards)
+        header = f"All {len(cards)} existing agents, names only. Search is unavailable, so this is the complete roster."
+        return ToolResult(success=True, payload=f"{header}\n<active_agents>\n{body}\n</active_agents>")
+
+    logger.info(
+        f"Agent search returned top {len(matches)} of {len(cards)} agents",
+        extra={"query": query, "matches": [card.name for card in matches]},
+    )
+    body = "\n".join(_render_agent_card(card) for card in matches)
+    header = (
+        f"Search results: the {len(matches)} agents most similar to your query, out of {len(cards)} existing agents, "
+        "ordered by similarity."
+    )
+    return ToolResult(success=True, payload=f"{header}\n<active_agents>\n{body}\n</active_agents>")
 
 
 # Register a new execution agent with its identity card

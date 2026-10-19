@@ -64,6 +64,11 @@ class Settings(BaseModel):
     email_classifier_model: str = Field(default="anthropic/claude-haiku-5.5")
     card_updater_model: str = Field(default="anthropic/claude-haiku-5.5")
 
+    # Agent search: rosters at or below top_k are returned whole; larger ones are ranked by embedding
+    embedding_model: str = Field(default="openai/text-embedding-3-small")
+    embedding_dimensions: int = Field(default=512)
+    agent_search_top_k: int = Field(default=10)
+
     # Completion budget; thinking tokens count toward it
     llm_max_tokens: int = Field(default=16000)
 

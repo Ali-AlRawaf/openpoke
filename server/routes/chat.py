@@ -25,6 +25,7 @@ def chat_history() -> ChatHistoryResponse:
 @router.delete("/history", response_model=ChatHistoryClearResponse)
 def clear_history() -> ChatHistoryClearResponse:
     from ..services import get_execution_agent_logs, get_agent_roster
+    from ..services.execution.agent_search import get_embedding_store
 
     # Clear conversation log
     log = get_conversation_log()
@@ -34,9 +35,10 @@ def clear_history() -> ChatHistoryClearResponse:
     execution_logs = get_execution_agent_logs()
     execution_logs.clear_all()
 
-    # Clear agent roster
+    # Clear agent roster and the embeddings of its cards
     roster = get_agent_roster()
     roster.clear()
+    get_embedding_store().clear()
 
     # Clear stored triggers
     trigger_service = get_trigger_service()

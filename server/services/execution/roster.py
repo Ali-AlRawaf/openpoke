@@ -20,10 +20,10 @@ T = TypeVar("T")
 
 # What artifacts are, shared by the create_agent tool schema and the card updater prompt
 ARTIFACTS_DESCRIPTION = (
-    "Short strings for the specific things this agent is tied to, whatever they are: names, email addresses, "
-    "dates, events, objects, subjects, places, reference numbers (e.g., 'Acme Supplies <support@acmesupplies.com>', "
-    "'order #A-55210', 'damaged gearbox from that order', 'courier pick-up on 2026-11-15'). "
-    "At most 15 artifacts, each at most 50 characters."
+    "Short strings for what this agent's work involves, as someone would mention it later: people, organizations, "
+    "email addresses, events, places, objects, topics (e.g., 'Acme Supplies <support@acmesupplies.com>', "
+    "'damaged gearbox replacement', 'courier pick-up on 2026-11-15'). Not system IDs such as draft, thread, or "
+    "message IDs. At most 15 artifacts, each at most 50 characters."
 )
 
 

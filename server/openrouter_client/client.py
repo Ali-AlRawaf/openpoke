@@ -143,3 +143,45 @@ async def request_chat_completion(
 
 
 __all__ = ["OpenRouterError", "request_chat_completion", "OpenRouterBaseURL"]
+
+
+async def request_embeddings(
+    *,
+    model: str,
+    inputs: List[str],
+    dimensions: Optional[int] = None,
+    api_key: Optional[str] = None,
+    base_url: str = OpenRouterBaseURL,
+) -> List[List[float]]:
+    """Embed `inputs` and return one vector per input, in input order."""
+
+    payload: Dict[str, object] = {"model": model, "input": inputs}
+    if dimensions:
+        payload["dimensions"] = dimensions
+
+    url = f"{base_url.rstrip('/')}/embeddings"
+
+    async with httpx.AsyncClient() as client:
+        try:
+            response = await client.post(
+                url,
+                headers=_headers(api_key=api_key),
+                json=payload,
+                timeout=60.0,
+            )
+            try:
+                response.raise_for_status()
+            except httpx.HTTPStatusError as exc:
+                _handle_response_error(exc)
+            data = response.json()
+        except httpx.HTTPError as exc:
+            raise OpenRouterError(f"OpenRouter embeddings request failed: {exc}") from exc
+
+    items = sorted(data.get("data") or [], key=lambda item: item.get("index", 0))
+    if len(items) != len(inputs):
+        raise OpenRouterError(f"Expected {len(inputs)} embeddings, got {len(items)}")
+    logger.debug(
+        "Embeddings usage",
+        extra={"model": model, "inputs": len(inputs), "usage": data.get("usage")},
+    )
+    return [item["embedding"] for item in items]
