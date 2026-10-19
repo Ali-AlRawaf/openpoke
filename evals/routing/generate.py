@@ -2,12 +2,16 @@
 
 Stages (each writes JSON under fixtures/generated/, and later stages read earlier outputs):
 
-    python -m evals.routing.generate names     # ~375 distractor agent names + briefs
-    python -m evals.routing.generate logs      # distractor request content (compact specs)
-    python -m evals.routing.generate filler    # older-window chit-chat + which distractor episodes appear
-    python -m evals.routing.generate summary   # real summarizer path over entries 0-299 (3 passes)
+    python -m evals.routing.generate names       # 375 distractor agent names + briefs + counterparts
+    python -m evals.routing.generate names_more  # 1200 more (rosters 800/1600)
+    python -m evals.routing.generate filler      # older-window chit-chat
+    python -m evals.routing.generate summary     # real summarizer path over entries 0-299 (3 passes)
+    python -m evals.routing.generate logs        # synthetic task logs for every distractor (Haiku)
+    python -m evals.routing.generate cards       # every agent's card, from the production card updater
+    python -m evals.routing.generate embeddings  # prebuilt agent-search vectors (gitignored)
 
-After `logs` or `filler` changes, rerun `summary`, then `python -m evals.routing.build_fixtures --check`.
+After `filler` changes, rerun `summary`. After `logs`, rerun `cards` (--fresh) and `embeddings`.
+Then `python -m evals.routing.build_fixtures --check`.
 LLM: server.openrouter_client.request_chat_completion with the server's configured models.
 Spend is accumulated in fixtures/generated/cost.json.
 """
@@ -37,7 +41,8 @@ from server.services.conversation.summarization.state import LogEntry
 
 GEN = bf.GENERATED
 NAMES_PATH = GEN / "distractor_names.json"
-DISTRACTORS_PATH = GEN / "distractors.json"
+DISTRACTORS_PATH = bf.DISTRACTOR_LOGS_PATH
+CARDS_PATH = bf.CARDS_PATH
 FILLER_PATH = GEN / "older_filler.json"
 SUMMARY_PATH = GEN / "summary.json"
 COST_PATH = GEN / "cost.json"
@@ -300,7 +305,9 @@ def _rng(*parts: Any) -> random.Random:
     return random.Random(bf._h("gen", *parts))
 
 
-def plan_for(agent: Dict[str, Any]) -> List[Dict[str, str]]:
+def plan_for(agent: Dict[str, Any], start: datetime) -> List[Dict[str, str]]:
+    """Request kinds and times for one distractor. The first request is at `start`, the agent's
+    creation time in the rosters, so log order and roster order agree."""
     rng = _rng("plan", agent["name"])
     if agent["name"] == "Monthly Budget Digest":
         kinds = ["trigger"]
@@ -309,13 +316,6 @@ def plan_for(agent: Dict[str, Any]) -> List[Dict[str, str]]:
     else:
         options = PATTERNS[agent["category"]]
         kinds = rng.choices([k for k, _ in options], weights=[w for _, w in options])[0]
-    span = (WINDOW_END - WINDOW_START).total_seconds() - 3 * 86400
-    while True:
-        day = WINDOW_START + timedelta(seconds=rng.random() * span)
-        hour = rng.choices(range(7, 24), weights=[2, 4, 5, 5, 5, 6, 5, 4, 4, 5, 6, 6, 7, 7, 6, 4, 2])[0]
-        start = day.replace(hour=hour, minute=rng.randrange(60), second=rng.randrange(60))
-        if WINDOW_START <= start <= WINDOW_END - timedelta(days=1):
-            break
     plan = []
     t = start
     for i, kind in enumerate(kinds):
@@ -337,21 +337,21 @@ def plan_for(agent: Dict[str, Any]) -> List[Dict[str, str]]:
 
 
 KIND_SPEC = {
-    "draft": 'Poke asks the agent to draft a NEW email (not sent). Fields: user, ack, instructions, to, subject, body, response (MUST contain the literal token {draft_block} where the draft details go), reply (Poke asking the user to confirm sending)',
-    "send": "the user confirms the previous draft. Fields: user (short confirmation like 'send it'), ack, reply (Poke confirming it was sent)",
-    "compose_send": "Poke wrote the email itself, the user approved, and the agent creates + sends it in one go. Fields: user (Theo's ORIGINAL request), to, subject, body, reply (Poke confirming it was sent)",
-    "check_reply": "the user asks whether the counterpart replied to the earlier email. Fields: user, ack, instructions, gmail_query, query, results (0 or 1 email FROM the counterpart replying, dated between the earlier send and this request), response, reply",
-    "search": "the agent searches the inbox. Fields: user, ack, instructions, gmail_query, query, results (1-3 emails dated before this request), response (agent's factual report with the details found), reply (Poke's short text to Theo)",
-    "reply_draft": "the agent finds an email and drafts a reply in its thread (not sent). Fields: user, ack, instructions, gmail_query, query, results (exactly 1 email), subject, body, response (MUST contain {draft_block}), reply (Poke asking to confirm)",
-    "forward": "the user asks to forward the email just found (approval given). Fields: user, ack, instructions, to, note, response (mention {sent_id}), reply",
-    "trigger": "the agent creates a reminder trigger. Fields: user, ack, instructions, payload, rrule (iCalendar RRULE body like 'FREQ=MONTHLY;BYMONTHDAY=1' or null for one-off), start ('YYYY-MM-DDTHH:MM:SS' local time AFTER the request time), response (MUST mention trigger ID {trigger_id} and the schedule), reply",
-    "search_trigger": "the agent looks up a due date in an email, then creates a reminder trigger for it. Fields: all search fields + payload, rrule, start, response (mention {trigger_id}), reply",
+    "draft": "Poke asks the agent to draft a NEW email (not sent). Fields: instructions, to, subject, body, response (MUST contain the literal token {draft_block} where the draft details go)",
+    "send": "the user confirmed the previous draft and the agent sends it. No fields: return {}",
+    "compose_send": "Poke wrote the email itself, the user approved, and the agent creates + sends it in one go. Fields: to, subject, body",
+    "check_reply": "the user asks whether the counterpart replied to the earlier email. Fields: instructions, gmail_query, query, results (0 or 1 email FROM the counterpart replying, dated between the earlier send and this request), response",
+    "search": "the agent searches the inbox. Fields: instructions, gmail_query, query, results (1-3 emails dated before this request), response (agent's factual report with the details found)",
+    "reply_draft": "the agent finds an email and drafts a reply in its thread (not sent). Fields: instructions, gmail_query, query, results (exactly 1 email), subject, body, response (MUST contain {draft_block})",
+    "forward": "the user asks to forward the email just found (approval given). Fields: instructions, to, note, response (mention {sent_id})",
+    "trigger": "the agent creates a reminder trigger. Fields: instructions, payload, rrule (iCalendar RRULE body like 'FREQ=MONTHLY;BYMONTHDAY=1' or null for one-off), start ('YYYY-MM-DDTHH:MM:SS' local time AFTER the request time), response (MUST mention trigger ID {trigger_id} and the schedule)",
+    "search_trigger": "the agent looks up a due date in an email, then creates a reminder trigger for it. Fields: instructions, gmail_query, query, results (1-3 emails dated before this request), payload, rrule, start, response (mention {trigger_id})",
 }
 
 LOGS_SYSTEM = (
     "You write realistic fixture data for an AI email assistant. 'Poke' is the interaction agent texting with the user; it delegates to named "
     "execution agents with Gmail tools. Agent responses are factual, detailed reports to Poke (often with **bold** labels and bullet lists, "
-    "IDs when relevant, and 'Nothing was sent.' when nothing was sent). Poke's replies to the user are terse, warm, lightly witty, lowercase-friendly. "
+    "IDs when relevant, and 'Nothing was sent.' when nothing was sent). "
     "Instructions from Poke to the agent are explicit and complete (who, what, email addresses, dates, 'do not send'). Reply with strict JSON only."
 )
 
@@ -370,10 +370,10 @@ def validate_agent(agent: Dict[str, Any], plan: List[Dict[str, str]], data: Dict
     sent_at: Optional[datetime] = None
     for i, (p, r) in enumerate(zip(plan, reqs)):
         kind, at = p["kind"], bf.dt(p["at"])
-        need = {"send": ["user", "ack", "reply"], "compose_send": ["user", "to", "subject", "body", "reply"]}.get(kind, ["user", "ack", "instructions", "response", "reply"])
+        need = {"send": [], "compose_send": ["to", "subject", "body"]}.get(kind, ["instructions", "response"])
         for k in need:
             assert isinstance(r.get(k), str) and r[k].strip(), f"{agent['name']} req {i} ({kind}) missing {k}"
-        req: Dict[str, Any] = {"t": p["at"], "kind": kind, "user": r["user"].strip(), "ack": (r.get("ack") or "On it.").strip(), "reply": r["reply"].strip()}
+        req: Dict[str, Any] = {"t": p["at"], "kind": kind}
         steps: List[Dict[str, Any]] = []
 
         def results(max_n: int, min_n: int = 1) -> List[Dict[str, Any]]:
@@ -433,7 +433,6 @@ def validate_agent(agent: Dict[str, Any], plan: List[Dict[str, str]], data: Dict
             req["instructions"] = bf._SEND_INSTR[bf._h(slug, i) % len(bf._SEND_INSTR)]
             req["response"] = None
         elif kind == "compose_send":
-            req["ack"] = "Sending."
             req["instructions"] = ("The user reviewed and approved this email. Create it and send it exactly as written, with no changes:\n\n"
                                    f"To: {r['to'].strip()}\nSubject: {r['subject']}\n\nBody:\n{r['body']}\n\n"
                                    "After sending, reply with confirmation including the recipient, subject, and sent message ID.")
@@ -446,41 +445,105 @@ def validate_agent(agent: Dict[str, Any], plan: List[Dict[str, str]], data: Dict
             if kind in ("trigger", "search_trigger") and "{trigger_id}" not in resp:
                 resp += " (trigger ID {trigger_id})"
             req["response"] = resp
-        req["draft_view"] = kind in ("draft", "reply_draft")
-        if rng.random() < 0.25 and kind not in ("send",):
-            req["wait"] = "Waiting for the execution agent's result before replying to the user."
         out.append(req)
-    problems = bf.distractor_violations(agent["name"], json.dumps(out, ensure_ascii=False))
+    problems = bf.text_violations(agent["name"], json.dumps(out, ensure_ascii=False))
     assert not problems, f"{agent['name']}: {problems[:3]}"
     return out
 
 
-async def stage_logs(batch_size: int = 6, concurrency: int = 6, only_missing: bool = True) -> None:
-    spend = Spend("logs")
+REAL_RULES = (
+    "Each agent's counterpart is given; use it exactly (same name and email address) and keep it consistent across requests. "
+    "Every other person, company, shop and email domain must be INVENTED (no real brands, banks, airlines, retailers, apps or celebrities); "
+    "use plausible made-up businesses with made-up domains (.ca/.com/.net) and personal addresses at quaymail.net. Real cities are fine. "
+    "Never mention Keyhaven, Ferrante, Halcyon, Bramblewood, chimneys or piano lessons."
+)
+
+
+def _real_banned(batch: List[Dict[str, Any]]) -> List[str]:
+    """Core people/orgs a real-distractor batch must not mention (everything but its own counterparts)."""
+    allowed = " ".join(a["name"] + " " + a["counterpart"] for a in batch).lower()
+    banned = set()
+    for person in bf.CORE_PEOPLE:
+        if person["email"] and person["email"] in allowed:
+            continue
+        full = (person["first"] + " " + person["last"]).strip()
+        for term in (full, person["org"]):
+            if term and term != "Northfold Studio" and term.lower() not in allowed:
+                banned.add(term)
+    return sorted(banned)
+
+
+# Generated briefs that predate a ban-list entry (e.g. "Larkspur", a sender in a core agent's log):
+# replaced here so their logs and cards stay clean.
+SPEC_FIXES: Dict[str, Dict[str, str]] = {
+    "Flight Confirmation Lookup": {"brief": "Find the Bluewing Air confirmation with the booking reference for the Halifax flight.",
+                                   "counterpart": "Bluewing Air, bookings@bluewingair.com"},
+    "Email to Nikhil Guesthouse Refund": {"brief": "Ask Wrenfield Guesthouse to refund the deposit on a weekend stay Theo cancelled.",
+                                          "counterpart": "Wrenfield Guesthouse, bookings@wrenfieldguesthouse.ca"},
+}
+
+
+def _distractor_specs() -> List[Dict[str, Any]]:
+    """Every distractor in the 1600 roster (noise + real), with its brief, counterpart and creation time."""
     names = bf.load_json(NAMES_PATH, None)
     if not names:
         raise SystemExit("run `generate names` first")
-    agents = names["agents"]
-    existing = {a["name"]: a for a in bf.load_json(DISTRACTORS_PATH, {"agents": []})["agents"]} if only_missing else {}
-    todo = [a for a in agents if a["name"] not in existing]
-    plans = {a["name"]: plan_for(a) for a in agents}
-    batches = [todo[i:i + batch_size] for i in range(0, len(todo), batch_size)]
+    raw = {a["name"]: a for a in names["agents"]}
+    agents, created = bf.name_only_distractors(names["agents"])
+    specs = []
+    for agent in agents:
+        if agent.name in bf.REAL_DISTRACTOR_DETAILS:
+            spec = {"name": agent.name, "real": True, **bf.REAL_DISTRACTOR_DETAILS[agent.name]}
+        else:
+            src = raw[agent.name]
+            spec = {"name": agent.name, "real": False, "category": src["category"], "brief": src["brief"], "counterpart": src.get("counterpart", "")}
+            spec.update(SPEC_FIXES.get(agent.name, {}))
+        spec["start"] = created[agent.name]
+        specs.append(spec)
+    return specs
+
+
+async def stage_logs(batch_size: int = 5, concurrency: int = 16, only_missing: bool = True, limit: Optional[int] = None) -> None:
+    """Synthetic task logs for every distractor (noise and real), checkpointed after every batch."""
+    spend = Spend("logs")
+    specs = _distractor_specs()
+    plans = {a["name"]: plan_for(a, a["start"]) for a in specs}
+    done: Dict[str, Dict[str, Any]] = {}
+    if only_missing:
+        done = {a["name"]: a for a in bf.load_json(DISTRACTORS_PATH, {"agents": []})["agents"]}
+    todo = [a for a in specs if a["name"] not in done]
+    if limit is not None:
+        todo = todo[:limit]
+    noise = [a for a in todo if not a["real"]]
+    real = [a for a in todo if a["real"]]
+    batches = [noise[i:i + batch_size] for i in range(0, len(noise), batch_size)]
+    batches += [real[i:i + 4] for i in range(0, len(real), 4)]
+    order = [a["name"] for a in specs]
     sem = asyncio.Semaphore(concurrency)
-    results: Dict[str, List[Dict[str, Any]]] = {}
     failed: List[str] = []
+    print(f"logs: {len(done)} done, {len(todo)} to generate in {len(batches)} batches")
+
+    def save() -> None:
+        final = [done[n] for n in order if n in done]
+        DISTRACTORS_PATH.write_text(json.dumps({"agents": final}, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
 
     async def run(batch: List[Dict[str, Any]]) -> None:
         async with sem:
             spec = []
             for a in batch:
-                spec.append({"name": a["name"], "what_theo_wanted": a["brief"], "counterpart": a.get("counterpart", ""),
+                spec.append({"name": a["name"], "what_theo_wanted": a["brief"], "counterpart": a["counterpart"],
                              "requests": [{"kind": p["kind"], "at": p["at"]} for p in plans[a["name"]]]})
             kinds = sorted({p["kind"] for a in batch for p in plans[a["name"]]})
+            if batch[0]["real"]:
+                rules = REAL_RULES + " Never mention any of these: " + ", ".join(_real_banned(batch)) + "."
+            else:
+                rules = FICTION_RULES
             prompt = (
-                f"{PERSONA}\n\n{FICTION_RULES}\n\nWrite the history of these execution agents. Each request happened at the given local time "
-                "(America/Toronto); keep dates consistent with it (emails found are dated before the request; reminders start after it). "
-                "Use concrete invented details (order numbers, amounts in CAD, dates, addresses at invented domains). The counterpart's email must be "
-                "consistent across requests of the same agent. Emails Theo sends are signed 'Theo'.\n\n"
+                f"{PERSONA}\n\n{rules}\n\nWrite the execution-agent side of these agents' history: what Poke asked each agent to do and what the "
+                "agent did and reported back. Each request happened at the given local time (America/Toronto); keep dates consistent with it "
+                "(emails found are dated before the request; reminders start after it). Use concrete invented details (order numbers, amounts in "
+                "CAD, dates, addresses at invented domains). The counterpart's email must be consistent across requests of the same agent. "
+                "Emails Theo sends are signed 'Theo'.\n\n"
                 "Request kinds and their JSON fields:\n" + "\n".join(f"- {k}: {KIND_SPEC[k]}" for k in kinds) + "\n\n"
                 "Email objects in results: {\"from\": \"Name <addr>\", \"subject\": ..., \"date\": \"YYYY-MM-DD HH:MM:SS\", \"text\": \"1-3 sentences\"}.\n"
                 "'query' is the natural-language search the agent ran; 'gmail_query' is the Gmail search string (e.g. 'from:x@y.ca after:2026/08/01').\n\n"
@@ -497,44 +560,135 @@ async def stage_logs(batch_size: int = 6, concurrency: int = 6, only_missing: bo
                 return out
 
             try:
-                res = await llm_json(spend, LOGS_SYSTEM, prompt, validate)
-                results.update(res)
+                res = await llm_json(spend, LOGS_SYSTEM, prompt, validate, max_tokens=16000)
             except Exception as exc:
-                print(f"batch failed: {exc}", file=sys.stderr)
+                print(f"batch failed ({', '.join(a['name'] for a in batch)}): {str(exc)[:200]}", file=sys.stderr)
                 failed.extend(a["name"] for a in batch)
-            print(f"logs: {len(results) + len(existing)}/{len(agents)} (spend ${spend.cost['total_usd']:.4f})")
+                return
+            for a in batch:
+                done[a["name"]] = {"name": a["name"], "category": a["category"], "brief": a["brief"],
+                                   "counterpart": a["counterpart"], "requests": res[a["name"]]}
+            save()
+            print(f"logs: {len(done)}/{len(specs)} (spend ${spend.cost['total_usd']:.4f})", flush=True)
 
     await asyncio.gather(*(run(b) for b in batches))
-    # retry failures one agent at a time
-    for name in list(failed):
-        a = next(x for x in agents if x["name"] == name)
-        try:
-            await run([a])
-            failed.remove(name)
-        except Exception:
-            pass
-    merged = dict(existing)
-    for a in agents:
-        if a["name"] in results:
-            merged[a["name"]] = {"name": a["name"], "category": a["category"], "brief": a["brief"], "requests": results[a["name"]]}
-    final = [merged[a["name"]] for a in agents if a["name"] in merged]
-    _assign_tiers(final)
-    DISTRACTORS_PATH.write_text(json.dumps({"agents": final}, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
-    print(f"wrote {len(final)} distractors ({len(agents) - len(final)} missing)")
+    # a whole batch fails if any agent in it does: retry those agents one at a time
+    retry = [a for a in specs if a["name"] in set(failed)]
+    failed.clear()
+    await asyncio.gather(*(run([a]) for a in retry))
+    save()
+    print(f"wrote {len(done)} distractor logs ({len(specs) - len(done)} missing: {failed[:5]})")
 
 
-def _assign_tiers(final: List[Dict[str, Any]]) -> None:
-    order = sorted(final, key=lambda a: bf._h("tier", a["name"]))
-    seeds = [a for a in order if any(s["name"] == a["name"] for s in SEEDS)]
-    rest = [a for a in order if a not in seeds]
-    order = seeds + rest  # seeded hard negatives join at the smallest sizes
-    cursor = 0
-    for size, count in bf.TIER_COUNTS.items():
-        for a in order[cursor:cursor + count]:
-            a["tier"] = size
-        cursor += count
-    for a in order[cursor:]:
-        a["tier"] = 400
+# ---------------------------------------------------------------------------------------------
+# Stage: cards (the production card updater over every agent's log)
+# ---------------------------------------------------------------------------------------------
+
+
+async def stage_cards(concurrency: int = 24, only_missing: bool = True, limit: Optional[int] = None) -> None:
+    """Build every agent's card with the production card updater, replaying its log task by task.
+
+    Each agent starts as a bare card (name only) in a throwaway roster; its log is appended up to
+    the end of each IA request, and `update_agent_card` runs exactly as the batch manager runs it
+    after that task. Trigger fires are appended too but never update the card, as in production.
+    """
+    from server.services.execution import AgentCard, get_agent_roster, get_execution_agent_logs
+    import server.services.execution.card_updater as card_updater
+
+    spend = Spend("cards")
+    built = bf.build()
+    done: Dict[str, Dict[str, Any]] = bf.load_json(CARDS_PATH, {"cards": {}})["cards"] if only_missing else {}
+    todo = [a for a in built.agents if a.name not in done]
+    if limit is not None:  # smoke test: the first agents that have logs
+        todo = [a for a in todo if built.logs.get(a.name)][:limit]
+    missing_logs = [a.name for a in todo if not built.logs.get(a.name)]
+    if missing_logs:
+        raise SystemExit(f"{len(missing_logs)} agents have no log (e.g. {missing_logs[:3]}): run `generate logs` first")
+
+    production_call = card_updater.request_chat_completion
+
+    async def counted_call(**kwargs: Any) -> Dict[str, Any]:
+        response = await production_call(**kwargs)
+        spend.add(response.get("usage"))
+        return response
+
+    card_updater.request_chat_completion = counted_call  # same call, with spend accounting
+
+    roster = get_agent_roster()
+    log_store = get_execution_agent_logs()
+    for agent in todo:
+        roster.add_card(AgentCard(name=agent.name, created_at=bf.ts(built.created[agent.name]),
+                                  last_active_at=bf.ts(built.created[agent.name])))
+    order = [a.name for a in built.agents]
+    sem = asyncio.Semaphore(concurrency)
+    failures: Dict[str, int] = {}
+    print(f"cards: {len(done)} done, {len(todo)} to build, {sum(len(bf.request_tasks(built.logs[a.name])) for a in todo)} card updates")
+
+    def save() -> None:
+        CARDS_PATH.write_text(json.dumps({"model": get_settings().card_updater_model,
+                                          "cards": {n: done[n] for n in order if n in done}}, indent=1, ensure_ascii=False) + "\n",
+                              encoding="utf-8")
+
+    def snapshot(name: str) -> Tuple[str, Tuple[str, ...]]:
+        roster.load()
+        card = roster.get_card(name)
+        return card.summary, tuple(card.artifacts)
+
+    async def run(agent: bf.Agent) -> None:
+        async with sem:
+            lines = built.logs[agent.name]
+            path = log_store._log_path(agent.name)
+            written = 0
+            for first, last in bf.request_tasks(lines):
+                with path.open("a", encoding="utf-8") as fh:
+                    for tag, payload, when in lines[written:last + 1]:
+                        fh.write(format_line(tag, payload, bf.ts(when)))
+                written = last + 1
+                # the updater finds the task by its request text, as stored and read back by the log store
+                instructions = parse_line(format_line("agent_request", lines[first][1], bf.ts(lines[first][2])))[2]
+                before = snapshot(agent.name)
+                for _ in range(2):  # the updater keeps the old card on failure: retry once
+                    await card_updater.update_agent_card(agent.name, instructions)
+                    if snapshot(agent.name) != before:
+                        break
+                else:
+                    failures[agent.name] = failures.get(agent.name, 0) + 1
+            summary, artifacts = snapshot(agent.name)
+            done[agent.name] = {"summary": summary, "artifacts": list(artifacts), "tasks": len(bf.request_tasks(lines))}
+            save()
+            if len(done) % 50 == 0:
+                print(f"cards: {len(done)}/{len(order)} (spend ${spend.cost['total_usd']:.4f})", flush=True)
+
+    await asyncio.gather(*(run(a) for a in todo))
+    save()
+    contaminated = {a.name: bf.text_violations(a.name, "\n".join([done[a.name]["summary"], *done[a.name]["artifacts"]]))
+                    for a in built.agents if not a.core and a.name in done}
+    contaminated = {k: v for k, v in contaminated.items() if v}
+    empty = [n for n, c in done.items() if not c["summary"].strip()]
+    print(f"wrote {len(done)} cards; {len(failures)} agents had a failed update, {len(empty)} empty, {len(contaminated)} contaminated")
+    for name, problems in list(contaminated.items())[:20]:
+        print(f"  contaminated: {name}: {problems[:2]}")
+
+
+# ---------------------------------------------------------------------------------------------
+# Stage: embeddings (the production agent-search store, prebuilt so eval runs only embed queries)
+# ---------------------------------------------------------------------------------------------
+
+
+async def stage_embeddings() -> None:
+    from server.services.execution import AgentCard
+    from server.services.execution.agent_search import EmbeddingStore, _embed, card_texts
+
+    cards = bf.load_json(CARDS_PATH, {"cards": {}})["cards"]
+    if not cards:
+        raise SystemExit("run `generate cards` first")
+    texts = [t for name, c in cards.items() for t in card_texts(AgentCard(name=name, summary=c["summary"], artifacts=c["artifacts"]))]
+    store = EmbeddingStore(bf.EMBEDDINGS_PATH)
+    missing = store.missing(texts)
+    if missing:
+        store.add(missing, await _embed(missing))
+    store.save(keep=texts)
+    print(f"embeddings: {len(set(texts))} texts ({len(missing)} newly embedded) -> {bf.EMBEDDINGS_PATH}")
 
 
 # ---------------------------------------------------------------------------------------------
@@ -652,15 +806,20 @@ async def stage_summary() -> None:
 
 def main(argv: Optional[List[str]] = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("stage", choices=["names", "names_more", "logs", "filler", "summary"])
-    parser.add_argument("--fresh", action="store_true", help="logs: regenerate all agents instead of only missing ones")
+    parser.add_argument("stage", choices=["names", "names_more", "logs", "cards", "embeddings", "filler", "summary"])
+    parser.add_argument("--fresh", action="store_true", help="logs/cards: regenerate all agents instead of only missing ones")
+    parser.add_argument("--limit", type=int, default=None, help="logs/cards: only generate this many more agents (smoke test)")
     args = parser.parse_args(argv)
     if args.stage == "names":
         asyncio.run(stage_names())
     elif args.stage == "names_more":
         asyncio.run(stage_names_more())
     elif args.stage == "logs":
-        asyncio.run(stage_logs(only_missing=not args.fresh))
+        asyncio.run(stage_logs(only_missing=not args.fresh, limit=args.limit))
+    elif args.stage == "cards":
+        asyncio.run(stage_cards(only_missing=not args.fresh, limit=args.limit))
+    elif args.stage == "embeddings":
+        asyncio.run(stage_embeddings())
     elif args.stage == "filler":
         asyncio.run(stage_filler())
     else:

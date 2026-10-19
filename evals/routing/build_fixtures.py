@@ -1,9 +1,10 @@
-"""Build the routing-eval fixtures (core agents, recent conversation, rosters, cases, state/).
+"""Build the routing-eval fixtures (core agents, recent conversation, card rosters, cases, state/).
 
 Deterministic and re-runnable. The hand-designed core (25 agents and their logs, plus the
 recent 80 conversation entries) lives in this file as structured Python data. The LLM-generated
-parts (distractor agents, older-conversation filler, the summary) are frozen JSON under
-``fixtures/generated/``, written once by ``generate.py`` and only read here.
+parts (distractor names and task logs, older-conversation filler, the summary, and every agent's
+card) are frozen JSON under ``fixtures/generated/``, written once by ``generate.py`` and only read
+here. Rosters are lists of agent cards, exactly as the server stores ``roster.json``.
 
     python -m evals.routing.build_fixtures            # write state/, rosters/, cases.json
     python -m evals.routing.build_fixtures --check    # write, then run the self-check
@@ -41,6 +42,9 @@ STATE = FIXTURES / "state"
 ROSTERS = FIXTURES / "rosters"
 GENERATED = FIXTURES / "generated"
 CASES_PATH = FIXTURES / "cases.json"
+DISTRACTOR_LOGS_PATH = GENERATED / "distractors.json"  # synthetic distractor task logs (generate logs)
+CARDS_PATH = GENERATED / "cards.json"                  # agent cards from the production card updater (generate cards)
+EMBEDDINGS_PATH = FIXTURES / "embeddings" / "agent_embeddings.npz"  # gitignored; generate embeddings
 
 TZ = ZoneInfo("America/Toronto")
 UTC = timezone.utc
@@ -120,7 +124,7 @@ DISTRACTOR_BANNED_NAME_TOPICS: List[str] = [
 REAL_BRAND_BLOCKLIST: List[str] = [
     "amazon", "google calendar", "apple", "netflix", "uber", "airbnb", "costco", "ikea", "walmart", "spotify",
     "air canada", "westjet", "shoppers drug", "loblaws", "rogers", "bell canada", "telus", "td bank", "rbc",
-    "scotiabank", "cibc", "bmo", "paypal", "venmo", "interac", "visa ", "mastercard", "expedia", "booking.com",
+    "scotiabank", "cibc", "bmo", "paypal", "venmo", "interac", "visa card", "visa debit", "mastercard", "expedia", "booking.com",
     "doordash", "skip the dishes", "instacart", "home depot", "canadian tire", "best buy", "starbucks", "tim hortons",
     "chipotle", "presto", "aeroplan", "turbotax", "wealthsimple", "questrade", "hulu", "disney", "youtube",
     "linkedin", "facebook", "instagram", "whatsapp", "zoom", "slack", "notion", "figma", "dropbox", "etsy", "ebay",
@@ -320,16 +324,20 @@ class World:
 
 
 def assign_trigger_ids(world: World, agents: Sequence[Agent]) -> None:
-    events = []
+    """Number triggers in time order, core agents first: core trigger ids appear in the conversation
+    (and so in the frozen summary), so they must not shift when distractor logs are added."""
+    events: Dict[bool, List[Tuple[datetime, str, int, int]]] = {True: [], False: []}
     for agent in agents:
         for i, item in enumerate(agent.items):
             if isinstance(item, Req):
                 for j, step in enumerate(item.steps):
                     if isinstance(step, Trig):
-                        events.append((dt(item.t), agent.name, i, j))
-    events.sort()
-    for n, (_, name, i, j) in enumerate(events, start=1):
-        world.trigger_ids[(name, i, j)] = n
+                        events[agent.core].append((dt(item.t), agent.name, i, j))
+    n = 0
+    for core in (True, False):
+        for _, name, i, j in sorted(events[core]):
+            n += 1
+            world.trigger_ids[(name, i, j)] = n
 
 
 # ---- step rendering -----------------------------------------------------------------------------
@@ -1423,6 +1431,84 @@ CASES: List[Dict[str, Any]] = [
         "expected": [{"task": "ask Marcus Oyelaran (Fernway) to move the Thursday call to Friday morning", "gold": "Fernway Designer Search"}],
         "rationale": "Same owner as c19. Only the summary links Marcus to the designer search.",
     },
+    # ---- stress cases (split "stress", written after the solution was built) --------------------
+    # Paraphrase: a dormant owner referred to by description only (no name, org, or agent-name word);
+    # the conversation summary holds the link.
+    {
+        "id": "c21_dormant_paraphrase_wendell", "category": "dormant_paraphrase", "pair": "wendell", "split": "stress", "rule": [1, 2],
+        "message": "can you ask our guy at the credit union if we should lock in before the rate announcement",
+        "expected": [{"task": "ask Wendell Achebe (Brightmoor) whether to lock the renewal rate before the Nov 4 announcement", "gold": "Mortgage Renewal Paperwork"}],
+        "rationale": "The summary ties Brightmoor (brightmoorcu.ca, Wendell Achebe) to the mortgage renewal, its rate and the Nov 4 announcement. The message names no one and shares no word with the owner's name. "
+                     "Hard negative from 1600: 'Line of Credit Rate Change' (Northshore Bank, a bank, not the credit union) shares 'credit' and 'rate'.",
+    },
+    {
+        "id": "c22_dormant_paraphrase_ironwood", "category": "dormant_paraphrase", "pair": "ironwood", "split": "stress", "rule": [1, 2],
+        "message": "my knee's still not great, can you ask the place i work out to keep my account on hold through november",
+        "expected": [{"task": "ask Ironwood Athletic to extend the membership freeze through November", "gold": "Gym Membership Freeze"}],
+        "rationale": "The summary ties the Ironwood Athletic membership freeze to Theo's knee rehab. No name, and none of 'gym', 'membership', 'freeze'. "
+                     "Hard negatives: 'Climbing Gym Day Pass'; from 1600 'Sadie Yoga Studio Membership Freeze' (a freeze until Nov 8, but no knee): only the knee links the message to Ironwood.",
+    },
+    {
+        "id": "c23_dormant_paraphrase_harold", "category": "dormant_paraphrase", "pair": "harold", "split": "stress", "rule": [1, 2],
+        "message": "tell the guy next door i'm good to go halves on it, 575 each",
+        "expected": [{"task": "tell Harold Pemberton Theo agrees to split the fence repair ($575 each)", "gold": "Neighbour Fence Repair"}],
+        "rationale": "The summary has Harold Pemberton, the neighbour, asked to split a $1,150 fence repair (575 each). No name and no word of 'Neighbour Fence Repair'. "
+                     "Hard negatives: 'Email to Rui Deck Repair Quote', 'Backyard Shed Permit'.",
+    },
+    {
+        "id": "c24_dormant_paraphrase_tidewater", "category": "dormant_paraphrase", "pair": "tidewater", "split": "stress", "rule": [1, 2],
+        "message": "can you ask if my teeth appointment can be pushed to around 5",
+        "expected": [{"task": "ask Tidewater Dental to move the cleaning to about 17:00", "gold": "Dentist Cleaning Reschedule"}],
+        "rationale": "The summary has the pending Tidewater Dental cleaning reschedule. 'teeth appointment' shares no word with 'Dentist Cleaning Reschedule'. "
+                     "Hard negative: 'Orthodontist Consult for Nephew' (a different patient and practice).",
+    },
+    # New counterpart on a familiar topic: no existing agent owns it, but agents on the same topic exist.
+    {
+        "id": "c25_new_familiar_topic_dentist", "category": "new_counterpart_familiar_topic", "split": "stress", "rule": 3,
+        "message": "can you find a dentist near jules's office that does evening appointments and ask if they take new patients",
+        "expected": [{"task": "find a dentist near Jules's office with evening hours and ask about new patients", "gold": "NEW"}],
+        "rationale": "No dentist near Jules's office has ever come up. 'Dentist Cleaning Reschedule' owns Theo's own dentist (Tidewater) and 'Orthodontist Consult for Nephew' the nephew's; "
+                     "neither is this practice. Rule 3: a new agent.",
+    },
+    {
+        "id": "c26_new_familiar_topic_mechanic", "category": "new_counterpart_familiar_topic", "split": "stress", "rule": 3,
+        "message": "can you find a mechanic near us who can do a pre-winter inspection on the car? somewhere other than the tire place",
+        "expected": [{"task": "find a mechanic nearby for a pre-winter inspection (not Bramblewood Auto)", "gold": "NEW"}],
+        "rationale": "Car service is familiar: the recent 'Inbox Catch-Up Scan' found the Bramblewood Auto ('the tire place') winter tire email. The user explicitly wants a different shop, "
+                     "so no agent owns this counterpart. Rule 3: a new agent.",
+    },
+    {
+        "id": "c27_new_familiar_topic_restaurant", "category": "new_counterpart_familiar_topic", "split": "stress", "rule": 3,
+        "message": "book lunch for me and a new client somewhere quiet near the office this thursday",
+        "expected": [{"task": "book a quiet lunch near the office on Thursday for Theo and a new client", "gold": "NEW"}],
+        "rationale": "Restaurant bookings are familiar ('Jules Birthday Dinner' at Osteria Valdina; many reservation distractors, and from 1600 'Email to Dara Whitcomb Lunch Receipt', "
+                     "a past client lunch). This is a new client and no restaurant is named, so nothing owns it. Rule 3: a new agent.",
+    },
+    # Typo: the dormant inference cases with a misspelled name.
+    {
+        "id": "c28_dormant_typo_wendell", "category": "dormant_typo", "pair": "wendell", "split": "stress", "rule": [1, 2],
+        "message": "can you ask wendel if we should lock the rate now or wait til after the nov 4 announcement",
+        "expected": [{"task": "ask Wendell Achebe whether to lock the renewal rate or wait for the Nov 4 announcement", "gold": "Mortgage Renewal Paperwork"}],
+        "rationale": "c07 with 'Wendell' misspelled 'wendel'.",
+    },
+    {
+        "id": "c29_dormant_typo_tidewater", "category": "dormant_typo", "pair": "tidewater", "split": "stress", "rule": [1, 2],
+        "message": "email tidwater and ask if i can get a 5pm slot instead",
+        "expected": [{"task": "ask Tidewater Dental to move the cleaning to 17:00", "gold": "Dentist Cleaning Reschedule"}],
+        "rationale": "c14 with 'Tidewater' misspelled 'tidwater'.",
+    },
+    {
+        "id": "c30_dormant_typo_ironwood", "category": "dormant_typo", "pair": "ironwood", "split": "stress", "rule": [1, 2],
+        "message": "ask ironwod if they can extend my hold through november",
+        "expected": [{"task": "ask Ironwood Athletic to extend the membership freeze through November", "gold": "Gym Membership Freeze"}],
+        "rationale": "c16 with 'Ironwood' misspelled 'ironwod'.",
+    },
+    {
+        "id": "c31_dormant_typo_harold", "category": "dormant_typo", "pair": "harold", "split": "stress", "rule": [1, 2],
+        "message": "tell harrold im good to split it, 575 each",
+        "expected": [{"task": "tell Harold Pemberton Theo agrees to split the fence repair ($575 each)", "gold": "Neighbour Fence Repair"}],
+        "rationale": "c18 with 'Harold' misspelled 'harrold'.",
+    },
 ]
 
 # =============================================================================================
@@ -1436,40 +1522,49 @@ def load_json(path: Path, default: Any) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def distractor_agents(raw: List[Dict[str, Any]]) -> List[Agent]:
-    """Turn generated distractor specs (fixtures/generated/distractors.json) into Agents."""
-    agents = []
-    for spec in raw:
-        items: List[Any] = []
-        for req in spec["requests"]:
-            steps: List[Any] = []
-            for st in req["steps"]:
-                tool = st["tool"]
-                if tool == "task_email_search":
-                    emails = [Email(e["from"], e["subject"], e["date"], e["text"], thread=e.get("thread"),
-                                    labels=tuple(e.get("labels") or ("CATEGORY_UPDATES", "INBOX")), key=e.get("key"),
-                                    attachments=tuple(e.get("attachments") or ()))
-                              for e in st.get("results", [])]
-                    steps.append(Search(st["query"], st["gq"], emails))
-                elif tool == "gmail_create_draft":
-                    steps.append(Draft(st["to"], st["subject"], st["body"], thread=st.get("thread")))
-                elif tool == "gmail_execute_draft":
-                    steps.append(Send())
-                elif tool == "gmail_forward_email":
-                    steps.append(Forward(st["email_key"], st["to"], st["note"]))
-                elif tool == "createTrigger":
-                    steps.append(Trig(st["payload"], st.get("rrule"), st["start"]))
-                elif tool == "gmail_search_people":
-                    steps.append(People(st["query"], [(st["name"], st["email"])]))
-                else:
-                    raise ValueError(f"unsupported tool {tool} in {spec['name']}")
-            post = [P(req["reply"])]
-            if req.get("draft_view"):
-                post = [DraftView(req["reply"])]
-            items.append(Req(req["t"], [U(req["user"]), P(req["ack"])], req["instructions"], steps, resp=req.get("response"), post=post,
-                             wait=req.get("wait")))
-        agents.append(Agent(spec["name"], items, core=False, tier=spec["tier"]))
-    return agents
+def distractor_items(spec: Dict[str, Any]) -> List[Any]:
+    """Turn one generated distractor (fixtures/generated/distractors.json) into renderable Reqs."""
+    items: List[Any] = []
+    for req in spec["requests"]:
+        steps: List[Any] = []
+        for st in req["steps"]:
+            tool = st["tool"]
+            if tool == "task_email_search":
+                emails = [Email(e["from"], e["subject"], e["date"], e["text"], thread=e.get("thread"),
+                                labels=tuple(e.get("labels") or ("CATEGORY_UPDATES", "INBOX")), key=e.get("key"),
+                                attachments=tuple(e.get("attachments") or ()))
+                          for e in st.get("results", [])]
+                steps.append(Search(st["query"], st["gq"], emails))
+            elif tool == "gmail_create_draft":
+                steps.append(Draft(st["to"], st["subject"], st["body"], thread=st.get("thread")))
+            elif tool == "gmail_execute_draft":
+                steps.append(Send())
+            elif tool == "gmail_forward_email":
+                steps.append(Forward(st["email_key"], st["to"], st["note"]))
+            elif tool == "createTrigger":
+                steps.append(Trig(st["payload"], st.get("rrule"), st["start"]))
+            elif tool == "gmail_search_people":
+                steps.append(People(st["query"], [(st["name"], st["email"])]))
+            else:
+                raise ValueError(f"unsupported tool {tool} in {spec['name']}")
+        # Distractors have no conversation in the fixtures, so the user/Poke lines are placeholders
+        items.append(Req(req["t"], [U(""), P("")], req["instructions"], steps, resp=req.get("response"), post=[P("")]))
+    return items
+
+
+def request_tasks(lines: Sequence[Tuple[str, str, datetime]]) -> List[Tuple[int, int]]:
+    """(first, last) line index of every IA request in an agent log: its agent_request through its
+    agent_response. Trigger fires write no agent_request, so the production card updater (which
+    looks up the request by its instructions) never runs for them; they are skipped here too."""
+    tasks: List[Tuple[int, int]] = []
+    start: Optional[int] = None
+    for k, (tag, _, _) in enumerate(lines):
+        if tag == "agent_request":
+            start = k
+        elif tag == "agent_response" and start is not None:
+            tasks.append((start, k))
+            start = None
+    return tasks
 
 
 # =============================================================================================
@@ -1551,6 +1646,102 @@ REAL_DISTRACTORS: List[Dict[str, Any]] = [
     {"name": "Gas Bill Due Date Reminder", "kind": "same_topic", "relates_to": "Hydro Bill Reminder", "tier": 1600, "created": "2026-08-07 09:00:00"},
 ]
 
+# What each real distractor was for (feeds `generate logs`, like a noise distractor's brief and
+# counterpart). same_person entries reuse their core counterpart verbatim; same_topic entries use an
+# invented counterpart in the same line of work.
+REAL_DISTRACTOR_DETAILS: Dict[str, Dict[str, str]] = {
+    # same person, different topic
+    "Mom Flight Rebooking": {"category": "travel", "counterpart": "Rosa Marchetti, rosa.marchetti@quaymail.net",
+                             "brief": "Rebook Theo's mom's flight home to a day later after her Thanksgiving visit, and confirm the new time with her."},
+    "Harrow Hill Tasting Menu": {"category": "email_person", "counterpart": "Celeste Moreau, celeste@harrowhillestate.ca",
+                                 "brief": "Ask the venue coordinator for the wedding tasting-menu options and the available tasting dates."},
+    "Lakeport Hydro Outage Credit": {"category": "finance", "counterpart": "Lakeport Hydro, billing@lakeporthydro.ca",
+                                     "brief": "Ask the electricity provider for a bill credit after the two-day September outage."},
+    "Copperleaf Invoice Copy": {"category": "work_misc", "counterpart": "Hana Ishikawa, hana.ishikawa@copperleafdata.com",
+                                "brief": "Get a PDF copy of the latest Copperleaf Data invoice for Northfold's bookkeeper."},
+    "Email to Marco Spring Registration": {"category": "email_person", "counterpart": "Marco Bellandi, marco@riverdalerecsoccer.ca",
+                                           "brief": "Ask Marco whether registration for the spring rec soccer season is open and what it costs."},
+    "Sofia Housewarming Gift": {"category": "email_person", "counterpart": "Sofia Brandt, sofia.brandt@quaymail.net",
+                                "brief": "Ask Sofia what she'd like as a housewarming gift for her new place."},
+    "Tomasz November Book Pick": {"category": "email_person", "counterpart": "Tomasz Wierzbicki, tomasz.wierzbicki@quaymail.net",
+                                  "brief": "Ask Tomasz which book the club picked for November."},
+    "Oakhurst Chair Return": {"category": "purchase", "counterpart": "Oakhurst Furniture, orders@oakhurstfurniture.ca",
+                              "brief": "Return a dining chair that arrived scratched and get a refund."},
+    # same topic / work-type, different person or vendor
+    "Backsplash Tile Order Stonehaven": {"category": "purchase", "counterpart": "Stonehaven Tile, orders@stonehaventile.ca",
+                                         "brief": "Order the backsplash tile Theo picked and confirm the delivery date."},
+    "Email to Bianca Wedding Florist Quote": {"category": "email_person", "counterpart": "Bianca Ruiz, bianca@petalandstemflorals.ca",
+                                              "brief": "Ask Bianca for a quote on wedding flowers (bouquets and centrepieces) for June 2027."},
+    "Offsite Catering Cedar Hollow": {"category": "work_misc", "counterpart": "Juniper Table Catering, catering@junipertable.ca",
+                                      "brief": "Get a catering quote for lunch for 12 people at the Cedar Hollow team offsite."},
+    "Massage Therapy Receipt Lookup": {"category": "lookup", "counterpart": "Riverside Massage Clinic, receipts@riversidemassage.ca",
+                                       "brief": "Find the massage therapy receipts from the summer for an insurance claim."},
+    "Email to Sam Birthday Party RSVP": {"category": "email_person", "counterpart": "Sam Okafor, sam.okafor@quaymail.net",
+                                         "brief": "RSVP yes to Sam's birthday party and ask what to bring."},
+    "Email to Owen Client Demo Recording": {"category": "work_misc", "counterpart": "Owen Fraser, owen@northfoldstudio.ca",
+                                            "brief": "Ask Owen to share the recording of last week's client demo."},
+    "Property Tax Installment Reminder": {"category": "reminder", "counterpart": "",
+                                          "brief": "Set a reminder a week before each property tax installment is due."},
+    "Email to Felix Meetup Talk Slot": {"category": "email_person", "counterpart": "Felix Tremblay, felix@designmeetupto.ca",
+                                        "brief": "Ask Felix if there's a speaking slot at the next design meetup."},
+    "Indoor Futsal Team Signup": {"category": "email_person", "counterpart": "Eastside Futsal Club, register@eastsidefutsal.ca",
+                                  "brief": "Sign Theo up for the winter indoor futsal season."},
+    "Office Chair Warranty Claim": {"category": "purchase", "counterpart": "Ergoform Seating, warranty@ergoformseating.ca",
+                                    "brief": "File a warranty claim for the office chair whose gas lift failed."},
+    "Plumber Quote Basement Bathroom": {"category": "family_home", "counterpart": "Pipewell Plumbing, quotes@pipewellplumbing.ca",
+                                        "brief": "Get a quote from a plumber to rough in a basement bathroom."},
+    "Email to Theresa Officiant Booking": {"category": "email_person", "counterpart": "Theresa Quinn, theresa@vowsbytheresa.ca",
+                                           "brief": "Ask Theresa whether she's free to officiate a June 2027 wedding, and her fee."},
+    "Email to Lena Sprint Retro Notes": {"category": "work_misc", "counterpart": "Lena Park, lena@northfoldstudio.ca",
+                                         "brief": "Ask Lena to send her notes from the sprint retro."},
+    "Orthodontist Consult for Nephew": {"category": "family_home", "counterpart": "Brightline Orthodontics, hello@brightlineortho.ca",
+                                        "brief": "Book an orthodontist consultation for Theo's nephew Leo, age 12."},
+    "Email to Imani Contract Designer Rates": {"category": "email_person", "counterpart": "Imani Cole, imani@colestudio.co",
+                                               "brief": "Ask Imani her day rate for a few weeks of contract product design work."},
+    "Email to Ines Choir Audition": {"category": "email_person", "counterpart": "Ines Duarte, ines@riversidechoir.ca",
+                                     "brief": "Ask Ines when the community choir auditions are and what to prepare."},
+    "Email to Aunt Gina Halifax Visit": {"category": "email_person", "counterpart": "Gina Russo, gina.russo@quaymail.net",
+                                         "brief": "Ask Aunt Gina which weekend in November works for a visit to Halifax."},
+    "Friday Work Wrap-Up Digest": {"category": "reminder", "counterpart": "",
+                                   "brief": "Weekly trigger every Friday at 4pm summarizing the week's work emails."},
+    "Water Bill Autopay Setup": {"category": "finance", "counterpart": "Harbourview Water Services, billing@harbourviewwater.ca",
+                                 "brief": "Set up autopay for the water bill and confirm the first withdrawal date."},
+    "Email to Nadia Mortgage Broker Referral": {"category": "email_person", "counterpart": "Nadia Kaur, nadia.kaur@quaymail.net",
+                                                "brief": "Ask Nadia for the contact details of the mortgage broker she used."},
+    "Engagement Ring Insurance Rider": {"category": "finance", "counterpart": "Northgate Mutual Insurance, riders@northgatemutual.ca",
+                                        "brief": "Add an insurance rider for the engagement ring to the home policy."},
+    "Climbing Gym Day Pass": {"category": "purchase", "counterpart": "Boulder Barn, desk@boulderbarn.ca",
+                              "brief": "Buy a climbing gym day pass for Saturday and confirm the rental gear."},
+    "Fireplace Insert Quote Ember & Co": {"category": "family_home", "counterpart": "Ember & Co Hearth, quotes@emberandco.ca",
+                                          "brief": "Get a quote for a gas fireplace insert for the living room."},
+    "Roadmap Template Research": {"category": "research", "counterpart": "",
+                                  "brief": "Dig up product roadmap templates from design newsletters Theo is subscribed to."},
+    "Quebec City Hotel Quote": {"category": "travel", "counterpart": "Hotel Champlain-Haut, reservations@hotelchamplainhaut.ca",
+                                "brief": "Get a rate for two nights at a Quebec City hotel in late November."},
+    "Backyard Shed Permit": {"category": "family_home", "counterpart": "East York permits office, permits@eastyorkbuilding.ca",
+                             "brief": "Find out whether a backyard shed needs a city permit, and apply if it does."},
+    "Weekend Inbox Sweep": {"category": "admin_generic", "counterpart": "",
+                            "brief": "Weekend scan of the inbox for anything that needs action before Monday."},
+    "Email to Dev Running Club Signup": {"category": "email_person", "counterpart": "Dev Mehta, dev@lakeshorerunners.ca",
+                                         "brief": "Ask Dev how to join the running club's Saturday long runs."},
+    "Wedding Invitation Calligrapher": {"category": "email_person", "counterpart": "Script & Quill Studio, hello@scriptandquill.ca",
+                                        "brief": "Ask a calligrapher for a quote to address about 120 wedding invitation envelopes."},
+    "Videographer Quote Comparison": {"category": "research", "counterpart": "Reelhouse Films, hello@reelhousefilms.ca",
+                                      "brief": "Compare quotes from two wedding videographers."},
+    "Line of Credit Rate Change": {"category": "finance", "counterpart": "Northshore Bank, notices@northshorebank.ca",
+                                   "brief": "Find the bank letter about the line of credit rate change and what the new rate is."},
+    "Email to Rui Deck Repair Quote": {"category": "email_person", "counterpart": "Rui Costa, rui@costadecks.ca",
+                                       "brief": "Ask Rui for a quote to repair the rotting boards on the back deck."},
+    "Northern Lights UX Summit Ticket": {"category": "work_misc", "counterpart": "Northern Lights UX Summit, tickets@nluxsummit.ca",
+                                         "brief": "Buy a ticket for the Northern Lights UX Summit and find the early-bird deadline."},
+    "Lake Cabin Rental Muskoka": {"category": "travel", "counterpart": "Muskoka Pines Cabins, stay@muskokapines.ca",
+                                  "brief": "Book a lake cabin in Muskoka for a long weekend in August."},
+    "Supper Club Reservation Thornfield": {"category": "email_person", "counterpart": "Thornfield Supper Club, reservations@thornfieldsupper.ca",
+                                           "brief": "Reserve a table for four at a supper club on a Saturday in October."},
+    "Gas Bill Due Date Reminder": {"category": "reminder", "counterpart": "Northvale Gas, billing@northvalegas.ca",
+                                   "brief": "Set a monthly reminder a few days before the gas bill is due."},
+}
+
 # Counterparts whose case gold rests on affinity alone (current + held-out cases): never give
 # them a same_person sibling. NEW-gold case counterparts must have no agent at all.
 AFFINITY_GOLD_OWNERS = {
@@ -1575,6 +1766,39 @@ def real_distractor_violations(spec: Dict[str, Any]) -> List[str]:
     if not (DISTRACTOR_START <= spec["created"] <= DISTRACTOR_END):
         problems.append("created outside the distractor window")
     return problems
+
+
+def real_text_violations(name: str, text: str) -> List[str]:
+    """distractor_violations for a real distractor's log or card text. Its own counterpart (and the
+    core person/org behind it) and anything in its name are allowed, and so are reserved topics;
+    every other core counterpart, the NEW-case terms, and real brands are not."""
+    counterpart = REAL_DISTRACTOR_DETAILS[name]["counterpart"]
+    allowed_parts = [name, counterpart]
+    for person in CORE_PEOPLE:
+        if person["email"] and person["email"] in counterpart:
+            allowed_parts += [person["first"], person["last"], person["org"], person["domain"]]
+    allowed = strip_accents(" ".join(allowed_parts).lower())
+    low = strip_accents((name + "\n" + text).lower())
+    problems = []
+    for term, rx in zip(DISTRACTOR_BANNED_ANYWHERE, _ANY_RE):
+        if rx.search(low) and not rx.search(allowed):
+            problems.append(f"mentions core term {term!r}")
+    for sub in DISTRACTOR_BANNED_SUBSTRINGS:
+        if sub != "mortgage" and sub in low and sub not in allowed:
+            problems.append(f"contains banned substring {sub!r}")
+    problems += [f"mentions NEW-case term {t!r}" for t in NEW_CASE_TERMS if t in low]
+    low_wo_urls = re.sub(r"https://mail\.google\.com\S*", "", low)
+    for brand, rx in zip(REAL_BRAND_BLOCKLIST, _BRAND_RE):
+        if rx.search(low_wo_urls):
+            problems.append(f"real brand {brand!r}")
+    return problems
+
+
+def text_violations(name: str, text: str) -> List[str]:
+    """Contamination check for any distractor's generated text (logs or card)."""
+    if name in REAL_DISTRACTOR_DETAILS:
+        return real_text_violations(name, text)
+    return distractor_violations(name, text)
 
 
 def name_only_distractors(raw: List[Dict[str, Any]]) -> Tuple[List[Agent], Dict[str, datetime]]:
@@ -1618,6 +1842,12 @@ def name_only_distractors(raw: List[Dict[str, Any]]) -> Tuple[List[Agent], Dict[
 def build(include_generated: bool = True) -> Built:
     raw_names = load_json(GENERATED / "distractor_names.json", {"agents": []})["agents"] if include_generated else []
     distractors, distractor_created = name_only_distractors(raw_names)
+    # attach generated distractor logs (fixtures/generated/distractors.json) where present
+    raw_logs = load_json(DISTRACTOR_LOGS_PATH, {"agents": []})["agents"] if include_generated else []
+    log_specs = {spec["name"]: spec for spec in raw_logs}
+    for agent in distractors:
+        if agent.name in log_specs:
+            agent.items = distractor_items(log_specs[agent.name])
     agents = CORE_AGENTS + distractors
     names = [a.name for a in agents]
     assert len(set(names)) == len(names), "duplicate agent names"
@@ -1638,6 +1868,11 @@ def build(include_generated: bool = True) -> Built:
             convo_core.extend(convo)
         else:
             convo_distractor[agent.name] = convo
+    # distractor logs render after every core agent, so core logs and thread ids are unchanged
+    for agent in sorted((a for a in distractors if a.items), key=lambda a: (_first_time(a), a.name)):
+        lines, convo = render_agent(world, agent)
+        logs[agent.name] = lines
+        convo_distractor[agent.name] = convo
     recent_cut = dt(RECENT_START)
     for start, entries in OLDER_CHATS + RECENT_CHATS:
         convo_core.extend(_chat_entries(start, entries, f"chat:{start}"))
@@ -1683,11 +1918,36 @@ def conversation_lines(built: Built) -> List[str]:
 
 
 def rosters(built: Built) -> Dict[int, List[str]]:
+    """Agent names per roster size, in creation order."""
     out = {}
     for size in ROSTER_SIZES:
         members = [a for a in built.agents if a.core or a.tier <= size]
         members.sort(key=lambda a: (built.created[a.name], a.name))
         out[size] = [a.name for a in members]
+    return out
+
+
+def last_active(built: Built, name: str) -> datetime:
+    """When the agent last finished a task: its last agent_response (IA requests and trigger fires
+    both go through the batch manager, which marks the agent active when a task finishes)."""
+    responses = [w for tag, _, w in built.logs.get(name, []) if tag == "agent_response"]
+    return max(responses) if responses else built.created[name]
+
+
+def roster_cards(built: Built, cards: Dict[str, Dict[str, Any]]) -> Dict[int, List[Dict[str, Any]]]:
+    """roster_N.json contents: AgentCard dicts (field order as the server writes them)."""
+    out = {}
+    for size, names in rosters(built).items():
+        out[size] = [
+            {
+                "name": name,
+                "summary": cards[name]["summary"],
+                "artifacts": cards[name]["artifacts"],
+                "created_at": ts(built.created[name]),
+                "last_active_at": ts(last_active(built, name)),
+            }
+            for name in names
+        ]
     return out
 
 
@@ -1711,9 +1971,13 @@ def write_all(built: Built) -> None:
     (STATE / "conversation" / "poke_working_memory.log").write_text("".join(wm), encoding="utf-8")
     # No execution agent logs are written: routing depends only on what the IA reads (roster names +
     # working memory). Core logs are still rendered in memory because the conversation is derived from them.
+    cards = load_json(CARDS_PATH, {"cards": {}})["cards"]
+    missing = [a.name for a in built.agents if a.name not in cards]
+    if missing:
+        raise SystemExit(f"{len(missing)} agents have no card (e.g. {missing[:3]}): run `python -m evals.routing.generate cards`")
     ROSTERS.mkdir(parents=True, exist_ok=True)
-    for size, names in rosters(built).items():
-        (ROSTERS / f"roster_{size}.json").write_text(json.dumps(names, indent=2), encoding="utf-8")
+    for size, entries in roster_cards(built, cards).items():
+        (ROSTERS / f"roster_{size}.json").write_text(json.dumps(entries, indent=2), encoding="utf-8")
     CASES_PATH.write_text(json.dumps({"version": 1, "cases": CASES}, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
@@ -1827,20 +2091,41 @@ def check(built: Built) -> List[str]:
         if whens != sorted(whens):
             errors.append(f"{agent.name}: log timestamps not chronological")
 
-    # 5. rosters nested, sizes exact, roster_25 == core, every name has a log
+    # 4b. every distractor has a generated log, rendered in the production format
+    for agent in built.agents:
+        if agent.core:
+            continue
+        lines = built.logs.get(agent.name)
+        if not lines:
+            errors.append(f"distractor {agent.name!r} has no log (run `generate logs`)")
+            continue
+        if not request_tasks(lines):
+            errors.append(f"distractor {agent.name!r}: log has no complete request")
+
+    # 5. rosters: card lists, nested, sizes exact, roster_25 == core, creation order, cards match cards.json
     loaded = {}
+    cards = load_json(CARDS_PATH, {"cards": {}})["cards"]
+    expected_rosters = roster_cards(built, cards) if all(a.name in cards for a in built.agents) else {}
+    if not expected_rosters:
+        errors.append("cards.json is missing cards (run `generate cards`)")
     for size in ROSTER_SIZES:
         path = ROSTERS / f"roster_{size}.json"
-        names = json.loads(path.read_text(encoding="utf-8"))
+        entries = json.loads(path.read_text(encoding="utf-8"))
+        if not all(isinstance(e, dict) and isinstance(e.get("name"), str) for e in entries):
+            errors.append(f"roster_{size} must be a list of agent cards")
+            continue
+        names = [e["name"] for e in entries]
         loaded[size] = names
         if len(names) != size or len(set(names)) != size:
             errors.append(f"roster_{size} has {len(names)} names ({len(set(names))} unique)")
-        expected_text = json.dumps(names, indent=2)
-        if path.read_text(encoding="utf-8") != expected_text:
-            errors.append(f"roster_{size}.json is not written like the server (indent=2)")
+        if expected_rosters and path.read_text(encoding="utf-8") != json.dumps(expected_rosters[size], indent=2):
+            errors.append(f"roster_{size}.json differs from cards.json + creation times (rebuild)")
         order = [built.created[n] for n in names]
         if order != sorted(order):
             errors.append(f"roster_{size} not in creation order")
+        for e in entries:
+            if not str(e.get("summary") or "").strip():
+                errors.append(f"roster_{size}: {e['name']!r} has an empty summary")
     if set(loaded[25]) != set(core_names):
         errors.append("roster_25 != core agents")
     for small, big in zip(ROSTER_SIZES, ROSTER_SIZES[1:]):
@@ -1852,7 +2137,7 @@ def check(built: Built) -> List[str]:
 
     # 6. cases
     cases = json.loads(CASES_PATH.read_text(encoding="utf-8"))["cases"]
-    if len(cases) != 20:
+    if len(cases) != 31:
         errors.append(f"{len(cases)} cases")
     for case in cases:
         for exp in case["expected"]:
@@ -1870,12 +2155,23 @@ def check(built: Built) -> List[str]:
         for spec in REAL_DISTRACTORS:
             if (spec["name"] in loaded[size]) != (spec["tier"] <= size):
                 errors.append(f"real distractor {spec['name']!r} wrong membership in roster_{size}")
+    if set(REAL_DISTRACTOR_DETAILS) != set(real):
+        errors.append("REAL_DISTRACTOR_DETAILS does not cover exactly the real distractors")
     for agent in built.agents:
-        if agent.core or agent.name in real:
+        if agent.core:
             continue
-        problems = distractor_violations(agent.name, agent.name)
-        if problems:
-            errors.append(f"distractor {agent.name!r}: {problems[:3]}")
+        if agent.name not in real:
+            problems = distractor_violations(agent.name, agent.name)
+            if problems:
+                errors.append(f"distractor {agent.name!r}: {problems[:3]}")
+        # generated text (log payloads + card) must not plant a second owner for a case
+        log_text = "\n".join(payload for _, payload, _ in built.logs.get(agent.name, []))
+        card = cards.get(agent.name) or {}
+        card_text = "\n".join([card.get("summary", ""), *card.get("artifacts", [])])
+        for label, text in (("log", log_text), ("card", card_text)):
+            problems = text_violations(agent.name, text)
+            if problems:
+                errors.append(f"distractor {agent.name!r} {label}: {problems[:3]}")
 
     # 8. recent window references only roster_25 agents; dormant counterpart absent from recent
     recent_text = "".join(conv[LAST_INDEX + 1:])
@@ -1915,7 +2211,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         return 0
     if not args.check_only:
         write_all(built)
-        print(f"wrote {len(built.agents)} roster agents (no logs), {len(built.conversation)} conversation entries, rosters {list(ROSTER_SIZES)}, {len(CASES)} cases")
+        print(f"wrote {len(built.agents)} roster agent cards, {len(built.conversation)} conversation entries, rosters {list(ROSTER_SIZES)}, {len(CASES)} cases")
     if args.check or args.check_only:
         errors = check(built)
         if errors:

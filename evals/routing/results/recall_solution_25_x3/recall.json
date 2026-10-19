@@ -1,0 +1,500 @@
+{
+ "rows": [
+  {
+   "size": 25,
+   "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+   "gold": "Inbox Catch-Up Scan",
+   "query": "Bramblewood Auto Service winter tire changeover booking reply",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+   "gold": "Inbox Catch-Up Scan",
+   "query": "Bramblewood Auto winter tire changeover booking reply (service@bramblewoodauto.ca)",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+   "gold": "Inbox Catch-Up Scan",
+   "query": "Bramblewood Auto Service winter tire changeover booking reply",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c05_confirm_pending_draft",
+   "gold": "Copperleaf Renewal Thread",
+   "query": "Copperleaf Renewal Thread Hana Ishikawa usage report reply",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c06_modify_existing_trigger",
+   "gold": "Sunday Week Ahead Brief",
+   "query": "Sunday week-ahead rundown routine schedule change to 8:30 PM (trigger ID 2, America/Toronto)",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c06_modify_existing_trigger",
+   "gold": "Sunday Week Ahead Brief",
+   "query": "Sunday week-ahead rundown recurring routine trigger schedule change",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c06_modify_existing_trigger",
+   "gold": "Sunday Week Ahead Brief",
+   "query": "Sunday week-ahead rundown recurring trigger schedule change to 8:30pm (trigger ID 2)",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c07_revive_dormant_counterpart",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor mortgage renewal Wendell Achebe rate lock",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c07_revive_dormant_counterpart",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor mortgage renewal Wendell Achebe rate lock",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c07_revive_dormant_counterpart",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor mortgage renewal Wendell Achebe rate lock decision",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c08_same_first_name_other_person",
+   "gold": "Engagement Shoot Booking",
+   "query": "Engagement Shoot Booking Priya Sandhu Lumen & Linen Photography",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c11_dormant_name_match_noor",
+   "gold": "Save the Date Printing",
+   "query": "Inkwell & Vine save-the-date letterpress quote Noor Hassan 120 cards",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c11_dormant_name_match_noor",
+   "gold": "Save the Date Printing",
+   "query": "Inkwell & Vine save-the-date letterpress order Noor Hassan quote 120 cards",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c11_dormant_name_match_noor",
+   "gold": "Save the Date Printing",
+   "query": "Inkwell & Vine save-the-dates Noor Hassan letterpress quote 120 cards",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c12_dormant_inference_noor",
+   "gold": "Save the Date Printing",
+   "query": "Noor Hassan Inkwell & Vine save-the-date letterpress order",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c12_dormant_inference_noor",
+   "gold": "Save the Date Printing",
+   "query": "Inkwell & Vine save-the-dates Noor Hassan letterpress quote 120 A6",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c12_dormant_inference_noor",
+   "gold": "Save the Date Printing",
+   "query": "Noor Hassan Inkwell & Vine save-the-dates letterpress quote thread noor@inkwellandvine.ca",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c13_dormant_name_match_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning appointment reschedule (frontdesk@tidewaterdental.ca) for Theo Marchetti",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c13_dormant_name_match_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning appointment reschedule frontdesk@tidewaterdental.ca",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c13_dormant_name_match_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning appointment reschedule frontdesk@tidewaterdental.ca",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c14_dormant_inference_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning appointment reschedule frontdesk@tidewaterdental.ca",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c14_dormant_inference_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning reschedule frontdesk@tidewaterdental.ca thread 1a0ee1f0348a9b4c",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c14_dormant_inference_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental frontdesk cleaning appointment reschedule",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c15_dormant_name_match_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze extension through November for Theo Marchetti",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c15_dormant_name_match_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze extension through November (members@ironwoodathletic.ca)",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c15_dormant_name_match_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze knee rehab extend through November (members@ironwoodathletic.ca)",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c16_dormant_inference_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze knee rehab members@ironwoodathletic.ca",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c16_dormant_inference_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze knee rehab hold members@ironwoodathletic.ca",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c16_dormant_inference_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze knee rehab hold (members@ironwoodathletic.ca)",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c17_dormant_name_match_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm posts panels",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c17_dormant_name_match_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm posts panels",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c17_dormant_name_match_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm posts panels",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c18_dormant_inference_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c18_dormant_inference_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair cost split $1,150 harold.pemberton@quaymail.net",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c18_dormant_inference_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm posts panels thread 1a0f47a7448c6263",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c19_dormant_name_match_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "Marcus Oyelaran Fernway Talent senior product designer search call reschedule",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c19_dormant_name_match_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "Marcus Oyelaran Fernway Talent senior product designer search call scheduling",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c19_dormant_name_match_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "Marcus Oyelaran Fernway Talent senior product designer search call reschedule",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c20_dormant_inference_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "Marcus Oyelaran Fernway Talent senior product designer search call scheduling",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c20_dormant_inference_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "Marcus Oyelaran Fernway Talent senior product designer search call reschedule",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c20_dormant_inference_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "Marcus Oyelaran Fernway Talent senior product designer search call",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  }
+ ],
+ "top_k": 10,
+ "query_source": "evals/routing/results/solution_25_x3",
+ "embedding_model": "openai/text-embedding-3-small",
+ "embedding_dimensions": 512
+}

@@ -120,6 +120,14 @@ CASES = {
 }
 
 
+def _card(name: str) -> dict:
+    """Roster entry in the server's card format; the summary is the agent's first request (stub only)."""
+    entries = AGENTS.get(name) or []
+    request = next((p for t, _, p in entries if t == "agent_request"), name)
+    stamps = [ts for _, ts, _ in entries] or ["2026-10-01 09:00:00"]
+    return {"name": name, "summary": request, "artifacts": [], "created_at": stamps[0], "last_active_at": stamps[-1]}
+
+
 def build(out: Path) -> None:
     for sub in ("state", "rosters"):
         shutil.rmtree(out / sub, ignore_errors=True)
@@ -143,7 +151,8 @@ def build(out: Path) -> None:
         (state / "execution_agents" / agent_log_filename(name)).write_text("".join(lines), encoding="utf-8")
 
     for size, roster in ((3, ROSTER_3), (6, ROSTER_6)):
-        (out / "rosters" / f"roster_{size}.json").write_text(json.dumps(roster, indent=2), encoding="utf-8")
+        cards = [_card(name) for name in roster]
+        (out / "rosters" / f"roster_{size}.json").write_text(json.dumps(cards, indent=2), encoding="utf-8")
     (out / "cases.json").write_text(json.dumps(CASES, indent=2), encoding="utf-8")
 
 

@@ -314,6 +314,192 @@
         }
       ],
       "rationale": "Same owner as c19. Only the summary links Marcus to the designer search."
+    },
+    {
+      "id": "c21_dormant_paraphrase_wendell",
+      "category": "dormant_paraphrase",
+      "pair": "wendell",
+      "split": "stress",
+      "rule": [
+        1,
+        2
+      ],
+      "message": "can you ask our guy at the credit union if we should lock in before the rate announcement",
+      "expected": [
+        {
+          "task": "ask Wendell Achebe (Brightmoor) whether to lock the renewal rate before the Nov 4 announcement",
+          "gold": "Mortgage Renewal Paperwork"
+        }
+      ],
+      "rationale": "The summary ties Brightmoor (brightmoorcu.ca, Wendell Achebe) to the mortgage renewal, its rate and the Nov 4 announcement. The message names no one and shares no word with the owner's name. Hard negative from 1600: 'Line of Credit Rate Change' (Northshore Bank, a bank, not the credit union) shares 'credit' and 'rate'."
+    },
+    {
+      "id": "c22_dormant_paraphrase_ironwood",
+      "category": "dormant_paraphrase",
+      "pair": "ironwood",
+      "split": "stress",
+      "rule": [
+        1,
+        2
+      ],
+      "message": "my knee's still not great, can you ask the place i work out to keep my account on hold through november",
+      "expected": [
+        {
+          "task": "ask Ironwood Athletic to extend the membership freeze through November",
+          "gold": "Gym Membership Freeze"
+        }
+      ],
+      "rationale": "The summary ties the Ironwood Athletic membership freeze to Theo's knee rehab. No name, and none of 'gym', 'membership', 'freeze'. Hard negatives: 'Climbing Gym Day Pass'; from 1600 'Sadie Yoga Studio Membership Freeze' (a freeze until Nov 8, but no knee): only the knee links the message to Ironwood."
+    },
+    {
+      "id": "c23_dormant_paraphrase_harold",
+      "category": "dormant_paraphrase",
+      "pair": "harold",
+      "split": "stress",
+      "rule": [
+        1,
+        2
+      ],
+      "message": "tell the guy next door i'm good to go halves on it, 575 each",
+      "expected": [
+        {
+          "task": "tell Harold Pemberton Theo agrees to split the fence repair ($575 each)",
+          "gold": "Neighbour Fence Repair"
+        }
+      ],
+      "rationale": "The summary has Harold Pemberton, the neighbour, asked to split a $1,150 fence repair (575 each). No name and no word of 'Neighbour Fence Repair'. Hard negatives: 'Email to Rui Deck Repair Quote', 'Backyard Shed Permit'."
+    },
+    {
+      "id": "c24_dormant_paraphrase_tidewater",
+      "category": "dormant_paraphrase",
+      "pair": "tidewater",
+      "split": "stress",
+      "rule": [
+        1,
+        2
+      ],
+      "message": "can you ask if my teeth appointment can be pushed to around 5",
+      "expected": [
+        {
+          "task": "ask Tidewater Dental to move the cleaning to about 17:00",
+          "gold": "Dentist Cleaning Reschedule"
+        }
+      ],
+      "rationale": "The summary has the pending Tidewater Dental cleaning reschedule. 'teeth appointment' shares no word with 'Dentist Cleaning Reschedule'. Hard negative: 'Orthodontist Consult for Nephew' (a different patient and practice)."
+    },
+    {
+      "id": "c25_new_familiar_topic_dentist",
+      "category": "new_counterpart_familiar_topic",
+      "split": "stress",
+      "rule": 3,
+      "message": "can you find a dentist near jules's office that does evening appointments and ask if they take new patients",
+      "expected": [
+        {
+          "task": "find a dentist near Jules's office with evening hours and ask about new patients",
+          "gold": "NEW"
+        }
+      ],
+      "rationale": "No dentist near Jules's office has ever come up. 'Dentist Cleaning Reschedule' owns Theo's own dentist (Tidewater) and 'Orthodontist Consult for Nephew' the nephew's; neither is this practice. Rule 3: a new agent."
+    },
+    {
+      "id": "c26_new_familiar_topic_mechanic",
+      "category": "new_counterpart_familiar_topic",
+      "split": "stress",
+      "rule": 3,
+      "message": "can you find a mechanic near us who can do a pre-winter inspection on the car? somewhere other than the tire place",
+      "expected": [
+        {
+          "task": "find a mechanic nearby for a pre-winter inspection (not Bramblewood Auto)",
+          "gold": "NEW"
+        }
+      ],
+      "rationale": "Car service is familiar: the recent 'Inbox Catch-Up Scan' found the Bramblewood Auto ('the tire place') winter tire email. The user explicitly wants a different shop, so no agent owns this counterpart. Rule 3: a new agent."
+    },
+    {
+      "id": "c27_new_familiar_topic_restaurant",
+      "category": "new_counterpart_familiar_topic",
+      "split": "stress",
+      "rule": 3,
+      "message": "book lunch for me and a new client somewhere quiet near the office this thursday",
+      "expected": [
+        {
+          "task": "book a quiet lunch near the office on Thursday for Theo and a new client",
+          "gold": "NEW"
+        }
+      ],
+      "rationale": "Restaurant bookings are familiar ('Jules Birthday Dinner' at Osteria Valdina; many reservation distractors, and from 1600 'Email to Dara Whitcomb Lunch Receipt', a past client lunch). This is a new client and no restaurant is named, so nothing owns it. Rule 3: a new agent."
+    },
+    {
+      "id": "c28_dormant_typo_wendell",
+      "category": "dormant_typo",
+      "pair": "wendell",
+      "split": "stress",
+      "rule": [
+        1,
+        2
+      ],
+      "message": "can you ask wendel if we should lock the rate now or wait til after the nov 4 announcement",
+      "expected": [
+        {
+          "task": "ask Wendell Achebe whether to lock the renewal rate or wait for the Nov 4 announcement",
+          "gold": "Mortgage Renewal Paperwork"
+        }
+      ],
+      "rationale": "c07 with 'Wendell' misspelled 'wendel'."
+    },
+    {
+      "id": "c29_dormant_typo_tidewater",
+      "category": "dormant_typo",
+      "pair": "tidewater",
+      "split": "stress",
+      "rule": [
+        1,
+        2
+      ],
+      "message": "email tidwater and ask if i can get a 5pm slot instead",
+      "expected": [
+        {
+          "task": "ask Tidewater Dental to move the cleaning to 17:00",
+          "gold": "Dentist Cleaning Reschedule"
+        }
+      ],
+      "rationale": "c14 with 'Tidewater' misspelled 'tidwater'."
+    },
+    {
+      "id": "c30_dormant_typo_ironwood",
+      "category": "dormant_typo",
+      "pair": "ironwood",
+      "split": "stress",
+      "rule": [
+        1,
+        2
+      ],
+      "message": "ask ironwod if they can extend my hold through november",
+      "expected": [
+        {
+          "task": "ask Ironwood Athletic to extend the membership freeze through November",
+          "gold": "Gym Membership Freeze"
+        }
+      ],
+      "rationale": "c16 with 'Ironwood' misspelled 'ironwod'."
+    },
+    {
+      "id": "c31_dormant_typo_harold",
+      "category": "dormant_typo",
+      "pair": "harold",
+      "split": "stress",
+      "rule": [
+        1,
+        2
+      ],
+      "message": "tell harrold im good to split it, 575 each",
+      "expected": [
+        {
+          "task": "tell Harold Pemberton Theo agrees to split the fence repair ($575 each)",
+          "gold": "Neighbour Fence Repair"
+        }
+      ],
+      "rationale": "c18 with 'Harold' misspelled 'harrold'."
     }
   ]
 }

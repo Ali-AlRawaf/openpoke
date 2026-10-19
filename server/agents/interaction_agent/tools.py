@@ -57,6 +57,9 @@ TOOL_SCHEMAS = [
         "function": {
             "name": "create_agent",
             "description": "Create a new execution agent with a card describing it. Use only when no existing agent fits the task. Then call send_message_to_agent with the same name; both calls can go in the same response.",
+            # Strict: the API guarantees arguments match the schema (artifacts arrives as an array of
+            # strings, never a string that looks like one)
+            "strict": True,
             "parameters": {
                 "type": "object",
                 "properties": {

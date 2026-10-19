@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import html
 import inspect
 import json
 import os
@@ -34,8 +35,13 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 SERVER_DATA = (REPO_ROOT / "server" / "data").resolve()
 DEFAULT_FIXTURES = "evals/routing/fixtures"
 DEFAULT_SIZES = "25,50,100,200,400,800,1600"
-MAX_ITERATIONS = 3
-INTERCEPTED = {"send_message_to_agent", "send_message_to_user", "send_draft", "wait"}
+# Enough for: search -> (search again) -> create_agent + send_message_to_agent, plus one recovery
+# turn after a rejected send. Production allows 8 (InteractionAgentRuntime.MAX_TOOL_ITERATIONS).
+MAX_ITERATIONS = 6
+# Side-effecting IA tools are stubbed with production-identical results; search_agents (read-only)
+# runs for real against the installed roster and embeddings.
+INTERCEPTED = {"create_agent", "send_message_to_agent", "send_message_to_user", "send_draft", "wait"}
+AGENT_TAG_RE = re.compile(r'<agent name="([^"]*)"')
 CONVERSATION_TAGS = {"user_message", "poke_reply", "agent_message", "wait"}
 AGENT_LOG_TAGS = {"agent_request", "agent_action", "tool_response", "agent_response"}
 TIMESTAMP_RE = re.compile(r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$")
@@ -161,8 +167,13 @@ def _load_cases(fixtures: Path) -> CasesFile:
     return CasesFile.model_validate_json((fixtures / "cases.json").read_text(encoding="utf-8"))
 
 
-def _load_roster(fixtures: Path, size: int) -> List[str]:
+def _load_roster(fixtures: Path, size: int) -> List[Dict[str, Any]]:
+    """roster_N.json: a list of agent cards, exactly as the server stores roster.json."""
     return json.loads((fixtures / "rosters" / f"roster_{size}.json").read_text(encoding="utf-8"))
+
+
+def _embeddings_path(fixtures: Path) -> Path:
+    return fixtures / "embeddings" / "agent_embeddings.npz"
 
 
 def validate_fixtures(fixtures: Path, sizes: List[int]) -> List[str]:
@@ -226,9 +237,15 @@ def validate_fixtures(fixtures: Path, sizes: List[int]) -> List[str]:
         except json.JSONDecodeError as exc:
             problems.append(f"rosters/roster_{size}.json: invalid JSON: {exc}")
             continue
-        if not isinstance(data, list) or not all(isinstance(x, str) and x.strip() for x in data):
-            problems.append(f"rosters/roster_{size}.json: must be a JSON list of non-empty strings")
+        card_keys = {"name", "summary", "artifacts", "created_at", "last_active_at"}
+        if not isinstance(data, list) or not all(
+            isinstance(x, dict) and set(x) == card_keys and isinstance(x["name"], str) and x["name"].strip()
+            and isinstance(x["summary"], str) and isinstance(x["artifacts"], list)
+            for x in data
+        ):
+            problems.append(f"rosters/roster_{size}.json: must be a JSON list of agent cards {sorted(card_keys)}")
             continue
+        data = [x["name"] for x in data]
         if len(set(data)) != len(data):
             dupes = sorted({x for x in data if data.count(x) > 1})
             problems.append(f"rosters/roster_{size}.json: duplicate names {dupes}")
@@ -263,6 +280,11 @@ def validate_fixtures(fixtures: Path, sizes: List[int]) -> List[str]:
         for log in sorted(agents_dir.glob("*.log")) if agents_dir.is_dir() else []:
             if log.name not in slug_owner:
                 problems.append(f"orphan log not in roster_{present[-1]}: state/execution_agents/{log.name}")
+
+    # prebuilt search embeddings (gitignored): without them every first search at a size would
+    # embed the roster concurrently from many cases
+    if any(s > 10 for s in sizes) and not _embeddings_path(fixtures).is_file():
+        problems.append(f"missing {_embeddings_path(fixtures).relative_to(fixtures)}: run `python -m evals.routing.generate embeddings`")
 
     # cases
     cases_path = fixtures / "cases.json"
@@ -335,23 +357,29 @@ def _validate_working_memory(conv_path: Path, wm_path: Path) -> List[str]:
 
 
 def _prepare_size(fixtures: Path, size: int) -> List[str]:
-    """Wipe the data dir, copy state/, install roster_N, drop logs of agents outside roster_N."""
+    """Wipe the data dir, copy state/, install roster_N (cards) and the search embeddings, drop logs
+    of agents outside roster_N. Returns the roster's agent names."""
     logfmt = _logfmt()
     data = _DATA_DIR
     assert data is not None and data != SERVER_DATA
     shutil.rmtree(data)
     data.mkdir(parents=True)
     shutil.copytree(fixtures / "state", data, dirs_exist_ok=True)
-    roster = _load_roster(fixtures, size)
+    cards = _load_roster(fixtures, size)
+    names = [card["name"] for card in cards]
     agents_dir = data / "execution_agents"
     agents_dir.mkdir(parents=True, exist_ok=True)
     with open(agents_dir / "roster.json", "w") as fh:
-        json.dump(roster, fh, indent=2)
-    keep = {logfmt.agent_log_filename(n) for n in roster}
+        json.dump(cards, fh, indent=2)
+    if _embeddings_path(fixtures).is_file():
+        # the server's EmbeddingStore loads this file once (lazily) and keeps it in memory; it covers
+        # every roster size, so searches only embed their query
+        shutil.copyfile(_embeddings_path(fixtures), agents_dir / "agent_embeddings.npz")
+    keep = {logfmt.agent_log_filename(n) for n in names}
     for log in agents_dir.glob("*.log"):
         if log.name not in keep:
             log.unlink()
-    return roster
+    return names
 
 
 def _build_prompt(case: Case) -> Tuple[str, List[Dict[str, Any]]]:
@@ -392,17 +420,28 @@ def _usage(response: Dict[str, Any]) -> Dict[str, Any]:
 
 
 async def _route_case(case: Case, roster: List[str]) -> Dict[str, Any]:
-    """One attempt: drive the production LLM loop, intercepting side-effecting tools."""
+    """One attempt: drive the production LLM loop, intercepting side-effecting tools.
+
+    Mirrors InteractionAgentRuntime._run_interaction_loop (same LLM call, assistant entries with
+    reasoning_details, tool results formatted by the runtime), but stops once routing is finished: at
+    the first response that delegates successfully with nothing still in flight. With agent search a
+    message can take several responses to route (e.g. send task A to its known agent while searching
+    for task B's), so a response that also searches, creates an agent it hasn't sent to yet, or had a
+    send rejected means more routing follows.
+    """
     _, ia_runtime, ia_tools, _, _ = _server()
     ToolResult = ia_tools.ToolResult
     runtime = ia_runtime.InteractionAgentRuntime()
     system_prompt, messages = _build_prompt(case)
     roster_set = set(roster)
-    created: set = set()
+    created: Dict[str, Dict[str, Any]] = {}  # agents create_agent registered during this case
 
     rec: Dict[str, Any] = {
         "prompt_chars": _prompt_chars(system_prompt, messages),
         "delegations": [],
+        "searches": [],
+        "creates": [],
+        "rejected_sends": [],
         "other_tool_calls": [],
         "usage": [],
         "transcript": [],
@@ -439,7 +478,10 @@ async def _route_case(case: Case, roster: List[str]) -> Dict[str, Any]:
             break
 
         delegated = False
-        for tc in parsed:
+        in_flight = False  # this response left routing unfinished
+        created_now: set = set()
+        sent_now: set = set()
+        for tc in parsed:  # sequential, in order, like the runtime
             args = tc.arguments
             if tc.name in INTERCEPTED:
                 result = _stub_tool(tc, roster_set, created, ToolResult)
@@ -451,24 +493,39 @@ async def _route_case(case: Case, roster: List[str]) -> Dict[str, Any]:
                             "instructions": args["instructions"],
                             "kind": "reuse" if name in roster_set else "create",
                             "iteration": iteration,
+                            "searched_before": bool(rec["searches"]),
+                            "card": created.get(name),
                         }
                     )
                     delegated = True
+                    sent_now.add(name)
+                elif tc.name == "send_message_to_agent":
+                    rec["rejected_sends"].append({"iteration": iteration, "agent_name": args.get("agent_name"), "error": result.payload})
+                    in_flight = True
+                elif tc.name == "create_agent":
+                    rec["creates"].append({"iteration": iteration, "arguments": args, "success": result.success,
+                                           "searched_before": bool(rec["searches"])})
+                    if result.success:
+                        created_now.add(args["agent_name"])
+                    else:
+                        in_flight = True  # the IA retries a rejected create (e.g. malformed artifacts)
                 else:
                     rec["other_tool_calls"].append(
                         {"iteration": iteration, "name": tc.name, "arguments": args, "intercepted": True,
                          "success": result.success}
                     )
             else:
-                result = runtime._execute_tool(tc)  # real handler (future read-only tools)
-                if inspect.isawaitable(result):
-                    result = await result
+                result = await runtime._execute_tool(tc)  # real handler (search_agents is read-only)
                 if not isinstance(result, ToolResult):
                     result = ToolResult(success=True, payload=result)
-                rec["other_tool_calls"].append(
-                    {"iteration": iteration, "name": tc.name, "arguments": args, "intercepted": False,
-                     "success": result.success, "result": _truncate(result.payload)}
-                )
+                if tc.name == "search_agents":
+                    rec["searches"].append({"iteration": iteration, **_search_record(args, result)})
+                    in_flight = True
+                else:
+                    rec["other_tool_calls"].append(
+                        {"iteration": iteration, "name": tc.name, "arguments": args, "intercepted": False,
+                         "success": result.success, "result": _truncate(result.payload)}
+                    )
             messages.append(
                 {
                     "role": "tool",
@@ -476,9 +533,29 @@ async def _route_case(case: Case, roster: List[str]) -> Dict[str, Any]:
                     "content": runtime._format_tool_result(tc, result),
                 }
             )
-        if delegated:
+        if delegated and not in_flight and created_now <= sent_now:
             break
     return rec
+
+
+def _search_record(args: Dict[str, Any], result: Any) -> Dict[str, Any]:
+    """What a search_agents call returned: which mode (all / search / fallback) and which agents."""
+    text = result.payload if isinstance(result.payload, str) else ""
+    first_line = text.split("\n", 1)[0]
+    if first_line.startswith("Search results:"):
+        mode = "search"
+    elif "Search is unavailable" in first_line:
+        mode = "fallback"  # embeddings failed: the server returned every name instead
+    elif first_line.startswith("All "):
+        mode = "all"
+    else:
+        mode = "empty" if "None" in text else "unknown"
+    return {
+        "query": args.get("query"),
+        "success": result.success,
+        "mode": mode,
+        "returned": [html.unescape(n) for n in AGENT_TAG_RE.findall(text)],
+    }
 
 
 def _reasoning_text(details: Any) -> Optional[str]:
@@ -489,27 +566,42 @@ def _reasoning_text(details: Any) -> Optional[str]:
     return text or None
 
 
-def _stub_tool(tc, roster_set: set, created: set, ToolResult) -> Any:
-    """Shape-compatible stand-ins for the side-effecting IA tools (never call the real ones)."""
+def _stub_tool(tc, roster_set: set, created: Dict[str, Dict[str, Any]], ToolResult) -> Any:
+    """Stand-ins for the side-effecting IA tools. Results (and error texts) match the production
+    handlers in server/agents/interaction_agent/tools.py, so the IA sees what it would in production;
+    nothing is written, so concurrent cases sharing a roster never see each other's agents."""
     args = tc.arguments
     if "__invalid_arguments__" in args:
         return ToolResult(success=False, payload={"error": args["__invalid_arguments__"]})
     required = {
+        "create_agent": ("agent_name", "summary", "artifacts"),
         "send_message_to_agent": ("agent_name", "instructions"),
         "send_message_to_user": ("message",),
         "send_draft": ("to", "subject", "body"),
         "wait": ("reason",),
     }[tc.name]
-    missing = [k for k in required if not isinstance(args.get(k), str)]
+    def ok_type(key: str) -> bool:
+        if key == "artifacts":
+            return isinstance(args.get(key), list) and all(isinstance(a, str) for a in args[key])
+        return isinstance(args.get(key), str)
+    missing = [k for k in required if not ok_type(k)]
     unexpected = [k for k in args if k not in required]
     if missing or unexpected:
         return ToolResult(success=False, payload={"error": f"Missing required arguments: {missing or unexpected}"})
+    if tc.name == "create_agent":
+        name = args["agent_name"]
+        if name in roster_set or name in created:
+            return ToolResult(success=False, payload={
+                "error": f"An agent named '{name}' already exists. Use send_message_to_agent to reuse it."})
+        created[name] = {"summary": args["summary"], "artifacts": args["artifacts"]}
+        return ToolResult(success=True, payload={"status": "created", "agent_name": name})
     if tc.name == "send_message_to_agent":
         name = args["agent_name"]
-        is_new = name not in roster_set and name not in created
-        if is_new:
-            created.add(name)
-        return ToolResult(success=True, payload={"status": "submitted", "agent_name": name, "new_agent_created": is_new})
+        if name not in roster_set and name not in created:
+            return ToolResult(success=False, payload={"error": (
+                f"No agent named '{name}'. Use search_agents to find the existing agent, "
+                "or create_agent if none fits.")})
+        return ToolResult(success=True, payload={"status": "submitted", "agent_name": name})
     if tc.name == "send_message_to_user":
         return ToolResult(success=True, payload={"status": "delivered"}, user_message=args["message"], recorded_reply=True)
     if tc.name == "send_draft":
@@ -548,7 +640,8 @@ async def _run_case(case: Case, size: int, roster: List[str], sem: asyncio.Semap
         latency = round(time.monotonic() - start, 2)
 
     expected = [e.model_dump() for e in case.expected]
-    rec = rec or {"prompt_chars": None, "delegations": [], "other_tool_calls": [], "usage": [], "transcript": [], "iterations": 0}
+    rec = rec or {"prompt_chars": None, "delegations": [], "searches": [], "creates": [], "rejected_sends": [],
+                  "other_tool_calls": [], "usage": [], "transcript": [], "iterations": 0}
     error = errors[-1] if rec["iterations"] == 0 and errors else None
     outcomes, extras = score.match_case(expected, rec["delegations"], error)
     costs = [u.get("cost") for u in rec["usage"] if isinstance(u.get("cost"), (int, float))]
@@ -560,6 +653,9 @@ async def _run_case(case: Case, size: int, roster: List[str], sem: asyncio.Semap
         "message": case.message,
         "expected": expected,
         "delegations": rec["delegations"],
+        "searches": rec["searches"],
+        "creates": rec["creates"],
+        "rejected_sends": rec["rejected_sends"],
         "other_tool_calls": rec["other_tool_calls"],
         "outcomes": outcomes,
         "extra_delegations": extras,
@@ -668,6 +764,10 @@ async def _live_run(fixtures: Path, sizes: List[int], cases: List[Case], args) -
         "concurrency": args.concurrency,
         "repeats": args.repeats,
         "max_iterations": MAX_ITERATIONS,
+        "agent_search_top_k": settings.agent_search_top_k,
+        "embedding_model": settings.embedding_model,
+        "embedding_dimensions": settings.embedding_dimensions,
+        "baseline": str(args.baseline) if args.baseline else None,
         "llm_max_tokens": settings.llm_max_tokens,
         "prompt_cache_enabled": settings.prompt_cache_enabled,
         "prompt_cache_ttl": settings.prompt_cache_ttl,
@@ -694,7 +794,8 @@ async def _live_run(fixtures: Path, sizes: List[int], cases: List[Case], args) -
 
     meta["finished_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
     (out / "run_meta.json").write_text(json.dumps(meta, indent=2), encoding="utf-8")
-    report = score.write_reports(out)
+    baseline = _resolve(args.baseline) if args.baseline else None
+    report = score.write_reports(out, baseline if baseline and (baseline / "decisions.jsonl").exists() else None)
     print()
     print((out / "report.md").read_text(encoding="utf-8").split("## Misses")[0].rstrip())
     print(f"\nreports: {out / 'report.md'}  total cost ${report['total_cost']:.4f}")
@@ -719,6 +820,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     common(p_run)
     p_run.add_argument("--dry-run", action="store_true", help="no LLM calls; print prompt sizes per roster size")
     p_run.add_argument("--repeats", type=int, default=1, help="independent runs of every case at every size")
+    p_run.add_argument("--baseline", default="evals/routing/results/baseline_all_x10",
+                       help="earlier run dir to compare against in the report (default: the names-only baseline)")
     p_run.set_defaults(func=cmd_run)
 
     args = parser.parse_args(argv)

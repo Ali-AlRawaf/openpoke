@@ -2,10 +2,11 @@
 
 Importable (``match_case``, ``score_run``) and runnable:
 
-    python -m evals.routing.score evals/routing/results/<run_id>
+    python -m evals.routing.score evals/routing/results/<run_id> [--baseline evals/routing/results/<baseline>]
 
 Stdlib only; never imports ``server`` (classification is recorded per delegation by run.py
-as ``kind`` = "reuse" | "create", i.e. exact match against roster_N or not).
+as ``kind`` = "reuse" | "create", i.e. exact match against roster_N or not: a delegation to an
+agent the IA registered with create_agent during the case is a create).
 """
 
 from __future__ import annotations
@@ -21,6 +22,18 @@ from typing import Any, Dict, List, Optional, Tuple
 NEW = "NEW"
 OUTCOMES = ["correct", "wrong_reuse", "false_create", "false_reuse", "missed", "error"]
 CHECK = "\u2713"
+
+# Case groups used to read results (by case id prefix): which cases test overload and which are controls.
+GROUPS: List[Tuple[str, Tuple[str, ...]]] = [
+    ("overload target (dormant, inference)", ("c07", "c12", "c14", "c16", "c18", "c20")),
+    ("dormant control (name match)", ("c11", "c13", "c15", "c17", "c19")),
+    ("easy recent", ("c01", "c03", "c05", "c06", "c08", "c09")),
+    ("policy-ambiguous", ("c02", "c04")),
+    ("multi-task", ("c10",)),
+    ("stress: paraphrase (dormant, no name)", ("c21", "c22", "c23", "c24")),
+    ("stress: new counterpart, familiar topic", ("c25", "c26", "c27")),
+    ("stress: typo (dormant name)", ("c28", "c29", "c30", "c31")),
+]
 
 
 # --------------------------------------------------------------------------- matching
@@ -100,6 +113,16 @@ def _overlap(exp: Dict[str, Any], deleg: Dict[str, Any]) -> int:
     return len(task_words & _words(f"{deleg.get('agent_name') or ''} {deleg.get('instructions') or ''}"))
 
 
+def query_is_about(query: str, exp: Dict[str, Any], expected: List[Dict[str, Any]]) -> bool:
+    """In a multi-task case, a search query counts only for the task it shares the most words with
+    (the IA searches per task: 'Halcyon Chimney sweep booking' is not a search for Gabe's agent)."""
+    if len(expected) == 1:
+        return True
+    words = _words(query)
+    overlap = [len(words & _words(f"{e.get('task') or ''} {e['gold'] if e['gold'] != NEW else ''}")) for e in expected]
+    return overlap[expected.index(exp)] == max(overlap) > 0
+
+
 def _outcome(exp: Dict[str, Any], code: str, deleg: Optional[Dict[str, Any]]) -> Dict[str, Any]:
     return {
         "task": exp.get("task"),
@@ -154,6 +177,7 @@ def score_run(meta: Dict[str, Any], rows: List[Dict[str, Any]]) -> Dict[str, Any
         counts = Counter(o["outcome"] for r in srows for o in r["outcomes"])
         n_expected = sum(len(r["outcomes"]) for r in srows)
         calls = [c for r in srows for c in (r.get("usage") or [])]
+        search = _search_stats(srows)
         per_size.append(
             {
                 "size": size,
@@ -171,6 +195,7 @@ def score_run(meta: Dict[str, Any], rows: List[Dict[str, Any]]) -> Dict[str, Any
                 "mean_prompt_chars": _mean([r.get("prompt_chars") for r in srows]),
                 "total_cost": round(sum(r.get("total_cost") or 0.0 for r in srows), 6),
                 "mean_latency_s": _mean([r.get("latency_s") for r in srows]),
+                **search,
             }
         )
 
@@ -232,6 +257,12 @@ def score_run(meta: Dict[str, Any], rows: List[Dict[str, Any]]) -> Dict[str, Any
                             for x in row["outcomes"]
                         ],
                         "error": row.get("error"),
+                        "searches": [
+                            {"query": x.get("query"), "mode": x.get("mode"),
+                             "gold_returned": (o["gold"] in (x.get("returned") or [])) if o["gold"] != NEW else None}
+                            for x in row.get("searches") or []
+                        ],
+                        "rejected_sends": [x.get("agent_name") for x in row.get("rejected_sends") or []],
                     }
                 )
         for d in row["extra_delegations"]:
@@ -256,11 +287,79 @@ def score_run(meta: Dict[str, Any], rows: List[Dict[str, Any]]) -> Dict[str, Any
         "sizes": sizes,
         "total_cost": total_cost,
         "per_size": per_size,
+        "groups": group_pass_rates(rows, sizes),
         "matrix": matrix,
         "misses": misses,
         "rows": [
             {k: r.get(k) for k in ("size", "repeat", "case_id", "category", "outcomes", "extra_delegations", "error")}
             for r in rows
+        ],
+    }
+
+
+def _row_passes(row: Dict[str, Any]) -> bool:
+    return all(o["outcome"] == "correct" for o in row["outcomes"]) and not row["extra_delegations"]
+
+
+def _search_stats(rows: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """Agent-search usage for a set of case runs (all None for runs recorded before search existed)."""
+    if not any("searches" in r for r in rows):
+        return {"search_rate": None, "mean_searches": None, "gold_retrieved": None, "creates_without_search": None,
+                "rejected_sends": None, "search_fallbacks": None}
+    searched = [r for r in rows if r.get("searches")]
+    # retrieval: of the existing-agent golds the IA searched for (a ranked query about that task), how
+    # many came back. A gold sent to directly before searching, or only searched past (the query was
+    # about the case's other task), doesn't count either way.
+    retrieved = total = 0
+    for r in rows:
+        ranked = [x for x in r.get("searches") or [] if x.get("mode") == "search"]
+        if not ranked:
+            continue
+        direct = {d["agent_name"] for d in r.get("delegations") or [] if not d.get("searched_before")}
+        expected = r.get("expected") or []
+        for exp in expected:
+            about = [x for x in ranked if query_is_about(x.get("query") or "", exp, expected)]
+            if exp["gold"] == NEW or exp["gold"] in direct or not about:
+                continue
+            total += 1
+            retrieved += any(exp["gold"] in (x.get("returned") or []) for x in about)
+    creates = [c for r in rows for c in r.get("creates") or [] if c.get("success")]
+    return {
+        "search_rate": round(len(searched) / len(rows), 3) if rows else None,
+        "mean_searches": round(sum(len(r.get("searches") or []) for r in rows) / len(rows), 2) if rows else None,
+        "gold_retrieved": round(retrieved / total, 3) if total else None,
+        "creates_without_search": sum(1 for c in creates if not c.get("searched_before")),
+        "rejected_sends": sum(len(r.get("rejected_sends") or []) for r in rows),
+        "search_fallbacks": sum(1 for r in rows for x in r.get("searches") or [] if x.get("mode") == "fallback"),
+    }
+
+
+def group_pass_rates(rows: List[Dict[str, Any]], sizes: List[int]) -> List[Dict[str, Any]]:
+    """Pass rate per case group per size, pooling every case run in the group."""
+    out = []
+    for label, prefixes in GROUPS:
+        rates = {}
+        for size in sizes:
+            runs = [r for r in rows if r["size"] == size and r["case_id"].split("_")[0] in prefixes]
+            rates[str(size)] = round(sum(_row_passes(r) for r in runs) / len(runs), 3) if runs else None
+        out.append({"group": label, "cases": list(prefixes), "pass_rates": rates})
+    return out
+
+
+def compare(report: Dict[str, Any], baseline: Dict[str, Any]) -> Dict[str, Any]:
+    """Before/after: per-size accuracy and per-group pass rates, on the sizes both runs share."""
+    sizes = [s for s in report["sizes"] if s in baseline["sizes"]]
+    acc_before = {s["size"]: s["accuracy"] for s in baseline["per_size"]}
+    acc_after = {s["size"]: s["accuracy"] for s in report["per_size"]}
+    before_groups = {g["group"]: g["pass_rates"] for g in baseline["groups"]}
+    return {
+        "baseline_run": baseline["meta"].get("run_id"),
+        "sizes": sizes,
+        "accuracy": [{"size": s, "before": acc_before.get(s), "after": acc_after.get(s)} for s in sizes],
+        "groups": [
+            {"group": g["group"], "rates": {str(s): {"before": before_groups.get(g["group"], {}).get(str(s)),
+                                                      "after": g["pass_rates"].get(str(s))} for s in sizes}}
+            for g in report["groups"]
         ],
     }
 
@@ -330,6 +429,39 @@ def render_markdown(report: Dict[str, Any]) -> str:
         out.append("| " + " | ".join(_md_cell(c) for c in cells) + " |")
     out.append("\nAccuracy pools every repeat. Token columns are means per LLM call; latency is per case run.\n")
 
+    if any(s.get("search_rate") is not None for s in report["per_size"]):
+        out.append("## Agent search\n")
+        out.append("| size | runs that searched | searches per run | gold in search results | creates without a search | rejected sends | search fallbacks |")
+        out.append("|---|---|---|---|---|---|---|")
+        for s in report["per_size"]:
+            out.append(
+                f"| {s['size']} | {_pct(s['search_rate'])} | {_fmt(s['mean_searches'])} | {_pct(s['gold_retrieved'])} | "
+                f"{s['creates_without_search']} | {s['rejected_sends']} | {s['search_fallbacks']} |"
+            )
+        out.append("\n*Gold in search results*: of the existing-agent golds in runs where the query ranked agents "
+                   "(rosters above the search cutoff), how many the search returned. A false create with the gold "
+                   "returned is the IA's choice; without it, retrieval's.\n")
+
+    if report.get("comparison"):
+        cmp_ = report["comparison"]
+        sizes_c = [str(s) for s in cmp_["sizes"]]
+        out.append(f"## Before / after (baseline run `{cmp_['baseline_run']}`)\n")
+        out.append("| | " + " | ".join(sizes_c) + " |")
+        out.append("|" + "---|" * (len(sizes_c) + 1))
+        out.append("| **accuracy** | " + " | ".join(f"{_pct(a['before'])} → **{_pct(a['after'])}**" for a in cmp_["accuracy"]) + " |")
+        for g in cmp_["groups"]:
+            cells = [f"{_pct(g['rates'][s]['before'])} → **{_pct(g['rates'][s]['after'])}**" for s in sizes_c]
+            out.append(f"| {_md_cell(g['group'])} | " + " | ".join(cells) + " |")
+        out.append("")
+
+    out.append("## Case groups (pass rate)\n")
+    sizes_g = [str(s) for s in report["sizes"]]
+    out.append("| group | " + " | ".join(sizes_g) + " |")
+    out.append("|" + "---|" * (len(sizes_g) + 1))
+    for g in report["groups"]:
+        out.append(f"| {_md_cell(g['group'])} | " + " | ".join(_pct(g["pass_rates"].get(s)) for s in sizes_g) + " |")
+    out.append("")
+
     out.append("## Case x size\n")
     sizes = [str(s) for s in report["sizes"]]
     out.append("| case | category | " + " | ".join(sizes) + " | pattern |")
@@ -361,6 +493,11 @@ def render_markdown(report: Dict[str, Any]) -> str:
                 out.append(f"  - {x['task']}: gold `{x['gold']}`, chosen {chosen} → `{x['outcome']}`")
         if miss.get("error"):
             out.append(f"- **Error:** {miss['error']}")
+        for x in miss.get("searches") or []:
+            got = {True: "gold returned", False: "gold NOT returned", None: ""}[x.get("gold_returned")]
+            out.append(f"- **Search** ({x.get('mode')}): `{x.get('query')}` {got}".rstrip())
+        if miss.get("rejected_sends"):
+            out.append(f"- **Rejected sends:** {', '.join(f'`{n}`' for n in miss['rejected_sends'])}")
         if miss["instructions"]:
             quoted = "\n".join("> " + line for line in str(miss["instructions"]).splitlines())
             out.append(f"- **Instructions:**\n\n{quoted}")
@@ -368,9 +505,15 @@ def render_markdown(report: Dict[str, Any]) -> str:
     return "\n".join(out).rstrip() + "\n"
 
 
-def write_reports(run_dir: Path) -> Dict[str, Any]:
+def _pct(value: Optional[float]) -> str:
+    return "-" if value is None else f"{value:.0%}"
+
+
+def write_reports(run_dir: Path, baseline_dir: Optional[Path] = None) -> Dict[str, Any]:
     meta, rows = load_run(run_dir)
     report = score_run(meta, rows)
+    if baseline_dir is not None:
+        report["comparison"] = compare(report, score_run(*load_run(baseline_dir)))
     (run_dir / "report.json").write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
     (run_dir / "report.md").write_text(render_markdown(report), encoding="utf-8")
     return report
@@ -379,11 +522,12 @@ def write_reports(run_dir: Path) -> Dict[str, Any]:
 def main(argv: Optional[List[str]] = None) -> int:
     parser = argparse.ArgumentParser(description="Score a routing-eval run directory.")
     parser.add_argument("run_dir", type=Path)
+    parser.add_argument("--baseline", type=Path, default=None, help="earlier run dir to compare against")
     args = parser.parse_args(argv)
     if not (args.run_dir / "decisions.jsonl").exists():
         print(f"error: {args.run_dir}/decisions.jsonl not found", file=sys.stderr)
         return 2
-    write_reports(args.run_dir)
+    write_reports(args.run_dir, args.baseline)
     print((args.run_dir / "report.md").read_text(encoding="utf-8"))
     return 0
 

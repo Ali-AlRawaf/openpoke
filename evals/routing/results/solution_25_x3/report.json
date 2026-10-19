@@ -1,0 +1,1562 @@
+{
+  "meta": {
+    "run_id": "20261019T071940Z",
+    "git_commit": "fb1c361",
+    "git_dirty": true,
+    "model": "anthropic/claude-haiku-5.5",
+    "started_at": "2026-10-19T07:19:40+00:00",
+    "git_dirty_files": [
+      ".gitignore",
+      "evals/routing/SPEC.md",
+      "evals/routing/_stub_fixture/build_stub.py",
+      "evals/routing/_stub_fixture/rosters/roster_3.json",
+      "evals/routing/_stub_fixture/rosters/roster_6.json",
+      "evals/routing/build_fixtures.py",
+      "evals/routing/fixtures/generated/cost.json",
+      "evals/routing/fixtures/rosters/roster_100.json",
+      "evals/routing/fixtures/rosters/roster_1600.json",
+      "evals/routing/fixtures/rosters/roster_200.json",
+      "evals/routing/fixtures/rosters/roster_25.json",
+      "evals/routing/fixtures/rosters/roster_400.json",
+      "evals/routing/fixtures/rosters/roster_50.json",
+      "evals/routing/fixtures/rosters/roster_800.json",
+      "evals/routing/generate.py",
+      "evals/routing/run.py",
+      "evals/routing/score.py"
+    ],
+    "fixtures": "evals/routing/fixtures",
+    "sizes": [
+      25
+    ],
+    "cases": [
+      "c01_followup_named_counterpart",
+      "c02_new_task_known_counterpart",
+      "c03_counterpart_not_in_owner_name",
+      "c04_reply_to_email_found_by_unrelated_agent",
+      "c05_confirm_pending_draft",
+      "c06_modify_existing_trigger",
+      "c07_revive_dormant_counterpart",
+      "c08_same_first_name_other_person",
+      "c09_new_counterpart_overlapping_name",
+      "c10_parallel_known_and_new",
+      "c11_dormant_name_match_noor",
+      "c12_dormant_inference_noor",
+      "c13_dormant_name_match_tidewater",
+      "c14_dormant_inference_tidewater",
+      "c15_dormant_name_match_ironwood",
+      "c16_dormant_inference_ironwood",
+      "c17_dormant_name_match_harold",
+      "c18_dormant_inference_harold",
+      "c19_dormant_name_match_marcus",
+      "c20_dormant_inference_marcus"
+    ],
+    "concurrency": 8,
+    "repeats": 3,
+    "max_iterations": 6,
+    "agent_search_top_k": 10,
+    "embedding_model": "openai/text-embedding-3-small",
+    "embedding_dimensions": 512,
+    "baseline": "evals/routing/results/baseline_all_x10",
+    "llm_max_tokens": 16000,
+    "prompt_cache_enabled": true,
+    "prompt_cache_ttl": "5m",
+    "tools": [
+      "search_agents",
+      "create_agent",
+      "send_message_to_agent",
+      "send_message_to_user",
+      "send_draft",
+      "wait"
+    ],
+    "data_dir": "/tmp/openpoke-routing-eval-269dbsqn",
+    "python": "3.12.3",
+    "finished_at": "2026-10-19T07:20:17+00:00"
+  },
+  "sizes": [
+    25
+  ],
+  "total_cost": 0.06578,
+  "per_size": [
+    {
+      "size": 25,
+      "cases": 60,
+      "expected_entries": 63,
+      "accuracy": 1.0,
+      "outcomes": {
+        "correct": 63,
+        "wrong_reuse": 0,
+        "false_create": 0,
+        "false_reuse": 0,
+        "missed": 0,
+        "error": 0
+      },
+      "extra_delegations": 0,
+      "errors": 0,
+      "llm_calls": 107,
+      "mean_prompt_tokens": 19488.4,
+      "mean_cached_tokens": 17268.8,
+      "mean_completion_tokens": 329.4,
+      "mean_reasoning_tokens": 99.9,
+      "mean_prompt_chars": 38052.9,
+      "total_cost": 0.06578,
+      "mean_latency_s": 4.2,
+      "search_rate": 0.783,
+      "mean_searches": 0.78,
+      "gold_retrieved": 1.0,
+      "creates_without_search": 0,
+      "rejected_sends": 0,
+      "search_fallbacks": 0
+    }
+  ],
+  "groups": [
+    {
+      "group": "overload target (dormant, inference)",
+      "cases": [
+        "c07",
+        "c12",
+        "c14",
+        "c16",
+        "c18",
+        "c20"
+      ],
+      "pass_rates": {
+        "25": 1.0
+      }
+    },
+    {
+      "group": "dormant control (name match)",
+      "cases": [
+        "c11",
+        "c13",
+        "c15",
+        "c17",
+        "c19"
+      ],
+      "pass_rates": {
+        "25": 1.0
+      }
+    },
+    {
+      "group": "easy recent",
+      "cases": [
+        "c01",
+        "c03",
+        "c05",
+        "c06",
+        "c08",
+        "c09"
+      ],
+      "pass_rates": {
+        "25": 1.0
+      }
+    },
+    {
+      "group": "policy-ambiguous",
+      "cases": [
+        "c02",
+        "c04"
+      ],
+      "pass_rates": {
+        "25": 1.0
+      }
+    },
+    {
+      "group": "multi-task",
+      "cases": [
+        "c10"
+      ],
+      "pass_rates": {
+        "25": 1.0
+      }
+    }
+  ],
+  "matrix": [
+    {
+      "case_id": "c01_followup_named_counterpart",
+      "category": "followup_counterpart_in_name",
+      "cells": {
+        "25": "3/3"
+      },
+      "pass_rates": {
+        "25": 1.0
+      },
+      "pattern": "pass at every size"
+    },
+    {
+      "case_id": "c02_new_task_known_counterpart",
+      "category": "new_task_known_counterpart",
+      "cells": {
+        "25": "3/3"
+      },
+      "pass_rates": {
+        "25": 1.0
+      },
+      "pattern": "pass at every size"
+    },
+    {
+      "case_id": "c03_counterpart_not_in_owner_name",
+      "category": "new_task_owner_name_unrelated",
+      "cells": {
+        "25": "3/3"
+      },
+      "pass_rates": {
+        "25": 1.0
+      },
+      "pattern": "pass at every size"
+    },
+    {
+      "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+      "category": "reply_to_found_email",
+      "cells": {
+        "25": "3/3"
+      },
+      "pass_rates": {
+        "25": 1.0
+      },
+      "pattern": "pass at every size"
+    },
+    {
+      "case_id": "c05_confirm_pending_draft",
+      "category": "confirm_pending_draft",
+      "cells": {
+        "25": "3/3"
+      },
+      "pass_rates": {
+        "25": 1.0
+      },
+      "pattern": "pass at every size"
+    },
+    {
+      "case_id": "c06_modify_existing_trigger",
+      "category": "modify_reminder",
+      "cells": {
+        "25": "3/3"
+      },
+      "pass_rates": {
+        "25": 1.0
+      },
+      "pattern": "pass at every size"
+    },
+    {
+      "case_id": "c07_revive_dormant_counterpart",
+      "category": "dormant_counterpart_summary_only",
+      "cells": {
+        "25": "3/3"
+      },
+      "pass_rates": {
+        "25": 1.0
+      },
+      "pattern": "pass at every size"
+    },
+    {
+      "case_id": "c08_same_first_name_other_person",
+      "category": "same_first_name_other_person",
+      "cells": {
+        "25": "3/3"
+      },
+      "pass_rates": {
+        "25": 1.0
+      },
+      "pattern": "pass at every size"
+    },
+    {
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "cells": {
+        "25": "3/3"
+      },
+      "pass_rates": {
+        "25": 1.0
+      },
+      "pattern": "pass at every size"
+    },
+    {
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "cells": {
+        "25": "3/3"
+      },
+      "pass_rates": {
+        "25": 1.0
+      },
+      "pattern": "pass at every size"
+    },
+    {
+      "case_id": "c11_dormant_name_match_noor",
+      "category": "dormant_name_match",
+      "cells": {
+        "25": "3/3"
+      },
+      "pass_rates": {
+        "25": 1.0
+      },
+      "pattern": "pass at every size"
+    },
+    {
+      "case_id": "c12_dormant_inference_noor",
+      "category": "dormant_inference",
+      "cells": {
+        "25": "3/3"
+      },
+      "pass_rates": {
+        "25": 1.0
+      },
+      "pattern": "pass at every size"
+    },
+    {
+      "case_id": "c13_dormant_name_match_tidewater",
+      "category": "dormant_name_match",
+      "cells": {
+        "25": "3/3"
+      },
+      "pass_rates": {
+        "25": 1.0
+      },
+      "pattern": "pass at every size"
+    },
+    {
+      "case_id": "c14_dormant_inference_tidewater",
+      "category": "dormant_inference",
+      "cells": {
+        "25": "3/3"
+      },
+      "pass_rates": {
+        "25": 1.0
+      },
+      "pattern": "pass at every size"
+    },
+    {
+      "case_id": "c15_dormant_name_match_ironwood",
+      "category": "dormant_name_match",
+      "cells": {
+        "25": "3/3"
+      },
+      "pass_rates": {
+        "25": 1.0
+      },
+      "pattern": "pass at every size"
+    },
+    {
+      "case_id": "c16_dormant_inference_ironwood",
+      "category": "dormant_inference",
+      "cells": {
+        "25": "3/3"
+      },
+      "pass_rates": {
+        "25": 1.0
+      },
+      "pattern": "pass at every size"
+    },
+    {
+      "case_id": "c17_dormant_name_match_harold",
+      "category": "dormant_name_match",
+      "cells": {
+        "25": "3/3"
+      },
+      "pass_rates": {
+        "25": 1.0
+      },
+      "pattern": "pass at every size"
+    },
+    {
+      "case_id": "c18_dormant_inference_harold",
+      "category": "dormant_inference",
+      "cells": {
+        "25": "3/3"
+      },
+      "pass_rates": {
+        "25": 1.0
+      },
+      "pattern": "pass at every size"
+    },
+    {
+      "case_id": "c19_dormant_name_match_marcus",
+      "category": "dormant_name_match",
+      "cells": {
+        "25": "3/3"
+      },
+      "pass_rates": {
+        "25": 1.0
+      },
+      "pattern": "pass at every size"
+    },
+    {
+      "case_id": "c20_dormant_inference_marcus",
+      "category": "dormant_inference",
+      "cells": {
+        "25": "3/3"
+      },
+      "pass_rates": {
+        "25": 1.0
+      },
+      "pattern": "pass at every size"
+    }
+  ],
+  "misses": [],
+  "rows": [
+    {
+      "size": 25,
+      "repeat": 0,
+      "case_id": "c01_followup_named_counterpart",
+      "category": "followup_counterpart_in_name",
+      "outcomes": [
+        {
+          "task": "check for Harrow Hill's confirmation of the $4k second deposit",
+          "gold": "Harrow Hill Venue Deposit",
+          "outcome": "correct",
+          "chosen": "Harrow Hill Venue Deposit",
+          "chosen_kind": "reuse",
+          "instructions": "Check the Harrow Hill Estate thread (thread 19f8505f1389e3b7, celeste@harrowhillestate.ca, events@harrowhillestate.ca) for any reply from Celeste or the events team since the second deposit note was sent on Oct 15, 2026 (sent message 1a13f757df8a294c). Report whether they confirmed receipt of the $4,000 second deposit, and quote the date and key wording of any reply. If there is no reply, say so. Do not send or draft anything."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 0,
+      "case_id": "c02_new_task_known_counterpart",
+      "category": "new_task_known_counterpart",
+      "outcomes": [
+        {
+          "task": "ask Priya Natarajan to run Friday's client demo",
+          "gold": "Priya Roadmap Sync",
+          "outcome": "correct",
+          "chosen": "Priya Roadmap Sync",
+          "chosen_kind": "reuse",
+          "instructions": "Draft (do not send) a short email from Theo to Priya Natarajan (priya@northfoldstudio.ca) asking if she can run the client demo this Friday (Oct 23, 2026) because Theo is double booked. Keep it brief and casual, ask her to reply to confirm, and offer to send over any notes or prep he has. Reply in the existing Priya Natarajan thread if possible. Return the full draft text and draft ID. Wait for Theo's confirmation before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 0,
+      "case_id": "c03_counterpart_not_in_owner_name",
+      "category": "new_task_owner_name_unrelated",
+      "outcomes": [
+        {
+          "task": "ask Dmitri Volkov whether Ironbark also does bathroom renovations",
+          "gold": "Kitchen Reno Quote Follow-up",
+          "outcome": "correct",
+          "chosen": "Kitchen Reno Quote Follow-up",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply on the Ironbark Renovations thread (thread 19fd813573036bfd) to Dmitri Volkov (dmitri@ironbarkreno.ca) asking whether his crew also does bathroom renovations. Context: Theo wants them to do the upstairs bathroom next, after the kitchen starting Nov 9. Ask briefly whether they take on bathrooms, and if so, what the process and rough timing/pricing look like. Keep it short and casual, signed Theo. Create the draft only. Do not send it. Show me the exact to, subject, and body."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 0,
+      "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+      "category": "reply_to_found_email",
+      "outcomes": [
+        {
+          "task": "reply to Bramblewood Auto's winter tire email booking Sat Oct 24 9:00",
+          "gold": "Inbox Catch-Up Scan",
+          "outcome": "correct",
+          "chosen": "Inbox Catch-Up Scan",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants to reply to Bramblewood Auto Service (service@bramblewoodauto.ca) in the winter tire changeover thread (thread ID 1a13a9c097866746) to book the Saturday Oct 24 at 9:00 AM slot. Draft a short reply in that thread confirming Saturday Oct 24 at 9:00 AM works, asking them to confirm the booking. Create the draft only; do not send it. Report back the full draft text (to, subject, body) and draft ID."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 0,
+      "case_id": "c05_confirm_pending_draft",
+      "category": "confirm_pending_draft",
+      "outcomes": [
+        {
+          "task": "send the pending Copperleaf reply draft",
+          "gold": "Copperleaf Renewal Thread",
+          "outcome": "correct",
+          "chosen": "Copperleaf Renewal Thread",
+          "chosen_kind": "reuse",
+          "instructions": "The user approved. Send the draft r3449532902455624814 (To: hana.ishikawa@copperleafdata.com, Subject: Re: Your Copperleaf renewal - Northfold Studio, thread 1a0a082e8e8b21e2) exactly as written. Do not change the body. Report back the sent message ID and confirm it was labeled SENT."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 0,
+      "case_id": "c06_modify_existing_trigger",
+      "category": "modify_reminder",
+      "outcomes": [
+        {
+          "task": "move the Sunday 19:00 week-ahead trigger to 20:30",
+          "gold": "Sunday Week Ahead Brief",
+          "outcome": "correct",
+          "chosen": "Sunday Week Ahead Brief",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants the Sunday week-ahead rundown moved from 7:00 PM to 8:30 PM (20:30) America/Toronto, every Sunday, instead of 19:00. Update the existing recurring trigger (ID 2) rather than creating a new one, keep everything else the same, and confirm the new time back to me briefly."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 0,
+      "case_id": "c07_revive_dormant_counterpart",
+      "category": "dormant_counterpart_summary_only",
+      "outcomes": [
+        {
+          "task": "ask Wendell Achebe about locking the renewal rate before Nov 4",
+          "gold": "Mortgage Renewal Paperwork",
+          "outcome": "correct",
+          "chosen": "Mortgage Renewal Paperwork",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants to know from Wendell Achebe (wendell.achebe@brightmoorcu.ca, Brightmoor Credit Union) whether Theo should lock the mortgage rate now or wait until after the Nov 4 rate announcement. Draft a short email to Wendell in the existing renewal thread asking for his recommendation, including the tradeoffs he sees (current rate lock vs. waiting, the 120-day hold window before the Dec 1 maturity, and whether the rate would be locked at the current offer). Keep it brief. Create the draft only and do not send it; return the full draft text (To, Subject, Body) so Theo can review it."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 0,
+      "case_id": "c08_same_first_name_other_person",
+      "category": "same_first_name_other_person",
+      "outcomes": [
+        {
+          "task": "email Priya Sandhu asking for the engagement proofs gallery early",
+          "gold": "Engagement Shoot Booking",
+          "outcome": "correct",
+          "chosen": "Engagement Shoot Booking",
+          "chosen_kind": "reuse",
+          "instructions": "Theo's partner Jules is asking when the engagement photos will be ready. Email Priya Sandhu (priya@lumenandlinen.ca) in the existing engagement shoot thread asking whether she can send the online proofing gallery early, ahead of the Fri Oct 23 date she gave. Keep it short and friendly, sign off as Theo. Create a draft only and do not send it. Report back the draft's to, subject, and full body."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 0,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Create a draft email (do not send yet) from Theo Marchetti to Marco Ferrante at Keyhaven Music, marco@keyhavenmusic.ca. Ask whether he has Saturday morning slots available for adult beginner piano lessons. Keep it short, friendly, and casual. Sign off as Theo. Return the full draft text (to, subject, body) and the draft ID, and wait for Theo's explicit approval before sending anything."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 0,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply on the Northfold offsite thread (thread 1a0e88ccde8db8a5, to gabe@northfoldstudio.ca) saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Do NOT send it. Create the draft only and report the exact recipient, subject, and body back."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Booking",
+          "chosen_kind": "create",
+          "instructions": "Draft an email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026, and ask for the earliest available slot and the price. Keep it short and casual, signed Theo. Do NOT send it. Create the draft only and report the exact recipient, subject, and body back."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 0,
+      "case_id": "c11_dormant_name_match_noor",
+      "category": "dormant_name_match",
+      "outcomes": [
+        {
+          "task": "ask Noor (Inkwell & Vine) to raise the save-the-date order from 120 to 140",
+          "gold": "Save the Date Printing",
+          "outcome": "correct",
+          "chosen": "Save the Date Printing",
+          "chosen_kind": "reuse",
+          "instructions": "Guest list has grown. Ask Noor Hassan at Inkwell and Vine (noor@inkwellandvine.ca) for a revised quote for 140 A6 one-colour letterpress save-the-dates (instead of 120), same kraft envelopes and terms. Reply in the existing thread (1a0d5cfb738b8673) asking for the updated price with tax and deposit amount. Do not send anything yet. Once Noor replies, report the new total to Theo and draft a confirmation to Noor for his approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 0,
+      "case_id": "c12_dormant_inference_noor",
+      "category": "dormant_inference",
+      "outcomes": [
+        {
+          "task": "ask Noor (Inkwell & Vine) to raise the save-the-date order from 120 to 140",
+          "gold": "Save the Date Printing",
+          "outcome": "correct",
+          "chosen": "Save the Date Printing",
+          "chosen_kind": "reuse",
+          "instructions": "Theo's guest list has grown, so he wants to change the save-the-date order from 120 to 140 A6 one-colour letterpress cards with kraft envelopes. Draft a reply to Noor Hassan (noor@inkwellandvine.ca) in the existing Inkwell and Vine thread asking if she can do 140 instead of 120, and ask for the updated quote and any change to the 50% deposit amount. Do not send. Show Theo the draft for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 0,
+      "case_id": "c13_dormant_name_match_tidewater",
+      "category": "dormant_name_match",
+      "outcomes": [
+        {
+          "task": "ask Tidewater Dental to move the cleaning to 17:00",
+          "gold": "Dentist Cleaning Reschedule",
+          "outcome": "correct",
+          "chosen": "Dentist Cleaning Reschedule",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants his cleaning at Tidewater Dental moved to 5:00 PM instead. Draft a short reply in the existing Tidewater Dental thread (frontdesk@tidewaterdental.ca, thread 1a0ee1f0348a9b4c) asking whether the cleaning can be at 5:00 PM. Use the appointment date that is current in that thread, and if the thread shows a confirmed new date, ask about 5:00 PM on that date. Do NOT send it. Return the full draft (to, subject, body, draft ID) for Theo's review."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 0,
+      "case_id": "c14_dormant_inference_tidewater",
+      "category": "dormant_inference",
+      "outcomes": [
+        {
+          "task": "ask Tidewater Dental to move the cleaning to 17:00",
+          "gold": "Dentist Cleaning Reschedule",
+          "outcome": "correct",
+          "chosen": "Dentist Cleaning Reschedule",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants a 5pm slot instead. Draft a reply to Tidewater Dental front desk (frontdesk@tidewaterdental.ca) in the existing cleaning reschedule thread (1a0ee1f0348a9b4c) asking whether Theo can get a 5:00 PM appointment instead of the late-afternoon slot previously requested. Keep it short and polite, signed Theo. Create the draft only; do not send. Report back the full draft (to, subject, body, draft ID)."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 0,
+      "case_id": "c15_dormant_name_match_ironwood",
+      "category": "dormant_name_match",
+      "outcomes": [
+        {
+          "task": "ask Ironwood Athletic to extend the membership freeze through November",
+          "gold": "Gym Membership Freeze",
+          "outcome": "correct",
+          "chosen": "Gym Membership Freeze",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants to extend his Ironwood Athletic membership freeze through November 2026 (the current freeze covers September and October). Send a request to members@ironwoodathletic.ca asking to extend the knee-rehab freeze through Nov 30, 2026, and ask for the revised freeze dates and any fee. Also ask them to confirm the earlier request's dates if they haven't yet. Create the draft and show it to Theo for approval before sending; do not send without his explicit OK."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 0,
+      "case_id": "c16_dormant_inference_ironwood",
+      "category": "dormant_inference",
+      "outcomes": [
+        {
+          "task": "ask Ironwood Athletic to extend the membership freeze through November",
+          "gold": "Gym Membership Freeze",
+          "outcome": "correct",
+          "chosen": "Gym Membership Freeze",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants to ask Ironwood Athletic (members@ironwoodathletic.ca) to extend his membership freeze hold through November. Draft a short email from Theo asking whether the freeze/hold can be extended through the end of November 2026, given his ongoing knee rehab, and asking for the new dates and any fee. Reply in the existing Ironwood thread if possible. Do NOT send it; create the draft and report back the exact To, Subject, and Body so Theo can review."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 0,
+      "case_id": "c17_dormant_name_match_harold",
+      "category": "dormant_name_match",
+      "outcomes": [
+        {
+          "task": "tell Harold Pemberton Theo agrees to split the $1,150 fence repair",
+          "gold": "Neighbour Fence Repair",
+          "outcome": "correct",
+          "chosen": "Neighbour Fence Repair",
+          "chosen_kind": "reuse",
+          "instructions": "Theo has agreed to split the fence repair cost with Harold Pemberton. Theo's share is $575 each of the $1,150 total (reset posts, replace two panels). Draft a short reply to Harold (harold.pemberton@quaymail.net) in the existing thread (1a0f47a7448c6263) confirming Theo is good to split it, $575 each. Create the draft only. Do not send it. Show me the exact draft text for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 0,
+      "case_id": "c18_dormant_inference_harold",
+      "category": "dormant_inference",
+      "outcomes": [
+        {
+          "task": "tell Harold Pemberton Theo agrees to split the $1,150 fence repair",
+          "gold": "Neighbour Fence Repair",
+          "outcome": "correct",
+          "chosen": "Neighbour Fence Repair",
+          "chosen_kind": "reuse",
+          "instructions": "Theo has agreed to split the $1,150 fence repair with Harold Pemberton, so each pays $575. Draft a short reply in the existing thread (thread 1a0f47a7448c6263, replying to message 1a0f47a7c18c8f34) to harold.pemberton@quaymail.net confirming the $575 each split. Keep it brief and casual, and ask him to send payment details or the invoice if he has them. Create the draft only; do not send it. Return the full draft text for Theo to review."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 0,
+      "case_id": "c19_dormant_name_match_marcus",
+      "category": "dormant_name_match",
+      "outcomes": [
+        {
+          "task": "ask Marcus Oyelaran (Fernway) to move the Thursday call to Friday morning",
+          "gold": "Fernway Designer Search",
+          "outcome": "correct",
+          "chosen": "Fernway Designer Search",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants to move the senior product designer search call with Marcus Oyelaran (marcus@fernwaytalent.com) to Friday morning, Oct 23, 2026. The call was previously set for a Thursday afternoon at 14:00. Draft a short reschedule email in the existing Fernway thread proposing Friday Oct 23 morning (for example 10:00 AM America/Toronto) and ask Marcus to confirm. Do not send it. Show Theo the exact draft for approval and include the draft ID."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 0,
+      "case_id": "c20_dormant_inference_marcus",
+      "category": "dormant_inference",
+      "outcomes": [
+        {
+          "task": "ask Marcus Oyelaran (Fernway) to move the Thursday call to Friday morning",
+          "gold": "Fernway Designer Search",
+          "outcome": "correct",
+          "chosen": "Fernway Designer Search",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants to move the call with Marcus Oyelaran (marcus@fernwaytalent.com) to Friday morning. Draft a short reply in the existing Fernway thread asking if Friday morning works instead of the proposed call time, and suggest a specific Friday morning time if you can. Do not send it. Show the draft to Theo for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 1,
+      "case_id": "c01_followup_named_counterpart",
+      "category": "followup_counterpart_in_name",
+      "outcomes": [
+        {
+          "task": "check for Harrow Hill's confirmation of the $4k second deposit",
+          "gold": "Harrow Hill Venue Deposit",
+          "outcome": "correct",
+          "chosen": "Harrow Hill Venue Deposit",
+          "chosen_kind": "reuse",
+          "instructions": "Check the Harrow Hill Estate thread (thread 19f8505f1389e3b7, with celeste@harrowhillestate.ca and events@harrowhillestate.ca) for any reply since the second deposit note was sent on Oct 15, 2026. Report whether Celeste or anyone at Harrow Hill has confirmed receiving the $4,000 e-transfer, quoting the date and a short summary of any reply. If there is no reply, say so. Do not send or draft anything."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 1,
+      "case_id": "c02_new_task_known_counterpart",
+      "category": "new_task_known_counterpart",
+      "outcomes": [
+        {
+          "task": "ask Priya Natarajan to run Friday's client demo",
+          "gold": "Priya Roadmap Sync",
+          "outcome": "correct",
+          "chosen": "Priya Roadmap Sync",
+          "chosen_kind": "reuse",
+          "instructions": "Draft (do not send) a short email to Priya Natarajan (priya@northfoldstudio.ca) asking if she can run the client demo this Friday (Oct 23) because Theo is double booked. Keep it brief and casual, sign off as Theo. Ask her to reply to confirm. Return the draft with the To, Subject, Body, and Draft ID, and wait for Theo's confirmation before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 1,
+      "case_id": "c03_counterpart_not_in_owner_name",
+      "category": "new_task_owner_name_unrelated",
+      "outcomes": [
+        {
+          "task": "ask Dmitri Volkov whether Ironbark also does bathroom renovations",
+          "gold": "Kitchen Reno Quote Follow-up",
+          "outcome": "correct",
+          "chosen": "Kitchen Reno Quote Follow-up",
+          "chosen_kind": "reuse",
+          "instructions": "Draft (do not send) a reply to Dmitri Volkov at dmitri@ironbarkreno.ca on the existing Ironbark Renovations thread (thread 19fd813573036bfd). Ask whether Ironbark's crew also does bathroom renovations, since Theo's upstairs bathroom is next on the list after the kitchen (kitchen starts Nov 9). Keep it short and casual, signed Theo. Ask whether they'd be able to quote it and what their availability looks like after the kitchen. Create the draft and report back the full draft text with the draft ID. Nothing should be sent until Theo confirms."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 1,
+      "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+      "category": "reply_to_found_email",
+      "outcomes": [
+        {
+          "task": "reply to Bramblewood Auto's winter tire email booking Sat Oct 24 9:00",
+          "gold": "Inbox Catch-Up Scan",
+          "outcome": "correct",
+          "chosen": "Inbox Catch-Up Scan",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants to reply to the Bramblewood Auto Service winter tire changeover email (service@bramblewoodauto.ca, thread 1a13a9c097866746) and book the Saturday Oct 24 at 9:00 AM slot. Draft a short reply in that thread confirming Saturday Oct 24 at 9:00 AM works for the winter tire changeover, signed Theo. Do NOT send it. Return the exact draft (to, subject, body, draft ID) for Theo to review."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 1,
+      "case_id": "c05_confirm_pending_draft",
+      "category": "confirm_pending_draft",
+      "outcomes": [
+        {
+          "task": "send the pending Copperleaf reply draft",
+          "gold": "Copperleaf Renewal Thread",
+          "outcome": "correct",
+          "chosen": "Copperleaf Renewal Thread",
+          "chosen_kind": "reuse",
+          "instructions": "Theo approved the draft reply to Hana Ishikawa (draft ID r3449532902455624814, thread 1a0a082e8e8b21e2). Send it now, unchanged, and confirm with the sent message ID."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 1,
+      "case_id": "c06_modify_existing_trigger",
+      "category": "modify_reminder",
+      "outcomes": [
+        {
+          "task": "move the Sunday 19:00 week-ahead trigger to 20:30",
+          "gold": "Sunday Week Ahead Brief",
+          "outcome": "correct",
+          "chosen": "Sunday Week Ahead Brief",
+          "chosen_kind": "reuse",
+          "instructions": "Change the recurring Sunday week-ahead rundown (trigger ID 2) from 7:00 PM to 8:30 PM America/Toronto, every Sunday, keeping everything else the same. Confirm once the schedule is updated and state the new time."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 1,
+      "case_id": "c07_revive_dormant_counterpart",
+      "category": "dormant_counterpart_summary_only",
+      "outcomes": [
+        {
+          "task": "ask Wendell Achebe about locking the renewal rate before Nov 4",
+          "gold": "Mortgage Renewal Paperwork",
+          "outcome": "correct",
+          "chosen": "Mortgage Renewal Paperwork",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants to know from Wendell Achebe (Brightmoor, wendell.achebe@brightmoorcu.ca) whether Theo and Jules should lock the mortgage rate now or wait until after the Nov 4 rate announcement. Ask Wendell for his recommendation, the lock options and holding period, any fees, and how the rate would be affected if they wait. Also ask whether the renewal offer is still on track for Oct 30 and whether Jules' pay stub and 2025 T4s are needed before a lock. Draft the email in the existing Brightmoor thread and do not send it. Show Theo the full draft for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 1,
+      "case_id": "c08_same_first_name_other_person",
+      "category": "same_first_name_other_person",
+      "outcomes": [
+        {
+          "task": "email Priya Sandhu asking for the engagement proofs gallery early",
+          "gold": "Engagement Shoot Booking",
+          "outcome": "correct",
+          "chosen": "Engagement Shoot Booking",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants to ask Priya Sandhu (priya@lumenandlinen.ca, Lumen & Linen Photography) if she can send the engagement shoot online proofing gallery earlier than Friday, Oct 23. Jules keeps asking. Draft a short, friendly reply in the existing engagement shoot thread (thread 19fa469b96087153) asking whether the proofs can come sooner. Do not send it. Show me the full draft (to, subject, body) for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 1,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft (do not send) an email on behalf of Theo Marchetti to Marco Ferrante at Keyhaven Music, marco@keyhavenmusic.ca. Subject: Adult beginner piano lessons. Body: ask whether they have Saturday morning slots available for adult beginner piano lessons. Keep it short, casual, and polite, signed Theo. Create the draft and return the full To, Subject, and Body text plus the draft ID. Wait for Theo's explicit approval before sending anything."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 1,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft (do not send) a reply to Gabe (gabe@northfoldstudio.ca) in the existing offsite thread (thread 1a0e88ccde8db8a5, subject \"Re: Offsite agenda - Cedar Hollow, Oct 21-22\"). Message: Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Show me the draft for approval."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep",
+          "chosen_kind": "create",
+          "instructions": "Draft (do not send) a new email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026. Keep it short and casual, signed Theo. Ask for available dates and the price. Show me the draft for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 1,
+      "case_id": "c11_dormant_name_match_noor",
+      "category": "dormant_name_match",
+      "outcomes": [
+        {
+          "task": "ask Noor (Inkwell & Vine) to raise the save-the-date order from 120 to 140",
+          "gold": "Save the Date Printing",
+          "outcome": "correct",
+          "chosen": "Save the Date Printing",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants to update the save-the-date order from 120 to 140 letterpress cards (A6, one colour, kraft envelopes, June 12, 2027 wedding). The guest list grew. Email Noor Hassan (noor@inkwellandvine.ca) in the existing Inkwell and Vine thread asking for an updated quote for 140 cards, including the total, tax, deposit, and any timeline change. Create it as a draft only and do not send. Report the draft back to me with recipient, subject, and body."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 1,
+      "case_id": "c12_dormant_inference_noor",
+      "category": "dormant_inference",
+      "outcomes": [
+        {
+          "task": "ask Noor (Inkwell & Vine) to raise the save-the-date order from 120 to 140",
+          "gold": "Save the Date Printing",
+          "outcome": "correct",
+          "chosen": "Save the Date Printing",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants to change the save-the-date order from 120 to 140 letterpress A6 save-the-dates (one colour, kraft envelopes), because the guest list grew. Draft a reply to Noor Hassan (noor@inkwellandvine.ca) in the existing Inkwell and Vine thread asking if she can do 140 instead of 120, and ask for the revised quote (price and deposit). Do not send. Show me the full draft for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 1,
+      "case_id": "c13_dormant_name_match_tidewater",
+      "category": "dormant_name_match",
+      "outcomes": [
+        {
+          "task": "ask Tidewater Dental to move the cleaning to 17:00",
+          "gold": "Dentist Cleaning Reschedule",
+          "outcome": "correct",
+          "chosen": "Dentist Cleaning Reschedule",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants his cleaning moved to 5:00 PM instead. Draft a reply to Tidewater Dental front desk (frontdesk@tidewaterdental.ca) in the existing cleaning reschedule thread asking whether his cleaning can be at 5:00 PM instead of the requested late-afternoon slot. Keep it short and polite, signed Theo. Create the draft only; do not send. Report the draft details back so Theo can review."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 1,
+      "case_id": "c14_dormant_inference_tidewater",
+      "category": "dormant_inference",
+      "outcomes": [
+        {
+          "task": "ask Tidewater Dental to move the cleaning to 17:00",
+          "gold": "Dentist Cleaning Reschedule",
+          "outcome": "correct",
+          "chosen": "Dentist Cleaning Reschedule",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants to ask Tidewater Dental front desk (frontdesk@tidewaterdental.ca) whether he can get a 5pm slot instead of the late-afternoon slot previously requested for his cleaning (moved from Tue Oct 6). Reply in the existing thread (1a0ee1f0348a9b4c). Create a short, polite draft asking if a 5:00 PM appointment is available for the rescheduled cleaning, and do not send. Include the draft ID, recipient, subject, and full body in your response."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 1,
+      "case_id": "c15_dormant_name_match_ironwood",
+      "category": "dormant_name_match",
+      "outcomes": [
+        {
+          "task": "ask Ironwood Athletic to extend the membership freeze through November",
+          "gold": "Gym Membership Freeze",
+          "outcome": "correct",
+          "chosen": "Gym Membership Freeze",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants his Ironwood Athletic membership freeze extended through the end of November 2026 (Nov 30). Check the existing thread with members@ironwoodathletic.ca first for any reply on freeze dates and fees. Draft a short email in the existing thread asking Ironwood to extend the freeze through Nov 30, 2026, and confirm the fee if any and what the new end date is. Do not send. Show Theo the draft for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 1,
+      "case_id": "c16_dormant_inference_ironwood",
+      "category": "dormant_inference",
+      "outcomes": [
+        {
+          "task": "ask Ironwood Athletic to extend the membership freeze through November",
+          "gold": "Gym Membership Freeze",
+          "outcome": "correct",
+          "chosen": "Gym Membership Freeze",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants to ask Ironwood Athletic (members@ironwoodathletic.ca) to extend his membership freeze hold through November 2026. Draft a short reply in the existing Ironwood thread (message 1a05cbcdf88a9b95) asking if the hold can be extended through the end of November, and ask about any freeze dates and fee. Keep it brief and polite, mention the knee rehab only if needed. Do NOT send it. Show me the full draft (to, subject, body) and wait for Theo's confirmation."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 1,
+      "case_id": "c17_dormant_name_match_harold",
+      "category": "dormant_name_match",
+      "outcomes": [
+        {
+          "task": "tell Harold Pemberton Theo agrees to split the $1,150 fence repair",
+          "gold": "Neighbour Fence Repair",
+          "outcome": "correct",
+          "chosen": "Neighbour Fence Repair",
+          "chosen_kind": "reuse",
+          "instructions": "Theo approved splitting the fence repair. Draft a reply to Harold Pemberton (harold.pemberton@quaymail.net) in the existing thread 1a0f47a7448c6263 saying Theo agrees to split the $1,150 storm repair (reset posts, replace two panels) 50/50, so $575 each. Keep it short and casual, signed Theo. Do NOT send. Create the draft only and show it to me for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 1,
+      "case_id": "c18_dormant_inference_harold",
+      "category": "dormant_inference",
+      "outcomes": [
+        {
+          "task": "tell Harold Pemberton Theo agrees to split the $1,150 fence repair",
+          "gold": "Neighbour Fence Repair",
+          "outcome": "correct",
+          "chosen": "Neighbour Fence Repair",
+          "chosen_kind": "reuse",
+          "instructions": "Theo has agreed to split the $1,150 fence repair with Harold Pemberton, so each pays $575. Draft a short reply in the existing thread with Harold (thread 1a0f47a7448c6263, replying to message 1a0f47a7c18c8f34) confirming Theo is good with the split at $575 each, and asking how Harold would like to handle payment. Keep it brief and casual. Create the draft only and do not send it; show me the full draft text."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 1,
+      "case_id": "c19_dormant_name_match_marcus",
+      "category": "dormant_name_match",
+      "outcomes": [
+        {
+          "task": "ask Marcus Oyelaran (Fernway) to move the Thursday call to Friday morning",
+          "gold": "Fernway Designer Search",
+          "outcome": "correct",
+          "chosen": "Fernway Designer Search",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants to move the senior product designer call with Marcus Oyelaran (marcus@fernwaytalent.com) to Friday morning. Check the thread for the currently scheduled call time and whether Marcus has confirmed. Draft a short reply in the existing thread proposing Friday morning (between 9:00 and 11:00 AM, nearest upcoming Friday) as the new time, and ask Marcus to confirm. Do not send. Return the full draft (to, subject, body, draft ID) for Theo's review and tell me which Friday and what the current call time was."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 1,
+      "case_id": "c20_dormant_inference_marcus",
+      "category": "dormant_inference",
+      "outcomes": [
+        {
+          "task": "ask Marcus Oyelaran (Fernway) to move the Thursday call to Friday morning",
+          "gold": "Fernway Designer Search",
+          "outcome": "correct",
+          "chosen": "Fernway Designer Search",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants to move his call with Marcus Oyelaran (marcus@fernwaytalent.com) to Friday morning. Check the thread for the currently scheduled call time and whether Marcus confirmed it. Draft a short reply in the existing Fernway thread asking to move the call to Friday morning, offering a couple of morning times (e.g., 9:30 or 10:30 AM ET) if you can see he's free, and asking him to confirm. Do not send. Return the full draft (to, subject, body, draft ID) for Theo's approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 2,
+      "case_id": "c01_followup_named_counterpart",
+      "category": "followup_counterpart_in_name",
+      "outcomes": [
+        {
+          "task": "check for Harrow Hill's confirmation of the $4k second deposit",
+          "gold": "Harrow Hill Venue Deposit",
+          "outcome": "correct",
+          "chosen": "Harrow Hill Venue Deposit",
+          "chosen_kind": "reuse",
+          "instructions": "Check whether Celeste or anyone at Harrow Hill Estate (celeste@harrowhillestate.ca, events@harrowhillestate.ca) has replied to the Oct 15 email \"Second deposit sent - June 12, 2027\" confirming receipt of the $4,000 second deposit. Thread 19f8505f1389e3b7. Report any reply with its date and content, or say clearly that no reply has come in. Do not send or draft anything."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 2,
+      "case_id": "c02_new_task_known_counterpart",
+      "category": "new_task_known_counterpart",
+      "outcomes": [
+        {
+          "task": "ask Priya Natarajan to run Friday's client demo",
+          "gold": "Priya Roadmap Sync",
+          "outcome": "correct",
+          "chosen": "Priya Roadmap Sync",
+          "chosen_kind": "reuse",
+          "instructions": "Draft (do not send) a short email to priya@northfoldstudio.ca (Priya Natarajan, Northfold Studio) asking if she can run the client demo this Friday (Oct 23, 2026) because Theo is double booked. Keep it brief and friendly, in Theo's casual tone. Ask her to reply if she can cover, and mention he can brief her before. Reply in the existing thread if one exists with her, otherwise make it a new email. Return the full draft text with the draft ID and wait for approval before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 2,
+      "case_id": "c03_counterpart_not_in_owner_name",
+      "category": "new_task_owner_name_unrelated",
+      "outcomes": [
+        {
+          "task": "ask Dmitri Volkov whether Ironbark also does bathroom renovations",
+          "gold": "Kitchen Reno Quote Follow-up",
+          "outcome": "correct",
+          "chosen": "Kitchen Reno Quote Follow-up",
+          "chosen_kind": "reuse",
+          "instructions": "Draft (do not send) a reply on the Ironbark Renovations thread (thread 19fd813573036bfd) to Dmitri Volkov (dmitri@ironbarkreno.ca) asking whether his crew also does bathroom renovations, since the upstairs bathroom is next on the list after the kitchen (Nov 9 start). Keep it short and casual, signed Theo. Show me the full draft and wait for my confirmation before sending."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 2,
+      "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+      "category": "reply_to_found_email",
+      "outcomes": [
+        {
+          "task": "reply to Bramblewood Auto's winter tire email booking Sat Oct 24 9:00",
+          "gold": "Inbox Catch-Up Scan",
+          "outcome": "correct",
+          "chosen": "Inbox Catch-Up Scan",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants to reply to Bramblewood Auto Service about the winter tire changeover. Draft a reply in the existing thread (thread ID 1a13a9c097866746) to service@bramblewoodauto.ca confirming Saturday Oct 24 at 9:00 AM for the tire changeover. Keep it short, signed Theo. Do not send it; create the draft only and return the full To, Subject, and Body so Theo can review."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 2,
+      "case_id": "c05_confirm_pending_draft",
+      "category": "confirm_pending_draft",
+      "outcomes": [
+        {
+          "task": "send the pending Copperleaf reply draft",
+          "gold": "Copperleaf Renewal Thread",
+          "outcome": "correct",
+          "chosen": "Copperleaf Renewal Thread",
+          "chosen_kind": "reuse",
+          "instructions": "The user approved the draft. Send draft r3449532902455624814 (to hana.ishikawa@copperleafdata.com, subject \"Re: Your Copperleaf renewal - Northfold Studio\", thread 1a0a082e8e8b21e2) exactly as written. Do not change the text. Report back the sent message ID and confirm it is labeled SENT."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 2,
+      "case_id": "c06_modify_existing_trigger",
+      "category": "modify_reminder",
+      "outcomes": [
+        {
+          "task": "move the Sunday 19:00 week-ahead trigger to 20:30",
+          "gold": "Sunday Week Ahead Brief",
+          "outcome": "correct",
+          "chosen": "Sunday Week Ahead Brief",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants the recurring Sunday week-ahead rundown (trigger ID 2) moved from 7:00 PM to 8:30 PM America/Toronto. Keep everything else the same (weekly on Sundays, same content). Confirm once the schedule is updated and state the new time."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 2,
+      "case_id": "c07_revive_dormant_counterpart",
+      "category": "dormant_counterpart_summary_only",
+      "outcomes": [
+        {
+          "task": "ask Wendell Achebe about locking the renewal rate before Nov 4",
+          "gold": "Mortgage Renewal Paperwork",
+          "outcome": "correct",
+          "chosen": "Mortgage Renewal Paperwork",
+          "chosen_kind": "reuse",
+          "instructions": "Theo asks: should we lock the rate now or wait until after the Nov 4 Brightmoor rate announcement? Email Wendell Achebe (wendell.achebe@brightmoorcu.ca) on the existing renewal thread asking for his recommendation on locking now versus waiting for the Nov 4 announcement, including the current hold options and any deadline for locking. Draft it for Theo's review and do NOT send until Theo approves. Also report any reply from Wendell already in the inbox, including the renewal offer if it has arrived."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 2,
+      "case_id": "c08_same_first_name_other_person",
+      "category": "same_first_name_other_person",
+      "outcomes": [
+        {
+          "task": "email Priya Sandhu asking for the engagement proofs gallery early",
+          "gold": "Engagement Shoot Booking",
+          "outcome": "correct",
+          "chosen": "Engagement Shoot Booking",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants to ask Priya Sandhu (Lumen & Linen Photography, priya@lumenandlinen.ca) whether the engagement shoot online proofing gallery can be sent early. Currently she said it arrives by Friday, Oct 23. Jules keeps asking when the photos are coming. Reply in the existing thread (19fa469b96087153) and create a short, friendly draft asking if the proofs can be sent sooner. Do not send it. Report back the draft (to, subject, body) for Theo's approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 2,
+      "case_id": "c09_new_counterpart_overlapping_name",
+      "category": "new_counterpart_overlapping_name",
+      "outcomes": [
+        {
+          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Keyhaven Music Piano Lessons",
+          "chosen_kind": "create",
+          "instructions": "Draft an email from Theo Marchetti to Marco Ferrante at Keyhaven Music (marco@keyhavenmusic.ca). Ask if he has any Saturday morning slots available for adult beginner piano lessons. Keep it short and friendly, signed Theo. Create the draft only and do not send it. Report back the exact To, Subject, and Body, plus the draft ID."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 2,
+      "case_id": "c10_parallel_known_and_new",
+      "category": "parallel_known_and_new",
+      "outcomes": [
+        {
+          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+          "gold": "Email to Gabe Offsite Agenda",
+          "outcome": "correct",
+          "chosen": "Email to Gabe Offsite Agenda",
+          "chosen_kind": "reuse",
+          "instructions": "Draft a reply in the Cedar Hollow offsite thread (thread 1a0e88ccde8db8a5) to gabe@northfoldstudio.ca saying Theo will be about 20 minutes late to the Wednesday Oct 21 10:00 kickoff because of a train. Keep it short and casual, signed Theo. Do not send it; create the draft only and report the exact To, Subject, and Body."
+        },
+        {
+          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+          "gold": "NEW",
+          "outcome": "correct",
+          "chosen": "Halcyon Chimney Sweep Request",
+          "chosen_kind": "create",
+          "instructions": "Draft a new email to service@halcyonchimney.ca from Theo Marchetti asking whether they can do a chimney sweep before mid-November 2026. Ask for their earliest available slot and pricing. Keep it short, casual, signed Theo. Do not send it; create the draft only and report the exact To, Subject, and Body. Then check for any reply from Halcyon and report it."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 2,
+      "case_id": "c11_dormant_name_match_noor",
+      "category": "dormant_name_match",
+      "outcomes": [
+        {
+          "task": "ask Noor (Inkwell & Vine) to raise the save-the-date order from 120 to 140",
+          "gold": "Save the Date Printing",
+          "outcome": "correct",
+          "chosen": "Save the Date Printing",
+          "chosen_kind": "reuse",
+          "instructions": "Theo's guest list has grown. Request a revised quote from Noor Hassan at Inkwell and Vine (noor@inkwellandvine.ca, existing thread) for 140 A6 one-colour letterpress save-the-dates with kraft envelopes, instead of 120. Report back the revised price incl. tax, deposit amount, and timing. Do not send anything until Theo approves the exact email text; show it to him as a draft first."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 2,
+      "case_id": "c12_dormant_inference_noor",
+      "category": "dormant_inference",
+      "outcomes": [
+        {
+          "task": "ask Noor (Inkwell & Vine) to raise the save-the-date order from 120 to 140",
+          "gold": "Save the Date Printing",
+          "outcome": "correct",
+          "chosen": "Save the Date Printing",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants to change the save-the-date order from 120 to 140 A6 one-colour letterpress save-the-dates with kraft envelopes (guest list grew). Draft a reply to Noor Hassan (noor@inkwellandvine.ca) in the existing Inkwell and Vine thread asking if she can do 140 instead of 120, and ask for the updated quote (total + tax and deposit amount). Do not send. Show Theo the draft for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 2,
+      "case_id": "c13_dormant_name_match_tidewater",
+      "category": "dormant_name_match",
+      "outcomes": [
+        {
+          "task": "ask Tidewater Dental to move the cleaning to 17:00",
+          "gold": "Dentist Cleaning Reschedule",
+          "outcome": "correct",
+          "chosen": "Dentist Cleaning Reschedule",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants to email Tidewater Dental (frontdesk@tidewaterdental.ca) asking whether his cleaning can be moved to 5:00 PM instead. Draft a short reply in the existing thread (1a0ee1f0348a9b4c) asking if the cleaning can be at 5:00 PM instead, and mention the time he's requesting. Create the draft only; do not send. Return the full draft (to, subject, body, draft ID)."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 2,
+      "case_id": "c14_dormant_inference_tidewater",
+      "category": "dormant_inference",
+      "outcomes": [
+        {
+          "task": "ask Tidewater Dental to move the cleaning to 17:00",
+          "gold": "Dentist Cleaning Reschedule",
+          "outcome": "correct",
+          "chosen": "Dentist Cleaning Reschedule",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants a 5pm slot instead for his dentist cleaning with Tidewater Dental. Draft a short reply in the existing Tidewater thread (frontdesk@tidewaterdental.ca) asking whether a 5:00 PM appointment is available for the cleaning, in the same week as the previously requested late-afternoon slot. Do not send. Return the exact draft (to, subject, body, draft ID) for Theo's approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 2,
+      "case_id": "c15_dormant_name_match_ironwood",
+      "category": "dormant_name_match",
+      "outcomes": [
+        {
+          "task": "ask Ironwood Athletic to extend the membership freeze through November",
+          "gold": "Gym Membership Freeze",
+          "outcome": "correct",
+          "chosen": "Gym Membership Freeze",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants his Ironwood Athletic membership freeze extended through the end of November 2026 (covering Sept, Oct and Nov). Check the existing thread with members@ironwoodathletic.ca for any reply first. Draft a short follow-up email to Ironwood asking them to extend the freeze through November 30, 2026, keep his spot held, and confirm any fee. Create the draft only; do not send. Report back the draft details (to, subject, body) and note whether the earlier request's body was cut off, and if so, include the full context (knee rehab) in this follow-up."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 2,
+      "case_id": "c16_dormant_inference_ironwood",
+      "category": "dormant_inference",
+      "outcomes": [
+        {
+          "task": "ask Ironwood Athletic to extend the membership freeze through November",
+          "gold": "Gym Membership Freeze",
+          "outcome": "correct",
+          "chosen": "Gym Membership Freeze",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants Ironwood Athletic to extend his membership freeze hold through November. Reply in the existing thread with members@ironwoodathletic.ca (the Sept/Oct freeze request for his knee rehab). Ask them to extend the hold/freeze through November 2026 and confirm the freeze dates and any fee. Draft it first and show Theo the draft; do not send until he confirms. Keep the email short and polite."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 2,
+      "case_id": "c17_dormant_name_match_harold",
+      "category": "dormant_name_match",
+      "outcomes": [
+        {
+          "task": "tell Harold Pemberton Theo agrees to split the $1,150 fence repair",
+          "gold": "Neighbour Fence Repair",
+          "outcome": "correct",
+          "chosen": "Neighbour Fence Repair",
+          "chosen_kind": "reuse",
+          "instructions": "Theo has agreed to split the fence repair with Harold Pemberton. He'll pay $575 each (half of the $1,150 total for resetting posts and replacing two panels). Draft a short reply in the existing thread (thread 1a0f47a7448c6263, to harold.pemberton@quaymail.net) confirming the $575 split. Do not send. Show me the draft for approval."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 2,
+      "case_id": "c18_dormant_inference_harold",
+      "category": "dormant_inference",
+      "outcomes": [
+        {
+          "task": "tell Harold Pemberton Theo agrees to split the $1,150 fence repair",
+          "gold": "Neighbour Fence Repair",
+          "outcome": "correct",
+          "chosen": "Neighbour Fence Repair",
+          "chosen_kind": "reuse",
+          "instructions": "Theo agreed to split the $1,150 fence repair with Harold Pemberton: $575 each. Draft a short reply to Harold (harold.pemberton@quaymail.net) in the existing fence repair thread (1a0f47a7448c6263) confirming he's good to split it, $575 each. Keep it brief and casual, signed Theo. Create the draft only, do not send it. Show me the exact to, subject and body."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 2,
+      "case_id": "c19_dormant_name_match_marcus",
+      "category": "dormant_name_match",
+      "outcomes": [
+        {
+          "task": "ask Marcus Oyelaran (Fernway) to move the Thursday call to Friday morning",
+          "gold": "Fernway Designer Search",
+          "outcome": "correct",
+          "chosen": "Fernway Designer Search",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants to push the senior product designer search call with Marcus Oyelaran (marcus@fernwaytalent.com, Fernway Talent) to Friday morning. First, check the thread for the currently scheduled call date and time. Find the nearest Friday after that call, morning slot, and check whether Marcus already proposed or confirmed a Friday morning time. Draft a short reply to Marcus in the existing thread asking to move the call to that Friday morning, and show Theo the draft with the proposed date and time. Do not send it until Theo explicitly confirms. If Marcus has not offered a specific morning time, propose 10:00 AM and say so in the draft."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    },
+    {
+      "size": 25,
+      "repeat": 2,
+      "case_id": "c20_dormant_inference_marcus",
+      "category": "dormant_inference",
+      "outcomes": [
+        {
+          "task": "ask Marcus Oyelaran (Fernway) to move the Thursday call to Friday morning",
+          "gold": "Fernway Designer Search",
+          "outcome": "correct",
+          "chosen": "Fernway Designer Search",
+          "chosen_kind": "reuse",
+          "instructions": "Theo wants to move the call with Marcus Oyelaran (marcus@fernwaytalent.com) to Friday morning. Draft a short reply in the existing Fernway thread asking if Friday morning works for the call, in place of the currently scheduled call. Do not invent a specific time; ask Marcus which Friday morning slot works for him. Do not send. Return the draft for Theo's review."
+        }
+      ],
+      "extra_delegations": [],
+      "error": null
+    }
+  ],
+  "comparison": {
+    "baseline_run": "20261018T165232Z",
+    "sizes": [
+      25
+    ],
+    "accuracy": [
+      {
+        "size": 25,
+        "before": 0.948,
+        "after": 1.0
+      }
+    ],
+    "groups": [
+      {
+        "group": "overload target (dormant, inference)",
+        "rates": {
+          "25": {
+            "before": 0.983,
+            "after": 1.0
+          }
+        }
+      },
+      {
+        "group": "dormant control (name match)",
+        "rates": {
+          "25": {
+            "before": 1.0,
+            "after": 1.0
+          }
+        }
+      },
+      {
+        "group": "easy recent",
+        "rates": {
+          "25": {
+            "before": 0.967,
+            "after": 1.0
+          }
+        }
+      },
+      {
+        "group": "policy-ambiguous",
+        "rates": {
+          "25": {
+            "before": 0.6,
+            "after": 1.0
+          }
+        }
+      },
+      {
+        "group": "multi-task",
+        "rates": {
+          "25": {
+            "before": 1.0,
+            "after": 1.0
+          }
+        }
+      }
+    ]
+  }
+}

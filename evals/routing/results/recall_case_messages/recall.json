@@ -1,0 +1,2276 @@
+{
+ "rows": [
+  {
+   "size": 25,
+   "case_id": "c01_followup_named_counterpart",
+   "gold": "Harrow Hill Venue Deposit",
+   "query": "did harrow hill ever confirm they got the deposit?",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c02_new_task_known_counterpart",
+   "gold": "Priya Roadmap Sync",
+   "query": "can you email priya and ask if she can run the client demo friday? im double booked",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c03_counterpart_not_in_owner_name",
+   "gold": "Kitchen Reno Quote Follow-up",
+   "query": "ask dmitri if his guys do bathrooms too? the upstairs one is next on the list",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+   "gold": "Inbox Catch-Up Scan",
+   "query": "ok reply to the tire place and tell them saturday 9am works",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c05_confirm_pending_draft",
+   "gold": "Copperleaf Renewal Thread",
+   "query": "yep looks good, send it",
+   "ranks": {
+    "max": 21,
+    "max+bonus": 21,
+    "top2 mean": 21,
+    "soft max": 22
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c06_modify_existing_trigger",
+   "gold": "Sunday Week Ahead Brief",
+   "query": "can you push the sunday night rundown to 8:30 instead of 7? 7 is right when we sit down to eat",
+   "ranks": {
+    "max": 2,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 2
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c07_revive_dormant_counterpart",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "can you ask wendell if we should lock the rate now or wait til after the nov 4 announcement",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c08_same_first_name_other_person",
+   "gold": "Engagement Shoot Booking",
+   "query": "can you ask priya if she can send the engagement proofs early? jules keeps asking lol",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c10_parallel_known_and_new",
+   "gold": "Email to Gabe Offsite Agenda",
+   "query": "tell gabe ill be like 20 min late to the kickoff wednesday, train thing. also can you email halcyon chimney (service@halcyonchimney.ca) and see if they can do a sweep before mid nov",
+   "ranks": {
+    "max": 2,
+    "max+bonus": 2,
+    "top2 mean": 2,
+    "soft max": 3
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c11_dormant_name_match_noor",
+   "gold": "Save the Date Printing",
+   "query": "can we bump the save the date printing to 140? guest list grew",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c12_dormant_inference_noor",
+   "gold": "Save the Date Printing",
+   "query": "ask noor if she can do 140 instead of 120, guest list grew",
+   "ranks": {
+    "max": 2,
+    "max+bonus": 2,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c13_dormant_name_match_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "email the dentist and ask if my cleaning can be at 5 instead",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c14_dormant_inference_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "email tidewater and ask if i can get a 5pm slot instead",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c15_dormant_name_match_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "can you extend my gym membership freeze through november",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c16_dormant_inference_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "ask ironwood if they can extend my hold through november",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c17_dormant_name_match_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell the neighbour im good to split the fence repair, 575 each",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c18_dormant_inference_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell harold im good to split it, 575 each",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c19_dormant_name_match_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "can you push the designer search call to friday morning",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c20_dormant_inference_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "ask marcus if we can move our call to friday morning",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c21_dormant_paraphrase_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "can you ask our guy at the credit union if we should lock in before the rate announcement",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c22_dormant_paraphrase_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "my knee's still not great, can you ask the place i work out to keep my account on hold through november",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c23_dormant_paraphrase_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell the guy next door i'm good to go halves on it, 575 each",
+   "ranks": {
+    "max": 2,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c24_dormant_paraphrase_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "can you ask if my teeth appointment can be pushed to around 5",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c28_dormant_typo_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "can you ask wendel if we should lock the rate now or wait til after the nov 4 announcement",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c29_dormant_typo_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "email tidwater and ask if i can get a 5pm slot instead",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c30_dormant_typo_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "ask ironwod if they can extend my hold through november",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c31_dormant_typo_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell harrold im good to split it, 575 each",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 50,
+   "case_id": "c01_followup_named_counterpart",
+   "gold": "Harrow Hill Venue Deposit",
+   "query": "did harrow hill ever confirm they got the deposit?",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 50,
+   "case_id": "c02_new_task_known_counterpart",
+   "gold": "Priya Roadmap Sync",
+   "query": "can you email priya and ask if she can run the client demo friday? im double booked",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 50,
+   "case_id": "c03_counterpart_not_in_owner_name",
+   "gold": "Kitchen Reno Quote Follow-up",
+   "query": "ask dmitri if his guys do bathrooms too? the upstairs one is next on the list",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 50,
+   "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+   "gold": "Inbox Catch-Up Scan",
+   "query": "ok reply to the tire place and tell them saturday 9am works",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 50,
+   "case_id": "c05_confirm_pending_draft",
+   "gold": "Copperleaf Renewal Thread",
+   "query": "yep looks good, send it",
+   "ranks": {
+    "max": 44,
+    "max+bonus": 44,
+    "top2 mean": 42,
+    "soft max": 46
+   }
+  },
+  {
+   "size": 50,
+   "case_id": "c06_modify_existing_trigger",
+   "gold": "Sunday Week Ahead Brief",
+   "query": "can you push the sunday night rundown to 8:30 instead of 7? 7 is right when we sit down to eat",
+   "ranks": {
+    "max": 2,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 2
+   }
+  },
+  {
+   "size": 50,
+   "case_id": "c07_revive_dormant_counterpart",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "can you ask wendell if we should lock the rate now or wait til after the nov 4 announcement",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 50,
+   "case_id": "c08_same_first_name_other_person",
+   "gold": "Engagement Shoot Booking",
+   "query": "can you ask priya if she can send the engagement proofs early? jules keeps asking lol",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 50,
+   "case_id": "c10_parallel_known_and_new",
+   "gold": "Email to Gabe Offsite Agenda",
+   "query": "tell gabe ill be like 20 min late to the kickoff wednesday, train thing. also can you email halcyon chimney (service@halcyonchimney.ca) and see if they can do a sweep before mid nov",
+   "ranks": {
+    "max": 2,
+    "max+bonus": 2,
+    "top2 mean": 2,
+    "soft max": 3
+   }
+  },
+  {
+   "size": 50,
+   "case_id": "c11_dormant_name_match_noor",
+   "gold": "Save the Date Printing",
+   "query": "can we bump the save the date printing to 140? guest list grew",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 50,
+   "case_id": "c12_dormant_inference_noor",
+   "gold": "Save the Date Printing",
+   "query": "ask noor if she can do 140 instead of 120, guest list grew",
+   "ranks": {
+    "max": 3,
+    "max+bonus": 3,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 50,
+   "case_id": "c13_dormant_name_match_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "email the dentist and ask if my cleaning can be at 5 instead",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 50,
+   "case_id": "c14_dormant_inference_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "email tidewater and ask if i can get a 5pm slot instead",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 50,
+   "case_id": "c15_dormant_name_match_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "can you extend my gym membership freeze through november",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 50,
+   "case_id": "c16_dormant_inference_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "ask ironwood if they can extend my hold through november",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 50,
+   "case_id": "c17_dormant_name_match_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell the neighbour im good to split the fence repair, 575 each",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 50,
+   "case_id": "c18_dormant_inference_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell harold im good to split it, 575 each",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 50,
+   "case_id": "c19_dormant_name_match_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "can you push the designer search call to friday morning",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 50,
+   "case_id": "c20_dormant_inference_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "ask marcus if we can move our call to friday morning",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 50,
+   "case_id": "c21_dormant_paraphrase_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "can you ask our guy at the credit union if we should lock in before the rate announcement",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 50,
+   "case_id": "c22_dormant_paraphrase_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "my knee's still not great, can you ask the place i work out to keep my account on hold through november",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 50,
+   "case_id": "c23_dormant_paraphrase_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell the guy next door i'm good to go halves on it, 575 each",
+   "ranks": {
+    "max": 2,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 50,
+   "case_id": "c24_dormant_paraphrase_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "can you ask if my teeth appointment can be pushed to around 5",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 50,
+   "case_id": "c28_dormant_typo_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "can you ask wendel if we should lock the rate now or wait til after the nov 4 announcement",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 50,
+   "case_id": "c29_dormant_typo_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "email tidwater and ask if i can get a 5pm slot instead",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 50,
+   "case_id": "c30_dormant_typo_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "ask ironwod if they can extend my hold through november",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 50,
+   "case_id": "c31_dormant_typo_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell harrold im good to split it, 575 each",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 100,
+   "case_id": "c01_followup_named_counterpart",
+   "gold": "Harrow Hill Venue Deposit",
+   "query": "did harrow hill ever confirm they got the deposit?",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 100,
+   "case_id": "c02_new_task_known_counterpart",
+   "gold": "Priya Roadmap Sync",
+   "query": "can you email priya and ask if she can run the client demo friday? im double booked",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 100,
+   "case_id": "c03_counterpart_not_in_owner_name",
+   "gold": "Kitchen Reno Quote Follow-up",
+   "query": "ask dmitri if his guys do bathrooms too? the upstairs one is next on the list",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 100,
+   "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+   "gold": "Inbox Catch-Up Scan",
+   "query": "ok reply to the tire place and tell them saturday 9am works",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 2,
+    "soft max": 2
+   }
+  },
+  {
+   "size": 100,
+   "case_id": "c05_confirm_pending_draft",
+   "gold": "Copperleaf Renewal Thread",
+   "query": "yep looks good, send it",
+   "ranks": {
+    "max": 92,
+    "max+bonus": 92,
+    "top2 mean": 86,
+    "soft max": 93
+   }
+  },
+  {
+   "size": 100,
+   "case_id": "c06_modify_existing_trigger",
+   "gold": "Sunday Week Ahead Brief",
+   "query": "can you push the sunday night rundown to 8:30 instead of 7? 7 is right when we sit down to eat",
+   "ranks": {
+    "max": 2,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 2
+   }
+  },
+  {
+   "size": 100,
+   "case_id": "c07_revive_dormant_counterpart",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "can you ask wendell if we should lock the rate now or wait til after the nov 4 announcement",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 100,
+   "case_id": "c08_same_first_name_other_person",
+   "gold": "Engagement Shoot Booking",
+   "query": "can you ask priya if she can send the engagement proofs early? jules keeps asking lol",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 100,
+   "case_id": "c10_parallel_known_and_new",
+   "gold": "Email to Gabe Offsite Agenda",
+   "query": "tell gabe ill be like 20 min late to the kickoff wednesday, train thing. also can you email halcyon chimney (service@halcyonchimney.ca) and see if they can do a sweep before mid nov",
+   "ranks": {
+    "max": 4,
+    "max+bonus": 4,
+    "top2 mean": 2,
+    "soft max": 8
+   }
+  },
+  {
+   "size": 100,
+   "case_id": "c11_dormant_name_match_noor",
+   "gold": "Save the Date Printing",
+   "query": "can we bump the save the date printing to 140? guest list grew",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 100,
+   "case_id": "c12_dormant_inference_noor",
+   "gold": "Save the Date Printing",
+   "query": "ask noor if she can do 140 instead of 120, guest list grew",
+   "ranks": {
+    "max": 5,
+    "max+bonus": 5,
+    "top2 mean": 3,
+    "soft max": 2
+   }
+  },
+  {
+   "size": 100,
+   "case_id": "c13_dormant_name_match_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "email the dentist and ask if my cleaning can be at 5 instead",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 100,
+   "case_id": "c14_dormant_inference_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "email tidewater and ask if i can get a 5pm slot instead",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 100,
+   "case_id": "c15_dormant_name_match_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "can you extend my gym membership freeze through november",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 100,
+   "case_id": "c16_dormant_inference_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "ask ironwood if they can extend my hold through november",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 2,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 100,
+   "case_id": "c17_dormant_name_match_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell the neighbour im good to split the fence repair, 575 each",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 100,
+   "case_id": "c18_dormant_inference_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell harold im good to split it, 575 each",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 100,
+   "case_id": "c19_dormant_name_match_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "can you push the designer search call to friday morning",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 100,
+   "case_id": "c20_dormant_inference_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "ask marcus if we can move our call to friday morning",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 100,
+   "case_id": "c21_dormant_paraphrase_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "can you ask our guy at the credit union if we should lock in before the rate announcement",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 100,
+   "case_id": "c22_dormant_paraphrase_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "my knee's still not great, can you ask the place i work out to keep my account on hold through november",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 100,
+   "case_id": "c23_dormant_paraphrase_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell the guy next door i'm good to go halves on it, 575 each",
+   "ranks": {
+    "max": 3,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 100,
+   "case_id": "c24_dormant_paraphrase_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "can you ask if my teeth appointment can be pushed to around 5",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 100,
+   "case_id": "c28_dormant_typo_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "can you ask wendel if we should lock the rate now or wait til after the nov 4 announcement",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 100,
+   "case_id": "c29_dormant_typo_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "email tidwater and ask if i can get a 5pm slot instead",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 100,
+   "case_id": "c30_dormant_typo_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "ask ironwod if they can extend my hold through november",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 100,
+   "case_id": "c31_dormant_typo_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell harrold im good to split it, 575 each",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 200,
+   "case_id": "c01_followup_named_counterpart",
+   "gold": "Harrow Hill Venue Deposit",
+   "query": "did harrow hill ever confirm they got the deposit?",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 200,
+   "case_id": "c02_new_task_known_counterpart",
+   "gold": "Priya Roadmap Sync",
+   "query": "can you email priya and ask if she can run the client demo friday? im double booked",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 2
+   }
+  },
+  {
+   "size": 200,
+   "case_id": "c03_counterpart_not_in_owner_name",
+   "gold": "Kitchen Reno Quote Follow-up",
+   "query": "ask dmitri if his guys do bathrooms too? the upstairs one is next on the list",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 200,
+   "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+   "gold": "Inbox Catch-Up Scan",
+   "query": "ok reply to the tire place and tell them saturday 9am works",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 2,
+    "soft max": 2
+   }
+  },
+  {
+   "size": 200,
+   "case_id": "c05_confirm_pending_draft",
+   "gold": "Copperleaf Renewal Thread",
+   "query": "yep looks good, send it",
+   "ranks": {
+    "max": 180,
+    "max+bonus": 180,
+    "top2 mean": 168,
+    "soft max": 187
+   }
+  },
+  {
+   "size": 200,
+   "case_id": "c06_modify_existing_trigger",
+   "gold": "Sunday Week Ahead Brief",
+   "query": "can you push the sunday night rundown to 8:30 instead of 7? 7 is right when we sit down to eat",
+   "ranks": {
+    "max": 3,
+    "max+bonus": 2,
+    "top2 mean": 1,
+    "soft max": 3
+   }
+  },
+  {
+   "size": 200,
+   "case_id": "c07_revive_dormant_counterpart",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "can you ask wendell if we should lock the rate now or wait til after the nov 4 announcement",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 200,
+   "case_id": "c08_same_first_name_other_person",
+   "gold": "Engagement Shoot Booking",
+   "query": "can you ask priya if she can send the engagement proofs early? jules keeps asking lol",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 200,
+   "case_id": "c10_parallel_known_and_new",
+   "gold": "Email to Gabe Offsite Agenda",
+   "query": "tell gabe ill be like 20 min late to the kickoff wednesday, train thing. also can you email halcyon chimney (service@halcyonchimney.ca) and see if they can do a sweep before mid nov",
+   "ranks": {
+    "max": 8,
+    "max+bonus": 9,
+    "top2 mean": 6,
+    "soft max": 14
+   }
+  },
+  {
+   "size": 200,
+   "case_id": "c11_dormant_name_match_noor",
+   "gold": "Save the Date Printing",
+   "query": "can we bump the save the date printing to 140? guest list grew",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 200,
+   "case_id": "c12_dormant_inference_noor",
+   "gold": "Save the Date Printing",
+   "query": "ask noor if she can do 140 instead of 120, guest list grew",
+   "ranks": {
+    "max": 8,
+    "max+bonus": 6,
+    "top2 mean": 3,
+    "soft max": 3
+   }
+  },
+  {
+   "size": 200,
+   "case_id": "c13_dormant_name_match_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "email the dentist and ask if my cleaning can be at 5 instead",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 200,
+   "case_id": "c14_dormant_inference_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "email tidewater and ask if i can get a 5pm slot instead",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 200,
+   "case_id": "c15_dormant_name_match_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "can you extend my gym membership freeze through november",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 200,
+   "case_id": "c16_dormant_inference_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "ask ironwood if they can extend my hold through november",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 2,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 200,
+   "case_id": "c17_dormant_name_match_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell the neighbour im good to split the fence repair, 575 each",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 200,
+   "case_id": "c18_dormant_inference_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell harold im good to split it, 575 each",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 200,
+   "case_id": "c19_dormant_name_match_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "can you push the designer search call to friday morning",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 200,
+   "case_id": "c20_dormant_inference_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "ask marcus if we can move our call to friday morning",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 200,
+   "case_id": "c21_dormant_paraphrase_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "can you ask our guy at the credit union if we should lock in before the rate announcement",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 200,
+   "case_id": "c22_dormant_paraphrase_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "my knee's still not great, can you ask the place i work out to keep my account on hold through november",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 200,
+   "case_id": "c23_dormant_paraphrase_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell the guy next door i'm good to go halves on it, 575 each",
+   "ranks": {
+    "max": 3,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 200,
+   "case_id": "c24_dormant_paraphrase_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "can you ask if my teeth appointment can be pushed to around 5",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 200,
+   "case_id": "c28_dormant_typo_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "can you ask wendel if we should lock the rate now or wait til after the nov 4 announcement",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 200,
+   "case_id": "c29_dormant_typo_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "email tidwater and ask if i can get a 5pm slot instead",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 200,
+   "case_id": "c30_dormant_typo_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "ask ironwod if they can extend my hold through november",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 200,
+   "case_id": "c31_dormant_typo_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell harrold im good to split it, 575 each",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c01_followup_named_counterpart",
+   "gold": "Harrow Hill Venue Deposit",
+   "query": "did harrow hill ever confirm they got the deposit?",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c02_new_task_known_counterpart",
+   "gold": "Priya Roadmap Sync",
+   "query": "can you email priya and ask if she can run the client demo friday? im double booked",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 2
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c03_counterpart_not_in_owner_name",
+   "gold": "Kitchen Reno Quote Follow-up",
+   "query": "ask dmitri if his guys do bathrooms too? the upstairs one is next on the list",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+   "gold": "Inbox Catch-Up Scan",
+   "query": "ok reply to the tire place and tell them saturday 9am works",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 2,
+    "soft max": 2
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c05_confirm_pending_draft",
+   "gold": "Copperleaf Renewal Thread",
+   "query": "yep looks good, send it",
+   "ranks": {
+    "max": 361,
+    "max+bonus": 358,
+    "top2 mean": 332,
+    "soft max": 378
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c06_modify_existing_trigger",
+   "gold": "Sunday Week Ahead Brief",
+   "query": "can you push the sunday night rundown to 8:30 instead of 7? 7 is right when we sit down to eat",
+   "ranks": {
+    "max": 3,
+    "max+bonus": 2,
+    "top2 mean": 1,
+    "soft max": 3
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c07_revive_dormant_counterpart",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "can you ask wendell if we should lock the rate now or wait til after the nov 4 announcement",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c08_same_first_name_other_person",
+   "gold": "Engagement Shoot Booking",
+   "query": "can you ask priya if she can send the engagement proofs early? jules keeps asking lol",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c10_parallel_known_and_new",
+   "gold": "Email to Gabe Offsite Agenda",
+   "query": "tell gabe ill be like 20 min late to the kickoff wednesday, train thing. also can you email halcyon chimney (service@halcyonchimney.ca) and see if they can do a sweep before mid nov",
+   "ranks": {
+    "max": 14,
+    "max+bonus": 14,
+    "top2 mean": 10,
+    "soft max": 28
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c11_dormant_name_match_noor",
+   "gold": "Save the Date Printing",
+   "query": "can we bump the save the date printing to 140? guest list grew",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c12_dormant_inference_noor",
+   "gold": "Save the Date Printing",
+   "query": "ask noor if she can do 140 instead of 120, guest list grew",
+   "ranks": {
+    "max": 10,
+    "max+bonus": 7,
+    "top2 mean": 4,
+    "soft max": 4
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c13_dormant_name_match_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "email the dentist and ask if my cleaning can be at 5 instead",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c14_dormant_inference_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "email tidewater and ask if i can get a 5pm slot instead",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c15_dormant_name_match_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "can you extend my gym membership freeze through november",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c16_dormant_inference_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "ask ironwood if they can extend my hold through november",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 2,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c17_dormant_name_match_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell the neighbour im good to split the fence repair, 575 each",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c18_dormant_inference_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell harold im good to split it, 575 each",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c19_dormant_name_match_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "can you push the designer search call to friday morning",
+   "ranks": {
+    "max": 2,
+    "max+bonus": 2,
+    "top2 mean": 2,
+    "soft max": 2
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c20_dormant_inference_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "ask marcus if we can move our call to friday morning",
+   "ranks": {
+    "max": 2,
+    "max+bonus": 2,
+    "top2 mean": 1,
+    "soft max": 2
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c21_dormant_paraphrase_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "can you ask our guy at the credit union if we should lock in before the rate announcement",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c22_dormant_paraphrase_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "my knee's still not great, can you ask the place i work out to keep my account on hold through november",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c23_dormant_paraphrase_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell the guy next door i'm good to go halves on it, 575 each",
+   "ranks": {
+    "max": 6,
+    "max+bonus": 4,
+    "top2 mean": 2,
+    "soft max": 3
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c24_dormant_paraphrase_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "can you ask if my teeth appointment can be pushed to around 5",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c28_dormant_typo_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "can you ask wendel if we should lock the rate now or wait til after the nov 4 announcement",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c29_dormant_typo_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "email tidwater and ask if i can get a 5pm slot instead",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c30_dormant_typo_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "ask ironwod if they can extend my hold through november",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c31_dormant_typo_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell harrold im good to split it, 575 each",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 800,
+   "case_id": "c01_followup_named_counterpart",
+   "gold": "Harrow Hill Venue Deposit",
+   "query": "did harrow hill ever confirm they got the deposit?",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 800,
+   "case_id": "c02_new_task_known_counterpart",
+   "gold": "Priya Roadmap Sync",
+   "query": "can you email priya and ask if she can run the client demo friday? im double booked",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 4
+   }
+  },
+  {
+   "size": 800,
+   "case_id": "c03_counterpart_not_in_owner_name",
+   "gold": "Kitchen Reno Quote Follow-up",
+   "query": "ask dmitri if his guys do bathrooms too? the upstairs one is next on the list",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 800,
+   "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+   "gold": "Inbox Catch-Up Scan",
+   "query": "ok reply to the tire place and tell them saturday 9am works",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 2,
+    "soft max": 2
+   }
+  },
+  {
+   "size": 800,
+   "case_id": "c05_confirm_pending_draft",
+   "gold": "Copperleaf Renewal Thread",
+   "query": "yep looks good, send it",
+   "ranks": {
+    "max": 740,
+    "max+bonus": 733,
+    "top2 mean": 673,
+    "soft max": 763
+   }
+  },
+  {
+   "size": 800,
+   "case_id": "c06_modify_existing_trigger",
+   "gold": "Sunday Week Ahead Brief",
+   "query": "can you push the sunday night rundown to 8:30 instead of 7? 7 is right when we sit down to eat",
+   "ranks": {
+    "max": 7,
+    "max+bonus": 5,
+    "top2 mean": 4,
+    "soft max": 6
+   }
+  },
+  {
+   "size": 800,
+   "case_id": "c07_revive_dormant_counterpart",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "can you ask wendell if we should lock the rate now or wait til after the nov 4 announcement",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 800,
+   "case_id": "c08_same_first_name_other_person",
+   "gold": "Engagement Shoot Booking",
+   "query": "can you ask priya if she can send the engagement proofs early? jules keeps asking lol",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 800,
+   "case_id": "c10_parallel_known_and_new",
+   "gold": "Email to Gabe Offsite Agenda",
+   "query": "tell gabe ill be like 20 min late to the kickoff wednesday, train thing. also can you email halcyon chimney (service@halcyonchimney.ca) and see if they can do a sweep before mid nov",
+   "ranks": {
+    "max": 26,
+    "max+bonus": 23,
+    "top2 mean": 17,
+    "soft max": 50
+   }
+  },
+  {
+   "size": 800,
+   "case_id": "c11_dormant_name_match_noor",
+   "gold": "Save the Date Printing",
+   "query": "can we bump the save the date printing to 140? guest list grew",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 800,
+   "case_id": "c12_dormant_inference_noor",
+   "gold": "Save the Date Printing",
+   "query": "ask noor if she can do 140 instead of 120, guest list grew",
+   "ranks": {
+    "max": 14,
+    "max+bonus": 10,
+    "top2 mean": 5,
+    "soft max": 5
+   }
+  },
+  {
+   "size": 800,
+   "case_id": "c13_dormant_name_match_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "email the dentist and ask if my cleaning can be at 5 instead",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 800,
+   "case_id": "c14_dormant_inference_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "email tidewater and ask if i can get a 5pm slot instead",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 800,
+   "case_id": "c15_dormant_name_match_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "can you extend my gym membership freeze through november",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 800,
+   "case_id": "c16_dormant_inference_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "ask ironwood if they can extend my hold through november",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 2,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 800,
+   "case_id": "c17_dormant_name_match_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell the neighbour im good to split the fence repair, 575 each",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 800,
+   "case_id": "c18_dormant_inference_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell harold im good to split it, 575 each",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 800,
+   "case_id": "c19_dormant_name_match_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "can you push the designer search call to friday morning",
+   "ranks": {
+    "max": 3,
+    "max+bonus": 2,
+    "top2 mean": 2,
+    "soft max": 2
+   }
+  },
+  {
+   "size": 800,
+   "case_id": "c20_dormant_inference_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "ask marcus if we can move our call to friday morning",
+   "ranks": {
+    "max": 4,
+    "max+bonus": 4,
+    "top2 mean": 3,
+    "soft max": 4
+   }
+  },
+  {
+   "size": 800,
+   "case_id": "c21_dormant_paraphrase_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "can you ask our guy at the credit union if we should lock in before the rate announcement",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 800,
+   "case_id": "c22_dormant_paraphrase_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "my knee's still not great, can you ask the place i work out to keep my account on hold through november",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 800,
+   "case_id": "c23_dormant_paraphrase_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell the guy next door i'm good to go halves on it, 575 each",
+   "ranks": {
+    "max": 6,
+    "max+bonus": 4,
+    "top2 mean": 2,
+    "soft max": 3
+   }
+  },
+  {
+   "size": 800,
+   "case_id": "c24_dormant_paraphrase_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "can you ask if my teeth appointment can be pushed to around 5",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 800,
+   "case_id": "c28_dormant_typo_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "can you ask wendel if we should lock the rate now or wait til after the nov 4 announcement",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 800,
+   "case_id": "c29_dormant_typo_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "email tidwater and ask if i can get a 5pm slot instead",
+   "ranks": {
+    "max": 2,
+    "max+bonus": 2,
+    "top2 mean": 2,
+    "soft max": 2
+   }
+  },
+  {
+   "size": 800,
+   "case_id": "c30_dormant_typo_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "ask ironwod if they can extend my hold through november",
+   "ranks": {
+    "max": 2,
+    "max+bonus": 2,
+    "top2 mean": 2,
+    "soft max": 2
+   }
+  },
+  {
+   "size": 800,
+   "case_id": "c31_dormant_typo_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell harrold im good to split it, 575 each",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c01_followup_named_counterpart",
+   "gold": "Harrow Hill Venue Deposit",
+   "query": "did harrow hill ever confirm they got the deposit?",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c02_new_task_known_counterpart",
+   "gold": "Priya Roadmap Sync",
+   "query": "can you email priya and ask if she can run the client demo friday? im double booked",
+   "ranks": {
+    "max": 2,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 10
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c03_counterpart_not_in_owner_name",
+   "gold": "Kitchen Reno Quote Follow-up",
+   "query": "ask dmitri if his guys do bathrooms too? the upstairs one is next on the list",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+   "gold": "Inbox Catch-Up Scan",
+   "query": "ok reply to the tire place and tell them saturday 9am works",
+   "ranks": {
+    "max": 2,
+    "max+bonus": 4,
+    "top2 mean": 6,
+    "soft max": 8
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c05_confirm_pending_draft",
+   "gold": "Copperleaf Renewal Thread",
+   "query": "yep looks good, send it",
+   "ranks": {
+    "max": 1471,
+    "max+bonus": 1459,
+    "top2 mean": 1353,
+    "soft max": 1516
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c06_modify_existing_trigger",
+   "gold": "Sunday Week Ahead Brief",
+   "query": "can you push the sunday night rundown to 8:30 instead of 7? 7 is right when we sit down to eat",
+   "ranks": {
+    "max": 11,
+    "max+bonus": 9,
+    "top2 mean": 7,
+    "soft max": 11
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c07_revive_dormant_counterpart",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "can you ask wendell if we should lock the rate now or wait til after the nov 4 announcement",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c08_same_first_name_other_person",
+   "gold": "Engagement Shoot Booking",
+   "query": "can you ask priya if she can send the engagement proofs early? jules keeps asking lol",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c10_parallel_known_and_new",
+   "gold": "Email to Gabe Offsite Agenda",
+   "query": "tell gabe ill be like 20 min late to the kickoff wednesday, train thing. also can you email halcyon chimney (service@halcyonchimney.ca) and see if they can do a sweep before mid nov",
+   "ranks": {
+    "max": 76,
+    "max+bonus": 56,
+    "top2 mean": 42,
+    "soft max": 116
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c11_dormant_name_match_noor",
+   "gold": "Save the Date Printing",
+   "query": "can we bump the save the date printing to 140? guest list grew",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c12_dormant_inference_noor",
+   "gold": "Save the Date Printing",
+   "query": "ask noor if she can do 140 instead of 120, guest list grew",
+   "ranks": {
+    "max": 23,
+    "max+bonus": 13,
+    "top2 mean": 7,
+    "soft max": 8
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c13_dormant_name_match_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "email the dentist and ask if my cleaning can be at 5 instead",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c14_dormant_inference_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "email tidewater and ask if i can get a 5pm slot instead",
+   "ranks": {
+    "max": 2,
+    "max+bonus": 2,
+    "top2 mean": 2,
+    "soft max": 2
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c15_dormant_name_match_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "can you extend my gym membership freeze through november",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c16_dormant_inference_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "ask ironwood if they can extend my hold through november",
+   "ranks": {
+    "max": 3,
+    "max+bonus": 3,
+    "top2 mean": 4,
+    "soft max": 3
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c17_dormant_name_match_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell the neighbour im good to split the fence repair, 575 each",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c18_dormant_inference_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell harold im good to split it, 575 each",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c19_dormant_name_match_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "can you push the designer search call to friday morning",
+   "ranks": {
+    "max": 3,
+    "max+bonus": 2,
+    "top2 mean": 2,
+    "soft max": 2
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c20_dormant_inference_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "ask marcus if we can move our call to friday morning",
+   "ranks": {
+    "max": 7,
+    "max+bonus": 7,
+    "top2 mean": 5,
+    "soft max": 8
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c21_dormant_paraphrase_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "can you ask our guy at the credit union if we should lock in before the rate announcement",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 2,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c22_dormant_paraphrase_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "my knee's still not great, can you ask the place i work out to keep my account on hold through november",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c23_dormant_paraphrase_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell the guy next door i'm good to go halves on it, 575 each",
+   "ranks": {
+    "max": 10,
+    "max+bonus": 8,
+    "top2 mean": 3,
+    "soft max": 5
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c24_dormant_paraphrase_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "can you ask if my teeth appointment can be pushed to around 5",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c28_dormant_typo_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "can you ask wendel if we should lock the rate now or wait til after the nov 4 announcement",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c29_dormant_typo_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "email tidwater and ask if i can get a 5pm slot instead",
+   "ranks": {
+    "max": 5,
+    "max+bonus": 3,
+    "top2 mean": 3,
+    "soft max": 3
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c30_dormant_typo_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "ask ironwod if they can extend my hold through november",
+   "ranks": {
+    "max": 4,
+    "max+bonus": 4,
+    "top2 mean": 4,
+    "soft max": 4
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c31_dormant_typo_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "tell harrold im good to split it, 575 each",
+   "ranks": {
+    "max": 1,
+    "max+bonus": 1,
+    "top2 mean": 1,
+    "soft max": 1
+   }
+  }
+ ],
+ "top_k": 10,
+ "query_source": "case messages",
+ "embedding_model": "openai/text-embedding-3-small",
+ "embedding_dimensions": 512
+}

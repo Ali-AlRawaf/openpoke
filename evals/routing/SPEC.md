@@ -1,16 +1,77 @@
-# Routing eval: shared spec
+# Routing eval
 
-The eval measures **one decision**: given the current state, which execution agent the Interaction Agent sends a new user message to (an existing roster name, or a new agent). The goal is to reproduce **agent overload**, meaning routing gets worse as the roster grows.
+The eval measures **one decision**: given the current state, which execution agent the Interaction Agent (IA) sends a new user message to: an existing agent, or a new one. Model: whatever `server/config.py` sets (Claude Haiku 5.5 through OpenRouter).
 
-Scope: **10 cases × roster sizes 25/50/100/200/400 × 1 run.** Model: whatever `server/config.py` sets (Claude Haiku 5.5 through OpenRouter).
+Section 0 is the story: what goes wrong, how the eval shows it, how the solution fixes it, and what the cases do and don't cover. Sections 1–6 are the reference (formats, labelling policy, harness, commands).
 
-Ground rules for everyone:
-- **Never read or write `server/data/`**, except to look at it for format reference.
-- **Don't modify `server/` code.**
-- **Don't commit.**
-- Use `/home/ali/openpoke/.venv/bin/python`, and run modules from the repo root (`python -m evals.routing.<module>`).
-- The OpenRouter key comes from `.env` through `server.config.get_settings()`.
-- The server's data directory is set with `OPENPOKE_DATA_DIR`. It must be set **before** anything under `server` is imported.
+Ground rules:
+- **Never read or write `server/data/`** from eval code; runs use a temp `OPENPOKE_DATA_DIR`, set **before** anything under `server` is imported.
+- Use `/home/ali/openpoke/.venv/bin/python` and run modules from the repo root (`python -m evals.routing.<module>`). The OpenRouter key comes from `.env` through `server.config.get_settings()`.
+
+---
+
+## 0. The story
+
+### 0.1 The problem: agent overload
+Every task the IA delegates goes to a named execution agent, and the IA prefers to **reuse** the agent that already handles a counterpart (a person, an organization, a standing project) rather than start a new one (§3). In the original system the IA chose from a flat list of agent **names**, injected into every prompt. As the roster grows, routing gets worse.
+
+The baseline (`results/baseline_all_x10`: names-only system, 20 cases × 7 roster sizes × 10 repeats) shows exactly how:
+- **It fails by fragmentation.** Every one of the 169 failures is a `false_create`: the IA starts a duplicate agent instead of finding the owner. It never reuses the wrong agent.
+- **It fails on the link, not on the size alone.** The decline is concentrated in **dormant counterparts referenced by a name that isn't in the owner's agent name**: "ask **ironwood** if they can extend my hold", whose owner is "Gym Membership Freeze". The only link is the conversation summary ("Ironwood Athletic membership freeze, knee rehab"). The matched controls, the same owners referenced by words in their names ("extend my **gym membership freeze**"), stay flat. So the IA isn't getting generally worse; it loses the ability to connect a counterpart to an agent whose name doesn't mention it, once that agent is one name among hundreds.
+
+| Baseline pass rate | 25 | 50 | 100 | 200 | 400 | 800 | 1600 |
+|---|---|---|---|---|---|---|---|
+| **Overload target** (dormant, inference) | 98% | 98% | 93% | 87% | 77% | 67% | **62%** |
+| Dormant control (name match) | 100% | 100% | 100% | 100% | 92% | 100% | 88% |
+| Easy recent | 97% | 100% | 100% | 100% | 98% | 100% | 98% |
+
+### 0.2 The solution: agent cards + agent search
+1. **Agent cards** replace names (`server/services/execution/roster.py`). Each agent carries a `summary` (what it's for, what it has done, any thread or draft it owns) and `artifacts`: the people, organizations, email addresses, events, places and topics its work involves, *as someone would mention them later*. Artifacts are **affinity**; the summary is **ownership**. Neither holds system IDs.
+2. **Cards stay current.** The IA writes the first card with `create_agent`; after every finished task the **card updater** (`card_updater.py`, one Haiku call with structured output) rewrites it from the task's log.
+3. **The roster leaves the prompt.** The IA calls `search_agents(query)`: up to 10 agents it gets the whole roster; above 10, the query is embedded and the 10 most similar cards come back (`agent_search.py`: one vector for "name: summary" plus one per artifact, an agent scores its best vector). The IA writes the query from the message **and the conversation**, so "ask wendell…" becomes "Brightmoor mortgage renewal Wendell Achebe rate lock".
+4. **Creating is explicit.** `create_agent` is a separate tool and `send_message_to_agent` rejects unknown names, so a misspelled or invented name can no longer silently start a duplicate. The prompt defines **relevance**: an agent is relevant only if the task continues its work or involves the same specific things on its card; being *able* to do the task never makes an agent relevant.
+
+**Why this fixes the overload failure.** The link the IA lost lived only in the summary ("Ironwood → gym freeze"). Now the IA turns that link into a query, and the owner's card carries the counterpart ("Ironwood Athletic <members@…>"), so search returns the owner at the top whatever the roster size. The IA chooses among ~10 cards, the size at which it never failed.
+
+### 0.3 Results (`results/solution_all_x10`, same 20 cases, sizes and repeats)
+| Pass rate (baseline → solution) | 25 | 400 | 800 | 1600 |
+|---|---|---|---|---|
+| **All cases (accuracy)** | 95% → 100% | 83% → 100% | 86% → 100% | 78% → 100% |
+| **Overload target** | 98% → 100% | 77% → 100% | 67% → 100% | **62% → 100%** |
+| Dormant control | 100% → 100% | 92% → 100% | 100% → 100% | 88% → 100% |
+
+- 1,469 of 1,470 expected delegations correct; 0 wrong reuses, 0 false reuses. The one miss was the harness stopping before the IA retried a rejected `create_agent` (since fixed).
+- **Retrieval** (`recall --from-run`): for all 974 searches the IA made, the gold agent was in the top 10 at every size (worst rank 4 at 1,600).
+- **Cost of the design:** ~1.8 LLM calls per decision (a search, then the delegation) instead of 1; ~4s instead of ~3s at 25 agents; at 1,600 agents cost per decision is about the same as the baseline, which paid for 1,600 names on every call.
+
+### 0.4 Case groups: what each tests
+Groups are defined in `score.py` (`GROUPS`) and reported as pass rates per size.
+
+| Group | Cases | What it tests | Why it matters |
+|---|---|---|---|
+| **Overload target** | c07, c12, c14, c16, c18, c20 | A dormant counterpart (only in the summary) referenced by a name that **isn't** in its owner's agent name ("ask ironwood…" → "Gym Membership Freeze") | The failure itself: the baseline falls from 98% to 62% |
+| **Dormant control** | c11, c13, c15, c17, c19 | The **same owners**, referenced by words in their agent names ("my gym membership freeze") | Paired with the targets (c11/c12 … c19/c20): proves the baseline decline is the missing link, not dormancy or roster size |
+| **Easy recent** | c01, c03, c05, c06, c08, c09 | Follow-ups to agents in the recent conversation: a named counterpart, a pending draft ("yep send it"), a trigger change, the same first name on a different person, a new counterpart with an overlapping name | Regression guard: the new flow must not break the everyday cases |
+| **Policy-ambiguous** | c02, c04 | Where the reuse policy is hardest to apply (a new task for a known counterpart; replying to an email an unrelated-sounding agent found) | Shows whether the policy, not just retrieval, is followed |
+| **Multi-task** | c10 | One message, two tasks: one for a known agent, one needing a new agent | Parallel routing; both halves must be right |
+| **Stress: paraphrase** | c21–c24 | A dormant owner referred to by description only, no name ("our guy at the credit union", "the guy next door", "my teeth appointment") | Search can't match a name; the IA must rebuild the identity from the summary |
+| **Stress: new, familiar topic** | c25–c27 | A **new** counterpart on a topic existing agents already cover (a different dentist, a mechanic other than "the tire place", a lunch with a new client), no name or email given | The solution's new risk is false reuse of a similar agent (the "Starbucks agent used for Mary" bug); these must create |
+| **Stress: typo** | c28–c31 | The overload targets with the name misspelled ("wendel", "tidwater", "ironwod", "harrold") | Embedding search and the IA must tolerate misspelled names |
+
+The stress groups (split `stress`) were written **after** the solution was built, to probe it where it is likely weakest. Offline recall on their raw messages already finds every stress gold in the top 10 at 1,600 agents (`results/recall_case_messages`). **They have not been run end to end yet**: record that run's results in §0.3 when it's done.
+
+### 0.5 Coverage and limits
+What the evidence supports: on the reproduced overload failure, routing no longer degrades with roster size, without regressions or new error types.
+
+What it does **not** cover:
+- **One world.** One persona, one conversation, 31 cases. Repeats measure model variance, not variety of requests.
+- **Saturation.** The original 20 cases are at 100%: they show the failure is fixed, not where the new design breaks; the stress groups are there to find that.
+- **Clean cards.** Fixture cards come from complete synthetic task histories; real early cards are thinner (one create, one update) and see tool arguments cut to 200 chars.
+- **Excluded by design:** near-duplicate agents left over from the old fragmentation, and two agents for the same counterpart in an affinity case (the policy can't pick one).
+- **Routing only.** The harness stops once routing is done; execution, card updates and later turns are not exercised.
+- **Authorship.** The cases, labels and the solution's prompt were written by the same author; held-out (`split: heldout`, c11–c20) and stress cases informed or followed the design.
+
+**Keeping this section current:** when adding cases, add them to a group in `score.py` `GROUPS` and to the table in §0.4; when a run changes the picture, update §0.3 with the run directory.
 
 ---
 
@@ -20,20 +81,23 @@ Ground rules for everyone:
 evals/routing/
   SPEC.md              # this file
   logfmt.py            # format_line / parse_line / agent_log_filename (server-exact). USE IT; don't re-implement
-  build_fixtures.py    # (fixture designer) writes core state from structured Python data
-  generate.py          # (fixture designer) one-off LLM generation: distractor agents + older conversation
-  run.py               # (harness engineer) CLI: validate / dry-run / run
-  score.py             # (harness engineer) JSONL -> report.md + report.json
+  build_fixtures.py    # writes state/, rosters/ (agent cards), cases.json from Python data + frozen generated/ JSON
+  generate.py          # one-off LLM generation (stages: names, names_more, filler, summary, logs, cards, embeddings)
+  run.py               # CLI: validate / dry-run / run (the IA loop, side-effecting tools stubbed)
+  score.py             # JSONL -> report.md + report.json (outcomes, agent-search metrics, before/after)
+  recall.py            # offline: does agent search return each case's gold? (no IA calls)
   fixtures/
     world.md           # persona + people/orgs/projects bible (reference only, never loaded by the system)
     cases.json         # gold labels (never copied into the data dir)
-    rosters/roster_25.json ... roster_400.json
+    rosters/roster_25.json ... roster_1600.json   # agent cards, exactly like server roster.json
+    generated/         # frozen LLM output: distractor_names, distractors (task logs), cards, summary, filler, cost
+    embeddings/agent_embeddings.npz              # gitignored; `generate embeddings` (~$0.01)
     state/             # copied verbatim into OPENPOKE_DATA_DIR for a run
       timezone.txt                              # "America/Toronto"
       conversation/poke_conversation.log
       conversation/poke_working_memory.log
-      execution_agents/<slug>.log               # one per agent in roster_400 (no roster.json here)
-  results/<run_id>/    # run output (decisions.jsonl, report.md, report.json)
+      execution_agents/                         # empty: no logs, no roster.json (the harness installs those)
+  results/<run_id>/    # run output (decisions.jsonl, run_meta.json, report.md, report.json)
 ```
 
 Not part of the fixtures: `gmail-execution-agent.log`, `task-email-search.log` (task memories), `triggers.db`, `gmail_seen.json`. The Interaction Agent never reads them.
@@ -94,10 +158,20 @@ Real example:
 - That's the state the real summarizer leaves: it fires when 110 or more entries are unsummarized, and summarizes the first 100 each time.
 
 ### 2.4 Rosters: `fixtures/rosters/roster_N.json`
-- A JSON list of agent names in **creation order** (the roster only appends), indented by 2 like the server writes it.
-- **Nested:** `roster_25 ⊂ roster_50 ⊂ … ⊂ roster_400`.
+- A JSON list of **agent cards** in **creation order** (the roster only appends), in the server's exact `roster.json` format (indent 2):
+  `{"name", "summary", "artifacts": [...], "created_at", "last_active_at"}`.
+- **Nested:** `roster_25 ⊂ roster_50 ⊂ … ⊂ roster_1600` (by name).
 - **`roster_25` = all core agents.** Each larger roster adds the next distractors. Merge by `created_at` so the core agents sit at their natural positions (early, middle and late), not all at the top.
-- Every name has exactly one log in `state/execution_agents/`.
+- `created_at` is the agent's first request; `last_active_at` its last finished task (any `agent_response`, trigger fires included: both go through the batch manager).
+- Execution logs are **not** in `state/`: the IA never reads them. They exist (in memory, from `build()`) only to produce the cards.
+
+### 2.5 How the cards are made (`generate logs`, then `generate cards`)
+Every card comes from the **production card updater** (`server/services/execution/card_updater.update_agent_card`), run over each agent's execution log, one IA request at a time, exactly as the batch manager runs it after a task:
+1. **Logs.** Core agents' logs are hand-designed in `build_fixtures.py`. Distractor logs are synthetic: Haiku writes each request's instructions, tool steps and agent report from the agent's brief and counterpart (`generate logs`), and `render_agent` turns them into production-format lines. The first request is at the agent's roster creation time.
+2. **Cards.** Each agent starts as a bare card (name only; production cards start from the IA's `create_agent` summary, which the first update replaces). Its log is appended up to the end of each request, then `update_agent_card` runs (same code, prompt, model and structured output as production). Trigger fires write no `agent_request`, so they never update a card, as in production.
+3. **Contamination check.** No distractor's log or card may mention a core counterpart (that would plant a second correct owner for a case); real distractors may mention only their own counterpart (`text_violations` in `build_fixtures.py`, enforced during generation and by `--check`).
+
+Real execution can't be replayed offline (it needs a live inbox and would take real actions), so the task history is synthetic; the cards themselves are written by production code.
 
 ---
 
@@ -156,17 +230,8 @@ The source is `server/agents/interaction_agent/system_prompt.md:19`:
 - Every non-`NEW` gold name must be in `roster_25`, and therefore in every size.
 - `message` is the user's raw text, written in the persona's casual texting style.
 
-**The 10 case types (one each):**
-1. A follow-up where the counterpart **is** in the owner's name (easy control)
-2. A new task for a known counterpart on a new thread (rule 2)
-3. A new task for a counterpart whose owner's name **doesn't** mention them (rule 2)
-4. A reply to an email that an agent with an unrelated name found (rule 1)
-5. "ok send it" / "yep go ahead", tied to a draft pending in the recent 80 entries (rule 1)
-6. Change a reminder ("push my nightly digest to 10pm"). The gold answer is the agent whose log contains `createTrigger succeeded` (rule 1)
-7. Revive a dormant counterpart that appears **only in the summary**, not in the recent 80 (rule 2)
-8. Same first name, different person: the message clearly means the *other* person, who has an owner (rules 1–2)
-9. A genuinely new counterpart whose name overlaps existing names. Gold: `NEW` (rule 3)
-10. Two parallel tasks in one message: one for a known counterpart (reuse) and one for a new counterpart (`NEW`)
+- Optional fields: `pair` (links a dormant case to its matched siblings, e.g. `"ironwood"`: control c15, target c16, paraphrase c22, typo c30) and `split` (`heldout` for c11–c20, `stress` for c21–c31).
+- Cases live in `CASES` in `build_fixtures.py` (`cases.json` is generated). **31 cases**: c01–c10 one per original case type, c11–c20 five dormant control/target pairs, c21–c31 the stress groups. §0.4 lists what each group tests.
 
 ---
 
@@ -175,11 +240,35 @@ The source is `server/agents/interaction_agent/system_prompt.md:19`:
 - **Per size N:**
   - fresh temp `OPENPOKE_DATA_DIR`
   - copy `state/` verbatim
-  - write `rosters/roster_N.json` as `execution_agents/roster.json`
-  - delete agent logs not in `roster_N`
+  - write `rosters/roster_N.json` (cards) as `execution_agents/roster.json`
+  - copy `embeddings/agent_embeddings.npz` into `execution_agents/` (the server's search store loads it once; it covers every size, so searches only embed their query)
 - **Per case:**
   - Build the prompt with `build_system_prompt()` and `prepare_message_with_history(message, get_working_memory_log().render_transcript())`.
-  - Loop with `InteractionAgentRuntime._make_llm_call`, intercepting `send_message_to_agent`, `send_message_to_user`, `send_draft` and `wait`.
-  - Stop after the first response containing `send_message_to_agent`, or after 3 iterations.
-- **Classification:** a delegated name that **exactly** equals a roster name is a reuse; anything else is a create (`NEW`).
+  - Loop like `InteractionAgentRuntime._run_interaction_loop` (`_make_llm_call`, assistant entries with `reasoning_details`, `_format_tool_result`), running tool calls in order.
+  - `search_agents` runs for real (read-only). `create_agent`, `send_message_to_agent`, `send_message_to_user`, `send_draft` and `wait` are stubbed with **production-identical results and error texts**: `create_agent` rejects existing names; `send_message_to_agent` rejects names that are neither in the roster nor created earlier in the case. Nothing is written, so concurrent cases never see each other's agents.
+  - **Stop** once a response delegates successfully with nothing in flight (no `search_agents` in it, no created agent left unsent, no rejected send), or after 6 iterations. A message can take several responses to route, e.g. task A sent to its known agent while task B's is searched for.
+- **Classification:** a delegation to a roster agent is a reuse; to an agent created during the case (or any other name) a create (`NEW`).
 - **Outcome for each expected delegation:** `correct`, `wrong_reuse`, `false_create`, `false_reuse`, or `missed`. Extra unexpected delegations are recorded separately.
+- **Also recorded per case:** every search (query, mode `all`/`search`/`fallback`, agents returned), creates (with the card the IA wrote, and whether it searched first), and rejected sends. The report adds an *Agent search* table (gold in search results, creates without a search, fallbacks), case-group pass rates, and a before/after comparison with `--baseline` (default `results/baseline_all_x10`).
+
+---
+
+## 6. Rebuilding and running
+
+```bash
+# fixtures (LLM stages are one-off and frozen under fixtures/generated/; spend in generated/cost.json)
+python -m evals.routing.generate logs          # synthetic task logs for every distractor (Haiku, ~$1.30)
+python -m evals.routing.generate cards         # every card via the production card updater (~$1)
+python -m evals.routing.generate embeddings    # prebuilt search vectors, gitignored (~$0.01)
+python -m evals.routing.build_fixtures --check # write state/, rosters/ (cards), cases.json + self-check
+
+# checks before spending on the IA
+python -m evals.routing.run validate
+python -m evals.routing.recall                 # offline: is each gold in the top 10? (queries = case messages)
+
+# the eval (compare against the names-only baseline in the report)
+python -m evals.routing.run run --repeats 10 --concurrency 8 --out evals/routing/results/<name>
+python -m evals.routing.recall --from-run evals/routing/results/<name>   # recall with the IA's own queries
+```
+
+Generation stages resume where they stopped (`--fresh` redoes everything; `--limit N` is a smoke test). After changing logs, rerun `cards --fresh` and `embeddings`.
