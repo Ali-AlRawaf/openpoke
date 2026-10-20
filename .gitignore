@@ -54,5 +54,5 @@ web/package-lock.json
 # ...but never their bytecode
 evals/**/__pycache__/
 evals/**/*.pyc
-# Prebuilt agent-search vectors (~35MB): python -m evals.routing.generate embeddings
-evals/routing/fixtures/embeddings/
+# Agent-search vector cache for the routing eval (rebuilt automatically when missing)
+evals/routing/fixtures/embeddings.npz

@@ -1,0 +1,685 @@
+{
+ "meta": {
+  "name": "smoke_v2",
+  "started_at": "2026-10-20T03:27:18+00:00",
+  "git_commit": "e103bd0",
+  "git_dirty": false,
+  "model": "anthropic/claude-haiku-5.5",
+  "prompt_hash": "1034014a753c",
+  "fixtures_hash": "71f5d44146a3",
+  "sizes": [
+   25,
+   400,
+   1600
+  ],
+  "repeats": 3,
+  "cases": [
+   "c01_followup_named_counterpart",
+   "c02_new_task_known_counterpart",
+   "c03_counterpart_not_in_owner_name",
+   "c04_reply_to_email_found_by_unrelated_agent",
+   "c05_confirm_pending_draft",
+   "c06_modify_existing_trigger",
+   "c07_revive_dormant_counterpart",
+   "c08_same_first_name_other_person",
+   "c09_new_counterpart_overlapping_name",
+   "c10_parallel_known_and_new",
+   "c11_dormant_name_match_noor",
+   "c12_dormant_inference_noor",
+   "c13_dormant_name_match_tidewater",
+   "c14_dormant_inference_tidewater",
+   "c15_dormant_name_match_ironwood",
+   "c16_dormant_inference_ironwood",
+   "c17_dormant_name_match_harold",
+   "c18_dormant_inference_harold",
+   "c19_dormant_name_match_marcus",
+   "c20_dormant_inference_marcus",
+   "c21_dormant_paraphrase_wendell",
+   "c22_dormant_paraphrase_ironwood",
+   "c23_dormant_paraphrase_harold",
+   "c24_dormant_paraphrase_tidewater",
+   "c25_new_familiar_topic_dentist",
+   "c26_new_familiar_topic_mechanic",
+   "c27_new_familiar_topic_restaurant",
+   "c28_dormant_typo_wendell",
+   "c29_dormant_typo_tidewater",
+   "c30_dormant_typo_ironwood",
+   "c31_dormant_typo_harold"
+  ]
+ },
+ "sizes": [
+  25,
+  400,
+  1600
+ ],
+ "per_size": [
+  {
+   "size": 25,
+   "decisions": 74,
+   "accuracy": 1.0,
+   "wrong_reuse": 0,
+   "false_create": 0,
+   "false_reuse": 0,
+   "missed": 0,
+   "trap_picks": 0,
+   "searched": 0.8513513513513513,
+   "gold_in_results": 1.0,
+   "traps_shown": 1.0,
+   "llm_calls": 3.635135135135135,
+   "cost": 0.001886689189189189,
+   "latency_s": 7.218918918918919,
+   "errors": 0,
+   "provider_errors": 19
+  },
+  {
+   "size": 400,
+   "decisions": 67,
+   "accuracy": 1.0,
+   "wrong_reuse": 0,
+   "false_create": 0,
+   "false_reuse": 0,
+   "missed": 0,
+   "trap_picks": 0,
+   "searched": 0.8805970149253731,
+   "gold_in_results": 1.0,
+   "traps_shown": 0.9830508474576272,
+   "llm_calls": 3.5074626865671643,
+   "cost": 0.001885268656716418,
+   "latency_s": 7.098805970149254,
+   "errors": 0,
+   "provider_errors": 26
+  },
+  {
+   "size": 1600,
+   "decisions": 75,
+   "accuracy": 1.0,
+   "wrong_reuse": 0,
+   "false_create": 0,
+   "false_reuse": 0,
+   "missed": 0,
+   "trap_picks": 0,
+   "searched": 0.8266666666666667,
+   "gold_in_results": 1.0,
+   "traps_shown": 0.9322033898305084,
+   "llm_calls": 3.453333333333333,
+   "cost": 0.0017266266666666667,
+   "latency_s": 6.863466666666667,
+   "errors": 0,
+   "provider_errors": 18
+  }
+ ],
+ "groups": {
+  "easy recent": {
+   "25": 1.0,
+   "400": 1.0,
+   "1600": 1.0
+  },
+  "policy-ambiguous": {
+   "25": 1.0,
+   "400": 1.0,
+   "1600": 1.0
+  },
+  "overload target (dormant, inference)": {
+   "25": 1.0,
+   "400": 1.0,
+   "1600": 1.0
+  },
+  "multi-task": {
+   "25": 1.0,
+   "400": null,
+   "1600": 1.0
+  },
+  "dormant control (name match)": {
+   "25": 1.0,
+   "400": 1.0,
+   "1600": 1.0
+  },
+  "stress: paraphrase (dormant, no name)": {
+   "25": 1.0,
+   "400": 1.0,
+   "1600": 1.0
+  },
+  "stress: new counterpart, familiar topic": {
+   "25": 1.0,
+   "400": 1.0,
+   "1600": 1.0
+  },
+  "stress: typo (dormant name)": {
+   "25": 1.0,
+   "400": 1.0,
+   "1600": 1.0
+  }
+ },
+ "matrix": {
+  "c01_followup_named_counterpart": {
+   "25": [
+    3,
+    3
+   ],
+   "400": [
+    1,
+    1
+   ],
+   "1600": [
+    3,
+    3
+   ]
+  },
+  "c02_new_task_known_counterpart": {
+   "25": [
+    3,
+    3
+   ],
+   "400": [
+    0,
+    0
+   ],
+   "1600": [
+    3,
+    3
+   ]
+  },
+  "c03_counterpart_not_in_owner_name": {
+   "25": [
+    3,
+    3
+   ],
+   "400": [
+    3,
+    3
+   ],
+   "1600": [
+    3,
+    3
+   ]
+  },
+  "c04_reply_to_email_found_by_unrelated_agent": {
+   "25": [
+    0,
+    0
+   ],
+   "400": [
+    3,
+    3
+   ],
+   "1600": [
+    3,
+    3
+   ]
+  },
+  "c05_confirm_pending_draft": {
+   "25": [
+    1,
+    1
+   ],
+   "400": [
+    3,
+    3
+   ],
+   "1600": [
+    3,
+    3
+   ]
+  },
+  "c06_modify_existing_trigger": {
+   "25": [
+    2,
+    2
+   ],
+   "400": [
+    3,
+    3
+   ],
+   "1600": [
+    3,
+    3
+   ]
+  },
+  "c07_revive_dormant_counterpart": {
+   "25": [
+    3,
+    3
+   ],
+   "400": [
+    3,
+    3
+   ],
+   "1600": [
+    1,
+    1
+   ]
+  },
+  "c08_same_first_name_other_person": {
+   "25": [
+    3,
+    3
+   ],
+   "400": [
+    3,
+    3
+   ],
+   "1600": [
+    1,
+    1
+   ]
+  },
+  "c09_new_counterpart_overlapping_name": {
+   "25": [
+    3,
+    3
+   ],
+   "400": [
+    2,
+    2
+   ],
+   "1600": [
+    2,
+    2
+   ]
+  },
+  "c10_parallel_known_and_new": {
+   "25": [
+    3,
+    3
+   ],
+   "400": [
+    0,
+    0
+   ],
+   "1600": [
+    3,
+    3
+   ]
+  },
+  "c11_dormant_name_match_noor": {
+   "25": [
+    3,
+    3
+   ],
+   "400": [
+    1,
+    1
+   ],
+   "1600": [
+    3,
+    3
+   ]
+  },
+  "c12_dormant_inference_noor": {
+   "25": [
+    3,
+    3
+   ],
+   "400": [
+    2,
+    2
+   ],
+   "1600": [
+    3,
+    3
+   ]
+  },
+  "c13_dormant_name_match_tidewater": {
+   "25": [
+    1,
+    1
+   ],
+   "400": [
+    3,
+    3
+   ],
+   "1600": [
+    3,
+    3
+   ]
+  },
+  "c14_dormant_inference_tidewater": {
+   "25": [
+    0,
+    0
+   ],
+   "400": [
+    3,
+    3
+   ],
+   "1600": [
+    3,
+    3
+   ]
+  },
+  "c15_dormant_name_match_ironwood": {
+   "25": [
+    2,
+    2
+   ],
+   "400": [
+    3,
+    3
+   ],
+   "1600": [
+    3,
+    3
+   ]
+  },
+  "c16_dormant_inference_ironwood": {
+   "25": [
+    3,
+    3
+   ],
+   "400": [
+    3,
+    3
+   ],
+   "1600": [
+    1,
+    1
+   ]
+  },
+  "c17_dormant_name_match_harold": {
+   "25": [
+    3,
+    3
+   ],
+   "400": [
+    3,
+    3
+   ],
+   "1600": [
+    0,
+    0
+   ]
+  },
+  "c18_dormant_inference_harold": {
+   "25": [
+    3,
+    3
+   ],
+   "400": [
+    3,
+    3
+   ],
+   "1600": [
+    2,
+    2
+   ]
+  },
+  "c19_dormant_name_match_marcus": {
+   "25": [
+    3,
+    3
+   ],
+   "400": [
+    0,
+    0
+   ],
+   "1600": [
+    3,
+    3
+   ]
+  },
+  "c20_dormant_inference_marcus": {
+   "25": [
+    3,
+    3
+   ],
+   "400": [
+    0,
+    0
+   ],
+   "1600": [
+    3,
+    3
+   ]
+  },
+  "c21_dormant_paraphrase_wendell": {
+   "25": [
+    3,
+    3
+   ],
+   "400": [
+    1,
+    1
+   ],
+   "1600": [
+    3,
+    3
+   ]
+  },
+  "c22_dormant_paraphrase_ironwood": {
+   "25": [
+    1,
+    1
+   ],
+   "400": [
+    3,
+    3
+   ],
+   "1600": [
+    3,
+    3
+   ]
+  },
+  "c23_dormant_paraphrase_harold": {
+   "25": [
+    0,
+    0
+   ],
+   "400": [
+    3,
+    3
+   ],
+   "1600": [
+    3,
+    3
+   ]
+  },
+  "c24_dormant_paraphrase_tidewater": {
+   "25": [
+    2,
+    2
+   ],
+   "400": [
+    3,
+    3
+   ],
+   "1600": [
+    3,
+    3
+   ]
+  },
+  "c25_new_familiar_topic_dentist": {
+   "25": [
+    3,
+    3
+   ],
+   "400": [
+    3,
+    3
+   ],
+   "1600": [
+    2,
+    2
+   ]
+  },
+  "c26_new_familiar_topic_mechanic": {
+   "25": [
+    3,
+    3
+   ],
+   "400": [
+    3,
+    3
+   ],
+   "1600": [
+    0,
+    0
+   ]
+  },
+  "c27_new_familiar_topic_restaurant": {
+   "25": [
+    3,
+    3
+   ],
+   "400": [
+    3,
+    3
+   ],
+   "1600": [
+    0,
+    0
+   ]
+  },
+  "c28_dormant_typo_wendell": {
+   "25": [
+    3,
+    3
+   ],
+   "400": [
+    2,
+    2
+   ],
+   "1600": [
+    3,
+    3
+   ]
+  },
+  "c29_dormant_typo_tidewater": {
+   "25": [
+    3,
+    3
+   ],
+   "400": [
+    0,
+    0
+   ],
+   "1600": [
+    3,
+    3
+   ]
+  },
+  "c30_dormant_typo_ironwood": {
+   "25": [
+    3,
+    3
+   ],
+   "400": [
+    1,
+    1
+   ],
+   "1600": [
+    3,
+    3
+   ]
+  },
+  "c31_dormant_typo_harold": {
+   "25": [
+    2,
+    2
+   ],
+   "400": [
+    3,
+    3
+   ],
+   "1600": [
+    3,
+    3
+   ]
+  }
+ },
+ "trap_exposure": {
+  "c19_dormant_name_match_marcus": [
+   3,
+   3
+  ],
+  "c09_new_counterpart_overlapping_name": [
+   2,
+   2
+  ],
+  "c28_dormant_typo_wendell": [
+   2,
+   3
+  ],
+  "c29_dormant_typo_tidewater": [
+   2,
+   3
+  ],
+  "c20_dormant_inference_marcus": [
+   3,
+   3
+  ],
+  "c11_dormant_name_match_noor": [
+   3,
+   3
+  ],
+  "c30_dormant_typo_ironwood": [
+   3,
+   3
+  ],
+  "c21_dormant_paraphrase_wendell": [
+   2,
+   3
+  ],
+  "c12_dormant_inference_noor": [
+   3,
+   3
+  ],
+  "c31_dormant_typo_harold": [
+   3,
+   3
+  ],
+  "c22_dormant_paraphrase_ironwood": [
+   3,
+   3
+  ],
+  "c13_dormant_name_match_tidewater": [
+   2,
+   3
+  ],
+  "c04_reply_to_email_found_by_unrelated_agent": [
+   3,
+   3
+  ],
+  "c23_dormant_paraphrase_harold": [
+   3,
+   3
+  ],
+  "c18_dormant_inference_harold": [
+   2,
+   2
+  ],
+  "c14_dormant_inference_tidewater": [
+   3,
+   3
+  ],
+  "c24_dormant_paraphrase_tidewater": [
+   3,
+   3
+  ],
+  "c15_dormant_name_match_ironwood": [
+   3,
+   3
+  ],
+  "c06_modify_existing_trigger": [
+   3,
+   3
+  ],
+  "c25_new_familiar_topic_dentist": [
+   2,
+   2
+  ],
+  "c16_dormant_inference_ironwood": [
+   1,
+   1
+  ],
+  "c07_revive_dormant_counterpart": [
+   1,
+   1
+  ]
+ },
+ "failures": [],
+ "decisions": 216,
+ "provider_errors": 63,
+ "total_cost": 0.436,
+ "pass_rate": 1.0,
+ "summary_line": "pass rate 100% over 216 decisions; accuracy by size: 25: 100%, 400: 100%, 1600: 100%"
+}

@@ -22,7 +22,7 @@ locations.
 
 ## Core counterparts and their single owner agent
 
-Each counterpart below has one **core** owner. Real distractors (`REAL_DISTRACTORS` in `build_fixtures.py`) add `same_topic` siblings (different person, same kind of work) and a few `same_person` siblings, but only for counterparts whose case gold is fixed by a thread, draft or trigger. Counterparts whose gold rests on affinity alone keep exactly one owner.
+Each counterpart below has one **core** owner. Traps (role `trap` in `roster.json`, listed per case in `cases.json`) add `same_topic` siblings (different person, same kind of work) and a few `same_person` siblings, but only for counterparts whose case gold is fixed by a thread, draft or trigger. Counterparts whose gold rests on affinity alone keep exactly one owner.
 
 | # | Counterpart | Email | Org | Owner agent (core) | Status at "now" |
 |---|-------------|-------|-----|--------------------|-----------------|

@@ -1,505 +1,588 @@
-{
-  "version": 1,
-  "cases": [
-    {
-      "id": "c01_followup_named_counterpart",
-      "category": "followup_counterpart_in_name",
-      "rule": 1,
-      "message": "did harrow hill ever confirm they got the deposit?",
-      "expected": [
-        {
-          "task": "check for Harrow Hill's confirmation of the $4k second deposit",
-          "gold": "Harrow Hill Venue Deposit"
-        }
-      ],
-      "rationale": "On 2026-10-15 (recent entries) 'Harrow Hill Venue Deposit' drafted and sent the second-deposit note to Celeste Moreau <celeste@harrowhillestate.ca> in the Harrow Hill wedding thread (harrow-hill-venue-deposit.log). Asking whether the venue confirmed is a follow-up on that thread (rule 1). The counterpart is named in the agent name. Shared-word hard negatives such as 'Security Deposit Refund' concern a different counterpart."
-    },
-    {
-      "id": "c02_new_task_known_counterpart",
-      "category": "new_task_known_counterpart",
-      "rule": 2,
-      "message": "can you email priya and ask if she can run the client demo friday? im double booked",
-      "expected": [
-        {
-          "task": "ask Priya Natarajan to run Friday's client demo",
-          "gold": "Priya Roadmap Sync"
-        }
-      ],
-      "rationale": "Priya Natarajan <priya@northfoldstudio.ca> (Northfold engineering lead) is owned by 'Priya Roadmap Sync' (requests on 07-31, 08-14, 10-14, 10-16; the 10-14 and 10-16 exchanges are in the recent 80 entries). Running a client demo is a new work thread for the same colleague, so rule 2 applies. The other Priya (Priya Sandhu, photographer, owned by 'Engagement Shoot Booking') doesn't fit a work demo, and no agent owns 'demo' as a topic."
-    },
-    {
-      "id": "c03_counterpart_not_in_owner_name",
-      "category": "new_task_owner_name_unrelated",
-      "rule": 2,
-      "message": "ask dmitri if his guys do bathrooms too? the upstairs one is next on the list",
-      "expected": [
-        {
-          "task": "ask Dmitri Volkov whether Ironbark also does bathroom renovations",
-          "gold": "Kitchen Reno Quote Follow-up"
-        }
-      ],
-      "rationale": "Dmitri Volkov <dmitri@ironbarkreno.ca> (Ironbark Renovations) is owned by 'Kitchen Reno Quote Follow-up', which handled every Dmitri thread (quote 08-06/08-27, acceptance 09-09, cabinet-order check 10-16 in the recent entries, where the agent_message names Dmitri). The agent name doesn't mention Dmitri. A bathroom question is a new task for the same contractor, so person and topic (renovation) point to the same agent."
-    },
-    {
-      "id": "c04_reply_to_email_found_by_unrelated_agent",
-      "category": "reply_to_found_email",
-      "rule": 1,
-      "message": "ok reply to the tire place and tell them saturday 9am works",
-      "expected": [
-        {
-          "task": "reply to Bramblewood Auto's winter tire email booking Sat Oct 24 9:00",
-          "gold": "Inbox Catch-Up Scan"
-        }
-      ],
-      "rationale": "On 2026-10-17 (recent entries) 'Inbox Catch-Up Scan' found the Bramblewood Auto Service email 'Time to book your winter tire changeover' (slots Sat Oct 24 9:00 / Tue Oct 27 16:30) and reported its thread ID. Replying to that email goes to the agent that found it (rule 1). No other agent has ever touched Bramblewood or tires. Generic inbox distractors ('Inbox Summary', 'Unread Email Check', ...) never saw this email."
-    },
-    {
-      "id": "c05_confirm_pending_draft",
-      "category": "confirm_pending_draft",
-      "rule": 1,
-      "message": "yep looks good, send it",
-      "expected": [
-        {
-          "task": "send the pending Copperleaf reply draft",
-          "gold": "Copperleaf Renewal Thread"
-        }
-      ],
-      "rationale": "The last entries of the recent window (2026-10-19 ~19:39) show 'Copperleaf Renewal Thread' creating a draft reply to Hana Ishikawa <hana.ishikawa@copperleafdata.com> (two-year term at $18,400/yr), which Poke displayed and asked to confirm. 'Send it' refers to that draft (rule 1)."
-    },
-    {
-      "id": "c06_modify_existing_trigger",
-      "category": "modify_reminder",
-      "rule": 1,
-      "message": "can you push the sunday night rundown to 8:30 instead of 7? 7 is right when we sit down to eat",
-      "expected": [
-        {
-          "task": "move the Sunday 19:00 week-ahead trigger to 20:30",
-          "gold": "Sunday Week Ahead Brief"
-        }
-      ],
-      "rationale": "'Sunday Week Ahead Brief' created the weekly trigger (createTrigger succeeded, FREQ=WEEKLY;BYDAY=SU at 19:00) on 2026-08-05, and it fired on 2026-10-18 at 19:00 in the recent entries ('Week-ahead rundown'). Changing that trigger's time belongs to the agent that owns it (rule 1). The other trigger owners (Hydro Bill Reminder, monthly; Mom Thanksgiving Visit, one-off) aren't Sunday rundowns."
-    },
-    {
-      "id": "c07_revive_dormant_counterpart",
-      "category": "dormant_counterpart_summary_only",
-      "rule": 2,
-      "message": "can you ask wendell if we should lock the rate now or wait til after the nov 4 announcement",
-      "expected": [
-        {
-          "task": "ask Wendell Achebe about locking the renewal rate before Nov 4",
-          "gold": "Mortgage Renewal Paperwork"
-        }
-      ],
-      "rationale": "Wendell Achebe <wendell.achebe@brightmoorcu.ca> (Brightmoor Credit Union mortgage advisor) was handled only by 'Mortgage Renewal Paperwork' (08-25 to 09-10, older entries only). The summary keeps the mortgage renewal with Wendell, the Oct 30 offer, and the rate decision before Nov 4. He never appears in the recent 80. A new question to the same advisor goes to his owner (rule 2)."
-    },
-    {
-      "id": "c08_same_first_name_other_person",
-      "category": "same_first_name_other_person",
-      "rule": 1,
-      "message": "can you ask priya if she can send the engagement proofs early? jules keeps asking lol",
-      "expected": [
-        {
-          "task": "email Priya Sandhu asking for the engagement proofs gallery early",
-          "gold": "Engagement Shoot Booking"
-        }
-      ],
-      "rationale": "The engagement-shoot photographer is Priya Sandhu <priya@lumenandlinen.ca> (Lumen & Linen Photography), owned by 'Engagement Shoot Booking' (inquiry 07-27, booking 08-12, and on 10-15 in the recent entries the agent reported 'proofing gallery by Fri Oct 23'). That's rules 1 and 2 together. The hard negative is 'Priya Roadmap Sync', which owns a different Priya (Natarajan, priya@northfoldstudio.ca, engineering lead) and is more salient in the recent entries."
-    },
-    {
-      "id": "c09_new_counterpart_overlapping_name",
-      "category": "new_counterpart_overlapping_name",
-      "rule": 3,
-      "message": "can you email marco ferrante at keyhaven music (marco@keyhavenmusic.ca) and ask if he has saturday morning slots for adult beginner piano?",
-      "expected": [
-        {
-          "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
-          "gold": "NEW"
-        }
-      ],
-      "rationale": "Marco Ferrante <marco@keyhavenmusic.ca> has never appeared. No agent has dealt with Keyhaven Music or piano lessons. 'Email to Marco Soccer League' owns a different Marco (Bellandi, marco@riverdalerecsoccer.ca), and 'Fernway Designer Search' owns Marcus Oyelaran. Rule 3 means a new agent."
-    },
-    {
-      "id": "c10_parallel_known_and_new",
-      "category": "parallel_known_and_new",
-      "rule": 3,
-      "message": "tell gabe ill be like 20 min late to the kickoff wednesday, train thing. also can you email halcyon chimney (service@halcyonchimney.ca) and see if they can do a sweep before mid nov",
-      "expected": [
-        {
-          "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
-          "gold": "Email to Gabe Offsite Agenda"
-        },
-        {
-          "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
-          "gold": "NEW"
-        }
-      ],
-      "rationale": "Gabe Lindqvist <gabe@northfoldstudio.ca> and the Oct 21-22 Cedar Hollow offsite (10:00 Wed kickoff) are owned by 'Email to Gabe Offsite Agenda' (agenda thread, final agenda sent 10-15 in the recent entries), so that part reuses it (rules 1 and 2). Halcyon Chimney has never appeared and no agent covers chimneys. It's an independent task that can run in parallel, so it gets a new agent (rule 3)."
-    },
-    {
-      "id": "c11_dormant_name_match_noor",
-      "category": "dormant_name_match",
-      "pair": "noor",
-      "split": "heldout",
-      "rule": [
-        1,
-        2
-      ],
-      "message": "can we bump the save the date printing to 140? guest list grew",
-      "expected": [
-        {
-          "task": "ask Noor (Inkwell & Vine) to raise the save-the-date order from 120 to 140",
-          "gold": "Save the Date Printing"
-        }
-      ],
-      "rationale": "Noor Hassan's quote for 120 letterpress save-the-dates (summary, Pending) belongs to 'Save the Date Printing'; the message shares 'save the date printing'. Dormant: not in the recent 80. Topic sibling 'Wedding Invitation Calligrapher' is a different vendor."
-    },
-    {
-      "id": "c12_dormant_inference_noor",
-      "category": "dormant_inference",
-      "pair": "noor",
-      "split": "heldout",
-      "rule": [
-        1,
-        2
-      ],
-      "message": "ask noor if she can do 140 instead of 120, guest list grew",
-      "expected": [
-        {
-          "task": "ask Noor (Inkwell & Vine) to raise the save-the-date order from 120 to 140",
-          "gold": "Save the Date Printing"
-        }
-      ],
-      "rationale": "Same owner as c11. Only the summary links Noor to the 120-piece save-the-date quote; the agent name never appears in the summary."
-    },
-    {
-      "id": "c13_dormant_name_match_tidewater",
-      "category": "dormant_name_match",
-      "pair": "tidewater",
-      "split": "heldout",
-      "rule": [
-        1,
-        2
-      ],
-      "message": "email the dentist and ask if my cleaning can be at 5 instead",
-      "expected": [
-        {
-          "task": "ask Tidewater Dental to move the cleaning to 17:00",
-          "gold": "Dentist Cleaning Reschedule"
-        }
-      ],
-      "rationale": "Tidewater Dental cleaning reschedule thread (summary, Pending) is owned by 'Dentist Cleaning Reschedule'; message shares 'dentist' and 'cleaning'. Topic sibling 'Orthodontist Consult for Nephew' is a different patient and practice."
-    },
-    {
-      "id": "c14_dormant_inference_tidewater",
-      "category": "dormant_inference",
-      "pair": "tidewater",
-      "split": "heldout",
-      "rule": [
-        1,
-        2
-      ],
-      "message": "email tidewater and ask if i can get a 5pm slot instead",
-      "expected": [
-        {
-          "task": "ask Tidewater Dental to move the cleaning to 17:00",
-          "gold": "Dentist Cleaning Reschedule"
-        }
-      ],
-      "rationale": "Same owner as c13. Only the summary links Tidewater to the cleaning reschedule thread."
-    },
-    {
-      "id": "c15_dormant_name_match_ironwood",
-      "category": "dormant_name_match",
-      "pair": "ironwood",
-      "split": "heldout",
-      "rule": [
-        1,
-        2
-      ],
-      "message": "can you extend my gym membership freeze through november",
-      "expected": [
-        {
-          "task": "ask Ironwood Athletic to extend the membership freeze through November",
-          "gold": "Gym Membership Freeze"
-        }
-      ],
-      "rationale": "Ironwood Athletic freeze request (summary, Pending) is owned by 'Gym Membership Freeze'; message shares 'gym membership freeze'. Topic sibling 'Climbing Gym Day Pass' is a different club."
-    },
-    {
-      "id": "c16_dormant_inference_ironwood",
-      "category": "dormant_inference",
-      "pair": "ironwood",
-      "split": "heldout",
-      "rule": [
-        1,
-        2
-      ],
-      "message": "ask ironwood if they can extend my hold through november",
-      "expected": [
-        {
-          "task": "ask Ironwood Athletic to extend the membership freeze through November",
-          "gold": "Gym Membership Freeze"
-        }
-      ],
-      "rationale": "Same owner as c15. Only the summary links Ironwood to the freeze."
-    },
-    {
-      "id": "c17_dormant_name_match_harold",
-      "category": "dormant_name_match",
-      "pair": "harold",
-      "split": "heldout",
-      "rule": [
-        1,
-        2
-      ],
-      "message": "tell the neighbour im good to split the fence repair, 575 each",
-      "expected": [
-        {
-          "task": "tell Harold Pemberton Theo agrees to split the $1,150 fence repair",
-          "gold": "Neighbour Fence Repair"
-        }
-      ],
-      "rationale": "Harold's request to split the $1,150 fence repair (summary, Pending) is owned by 'Neighbour Fence Repair'; message shares 'neighbour fence repair'. Topic siblings 'Backyard Shed Permit' and 'Email to Rui Deck Repair Quote' are other counterparts."
-    },
-    {
-      "id": "c18_dormant_inference_harold",
-      "category": "dormant_inference",
-      "pair": "harold",
-      "split": "heldout",
-      "rule": [
-        1,
-        2
-      ],
-      "message": "tell harold im good to split it, 575 each",
-      "expected": [
-        {
-          "task": "tell Harold Pemberton Theo agrees to split the $1,150 fence repair",
-          "gold": "Neighbour Fence Repair"
-        }
-      ],
-      "rationale": "Same owner as c17. Only the summary links Harold to the fence thread."
-    },
-    {
-      "id": "c19_dormant_name_match_marcus",
-      "category": "dormant_name_match",
-      "pair": "marcus",
-      "split": "heldout",
-      "rule": [
-        1,
-        2
-      ],
-      "message": "can you push the designer search call to friday morning",
-      "expected": [
-        {
-          "task": "ask Marcus Oyelaran (Fernway) to move the Thursday call to Friday morning",
-          "gold": "Fernway Designer Search"
-        }
-      ],
-      "rationale": "Marcus's Thursday 14:00 call about the senior designer search (summary, Pending) is owned by 'Fernway Designer Search'; message shares 'designer search'. Topic sibling 'Email to Imani Contract Designer Rates' is a freelancer, not the search."
-    },
-    {
-      "id": "c20_dormant_inference_marcus",
-      "category": "dormant_inference",
-      "pair": "marcus",
-      "split": "heldout",
-      "rule": [
-        1,
-        2
-      ],
-      "message": "ask marcus if we can move our call to friday morning",
-      "expected": [
-        {
-          "task": "ask Marcus Oyelaran (Fernway) to move the Thursday call to Friday morning",
-          "gold": "Fernway Designer Search"
-        }
-      ],
-      "rationale": "Same owner as c19. Only the summary links Marcus to the designer search."
-    },
-    {
-      "id": "c21_dormant_paraphrase_wendell",
-      "category": "dormant_paraphrase",
-      "pair": "wendell",
-      "split": "stress",
-      "rule": [
-        1,
-        2
-      ],
-      "message": "can you ask our guy at the credit union if we should lock in before the rate announcement",
-      "expected": [
-        {
-          "task": "ask Wendell Achebe (Brightmoor) whether to lock the renewal rate before the Nov 4 announcement",
-          "gold": "Mortgage Renewal Paperwork"
-        }
-      ],
-      "rationale": "The summary ties Brightmoor (brightmoorcu.ca, Wendell Achebe) to the mortgage renewal, its rate and the Nov 4 announcement. The message names no one and shares no word with the owner's name. Hard negative from 1600: 'Line of Credit Rate Change' (Northshore Bank, a bank, not the credit union) shares 'credit' and 'rate'."
-    },
-    {
-      "id": "c22_dormant_paraphrase_ironwood",
-      "category": "dormant_paraphrase",
-      "pair": "ironwood",
-      "split": "stress",
-      "rule": [
-        1,
-        2
-      ],
-      "message": "my knee's still not great, can you ask the place i work out to keep my account on hold through november",
-      "expected": [
-        {
-          "task": "ask Ironwood Athletic to extend the membership freeze through November",
-          "gold": "Gym Membership Freeze"
-        }
-      ],
-      "rationale": "The summary ties the Ironwood Athletic membership freeze to Theo's knee rehab. No name, and none of 'gym', 'membership', 'freeze'. Hard negatives: 'Climbing Gym Day Pass'; from 1600 'Sadie Yoga Studio Membership Freeze' (a freeze until Nov 8, but no knee): only the knee links the message to Ironwood."
-    },
-    {
-      "id": "c23_dormant_paraphrase_harold",
-      "category": "dormant_paraphrase",
-      "pair": "harold",
-      "split": "stress",
-      "rule": [
-        1,
-        2
-      ],
-      "message": "tell the guy next door i'm good to go halves on it, 575 each",
-      "expected": [
-        {
-          "task": "tell Harold Pemberton Theo agrees to split the fence repair ($575 each)",
-          "gold": "Neighbour Fence Repair"
-        }
-      ],
-      "rationale": "The summary has Harold Pemberton, the neighbour, asked to split a $1,150 fence repair (575 each). No name and no word of 'Neighbour Fence Repair'. Hard negatives: 'Email to Rui Deck Repair Quote', 'Backyard Shed Permit'."
-    },
-    {
-      "id": "c24_dormant_paraphrase_tidewater",
-      "category": "dormant_paraphrase",
-      "pair": "tidewater",
-      "split": "stress",
-      "rule": [
-        1,
-        2
-      ],
-      "message": "can you ask if my teeth appointment can be pushed to around 5",
-      "expected": [
-        {
-          "task": "ask Tidewater Dental to move the cleaning to about 17:00",
-          "gold": "Dentist Cleaning Reschedule"
-        }
-      ],
-      "rationale": "The summary has the pending Tidewater Dental cleaning reschedule. 'teeth appointment' shares no word with 'Dentist Cleaning Reschedule'. Hard negative: 'Orthodontist Consult for Nephew' (a different patient and practice)."
-    },
-    {
-      "id": "c25_new_familiar_topic_dentist",
-      "category": "new_counterpart_familiar_topic",
-      "split": "stress",
-      "rule": 3,
-      "message": "can you find a dentist near jules's office that does evening appointments and ask if they take new patients",
-      "expected": [
-        {
-          "task": "find a dentist near Jules's office with evening hours and ask about new patients",
-          "gold": "NEW"
-        }
-      ],
-      "rationale": "No dentist near Jules's office has ever come up. 'Dentist Cleaning Reschedule' owns Theo's own dentist (Tidewater) and 'Orthodontist Consult for Nephew' the nephew's; neither is this practice. Rule 3: a new agent."
-    },
-    {
-      "id": "c26_new_familiar_topic_mechanic",
-      "category": "new_counterpart_familiar_topic",
-      "split": "stress",
-      "rule": 3,
-      "message": "can you find a mechanic near us who can do a pre-winter inspection on the car? somewhere other than the tire place",
-      "expected": [
-        {
-          "task": "find a mechanic nearby for a pre-winter inspection (not Bramblewood Auto)",
-          "gold": "NEW"
-        }
-      ],
-      "rationale": "Car service is familiar: the recent 'Inbox Catch-Up Scan' found the Bramblewood Auto ('the tire place') winter tire email. The user explicitly wants a different shop, so no agent owns this counterpart. Rule 3: a new agent."
-    },
-    {
-      "id": "c27_new_familiar_topic_restaurant",
-      "category": "new_counterpart_familiar_topic",
-      "split": "stress",
-      "rule": 3,
-      "message": "book lunch for 2 at noon on tuesday the 27th, me and a new client, somewhere quiet near the office",
-      "expected": [
-        {
-          "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
-          "gold": "NEW"
-        }
-      ],
-      "rationale": "Restaurant bookings are familiar ('Jules Birthday Dinner' at Osteria Valdina; many reservation distractors, and from 1600 'Email to Dara Whitcomb Lunch Receipt', a past client lunch). This is a new client and no restaurant is named, so nothing owns it. Rule 3: a new agent. (The date is explicit and clear in the calendar: an earlier 'this thursday' fell on the Cedar Hollow offsite, and the IA rightly asked instead of booking.)"
-    },
-    {
-      "id": "c28_dormant_typo_wendell",
-      "category": "dormant_typo",
-      "pair": "wendell",
-      "split": "stress",
-      "rule": [
-        1,
-        2
-      ],
-      "message": "can you ask wendel if we should lock the rate now or wait til after the nov 4 announcement",
-      "expected": [
-        {
-          "task": "ask Wendell Achebe whether to lock the renewal rate or wait for the Nov 4 announcement",
-          "gold": "Mortgage Renewal Paperwork"
-        }
-      ],
-      "rationale": "c07 with 'Wendell' misspelled 'wendel'."
-    },
-    {
-      "id": "c29_dormant_typo_tidewater",
-      "category": "dormant_typo",
-      "pair": "tidewater",
-      "split": "stress",
-      "rule": [
-        1,
-        2
-      ],
-      "message": "email tidwater and ask if i can get a 5pm slot instead",
-      "expected": [
-        {
-          "task": "ask Tidewater Dental to move the cleaning to 17:00",
-          "gold": "Dentist Cleaning Reschedule"
-        }
-      ],
-      "rationale": "c14 with 'Tidewater' misspelled 'tidwater'."
-    },
-    {
-      "id": "c30_dormant_typo_ironwood",
-      "category": "dormant_typo",
-      "pair": "ironwood",
-      "split": "stress",
-      "rule": [
-        1,
-        2
-      ],
-      "message": "ask ironwod if they can extend my hold through november",
-      "expected": [
-        {
-          "task": "ask Ironwood Athletic to extend the membership freeze through November",
-          "gold": "Gym Membership Freeze"
-        }
-      ],
-      "rationale": "c16 with 'Ironwood' misspelled 'ironwod'."
-    },
-    {
-      "id": "c31_dormant_typo_harold",
-      "category": "dormant_typo",
-      "pair": "harold",
-      "split": "stress",
-      "rule": [
-        1,
-        2
-      ],
-      "message": "tell harrold im good to split it, 575 each",
-      "expected": [
-        {
-          "task": "tell Harold Pemberton Theo agrees to split the fence repair ($575 each)",
-          "gold": "Neighbour Fence Repair"
-        }
-      ],
-      "rationale": "c18 with 'Harold' misspelled 'harrold'."
-    }
-  ]
-}
+[
+ {
+  "id": "c01_followup_named_counterpart",
+  "group": "easy recent",
+  "message": "did harrow hill ever confirm they got the deposit?",
+  "expected": [
+   {
+    "task": "check for Harrow Hill's confirmation of the $4k second deposit",
+    "gold": "Harrow Hill Venue Deposit",
+    "traps": [
+     "Security Deposit Refund",
+     "Harrow Hill Tasting Menu",
+     "Email to Bianca Wedding Florist Quote",
+     "Email to Theresa Officiant Booking",
+     "Wedding Caterer Deposit Peppergrass",
+     "Harrowfield Rentals Tent Deposit",
+     "Honeymoon Villa Deposit Casa Alvor"
+    ]
+   }
+  ],
+  "note": "On 2026-10-15 (recent entries) 'Harrow Hill Venue Deposit' drafted and sent the second-deposit note to Celeste Moreau <celeste@harrowhillestate.ca> in the Harrow Hill wedding thread (harrow-hill-venue-deposit.log). Asking whether the venue confirmed is a follow-up on that thread (rule 1). The counterpart is named in the agent name. Shared-word hard negatives such as 'Security Deposit Refund' concern a different counterpart."
+ },
+ {
+  "id": "c02_new_task_known_counterpart",
+  "group": "policy-ambiguous",
+  "message": "can you email priya and ask if she can run the client demo friday? im double booked",
+  "expected": [
+   {
+    "task": "ask Priya Natarajan to run Friday's client demo",
+    "gold": "Priya Roadmap Sync",
+    "traps": [
+     "Engagement Shoot Booking",
+     "Email to Owen Client Demo Recording",
+     "Email to Lena Sprint Retro Notes",
+     "Roadmap Template Research",
+     "Oarlock Foods Client Demo",
+     "Email to Ottoline Q4 Hiring Asks",
+     "Pellucid Freight Roadmap Review"
+    ]
+   }
+  ],
+  "note": "Priya Natarajan <priya@northfoldstudio.ca> (Northfold engineering lead) is owned by 'Priya Roadmap Sync' (requests on 07-31, 08-14, 10-14, 10-16; the 10-14 and 10-16 exchanges are in the recent 80 entries). Running a client demo is a new work thread for the same colleague, so rule 2 applies. The other Priya (Priya Sandhu, photographer, owned by 'Engagement Shoot Booking') doesn't fit a work demo, and no agent owns 'demo' as a topic."
+ },
+ {
+  "id": "c03_counterpart_not_in_owner_name",
+  "group": "easy recent",
+  "message": "ask dmitri if his guys do bathrooms too? the upstairs one is next on the list",
+  "expected": [
+   {
+    "task": "ask Dmitri Volkov whether Ironbark also does bathroom renovations",
+    "gold": "Kitchen Reno Quote Follow-up",
+    "traps": [
+     "Backsplash Tile Order Stonehaven",
+     "Plumber Quote Basement Bathroom",
+     "Ironvale Roofing Leak Quote",
+     "Basement Waterproofing Quote Drybrook",
+     "Email to Dmitri Sokolov Bike Tune-Up"
+    ]
+   }
+  ],
+  "note": "Dmitri Volkov <dmitri@ironbarkreno.ca> (Ironbark Renovations) is owned by 'Kitchen Reno Quote Follow-up', which handled every Dmitri thread (quote 08-06/08-27, acceptance 09-09, cabinet-order check 10-16 in the recent entries, where the agent_message names Dmitri). The agent name doesn't mention Dmitri. A bathroom question is a new task for the same contractor, so person and topic (renovation) point to the same agent."
+ },
+ {
+  "id": "c04_reply_to_email_found_by_unrelated_agent",
+  "group": "policy-ambiguous",
+  "message": "ok reply to the tire place and tell them saturday 9am works",
+  "expected": [
+   {
+    "task": "reply to Bramblewood Auto's winter tire email booking Sat Oct 24 9:00",
+    "gold": "Inbox Catch-Up Scan",
+    "traps": [
+     "Inbox Summary",
+     "Unread Email Check",
+     "Weekend Inbox Sweep",
+     "Bramblewood Oil Change Receipt",
+     "Car Insurance Renewal Wickham",
+     "Unread Bills Inbox Check"
+    ]
+   }
+  ],
+  "note": "On 2026-10-17 (recent entries) 'Inbox Catch-Up Scan' found the Bramblewood Auto Service email 'Time to book your winter tire changeover' (slots Sat Oct 24 9:00 / Tue Oct 27 16:30) and reported its thread ID. Replying to that email goes to the agent that found it (rule 1). No other agent has ever touched Bramblewood or tires. Generic inbox distractors ('Inbox Summary', 'Unread Email Check', ...) never saw this email."
+ },
+ {
+  "id": "c05_confirm_pending_draft",
+  "group": "easy recent",
+  "message": "yep looks good, send it",
+  "expected": [
+   {
+    "task": "send the pending Copperleaf reply draft",
+    "gold": "Copperleaf Renewal Thread",
+    "traps": [
+     "Copperleaf Invoice Copy",
+     "Lumenboard Seat Renewal",
+     "Tallyhaus Usage Report Request",
+     "Northfold Studio Lease Renewal"
+    ]
+   }
+  ],
+  "note": "The last entries of the recent window (2026-10-19 ~19:39) show 'Copperleaf Renewal Thread' creating a draft reply to Hana Ishikawa <hana.ishikawa@copperleafdata.com> (two-year term at $18,400/yr), which Poke displayed and asked to confirm. 'Send it' refers to that draft (rule 1)."
+ },
+ {
+  "id": "c06_modify_existing_trigger",
+  "group": "easy recent",
+  "message": "can you push the sunday night rundown to 8:30 instead of 7? 7 is right when we sit down to eat",
+  "expected": [
+   {
+    "task": "move the Sunday 19:00 week-ahead trigger to 20:30",
+    "gold": "Sunday Week Ahead Brief",
+    "traps": [
+     "Friday Work Wrap-Up Digest",
+     "Sunday Meal Plan Reminder",
+     "Monday Morning Calendar Rundown",
+     "Nightly Unread Digest"
+    ]
+   }
+  ],
+  "note": "'Sunday Week Ahead Brief' created the weekly trigger (createTrigger succeeded, FREQ=WEEKLY;BYDAY=SU at 19:00) on 2026-08-05, and it fired on 2026-10-18 at 19:00 in the recent entries ('Week-ahead rundown'). Changing that trigger's time belongs to the agent that owns it (rule 1). The other trigger owners (Hydro Bill Reminder, monthly; Mom Thanksgiving Visit, one-off) aren't Sunday rundowns."
+ },
+ {
+  "id": "c07_revive_dormant_counterpart",
+  "group": "overload target (dormant, inference)",
+  "message": "can you ask wendell if we should lock the rate now or wait til after the nov 4 announcement",
+  "expected": [
+   {
+    "task": "ask Wendell Achebe about locking the renewal rate before Nov 4",
+    "gold": "Mortgage Renewal Paperwork",
+    "traps": [
+     "Property Tax Installment Reminder",
+     "Email to Nadia Mortgage Broker Referral",
+     "Line of Credit Rate Change",
+     "Cottage Mortgage Pre-Approval",
+     "Home Insurance Renewal Bastion",
+     "RRSP Contribution Halyard Bank"
+    ]
+   }
+  ],
+  "note": "Wendell Achebe <wendell.achebe@brightmoorcu.ca> (Brightmoor Credit Union mortgage advisor) was handled only by 'Mortgage Renewal Paperwork' (08-25 to 09-10, older entries only). The summary keeps the mortgage renewal with Wendell, the Oct 30 offer, and the rate decision before Nov 4. He never appears in the recent 80. A new question to the same advisor goes to his owner (rule 2)."
+ },
+ {
+  "id": "c08_same_first_name_other_person",
+  "group": "easy recent",
+  "message": "can you ask priya if she can send the engagement proofs early? jules keeps asking lol",
+  "expected": [
+   {
+    "task": "email Priya Sandhu asking for the engagement proofs gallery early",
+    "gold": "Engagement Shoot Booking",
+    "traps": [
+     "Engagement Ring Insurance Rider",
+     "Videographer Quote Comparison",
+     "Priya Roadmap Sync",
+     "Wedding Photographer Quotes",
+     "Jules Headshots Proofs",
+     "Engagement Party Venue Alder & Ash"
+    ]
+   }
+  ],
+  "note": "The engagement-shoot photographer is Priya Sandhu <priya@lumenandlinen.ca> (Lumen & Linen Photography), owned by 'Engagement Shoot Booking' (inquiry 07-27, booking 08-12, and on 10-15 in the recent entries the agent reported 'proofing gallery by Fri Oct 23'). That's rules 1 and 2 together. The hard negative is 'Priya Roadmap Sync', which owns a different Priya (Natarajan, priya@northfoldstudio.ca, engineering lead) and is more salient in the recent entries."
+ },
+ {
+  "id": "c09_new_counterpart_overlapping_name",
+  "group": "easy recent",
+  "message": "can you email marco ferrante at keyhaven music (marco@keyhavenmusic.ca) and ask if he has saturday morning slots for adult beginner piano?",
+  "expected": [
+   {
+    "task": "ask Marco Ferrante (Keyhaven Music) about Saturday piano lessons",
+    "gold": "NEW",
+    "traps": [
+     "Email to Marco Soccer League",
+     "Fernway Designer Search",
+     "Niece Guitar Lessons Allegro",
+     "Piano Tuning Harmonia"
+    ]
+   }
+  ],
+  "note": "Marco Ferrante <marco@keyhavenmusic.ca> has never appeared. No agent has dealt with Keyhaven Music or piano lessons. 'Email to Marco Soccer League' owns a different Marco (Bellandi, marco@riverdalerecsoccer.ca), and 'Fernway Designer Search' owns Marcus Oyelaran. Rule 3 means a new agent."
+ },
+ {
+  "id": "c10_parallel_known_and_new",
+  "group": "multi-task",
+  "message": "tell gabe ill be like 20 min late to the kickoff wednesday, train thing. also can you email halcyon chimney (service@halcyonchimney.ca) and see if they can do a sweep before mid nov",
+  "expected": [
+   {
+    "task": "tell Gabe Theo will be ~20 min late to Wednesday's offsite kickoff",
+    "gold": "Email to Gabe Offsite Agenda",
+    "traps": [
+     "Offsite Catering Cedar Hollow",
+     "Cedar Hollow Lodge Room Block",
+     "Solvik Outdoor Kickoff Call",
+     "Offsite Van Rental Portlands"
+    ]
+   },
+   {
+    "task": "ask Halcyon Chimney about a chimney sweep before mid-November",
+    "gold": "NEW",
+    "traps": [
+     "Fireplace Insert Quote Ember & Co",
+     "Furnace Tune-Up Lakeshore Heating",
+     "Gutter Cleaning Clearflow"
+    ]
+   }
+  ],
+  "note": "Gabe Lindqvist <gabe@northfoldstudio.ca> and the Oct 21-22 Cedar Hollow offsite (10:00 Wed kickoff) are owned by 'Email to Gabe Offsite Agenda' (agenda thread, final agenda sent 10-15 in the recent entries), so that part reuses it (rules 1 and 2). Halcyon Chimney has never appeared and no agent covers chimneys. It's an independent task that can run in parallel, so it gets a new agent (rule 3)."
+ },
+ {
+  "id": "c11_dormant_name_match_noor",
+  "group": "dormant control (name match)",
+  "message": "can we bump the save the date printing to 140? guest list grew",
+  "expected": [
+   {
+    "task": "ask Noor (Inkwell & Vine) to raise the save-the-date order from 120 to 140",
+    "gold": "Save the Date Printing",
+    "traps": [
+     "Wedding Invitation Calligrapher",
+     "Wedding Invitation Suite Quote",
+     "Northfold Business Cards Reprint",
+     "Engagement Thank-You Cards"
+    ]
+   }
+  ],
+  "note": "Noor Hassan's quote for 120 letterpress save-the-dates (summary, Pending) belongs to 'Save the Date Printing'; the message shares 'save the date printing'. Dormant: not in the recent 80. Topic sibling 'Wedding Invitation Calligrapher' is a different vendor."
+ },
+ {
+  "id": "c12_dormant_inference_noor",
+  "group": "overload target (dormant, inference)",
+  "message": "ask noor if she can do 140 instead of 120, guest list grew",
+  "expected": [
+   {
+    "task": "ask Noor (Inkwell & Vine) to raise the save-the-date order from 120 to 140",
+    "gold": "Save the Date Printing",
+    "traps": [
+     "Wedding Invitation Calligrapher",
+     "Wedding Invitation Suite Quote",
+     "Northfold Business Cards Reprint",
+     "Engagement Thank-You Cards"
+    ]
+   }
+  ],
+  "note": "Same owner as c11. Only the summary links Noor to the 120-piece save-the-date quote; the agent name never appears in the summary."
+ },
+ {
+  "id": "c13_dormant_name_match_tidewater",
+  "group": "dormant control (name match)",
+  "message": "email the dentist and ask if my cleaning can be at 5 instead",
+  "expected": [
+   {
+    "task": "ask Tidewater Dental to move the cleaning to 17:00",
+    "gold": "Dentist Cleaning Reschedule",
+    "traps": [
+     "Orthodontist Consult for Nephew",
+     "Eye Exam Reschedule Brightlens",
+     "Haircut Appointment Move",
+     "Teeth Whitening Inquiry Lumina"
+    ]
+   }
+  ],
+  "note": "Tidewater Dental cleaning reschedule thread (summary, Pending) is owned by 'Dentist Cleaning Reschedule'; message shares 'dentist' and 'cleaning'. Topic sibling 'Orthodontist Consult for Nephew' is a different patient and practice."
+ },
+ {
+  "id": "c14_dormant_inference_tidewater",
+  "group": "overload target (dormant, inference)",
+  "message": "email tidewater and ask if i can get a 5pm slot instead",
+  "expected": [
+   {
+    "task": "ask Tidewater Dental to move the cleaning to 17:00",
+    "gold": "Dentist Cleaning Reschedule",
+    "traps": [
+     "Orthodontist Consult for Nephew",
+     "Eye Exam Reschedule Brightlens",
+     "Haircut Appointment Move",
+     "Teeth Whitening Inquiry Lumina"
+    ]
+   }
+  ],
+  "note": "Same owner as c13. Only the summary links Tidewater to the cleaning reschedule thread."
+ },
+ {
+  "id": "c15_dormant_name_match_ironwood",
+  "group": "dormant control (name match)",
+  "message": "can you extend my gym membership freeze through november",
+  "expected": [
+   {
+    "task": "ask Ironwood Athletic to extend the membership freeze through November",
+    "gold": "Gym Membership Freeze",
+    "traps": [
+     "Climbing Gym Day Pass",
+     "Jules Yoga Membership Pause",
+     "Corporate Gym Rates Forge Fitness",
+     "Harvest Crate Delivery Hold"
+    ]
+   }
+  ],
+  "note": "Ironwood Athletic freeze request (summary, Pending) is owned by 'Gym Membership Freeze'; message shares 'gym membership freeze'. Topic sibling 'Climbing Gym Day Pass' is a different club."
+ },
+ {
+  "id": "c16_dormant_inference_ironwood",
+  "group": "overload target (dormant, inference)",
+  "message": "ask ironwood if they can extend my hold through november",
+  "expected": [
+   {
+    "task": "ask Ironwood Athletic to extend the membership freeze through November",
+    "gold": "Gym Membership Freeze",
+    "traps": [
+     "Climbing Gym Day Pass",
+     "Jules Yoga Membership Pause",
+     "Corporate Gym Rates Forge Fitness",
+     "Harvest Crate Delivery Hold"
+    ]
+   }
+  ],
+  "note": "Same owner as c15. Only the summary links Ironwood to the freeze."
+ },
+ {
+  "id": "c17_dormant_name_match_harold",
+  "group": "dormant control (name match)",
+  "message": "tell the neighbour im good to split the fence repair, 575 each",
+  "expected": [
+   {
+    "task": "tell Harold Pemberton Theo agrees to split the $1,150 fence repair",
+    "gold": "Neighbour Fence Repair",
+    "traps": [
+     "Backyard Shed Permit",
+     "Email to Rui Deck Repair Quote",
+     "Email to Denise Tree Trimming Split",
+     "Fence Stain Quote Truecoat",
+     "Street Party Planning Gerrard East"
+    ]
+   }
+  ],
+  "note": "Harold's request to split the $1,150 fence repair (summary, Pending) is owned by 'Neighbour Fence Repair'; message shares 'neighbour fence repair'. Topic siblings 'Backyard Shed Permit' and 'Email to Rui Deck Repair Quote' are other counterparts."
+ },
+ {
+  "id": "c18_dormant_inference_harold",
+  "group": "overload target (dormant, inference)",
+  "message": "tell harold im good to split it, 575 each",
+  "expected": [
+   {
+    "task": "tell Harold Pemberton Theo agrees to split the $1,150 fence repair",
+    "gold": "Neighbour Fence Repair",
+    "traps": [
+     "Backyard Shed Permit",
+     "Email to Rui Deck Repair Quote",
+     "Email to Denise Tree Trimming Split",
+     "Fence Stain Quote Truecoat",
+     "Street Party Planning Gerrard East"
+    ]
+   }
+  ],
+  "note": "Same owner as c17. Only the summary links Harold to the fence thread."
+ },
+ {
+  "id": "c19_dormant_name_match_marcus",
+  "group": "dormant control (name match)",
+  "message": "can you push the designer search call to friday morning",
+  "expected": [
+   {
+    "task": "ask Marcus Oyelaran (Fernway) to move the Thursday call to Friday morning",
+    "gold": "Fernway Designer Search",
+    "traps": [
+     "Email to Imani Contract Designer Rates",
+     "Brightwire Engineer Search",
+     "Freelance Illustrator Search",
+     "Fernvale Coworking Day Passes"
+    ]
+   }
+  ],
+  "note": "Marcus's Thursday 14:00 call about the senior designer search (summary, Pending) is owned by 'Fernway Designer Search'; message shares 'designer search'. Topic sibling 'Email to Imani Contract Designer Rates' is a freelancer, not the search."
+ },
+ {
+  "id": "c20_dormant_inference_marcus",
+  "group": "overload target (dormant, inference)",
+  "message": "ask marcus if we can move our call to friday morning",
+  "expected": [
+   {
+    "task": "ask Marcus Oyelaran (Fernway) to move the Thursday call to Friday morning",
+    "gold": "Fernway Designer Search",
+    "traps": [
+     "Email to Imani Contract Designer Rates",
+     "Brightwire Engineer Search",
+     "Freelance Illustrator Search",
+     "Fernvale Coworking Day Passes"
+    ]
+   }
+  ],
+  "note": "Same owner as c19. Only the summary links Marcus to the designer search."
+ },
+ {
+  "id": "c21_dormant_paraphrase_wendell",
+  "group": "stress: paraphrase (dormant, no name)",
+  "message": "can you ask our guy at the credit union if we should lock in before the rate announcement",
+  "expected": [
+   {
+    "task": "ask Wendell Achebe (Brightmoor) whether to lock the renewal rate before the Nov 4 announcement",
+    "gold": "Mortgage Renewal Paperwork",
+    "traps": [
+     "Property Tax Installment Reminder",
+     "Email to Nadia Mortgage Broker Referral",
+     "Line of Credit Rate Change",
+     "Cottage Mortgage Pre-Approval",
+     "Home Insurance Renewal Bastion",
+     "RRSP Contribution Halyard Bank"
+    ]
+   }
+  ],
+  "note": "The summary ties Brightmoor (brightmoorcu.ca, Wendell Achebe) to the mortgage renewal, its rate and the Nov 4 announcement. The message names no one and shares no word with the owner's name. Hard negative from 1600: 'Line of Credit Rate Change' (Northshore Bank, a bank, not the credit union) shares 'credit' and 'rate'."
+ },
+ {
+  "id": "c22_dormant_paraphrase_ironwood",
+  "group": "stress: paraphrase (dormant, no name)",
+  "message": "my knee's still not great, can you ask the place i work out to keep my account on hold through november",
+  "expected": [
+   {
+    "task": "ask Ironwood Athletic to extend the membership freeze through November",
+    "gold": "Gym Membership Freeze",
+    "traps": [
+     "Climbing Gym Day Pass",
+     "Jules Yoga Membership Pause",
+     "Corporate Gym Rates Forge Fitness",
+     "Harvest Crate Delivery Hold"
+    ]
+   }
+  ],
+  "note": "The summary ties the Ironwood Athletic membership freeze to Theo's knee rehab. No name, and none of 'gym', 'membership', 'freeze'. Hard negatives: 'Climbing Gym Day Pass'; from 1600 'Sadie Yoga Studio Membership Freeze' (a freeze until Nov 8, but no knee): only the knee links the message to Ironwood."
+ },
+ {
+  "id": "c23_dormant_paraphrase_harold",
+  "group": "stress: paraphrase (dormant, no name)",
+  "message": "tell the guy next door i'm good to go halves on it, 575 each",
+  "expected": [
+   {
+    "task": "tell Harold Pemberton Theo agrees to split the fence repair ($575 each)",
+    "gold": "Neighbour Fence Repair",
+    "traps": [
+     "Email to Rui Deck Repair Quote",
+     "Backyard Shed Permit",
+     "Email to Denise Tree Trimming Split",
+     "Fence Stain Quote Truecoat",
+     "Street Party Planning Gerrard East"
+    ]
+   }
+  ],
+  "note": "The summary has Harold Pemberton, the neighbour, asked to split a $1,150 fence repair (575 each). No name and no word of 'Neighbour Fence Repair'. Hard negatives: 'Email to Rui Deck Repair Quote', 'Backyard Shed Permit'."
+ },
+ {
+  "id": "c24_dormant_paraphrase_tidewater",
+  "group": "stress: paraphrase (dormant, no name)",
+  "message": "can you ask if my teeth appointment can be pushed to around 5",
+  "expected": [
+   {
+    "task": "ask Tidewater Dental to move the cleaning to about 17:00",
+    "gold": "Dentist Cleaning Reschedule",
+    "traps": [
+     "Orthodontist Consult for Nephew",
+     "Eye Exam Reschedule Brightlens",
+     "Haircut Appointment Move",
+     "Teeth Whitening Inquiry Lumina"
+    ]
+   }
+  ],
+  "note": "The summary has the pending Tidewater Dental cleaning reschedule. 'teeth appointment' shares no word with 'Dentist Cleaning Reschedule'. Hard negative: 'Orthodontist Consult for Nephew' (a different patient and practice)."
+ },
+ {
+  "id": "c25_new_familiar_topic_dentist",
+  "group": "stress: new counterpart, familiar topic",
+  "message": "can you find a dentist near jules's office that does evening appointments and ask if they take new patients",
+  "expected": [
+   {
+    "task": "find a dentist near Jules's office with evening hours and ask about new patients",
+    "gold": "NEW",
+    "traps": [
+     "Dentist Cleaning Reschedule",
+     "Orthodontist Consult for Nephew",
+     "Family Doctor Search Leslieville",
+     "Teeth Whitening Inquiry Lumina"
+    ]
+   }
+  ],
+  "note": "No dentist near Jules's office has ever come up. 'Dentist Cleaning Reschedule' owns Theo's own dentist (Tidewater) and 'Orthodontist Consult for Nephew' the nephew's; neither is this practice. Rule 3: a new agent."
+ },
+ {
+  "id": "c26_new_familiar_topic_mechanic",
+  "group": "stress: new counterpart, familiar topic",
+  "message": "can you find a mechanic near us who can do a pre-winter inspection on the car? somewhere other than the tire place",
+  "expected": [
+   {
+    "task": "find a mechanic nearby for a pre-winter inspection (not Bramblewood Auto)",
+    "gold": "NEW",
+    "traps": [
+     "Inbox Catch-Up Scan",
+     "Bramblewood Oil Change Receipt",
+     "Car Insurance Renewal Wickham",
+     "Winter Car Detailing Lustre"
+    ]
+   }
+  ],
+  "note": "Car service is familiar: the recent 'Inbox Catch-Up Scan' found the Bramblewood Auto ('the tire place') winter tire email. The user explicitly wants a different shop, so no agent owns this counterpart. Rule 3: a new agent."
+ },
+ {
+  "id": "c27_new_familiar_topic_restaurant",
+  "group": "stress: new counterpart, familiar topic",
+  "message": "book lunch for 2 at noon on tuesday the 27th, me and a new client, somewhere quiet near the office",
+  "expected": [
+   {
+    "task": "book a quiet lunch for two near the office, Tue Oct 27 at noon, for Theo and a new client",
+    "gold": "NEW",
+    "traps": [
+     "Jules Birthday Dinner",
+     "Supper Club Reservation Thornfield"
+    ]
+   }
+  ],
+  "note": "Restaurant bookings are familiar ('Jules Birthday Dinner' at Osteria Valdina; many reservation distractors, and from 1600 'Email to Dara Whitcomb Lunch Receipt', a past client lunch). This is a new client and no restaurant is named, so nothing owns it. Rule 3: a new agent. (The date is explicit and clear in the calendar: an earlier 'this thursday' fell on the Cedar Hollow offsite, and the IA rightly asked instead of booking.)"
+ },
+ {
+  "id": "c28_dormant_typo_wendell",
+  "group": "stress: typo (dormant name)",
+  "message": "can you ask wendel if we should lock the rate now or wait til after the nov 4 announcement",
+  "expected": [
+   {
+    "task": "ask Wendell Achebe whether to lock the renewal rate or wait for the Nov 4 announcement",
+    "gold": "Mortgage Renewal Paperwork",
+    "traps": [
+     "Property Tax Installment Reminder",
+     "Email to Nadia Mortgage Broker Referral",
+     "Line of Credit Rate Change",
+     "Cottage Mortgage Pre-Approval",
+     "Home Insurance Renewal Bastion",
+     "RRSP Contribution Halyard Bank"
+    ]
+   }
+  ],
+  "note": "c07 with 'Wendell' misspelled 'wendel'."
+ },
+ {
+  "id": "c29_dormant_typo_tidewater",
+  "group": "stress: typo (dormant name)",
+  "message": "email tidwater and ask if i can get a 5pm slot instead",
+  "expected": [
+   {
+    "task": "ask Tidewater Dental to move the cleaning to 17:00",
+    "gold": "Dentist Cleaning Reschedule",
+    "traps": [
+     "Orthodontist Consult for Nephew",
+     "Eye Exam Reschedule Brightlens",
+     "Haircut Appointment Move",
+     "Teeth Whitening Inquiry Lumina"
+    ]
+   }
+  ],
+  "note": "c14 with 'Tidewater' misspelled 'tidwater'."
+ },
+ {
+  "id": "c30_dormant_typo_ironwood",
+  "group": "stress: typo (dormant name)",
+  "message": "ask ironwod if they can extend my hold through november",
+  "expected": [
+   {
+    "task": "ask Ironwood Athletic to extend the membership freeze through November",
+    "gold": "Gym Membership Freeze",
+    "traps": [
+     "Climbing Gym Day Pass",
+     "Jules Yoga Membership Pause",
+     "Corporate Gym Rates Forge Fitness",
+     "Harvest Crate Delivery Hold"
+    ]
+   }
+  ],
+  "note": "c16 with 'Ironwood' misspelled 'ironwod'."
+ },
+ {
+  "id": "c31_dormant_typo_harold",
+  "group": "stress: typo (dormant name)",
+  "message": "tell harrold im good to split it, 575 each",
+  "expected": [
+   {
+    "task": "tell Harold Pemberton Theo agrees to split the fence repair ($575 each)",
+    "gold": "Neighbour Fence Repair",
+    "traps": [
+     "Backyard Shed Permit",
+     "Email to Rui Deck Repair Quote",
+     "Email to Denise Tree Trimming Split",
+     "Fence Stain Quote Truecoat",
+     "Street Party Planning Gerrard East"
+    ]
+   }
+  ],
+  "note": "c18 with 'Harold' misspelled 'harrold'."
+ }
+]
