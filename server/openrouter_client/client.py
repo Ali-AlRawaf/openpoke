@@ -64,6 +64,9 @@ async def request_chat_completion(
     }
     if tools:
         payload["tools"] = tools
+    
+    if get_settings().prompt_cache_enabled:
+        payload["cache_control"] = {"type": "ephemeral"}
 
     url = f"{base_url.rstrip('/')}/chat/completions"
 
