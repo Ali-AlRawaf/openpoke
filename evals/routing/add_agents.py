@@ -2,7 +2,6 @@
 
     python -m evals.routing.add_agents                      # card for every brief not yet in roster.json
     python -m evals.routing.add_agents --only "Agent Name"  # (re)build one
-    python -m evals.routing.add_agents check results/<run>  # rank each case's gold and traps for that run's queries
 
 A card is made the way a real agent's card is made:
   1. Haiku writes the agent's task history from its brief (fixtures/agent_briefs.json): per task, Poke's
@@ -11,7 +10,8 @@ A card is made the way a real agent's card is made:
      updater runs, as the batch manager does after every task.
   3. The card joins fixtures/roster.json with role "trap", replacing one unreferenced noise card with the same
      min_size, so every roster size keeps its agent count.
-Only roster.json changes; add the new agent to a case's `traps` in cases.json by hand.
+Only roster.json changes; add the new agent to a case's `traps` in cases.json by hand, then check that it reaches
+search results with `python -m evals.routing.recall --from-run results/<run>`.
 """
 
 from __future__ import annotations
@@ -26,27 +26,22 @@ import asyncio
 import hashlib
 import json
 import re
-import shutil
 import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Literal
 
-import numpy as np
 from pydantic import BaseModel, ConfigDict
 
-from server.config import data_dir, get_settings
+from server.config import get_settings
 from server.openrouter_client import request_chat_completion
 from server.services.execution import AgentCard, get_agent_roster, get_execution_agent_logs
 from server.services.execution import card_updater
-from server.services.execution.agent_search import _embed, card_texts, get_embedding_store
 
 FIXTURES = Path(__file__).resolve().parent / "fixtures"
 ROSTER_PATH = FIXTURES / "roster.json"
 CASES_PATH = FIXTURES / "cases.json"
 BRIEFS_PATH = FIXTURES / "agent_briefs.json"
-EMBEDDINGS_CACHE = FIXTURES / "embeddings.npz"  # gitignored; vectors for every card text, keyed like production
-SIZES = (25, 50, 100, 200, 400, 800, 1600)
 WINDOW = ("2026-07-20 00:00", "2026-10-13 22:30")  # agent history must end before the recent conversation window
 
 # The core counterparts each belong to exactly one gold-labelled agent. A trap that mentions one would make
@@ -248,96 +243,10 @@ async def add(only: str | None) -> int:
     return 0 if len(built) == len(todo) else 1
 
 
-# --------------------------------------------------------------------------- check
-
-
-def _ranks(scores: np.ndarray) -> np.ndarray:
-    order = np.argsort(-scores, kind="stable")
-    ranks = np.empty(len(scores), dtype=int)
-    ranks[order] = np.arange(1, len(scores) + 1)
-    return ranks
-
-
-async def check(run_dir: Path) -> int:
-    """For every case: the best rank its gold and each trap reach for the queries the IA wrote in a run, at each
-    roster size, scored the way search_agent_cards scores (an agent's best-matching card text)."""
-    cards = [AgentCard(**{k: c[k] for k in ("name", "summary", "artifacts", "created_at", "last_active_at")})
-             for c in _load(ROSTER_PATH)]
-    min_size = {c["name"]: c["min_size"] for c in _load(ROSTER_PATH)}
-    cases = _load(CASES_PATH)
-    queries: Dict[str, set] = {}
-    with open(run_dir / "decisions.jsonl", encoding="utf-8") as fh:
-        for line in fh:
-            row = json.loads(line)
-            queries.setdefault(row["case_id"], set()).update(s["query"] for s in row["searches"])
-    all_queries = sorted({q for qs in queries.values() for q in qs})
-    if not all_queries:
-        print("no searches in that run")
-        return 1
-
-    store = _load_store()
-    texts = [card_texts(c) for c in cards]
-    flat = [t for ts in texts for t in ts]
-    missing = store.missing(flat)
-    if missing:
-        store.add(missing, await _embed(missing))
-        _save_store(store, flat)
-    query_vectors = np.concatenate([await _embed(all_queries[i:i + 256]) for i in range(0, len(all_queries), 256)])
-    owners = np.array([i for i, ts in enumerate(texts) for _ in ts])
-    sims = store.rows(flat) @ query_vectors.T  # texts x queries
-    top_k = get_settings().agent_search_top_k
-    qindex = {q: i for i, q in enumerate(all_queries)}
-
-    print(f"Best rank over the IA's queries in {run_dir.name} (top {top_k} reach search results)\n")
-    for size in SIZES:
-        member = np.array([min_size[c.name] <= size for c in cards])
-        print(f"## size {size}")
-        for case in cases:
-            qs = [qindex[q] for q in queries.get(case["id"], ())]
-            if not qs:
-                continue
-            best: Dict[str, int] = {}
-            for q in qs:
-                scores = np.full(len(cards), -np.inf, dtype=np.float32)
-                np.maximum.at(scores, owners, sims[:, q])
-                scores[~member] = -np.inf
-                ranks = _ranks(scores)
-                for i, card in enumerate(cards):
-                    if member[i]:
-                        best[card.name] = min(best.get(card.name, 10**6), int(ranks[i]))
-            for e in case["expected"]:
-                gold = "NEW" if e["gold"] == "NEW" else best.get(e["gold"])
-                present = [t for t in e["traps"] if t in best]
-                reached = [f"{t} ({best[t]})" for t in present if best[t] <= top_k]
-                print(f"  {case['id'][:40]:40} gold rank {gold!s:>4}  traps in top {top_k}: {len(reached)}/{len(present)}"
-                      + (f"  {', '.join(reached)}" if reached else ""))
-    return 0
-
-
-def _load_store():
-    """The production embedding store, seeded from the fixtures cache so known texts aren't re-embedded."""
-    target = data_dir() / "execution_agents" / "agent_embeddings.npz"
-    if EMBEDDINGS_CACHE.exists() and not target.exists():
-        target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(EMBEDDINGS_CACHE, target)
-    return get_embedding_store()
-
-
-def _save_store(store, keep: List[str]) -> None:
-    store.save(keep=keep)
-    shutil.copyfile(data_dir() / "execution_agents" / "agent_embeddings.npz", EMBEDDINGS_CACHE)
-
-
 def main(argv: List[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("command", nargs="?", default="add", choices=["add", "check"])
-    parser.add_argument("run_dir", nargs="?", type=Path, help="check: a results directory with decisions.jsonl")
-    parser.add_argument("--only", help="add: build just this brief (rebuilds it if already in the roster)")
+    parser.add_argument("--only", help="build just this brief (rebuilds it if already in the roster)")
     args = parser.parse_args(argv)
-    if args.command == "check":
-        if not args.run_dir:
-            parser.error("check needs a results directory")
-        return asyncio.run(check(args.run_dir))
     return asyncio.run(add(args.only))
 
 

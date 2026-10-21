@@ -1,0 +1,2680 @@
+{
+ "query_source": "evals/routing/results/smoke_v2",
+ "top_k": 10,
+ "embedding_model": "openai/text-embedding-3-small",
+ "rows": [
+  {
+   "size": 25,
+   "case_id": "c01_followup_named_counterpart",
+   "gold": "Harrow Hill Venue Deposit",
+   "query": "Harrow Hill Estate wedding deposit Celeste confirmation June 12 2027",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c03_counterpart_not_in_owner_name",
+   "gold": "Kitchen Reno Quote Follow-up",
+   "query": "Ironbark Renovations Dmitri Volkov kitchen renovation emails",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c03_counterpart_not_in_owner_name",
+   "gold": "Kitchen Reno Quote Follow-up",
+   "query": "Ironbark Renovations Dmitri Volkov kitchen renovation quote follow-up",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+   "gold": "Inbox Catch-Up Scan",
+   "query": "Bramblewood Auto Service winter tire changeover booking reply, Theo Marchetti",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+   "gold": "Inbox Catch-Up Scan",
+   "query": "Bramblewood Auto Service winter tire changeover booking reply (service@bramblewoodauto.ca), thread 1a13a9c097866746",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c06_modify_existing_trigger",
+   "gold": "Sunday Week Ahead Brief",
+   "query": "Sunday week-ahead rundown recurring trigger (trigger ID 2) reschedule from 19:00 to 20:30 America/Toronto",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c06_modify_existing_trigger",
+   "gold": "Sunday Week Ahead Brief",
+   "query": "Sunday week-ahead rundown routine trigger ID 2 reschedule",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c06_modify_existing_trigger",
+   "gold": "Sunday Week Ahead Brief",
+   "query": "Sunday week-ahead rundown routine trigger schedule change to 8:30 PM",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c07_revive_dormant_counterpart",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor mortgage renewal Wendell Achebe rate lock",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c07_revive_dormant_counterpart",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor renewal Wendell Achebe rate lock mortgage",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c07_revive_dormant_counterpart",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor mortgage renewal Wendell Achebe rate lock",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c09_new_counterpart_overlapping_name",
+   "gold": "NEW",
+   "query": "Marco Ferrante Keyhaven Music adult beginner piano lessons Saturday morning email",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Email to Marco Soccer League": 1,
+    "Fernway Designer Search": 10
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c09_new_counterpart_overlapping_name",
+   "gold": "NEW",
+   "query": "Keyhaven Music Marco Ferrante adult beginner piano lessons Saturday morning email",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Email to Marco Soccer League": 1,
+    "Fernway Designer Search": 3
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c09_new_counterpart_overlapping_name",
+   "gold": "NEW",
+   "query": "Keyhaven Music Marco Ferrante adult beginner piano lessons Saturday morning email",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Email to Marco Soccer League": 1,
+    "Fernway Designer Search": 3
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c10_parallel_known_and_new",
+   "gold": "Email to Gabe Offsite Agenda",
+   "query": "Email to Gabe Offsite Agenda Northfold Cedar Hollow kickoff",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c10_parallel_known_and_new",
+   "gold": "Email to Gabe Offsite Agenda",
+   "query": "Gabe Northfold offsite Cedar Hollow kickoff email thread",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c10_parallel_known_and_new",
+   "gold": "NEW",
+   "query": "Halcyon Chimney sweep booking service@halcyonchimney.ca",
+   "gold_rank": null,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c10_parallel_known_and_new",
+   "gold": "NEW",
+   "query": "Halcyon Chimney sweep booking service@halcyonchimney.ca",
+   "gold_rank": null,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c11_dormant_name_match_noor",
+   "gold": "Save the Date Printing",
+   "query": "Inkwell & Vine save-the-date letterpress order Noor Hassan wedding June 12 2027",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c11_dormant_name_match_noor",
+   "gold": "Save the Date Printing",
+   "query": "Inkwell & Vine save-the-date letterpress quote Noor Hassan 120 A6 cards",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c11_dormant_name_match_noor",
+   "gold": "Save the Date Printing",
+   "query": "Inkwell & Vine save-the-date letterpress quote Noor Hassan wedding June 12 2027",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c12_dormant_inference_noor",
+   "gold": "Save the Date Printing",
+   "query": "Noor Hassan Inkwell & Vine save-the-date letterpress quote",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c12_dormant_inference_noor",
+   "gold": "Save the Date Printing",
+   "query": "Noor Hassan Inkwell & Vine save-the-dates letterpress quote 120 A6",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c12_dormant_inference_noor",
+   "gold": "Save the Date Printing",
+   "query": "Noor Hassan Inkwell & Vine save-the-date letterpress order, Harrow Hill wedding June 12 2027",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c13_dormant_name_match_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning appointment reschedule frontdesk@tidewaterdental.ca",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c13_dormant_name_match_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning reschedule frontdesk@tidewaterdental.ca",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c13_dormant_name_match_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning appointment reschedule frontdesk@tidewaterdental.ca",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c14_dormant_inference_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental frontdesk appointment reschedule cleaning late afternoon slot",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c14_dormant_inference_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning appointment reschedule frontdesk@tidewaterdental.ca Theo Marchetti",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c14_dormant_inference_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning reschedule frontdesk@tidewaterdental.ca",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c15_dormant_name_match_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze extension November knee rehab (members@ironwoodathletic.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c15_dormant_name_match_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze extension through November, Theo Marchetti knee rehab",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c16_dormant_inference_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze knee rehab hold extension",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c16_dormant_inference_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze knee rehab hold extension (members@ironwoodathletic.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c16_dormant_inference_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze knee rehab hold (members@ironwoodathletic.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c17_dormant_name_match_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c17_dormant_name_match_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm damage",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c17_dormant_name_match_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm posts panels",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c18_dormant_inference_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm posts panels",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c18_dormant_inference_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm thread 1a0f47a7448c6263",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c18_dormant_inference_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c19_dormant_name_match_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "Marcus Oyelaran Fernway Talent senior product designer search call reschedule",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c19_dormant_name_match_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "Marcus Oyelaran Fernway Talent senior product designer search call reschedule",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c19_dormant_name_match_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "Marcus Oyelaran Fernway Talent senior product designer search call reschedule",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c20_dormant_inference_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "Marcus Oyelaran Fernway Talent senior product designer search call reschedule",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c20_dormant_inference_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "Marcus Oyelaran Fernway Talent senior product designer search call scheduling",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c20_dormant_inference_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "Marcus Oyelaran Fernway Talent call senior product designer search Northfold (marcus@fernwaytalent.com)",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c21_dormant_paraphrase_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor credit union renewal Wendell Achebe rate lock decision",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c21_dormant_paraphrase_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor credit union mortgage renewal Wendell Achebe rate lock",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c21_dormant_paraphrase_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor renewal Wendell Achebe rate lock decision",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c22_dormant_paraphrase_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze for Theo Marchetti knee rehab (members@ironwoodathletic.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c22_dormant_paraphrase_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze for Theo Marchetti knee rehab",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c22_dormant_paraphrase_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze for knee rehab (members@ironwoodathletic.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c23_dormant_paraphrase_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm damage",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c23_dormant_paraphrase_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm posts panels",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c23_dormant_paraphrase_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c24_dormant_paraphrase_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental appointment reschedule frontdesk@tidewaterdental.ca",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c24_dormant_paraphrase_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental appointment reschedule frontdesk@tidewaterdental.ca",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c24_dormant_paraphrase_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental appointment reschedule frontdesk@tidewaterdental.ca",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c25_new_familiar_topic_dentist",
+   "gold": "NEW",
+   "query": "dentist search near Jules's office with evening appointments, new patient inquiry",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Dentist Cleaning Reschedule": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c25_new_familiar_topic_dentist",
+   "gold": "NEW",
+   "query": "Jules office location dentist near Jules's office evening appointments new patient inquiry",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Dentist Cleaning Reschedule": 3
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c25_new_familiar_topic_dentist",
+   "gold": "NEW",
+   "query": "dentist search near Jules's office, evening appointments, new patient inquiry for Theo Marchetti",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Dentist Cleaning Reschedule": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c26_new_familiar_topic_mechanic",
+   "gold": "NEW",
+   "query": "find mechanic near Leslieville Toronto for pre-winter car inspection, not Bramblewood Auto Service",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Inbox Catch-Up Scan": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c26_new_familiar_topic_mechanic",
+   "gold": "NEW",
+   "query": "Find mechanic near Leslieville Toronto for pre-winter car inspection, not Bramblewood Auto Service",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Inbox Catch-Up Scan": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c26_new_familiar_topic_mechanic",
+   "gold": "NEW",
+   "query": "Find mechanic near Leslieville Toronto for pre-winter car inspection, not Bramblewood Auto Service",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Inbox Catch-Up Scan": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c27_new_familiar_topic_restaurant",
+   "gold": "NEW",
+   "query": "Lunch reservation for 2 at noon Tuesday Oct 27 2026 near Northfold Studio office, quiet restaurant, new client",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Jules Birthday Dinner": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c27_new_familiar_topic_restaurant",
+   "gold": "NEW",
+   "query": "restaurant reservation lunch for 2 Tuesday Oct 27 2026 noon quiet near Northfold Studio office",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Jules Birthday Dinner": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c27_new_familiar_topic_restaurant",
+   "gold": "NEW",
+   "query": "Restaurant lunch reservation for 2 near Northfold Studio office, Tuesday Oct 27 2026 noon, Theo Marchetti, client meeting",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Jules Birthday Dinner": 1
+   }
+  },
+  {
+   "size": 25,
+   "case_id": "c28_dormant_typo_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor mortgage renewal Wendell Achebe rate lock",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c28_dormant_typo_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor mortgage renewal Wendell Achebe rate lock",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c28_dormant_typo_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor mortgage renewal Wendell Achebe rate lock decision",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c29_dormant_typo_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning appointment reschedule frontdesk@tidewaterdental.ca",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c29_dormant_typo_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning appointment reschedule frontdesk@tidewaterdental.ca",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c29_dormant_typo_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning appointment reschedule frontdesk@tidewaterdental.ca",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c30_dormant_typo_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze knee rehab hold (members@ironwoodathletic.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c30_dormant_typo_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze knee rehab hold (members@ironwoodathletic.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c30_dormant_typo_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze knee rehab hold (members@ironwoodathletic.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c31_dormant_typo_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm posts panels",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c31_dormant_typo_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm thread 1a0f47a7448c6263",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 25,
+   "case_id": "c31_dormant_typo_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm damage thread 1a0f47a7448c6263",
+   "gold_rank": 1,
+   "trap_ranks": {}
+  },
+  {
+   "size": 400,
+   "case_id": "c02_new_task_known_counterpart",
+   "gold": "Priya Roadmap Sync",
+   "query": "Priya Natarajan Northfold Studio email thread Q4 roadmap client demo",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Engagement Shoot Booking": 65,
+    "Email to Owen Client Demo Recording": 2,
+    "Email to Lena Sprint Retro Notes": 46,
+    "Oarlock Foods Client Demo": 5,
+    "Email to Ottoline Q4 Hiring Asks": 16,
+    "Pellucid Freight Roadmap Review": 4
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+   "gold": "Inbox Catch-Up Scan",
+   "query": "Bramblewood Auto Service winter tire changeover booking reply",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Inbox Summary": 195,
+    "Unread Email Check": 79,
+    "Bramblewood Oil Change Receipt": 2,
+    "Car Insurance Renewal Wickham": 3,
+    "Unread Bills Inbox Check": 230
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+   "gold": "Inbox Catch-Up Scan",
+   "query": "Bramblewood Auto Service winter tire changeover booking reply",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Inbox Summary": 195,
+    "Unread Email Check": 79,
+    "Bramblewood Oil Change Receipt": 2,
+    "Car Insurance Renewal Wickham": 3,
+    "Unread Bills Inbox Check": 230
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+   "gold": "Inbox Catch-Up Scan",
+   "query": "Bramblewood Auto Service winter tire changeover booking reply",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Inbox Summary": 195,
+    "Unread Email Check": 79,
+    "Bramblewood Oil Change Receipt": 2,
+    "Car Insurance Renewal Wickham": 3,
+    "Unread Bills Inbox Check": 230
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c05_confirm_pending_draft",
+   "gold": "Copperleaf Renewal Thread",
+   "query": "Copperleaf Renewal Thread Hana Ishikawa usage report reply",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Copperleaf Invoice Copy": 2,
+    "Lumenboard Seat Renewal": 80,
+    "Tallyhaus Usage Report Request": 4,
+    "Northfold Studio Lease Renewal": 194
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c05_confirm_pending_draft",
+   "gold": "Copperleaf Renewal Thread",
+   "query": "Copperleaf renewal Hana Ishikawa usage report reply draft Northfold Studio",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Copperleaf Invoice Copy": 2,
+    "Lumenboard Seat Renewal": 10,
+    "Tallyhaus Usage Report Request": 3,
+    "Northfold Studio Lease Renewal": 39
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c06_modify_existing_trigger",
+   "gold": "Sunday Week Ahead Brief",
+   "query": "Sunday week-ahead rundown routine trigger ID 2 reschedule to 8:30 PM America/Toronto",
+   "gold_rank": 2,
+   "trap_ranks": {
+    "Friday Work Wrap-Up Digest": 6,
+    "Sunday Meal Plan Reminder": 9,
+    "Monday Morning Calendar Rundown": 3,
+    "Nightly Unread Digest": 1
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c06_modify_existing_trigger",
+   "gold": "Sunday Week Ahead Brief",
+   "query": "Sunday week-ahead rundown recurring routine trigger ID 2 schedule change to 8:30 PM",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Friday Work Wrap-Up Digest": 16,
+    "Sunday Meal Plan Reminder": 3,
+    "Monday Morning Calendar Rundown": 4,
+    "Nightly Unread Digest": 10
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c06_modify_existing_trigger",
+   "gold": "Sunday Week Ahead Brief",
+   "query": "Sunday week-ahead rundown recurring trigger (trigger ID 2) reschedule from 19:00 to 20:30 America/Toronto",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Friday Work Wrap-Up Digest": 15,
+    "Sunday Meal Plan Reminder": 7,
+    "Monday Morning Calendar Rundown": 6,
+    "Nightly Unread Digest": 3
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c07_revive_dormant_counterpart",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor mortgage renewal Wendell Achebe rate lock decision",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Property Tax Installment Reminder": 101,
+    "Cottage Mortgage Pre-Approval": 7,
+    "Home Insurance Renewal Bastion": 10,
+    "RRSP Contribution Halyard Bank": 72
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c07_revive_dormant_counterpart",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor mortgage renewal with Wendell Achebe rate lock decision",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Property Tax Installment Reminder": 124,
+    "Cottage Mortgage Pre-Approval": 7,
+    "Home Insurance Renewal Bastion": 11,
+    "RRSP Contribution Halyard Bank": 68
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c07_revive_dormant_counterpart",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor mortgage renewal Wendell Achebe rate lock",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Property Tax Installment Reminder": 108,
+    "Cottage Mortgage Pre-Approval": 7,
+    "Home Insurance Renewal Bastion": 12,
+    "RRSP Contribution Halyard Bank": 83
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c09_new_counterpart_overlapping_name",
+   "gold": "NEW",
+   "query": "Marco Ferrante Keyhaven Music adult beginner piano lessons Saturday morning email",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Email to Marco Soccer League": 5,
+    "Fernway Designer Search": 117,
+    "Niece Guitar Lessons Allegro": 1,
+    "Piano Tuning Harmonia": 2
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c09_new_counterpart_overlapping_name",
+   "gold": "NEW",
+   "query": "Keyhaven Music Marco Ferrante adult beginner piano lessons Saturday morning",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Email to Marco Soccer League": 2,
+    "Fernway Designer Search": 80,
+    "Niece Guitar Lessons Allegro": 1,
+    "Piano Tuning Harmonia": 3
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c09_new_counterpart_overlapping_name",
+   "gold": "NEW",
+   "query": "Marco Ferrante Keyhaven Music adult beginner piano lessons email",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Email to Marco Soccer League": 4,
+    "Fernway Designer Search": 39,
+    "Niece Guitar Lessons Allegro": 1,
+    "Piano Tuning Harmonia": 2
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c10_parallel_known_and_new",
+   "gold": "Email to Gabe Offsite Agenda",
+   "query": "Gabe Northfold Cedar Hollow offsite agenda Oct 21-22 kickoff",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Offsite Catering Cedar Hollow": 2,
+    "Cedar Hollow Lodge Room Block": 3,
+    "Solvik Outdoor Kickoff Call": 9,
+    "Offsite Van Rental Portlands": 8
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c10_parallel_known_and_new",
+   "gold": "NEW",
+   "query": "Halcyon Chimney sweep booking service@halcyonchimney.ca before mid-November",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Furnace Tune-Up Lakeshore Heating": 15,
+    "Gutter Cleaning Clearflow": 4
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c10_parallel_known_and_new",
+   "gold": "NEW",
+   "query": "Halcyon Chimney sweep service booking before mid November",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Furnace Tune-Up Lakeshore Heating": 6,
+    "Gutter Cleaning Clearflow": 1
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c10_parallel_known_and_new",
+   "gold": "NEW",
+   "query": "Halcyon Chimney sweep request service@halcyonchimney.ca before mid November",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Furnace Tune-Up Lakeshore Heating": 13,
+    "Gutter Cleaning Clearflow": 9
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c11_dormant_name_match_noor",
+   "gold": "Save the Date Printing",
+   "query": "Inkwell & Vine save-the-date letterpress order Noor Hassan",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Wedding Invitation Suite Quote": 2,
+    "Northfold Business Cards Reprint": 9,
+    "Engagement Thank-You Cards": 7
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c11_dormant_name_match_noor",
+   "gold": "Save the Date Printing",
+   "query": "Inkwell & Vine save-the-date letterpress order Noor Hassan (noor@inkwellandvine.ca) quantity change to 140",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Wedding Invitation Suite Quote": 4,
+    "Northfold Business Cards Reprint": 3,
+    "Engagement Thank-You Cards": 19
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c11_dormant_name_match_noor",
+   "gold": "Save the Date Printing",
+   "query": "Inkwell & Vine save-the-date letterpress quote Noor Hassan 120 A6 cards",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Wedding Invitation Suite Quote": 2,
+    "Northfold Business Cards Reprint": 5,
+    "Engagement Thank-You Cards": 3
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c12_dormant_inference_noor",
+   "gold": "Save the Date Printing",
+   "query": "Noor Hassan Inkwell & Vine save-the-dates letterpress quote",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Wedding Invitation Suite Quote": 2,
+    "Northfold Business Cards Reprint": 15,
+    "Engagement Thank-You Cards": 7
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c12_dormant_inference_noor",
+   "gold": "Save the Date Printing",
+   "query": "Noor Hassan Inkwell & Vine save-the-dates letterpress quote 120 cards",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Wedding Invitation Suite Quote": 2,
+    "Northfold Business Cards Reprint": 4,
+    "Engagement Thank-You Cards": 3
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c13_dormant_name_match_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning appointment reschedule frontdesk@tidewaterdental.ca",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Orthodontist Consult for Nephew": 10,
+    "Eye Exam Reschedule Brightlens": 2,
+    "Haircut Appointment Move": 6,
+    "Teeth Whitening Inquiry Lumina": 16
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c13_dormant_name_match_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning reschedule frontdesk@tidewaterdental.ca Theo Marchetti",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Orthodontist Consult for Nephew": 202,
+    "Eye Exam Reschedule Brightlens": 103,
+    "Haircut Appointment Move": 3,
+    "Teeth Whitening Inquiry Lumina": 18
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c13_dormant_name_match_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning appointment reschedule frontdesk@tidewaterdental.ca",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Orthodontist Consult for Nephew": 10,
+    "Eye Exam Reschedule Brightlens": 2,
+    "Haircut Appointment Move": 6,
+    "Teeth Whitening Inquiry Lumina": 16
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c14_dormant_inference_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning appointment reschedule late-afternoon slot (frontdesk@tidewaterdental.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Orthodontist Consult for Nephew": 24,
+    "Eye Exam Reschedule Brightlens": 4,
+    "Haircut Appointment Move": 2,
+    "Teeth Whitening Inquiry Lumina": 22
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c14_dormant_inference_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning appointment reschedule frontdesk@tidewaterdental.ca",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Orthodontist Consult for Nephew": 10,
+    "Eye Exam Reschedule Brightlens": 2,
+    "Haircut Appointment Move": 6,
+    "Teeth Whitening Inquiry Lumina": 16
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c14_dormant_inference_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning reschedule frontdesk@tidewaterdental.ca appointment move",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Orthodontist Consult for Nephew": 9,
+    "Eye Exam Reschedule Brightlens": 4,
+    "Haircut Appointment Move": 7,
+    "Teeth Whitening Inquiry Lumina": 21
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c15_dormant_name_match_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze knee rehab extend through November",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Jules Yoga Membership Pause": 2,
+    "Corporate Gym Rates Forge Fitness": 4,
+    "Harvest Crate Delivery Hold": 39
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c15_dormant_name_match_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze extension through November (members@ironwoodathletic.ca) knee rehab",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Jules Yoga Membership Pause": 3,
+    "Corporate Gym Rates Forge Fitness": 2,
+    "Harvest Crate Delivery Hold": 159
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c15_dormant_name_match_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze for knee rehab (members@ironwoodathletic.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Jules Yoga Membership Pause": 3,
+    "Corporate Gym Rates Forge Fitness": 2,
+    "Harvest Crate Delivery Hold": 236
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c16_dormant_inference_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze hold knee rehab (members@ironwoodathletic.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Jules Yoga Membership Pause": 4,
+    "Corporate Gym Rates Forge Fitness": 2,
+    "Harvest Crate Delivery Hold": 206
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c16_dormant_inference_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze hold knee rehab (members@ironwoodathletic.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Jules Yoga Membership Pause": 4,
+    "Corporate Gym Rates Forge Fitness": 2,
+    "Harvest Crate Delivery Hold": 206
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c16_dormant_inference_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze for Theo Marchetti knee rehab, members@ironwoodathletic.ca",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Jules Yoga Membership Pause": 5,
+    "Corporate Gym Rates Forge Fitness": 2,
+    "Harvest Crate Delivery Hold": 156
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c17_dormant_name_match_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 thread 1a0f47a7448c6263",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Email to Denise Tree Trimming Split": 3,
+    "Fence Stain Quote Truecoat": 2,
+    "Street Party Planning Gerrard East": 4
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c17_dormant_name_match_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm posts panels",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Email to Denise Tree Trimming Split": 5,
+    "Fence Stain Quote Truecoat": 3,
+    "Street Party Planning Gerrard East": 2
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c17_dormant_name_match_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm reply thread 1a0f47a7448c6263",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Email to Denise Tree Trimming Split": 2,
+    "Fence Stain Quote Truecoat": 3,
+    "Street Party Planning Gerrard East": 4
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c18_dormant_inference_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair cost split $1,150 storm (harold.pemberton@quaymail.net)",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Email to Denise Tree Trimming Split": 3,
+    "Fence Stain Quote Truecoat": 5,
+    "Street Party Planning Gerrard East": 2
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c18_dormant_inference_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm harold.pemberton@quaymail.net",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Email to Denise Tree Trimming Split": 3,
+    "Fence Stain Quote Truecoat": 7,
+    "Street Party Planning Gerrard East": 2
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c18_dormant_inference_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm thread 1a0f47a7448c6263",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Email to Denise Tree Trimming Split": 3,
+    "Fence Stain Quote Truecoat": 6,
+    "Street Party Planning Gerrard East": 5
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c19_dormant_name_match_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "Marcus Oyelaran Fernway Talent senior product designer search call reschedule",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Email to Imani Contract Designer Rates": 9,
+    "Brightwire Engineer Search": 12,
+    "Freelance Illustrator Search": 6,
+    "Fernvale Coworking Day Passes": 27
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c19_dormant_name_match_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "Marcus Oyelaran Fernway Talent senior product designer search call reschedule",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Email to Imani Contract Designer Rates": 9,
+    "Brightwire Engineer Search": 12,
+    "Freelance Illustrator Search": 6,
+    "Fernvale Coworking Day Passes": 27
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c19_dormant_name_match_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "Marcus Oyelaran Fernway Talent designer search call reschedule",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Email to Imani Contract Designer Rates": 17,
+    "Brightwire Engineer Search": 12,
+    "Freelance Illustrator Search": 4,
+    "Fernvale Coworking Day Passes": 25
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c20_dormant_inference_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "Marcus Oyelaran Fernway Talent call scheduling senior product designer search Northfold",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Email to Imani Contract Designer Rates": 33,
+    "Brightwire Engineer Search": 17,
+    "Freelance Illustrator Search": 8,
+    "Fernvale Coworking Day Passes": 26
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c20_dormant_inference_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "Marcus Oyelaran Fernway Talent senior product designer search call reschedule",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Email to Imani Contract Designer Rates": 9,
+    "Brightwire Engineer Search": 12,
+    "Freelance Illustrator Search": 6,
+    "Fernvale Coworking Day Passes": 27
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c20_dormant_inference_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "Marcus Oyelaran Fernway Talent senior product designer search call scheduling",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Email to Imani Contract Designer Rates": 8,
+    "Brightwire Engineer Search": 10,
+    "Freelance Illustrator Search": 4,
+    "Fernvale Coworking Day Passes": 27
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c21_dormant_paraphrase_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor mortgage renewal Wendell Achebe rate-lock decision before Nov 4 announcement",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Property Tax Installment Reminder": 102,
+    "Cottage Mortgage Pre-Approval": 6,
+    "Home Insurance Renewal Bastion": 31,
+    "RRSP Contribution Halyard Bank": 68
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c21_dormant_paraphrase_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor Credit Union mortgage renewal Wendell Achebe rate lock before Nov 4 announcement",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Property Tax Installment Reminder": 117,
+    "Cottage Mortgage Pre-Approval": 6,
+    "Home Insurance Renewal Bastion": 28,
+    "RRSP Contribution Halyard Bank": 73
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c22_dormant_paraphrase_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze for Theo Marchetti knee rehab (members@ironwoodathletic.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Jules Yoga Membership Pause": 5,
+    "Corporate Gym Rates Forge Fitness": 2,
+    "Harvest Crate Delivery Hold": 155
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c22_dormant_paraphrase_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze knee rehab members@ironwoodathletic.ca hold through November",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Jules Yoga Membership Pause": 3,
+    "Corporate Gym Rates Forge Fitness": 2,
+    "Harvest Crate Delivery Hold": 163
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c22_dormant_paraphrase_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze for Theo's knee rehab (members@ironwoodathletic.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Jules Yoga Membership Pause": 4,
+    "Corporate Gym Rates Forge Fitness": 2,
+    "Harvest Crate Delivery Hold": 196
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c23_dormant_paraphrase_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm reset posts replace panels",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Email to Denise Tree Trimming Split": 7,
+    "Fence Stain Quote Truecoat": 2,
+    "Street Party Planning Gerrard East": 3
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c23_dormant_paraphrase_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Email to Denise Tree Trimming Split": 5,
+    "Fence Stain Quote Truecoat": 7,
+    "Street Party Planning Gerrard East": 3
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c23_dormant_paraphrase_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 reply",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Email to Denise Tree Trimming Split": 4,
+    "Fence Stain Quote Truecoat": 2,
+    "Street Party Planning Gerrard East": 3
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c24_dormant_paraphrase_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental appointment reschedule request to frontdesk@tidewaterdental.ca",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Orthodontist Consult for Nephew": 6,
+    "Eye Exam Reschedule Brightlens": 2,
+    "Haircut Appointment Move": 3,
+    "Teeth Whitening Inquiry Lumina": 15
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c24_dormant_paraphrase_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental appointment reschedule Theo Marchetti",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Orthodontist Consult for Nephew": 4,
+    "Eye Exam Reschedule Brightlens": 3,
+    "Haircut Appointment Move": 2,
+    "Teeth Whitening Inquiry Lumina": 21
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c24_dormant_paraphrase_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental appointment reschedule late afternoon around 5pm (frontdesk@tidewaterdental.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Orthodontist Consult for Nephew": 27,
+    "Eye Exam Reschedule Brightlens": 5,
+    "Haircut Appointment Move": 2,
+    "Teeth Whitening Inquiry Lumina": 19
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c25_new_familiar_topic_dentist",
+   "gold": "NEW",
+   "query": "find dentists near Jules's office with evening appointments, ask about new patients",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Dentist Cleaning Reschedule": 1,
+    "Orthodontist Consult for Nephew": 2,
+    "Family Doctor Search Leslieville": 4,
+    "Teeth Whitening Inquiry Lumina": 3
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c25_new_familiar_topic_dentist",
+   "gold": "NEW",
+   "query": "Jules Marchetti office location dentist search evening appointments new patients Theo Marchetti",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Dentist Cleaning Reschedule": 19,
+    "Orthodontist Consult for Nephew": 29,
+    "Family Doctor Search Leslieville": 26,
+    "Teeth Whitening Inquiry Lumina": 15
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c25_new_familiar_topic_dentist",
+   "gold": "NEW",
+   "query": "find dentist near Jules's office with evening appointments, ask if accepting new patients",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Dentist Cleaning Reschedule": 1,
+    "Orthodontist Consult for Nephew": 2,
+    "Family Doctor Search Leslieville": 6,
+    "Teeth Whitening Inquiry Lumina": 7
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c26_new_familiar_topic_mechanic",
+   "gold": "NEW",
+   "query": "find mechanic near Leslieville Toronto for pre-winter car inspection, not Bramblewood Auto Service",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Inbox Catch-Up Scan": 2,
+    "Bramblewood Oil Change Receipt": 1,
+    "Car Insurance Renewal Wickham": 75,
+    "Winter Car Detailing Lustre": 32
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c26_new_familiar_topic_mechanic",
+   "gold": "NEW",
+   "query": "Theo car mechanic pre-winter inspection Leslieville Toronto, not Bramblewood Auto Service",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Inbox Catch-Up Scan": 2,
+    "Bramblewood Oil Change Receipt": 1,
+    "Car Insurance Renewal Wickham": 45,
+    "Winter Car Detailing Lustre": 10
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c26_new_familiar_topic_mechanic",
+   "gold": "NEW",
+   "query": "Find mechanic near Leslieville Toronto for pre-winter car inspection, not Bramblewood Auto Service",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Inbox Catch-Up Scan": 2,
+    "Bramblewood Oil Change Receipt": 1,
+    "Car Insurance Renewal Wickham": 82,
+    "Winter Car Detailing Lustre": 32
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c27_new_familiar_topic_restaurant",
+   "gold": "NEW",
+   "query": "Book lunch reservation for 2 at noon Tuesday Oct 27 2026 near Northfold Studio office with new client",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Jules Birthday Dinner": 2
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c27_new_familiar_topic_restaurant",
+   "gold": "NEW",
+   "query": "Theo Marchetti restaurant lunch reservation for 2 near Northfold Studio office, Tue Oct 27 2026 at 12:00 with new client",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Jules Birthday Dinner": 173
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c27_new_familiar_topic_restaurant",
+   "gold": "NEW",
+   "query": "restaurant lunch reservation for 2 at noon Tuesday Oct 27 2026 near Northfold Studio office, quiet spot, new client",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Jules Birthday Dinner": 1
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c28_dormant_typo_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor mortgage renewal Wendell Achebe rate lock",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Property Tax Installment Reminder": 108,
+    "Cottage Mortgage Pre-Approval": 7,
+    "Home Insurance Renewal Bastion": 12,
+    "RRSP Contribution Halyard Bank": 83
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c28_dormant_typo_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor mortgage renewal Wendell Achebe rate lock",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Property Tax Installment Reminder": 108,
+    "Cottage Mortgage Pre-Approval": 7,
+    "Home Insurance Renewal Bastion": 12,
+    "RRSP Contribution Halyard Bank": 83
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c28_dormant_typo_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor mortgage renewal Wendell Achebe rate lock",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Property Tax Installment Reminder": 108,
+    "Cottage Mortgage Pre-Approval": 7,
+    "Home Insurance Renewal Bastion": 12,
+    "RRSP Contribution Halyard Bank": 83
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c29_dormant_typo_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning appointment reschedule frontdesk@tidewaterdental.ca",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Orthodontist Consult for Nephew": 10,
+    "Eye Exam Reschedule Brightlens": 2,
+    "Haircut Appointment Move": 6,
+    "Teeth Whitening Inquiry Lumina": 16
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c29_dormant_typo_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning appointment reschedule frontdesk@tidewaterdental.ca",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Orthodontist Consult for Nephew": 10,
+    "Eye Exam Reschedule Brightlens": 2,
+    "Haircut Appointment Move": 6,
+    "Teeth Whitening Inquiry Lumina": 16
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c29_dormant_typo_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental frontdesk cleaning appointment reschedule to late afternoon slot",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Orthodontist Consult for Nephew": 22,
+    "Eye Exam Reschedule Brightlens": 5,
+    "Haircut Appointment Move": 2,
+    "Teeth Whitening Inquiry Lumina": 20
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c30_dormant_typo_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze knee rehab hold (members@ironwoodathletic.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Jules Yoga Membership Pause": 4,
+    "Corporate Gym Rates Forge Fitness": 2,
+    "Harvest Crate Delivery Hold": 245
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c30_dormant_typo_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze for Theo Marchetti knee rehab (members@ironwoodathletic.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Jules Yoga Membership Pause": 5,
+    "Corporate Gym Rates Forge Fitness": 2,
+    "Harvest Crate Delivery Hold": 155
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c31_dormant_typo_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair $1,150 split reply (harold.pemberton@quaymail.net)",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Email to Denise Tree Trimming Split": 3,
+    "Fence Stain Quote Truecoat": 4,
+    "Street Party Planning Gerrard East": 2
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c31_dormant_typo_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 email thread",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Email to Denise Tree Trimming Split": 2,
+    "Fence Stain Quote Truecoat": 3,
+    "Street Party Planning Gerrard East": 4
+   }
+  },
+  {
+   "size": 400,
+   "case_id": "c31_dormant_typo_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm posts panels",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Email to Denise Tree Trimming Split": 5,
+    "Fence Stain Quote Truecoat": 3,
+    "Street Party Planning Gerrard East": 2
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+   "gold": "Inbox Catch-Up Scan",
+   "query": "Bramblewood Auto Service winter tire changeover booking reply",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Inbox Summary": 848,
+    "Unread Email Check": 371,
+    "Weekend Inbox Sweep": 126,
+    "Bramblewood Oil Change Receipt": 2,
+    "Car Insurance Renewal Wickham": 3,
+    "Unread Bills Inbox Check": 958
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+   "gold": "Inbox Catch-Up Scan",
+   "query": "Bramblewood Auto Service winter tire changeover booking reply, service@bramblewoodauto.ca, Theo Marchetti",
+   "gold_rank": 2,
+   "trap_ranks": {
+    "Inbox Summary": 886,
+    "Unread Email Check": 1051,
+    "Weekend Inbox Sweep": 926,
+    "Bramblewood Oil Change Receipt": 1,
+    "Car Insurance Renewal Wickham": 12,
+    "Unread Bills Inbox Check": 173
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c04_reply_to_email_found_by_unrelated_agent",
+   "gold": "Inbox Catch-Up Scan",
+   "query": "Bramblewood Auto winter tire changeover booking reply (service@bramblewoodauto.ca)",
+   "gold_rank": 2,
+   "trap_ranks": {
+    "Inbox Summary": 986,
+    "Unread Email Check": 217,
+    "Weekend Inbox Sweep": 251,
+    "Bramblewood Oil Change Receipt": 1,
+    "Car Insurance Renewal Wickham": 8,
+    "Unread Bills Inbox Check": 607
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c06_modify_existing_trigger",
+   "gold": "Sunday Week Ahead Brief",
+   "query": "Sunday week-ahead rundown recurring trigger schedule change to 8:30 PM",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Friday Work Wrap-Up Digest": 18,
+    "Sunday Meal Plan Reminder": 6,
+    "Monday Morning Calendar Rundown": 5,
+    "Nightly Unread Digest": 46
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c06_modify_existing_trigger",
+   "gold": "Sunday Week Ahead Brief",
+   "query": "Sunday week-ahead rundown recurring trigger (trigger ID 2) schedule change to 20:30 America/Toronto",
+   "gold_rank": 2,
+   "trap_ranks": {
+    "Friday Work Wrap-Up Digest": 77,
+    "Sunday Meal Plan Reminder": 18,
+    "Monday Morning Calendar Rundown": 19,
+    "Nightly Unread Digest": 11
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c06_modify_existing_trigger",
+   "gold": "Sunday Week Ahead Brief",
+   "query": "Sunday week-ahead rundown routine trigger ID 2 reschedule to 8:30 PM",
+   "gold_rank": 2,
+   "trap_ranks": {
+    "Friday Work Wrap-Up Digest": 61,
+    "Sunday Meal Plan Reminder": 11,
+    "Monday Morning Calendar Rundown": 3,
+    "Nightly Unread Digest": 26
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c07_revive_dormant_counterpart",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor mortgage renewal Wendell Achebe rate lock decision",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Property Tax Installment Reminder": 387,
+    "Email to Nadia Mortgage Broker Referral": 3,
+    "Line of Credit Rate Change": 8,
+    "Cottage Mortgage Pre-Approval": 14,
+    "Home Insurance Renewal Bastion": 26,
+    "RRSP Contribution Halyard Bank": 264
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c07_revive_dormant_counterpart",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor renewal Wendell Achebe rate lock decision before Nov 4 announcement",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Property Tax Installment Reminder": 262,
+    "Email to Nadia Mortgage Broker Referral": 240,
+    "Line of Credit Rate Change": 11,
+    "Cottage Mortgage Pre-Approval": 21,
+    "Home Insurance Renewal Bastion": 190,
+    "RRSP Contribution Halyard Bank": 317
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c07_revive_dormant_counterpart",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor mortgage renewal Wendell Achebe rate lock",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Property Tax Installment Reminder": 402,
+    "Email to Nadia Mortgage Broker Referral": 5,
+    "Line of Credit Rate Change": 15,
+    "Cottage Mortgage Pre-Approval": 18,
+    "Home Insurance Renewal Bastion": 34,
+    "RRSP Contribution Halyard Bank": 294
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c08_same_first_name_other_person",
+   "gold": "Engagement Shoot Booking",
+   "query": "Engagement Shoot Booking Priya Sandhu Lumen & Linen Photography engagement proofs",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Engagement Ring Insurance Rider": 8,
+    "Videographer Quote Comparison": 20,
+    "Priya Roadmap Sync": 7,
+    "Wedding Photographer Quotes": 6,
+    "Jules Headshots Proofs": 5,
+    "Engagement Party Venue Alder & Ash": 3
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c09_new_counterpart_overlapping_name",
+   "gold": "NEW",
+   "query": "Marco Ferrante Keyhaven Music adult beginner piano lessons Saturday morning",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Email to Marco Soccer League": 35,
+    "Fernway Designer Search": 253,
+    "Niece Guitar Lessons Allegro": 1,
+    "Piano Tuning Harmonia": 5
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c09_new_counterpart_overlapping_name",
+   "gold": "NEW",
+   "query": "Marco Ferrante Keyhaven Music adult beginner piano lessons Saturday morning",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Email to Marco Soccer League": 35,
+    "Fernway Designer Search": 253,
+    "Niece Guitar Lessons Allegro": 1,
+    "Piano Tuning Harmonia": 5
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c10_parallel_known_and_new",
+   "gold": "Email to Gabe Offsite Agenda",
+   "query": "Gabe Northfold offsite Cedar Hollow kickoff email",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Offsite Catering Cedar Hollow": 2,
+    "Cedar Hollow Lodge Room Block": 39,
+    "Solvik Outdoor Kickoff Call": 85,
+    "Offsite Van Rental Portlands": 63
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c10_parallel_known_and_new",
+   "gold": "NEW",
+   "query": "Halcyon Chimney sweep booking service@halcyonchimney.ca",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Fireplace Insert Quote Ember & Co": 96,
+    "Furnace Tune-Up Lakeshore Heating": 55,
+    "Gutter Cleaning Clearflow": 8
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c10_parallel_known_and_new",
+   "gold": "NEW",
+   "query": "Halcyon Chimney sweep booking request before mid-November",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Fireplace Insert Quote Ember & Co": 397,
+    "Furnace Tune-Up Lakeshore Heating": 68,
+    "Gutter Cleaning Clearflow": 1
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c10_parallel_known_and_new",
+   "gold": "NEW",
+   "query": "Halcyon Chimney sweep booking service@halcyonchimney.ca",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Fireplace Insert Quote Ember & Co": 96,
+    "Furnace Tune-Up Lakeshore Heating": 55,
+    "Gutter Cleaning Clearflow": 8
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c11_dormant_name_match_noor",
+   "gold": "Save the Date Printing",
+   "query": "Inkwell & Vine save-the-date letterpress order Noor Hassan wedding",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Wedding Invitation Calligrapher": 2,
+    "Wedding Invitation Suite Quote": 3,
+    "Northfold Business Cards Reprint": 28,
+    "Engagement Thank-You Cards": 6
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c11_dormant_name_match_noor",
+   "gold": "Save the Date Printing",
+   "query": "Inkwell & Vine save-the-date letterpress quote Noor Hassan",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Wedding Invitation Calligrapher": 2,
+    "Wedding Invitation Suite Quote": 4,
+    "Northfold Business Cards Reprint": 114,
+    "Engagement Thank-You Cards": 33
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c11_dormant_name_match_noor",
+   "gold": "Save the Date Printing",
+   "query": "Inkwell & Vine save-the-date letterpress order Noor Hassan",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Wedding Invitation Calligrapher": 13,
+    "Wedding Invitation Suite Quote": 6,
+    "Northfold Business Cards Reprint": 21,
+    "Engagement Thank-You Cards": 19
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c12_dormant_inference_noor",
+   "gold": "Save the Date Printing",
+   "query": "Noor Hassan Inkwell & Vine save-the-dates letterpress quote",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Wedding Invitation Calligrapher": 2,
+    "Wedding Invitation Suite Quote": 3,
+    "Northfold Business Cards Reprint": 32,
+    "Engagement Thank-You Cards": 15
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c12_dormant_inference_noor",
+   "gold": "Save the Date Printing",
+   "query": "Noor Hassan Inkwell & Vine save-the-dates letterpress order (noor@inkwellandvine.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Wedding Invitation Calligrapher": 24,
+    "Wedding Invitation Suite Quote": 64,
+    "Northfold Business Cards Reprint": 9,
+    "Engagement Thank-You Cards": 72
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c12_dormant_inference_noor",
+   "gold": "Save the Date Printing",
+   "query": "Noor Hassan Inkwell & Vine save-the-dates letterpress quote 120 A6 cards",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Wedding Invitation Calligrapher": 3,
+    "Wedding Invitation Suite Quote": 2,
+    "Northfold Business Cards Reprint": 9,
+    "Engagement Thank-You Cards": 5
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c13_dormant_name_match_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning appointment reschedule frontdesk@tidewaterdental.ca",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Orthodontist Consult for Nephew": 32,
+    "Eye Exam Reschedule Brightlens": 6,
+    "Haircut Appointment Move": 16,
+    "Teeth Whitening Inquiry Lumina": 48
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c13_dormant_name_match_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning reschedule frontdesk@tidewaterdental.ca",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Orthodontist Consult for Nephew": 29,
+    "Eye Exam Reschedule Brightlens": 13,
+    "Haircut Appointment Move": 60,
+    "Teeth Whitening Inquiry Lumina": 38
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c13_dormant_name_match_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning appointment reschedule frontdesk@tidewaterdental.ca",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Orthodontist Consult for Nephew": 32,
+    "Eye Exam Reschedule Brightlens": 6,
+    "Haircut Appointment Move": 16,
+    "Teeth Whitening Inquiry Lumina": 48
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c14_dormant_inference_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning appointment reschedule late-afternoon slot (frontdesk@tidewaterdental.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Orthodontist Consult for Nephew": 76,
+    "Eye Exam Reschedule Brightlens": 14,
+    "Haircut Appointment Move": 2,
+    "Teeth Whitening Inquiry Lumina": 70
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c14_dormant_inference_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning appointment reschedule frontdesk@tidewaterdental.ca",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Orthodontist Consult for Nephew": 32,
+    "Eye Exam Reschedule Brightlens": 6,
+    "Haircut Appointment Move": 16,
+    "Teeth Whitening Inquiry Lumina": 48
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c14_dormant_inference_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning reschedule late-afternoon slot (frontdesk@tidewaterdental.ca) thread 1a0ee1f0348a9b4c",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Orthodontist Consult for Nephew": 49,
+    "Eye Exam Reschedule Brightlens": 37,
+    "Haircut Appointment Move": 2,
+    "Teeth Whitening Inquiry Lumina": 103
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c15_dormant_name_match_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze extension through November, members@ironwoodathletic.ca, knee rehab",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Climbing Gym Day Pass": 1148,
+    "Jules Yoga Membership Pause": 4,
+    "Corporate Gym Rates Forge Fitness": 2,
+    "Harvest Crate Delivery Hold": 729
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c15_dormant_name_match_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze extension through November, members@ironwoodathletic.ca, knee rehab",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Climbing Gym Day Pass": 1148,
+    "Jules Yoga Membership Pause": 4,
+    "Corporate Gym Rates Forge Fitness": 2,
+    "Harvest Crate Delivery Hold": 729
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c15_dormant_name_match_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze extension through November (members@ironwoodathletic.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Climbing Gym Day Pass": 1185,
+    "Jules Yoga Membership Pause": 3,
+    "Corporate Gym Rates Forge Fitness": 4,
+    "Harvest Crate Delivery Hold": 418
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c16_dormant_inference_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze for Theo Marchetti knee rehab (members@ironwoodathletic.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Climbing Gym Day Pass": 930,
+    "Jules Yoga Membership Pause": 10,
+    "Corporate Gym Rates Forge Fitness": 2,
+    "Harvest Crate Delivery Hold": 650
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c16_dormant_inference_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze knee rehab hold (members@ironwoodathletic.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Climbing Gym Day Pass": 899,
+    "Jules Yoga Membership Pause": 13,
+    "Corporate Gym Rates Forge Fitness": 2,
+    "Harvest Crate Delivery Hold": 945
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c16_dormant_inference_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze knee rehab hold (members@ironwoodathletic.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Climbing Gym Day Pass": 899,
+    "Jules Yoga Membership Pause": 13,
+    "Corporate Gym Rates Forge Fitness": 2,
+    "Harvest Crate Delivery Hold": 945
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c17_dormant_name_match_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm posts panels (harold.pemberton@quaymail.net)",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Backyard Shed Permit": 26,
+    "Email to Rui Deck Repair Quote": 12,
+    "Email to Denise Tree Trimming Split": 5,
+    "Fence Stain Quote Truecoat": 23,
+    "Street Party Planning Gerrard East": 4
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c17_dormant_name_match_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm posts panels",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Backyard Shed Permit": 42,
+    "Email to Rui Deck Repair Quote": 11,
+    "Email to Denise Tree Trimming Split": 13,
+    "Fence Stain Quote Truecoat": 5,
+    "Street Party Planning Gerrard East": 4
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c18_dormant_inference_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Backyard Shed Permit": 47,
+    "Email to Rui Deck Repair Quote": 26,
+    "Email to Denise Tree Trimming Split": 11,
+    "Fence Stain Quote Truecoat": 14,
+    "Street Party Planning Gerrard East": 5
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c18_dormant_inference_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm posts panels thread 1a0f47a7448c6263",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Backyard Shed Permit": 33,
+    "Email to Rui Deck Repair Quote": 10,
+    "Email to Denise Tree Trimming Split": 8,
+    "Fence Stain Quote Truecoat": 7,
+    "Street Party Planning Gerrard East": 17
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c19_dormant_name_match_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "Marcus Oyelaran Fernway Talent senior product designer search call reschedule",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Email to Imani Contract Designer Rates": 9,
+    "Brightwire Engineer Search": 13,
+    "Freelance Illustrator Search": 6,
+    "Fernvale Coworking Day Passes": 48
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c19_dormant_name_match_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "Marcus Oyelaran Fernway Talent senior product designer search call reschedule",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Email to Imani Contract Designer Rates": 9,
+    "Brightwire Engineer Search": 13,
+    "Freelance Illustrator Search": 6,
+    "Fernvale Coworking Day Passes": 48
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c19_dormant_name_match_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "Marcus Oyelaran Fernway Talent senior product designer search call reschedule",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Email to Imani Contract Designer Rates": 9,
+    "Brightwire Engineer Search": 13,
+    "Freelance Illustrator Search": 6,
+    "Fernvale Coworking Day Passes": 48
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c20_dormant_inference_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "Marcus Oyelaran Fernway Talent senior product designer search call scheduling",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Email to Imani Contract Designer Rates": 8,
+    "Brightwire Engineer Search": 10,
+    "Freelance Illustrator Search": 4,
+    "Fernvale Coworking Day Passes": 47
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c20_dormant_inference_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "Marcus Oyelaran Fernway Talent call scheduling senior product designer search Northfold",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Email to Imani Contract Designer Rates": 71,
+    "Brightwire Engineer Search": 38,
+    "Freelance Illustrator Search": 8,
+    "Fernvale Coworking Day Passes": 55
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c20_dormant_inference_marcus",
+   "gold": "Fernway Designer Search",
+   "query": "Marcus Oyelaran Fernway Talent senior product designer search call scheduling",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Email to Imani Contract Designer Rates": 8,
+    "Brightwire Engineer Search": 10,
+    "Freelance Illustrator Search": 4,
+    "Fernvale Coworking Day Passes": 47
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c21_dormant_paraphrase_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor credit union mortgage renewal Wendell Achebe rate-lock decision before Nov 4 announcement",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Property Tax Installment Reminder": 578,
+    "Email to Nadia Mortgage Broker Referral": 23,
+    "Line of Credit Rate Change": 2,
+    "Cottage Mortgage Pre-Approval": 7,
+    "Home Insurance Renewal Bastion": 141,
+    "RRSP Contribution Halyard Bank": 220
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c21_dormant_paraphrase_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor credit union mortgage renewal Wendell Achebe rate lock",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Property Tax Installment Reminder": 445,
+    "Email to Nadia Mortgage Broker Referral": 10,
+    "Line of Credit Rate Change": 6,
+    "Cottage Mortgage Pre-Approval": 17,
+    "Home Insurance Renewal Bastion": 41,
+    "RRSP Contribution Halyard Bank": 249
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c21_dormant_paraphrase_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor renewal Wendell Achebe rate-lock decision before Nov 4 announcement",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Property Tax Installment Reminder": 315,
+    "Email to Nadia Mortgage Broker Referral": 658,
+    "Line of Credit Rate Change": 15,
+    "Cottage Mortgage Pre-Approval": 74,
+    "Home Insurance Renewal Bastion": 518,
+    "RRSP Contribution Halyard Bank": 464
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c22_dormant_paraphrase_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze for Theo Marchetti knee rehab, extend hold through November",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Climbing Gym Day Pass": 306,
+    "Jules Yoga Membership Pause": 2,
+    "Corporate Gym Rates Forge Fitness": 54,
+    "Harvest Crate Delivery Hold": 42
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c22_dormant_paraphrase_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze knee rehab members@ironwoodathletic.ca",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Climbing Gym Day Pass": 847,
+    "Jules Yoga Membership Pause": 21,
+    "Corporate Gym Rates Forge Fitness": 2,
+    "Harvest Crate Delivery Hold": 863
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c22_dormant_paraphrase_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze for Theo Marchetti knee rehab, extend hold through November",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Climbing Gym Day Pass": 306,
+    "Jules Yoga Membership Pause": 2,
+    "Corporate Gym Rates Forge Fitness": 54,
+    "Harvest Crate Delivery Hold": 42
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c23_dormant_paraphrase_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 harold.pemberton@quaymail.net",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Email to Rui Deck Repair Quote": 55,
+    "Backyard Shed Permit": 13,
+    "Email to Denise Tree Trimming Split": 5,
+    "Fence Stain Quote Truecoat": 21,
+    "Street Party Planning Gerrard East": 4
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c23_dormant_paraphrase_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair cost split $1,150 harold.pemberton@quaymail.net",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Email to Rui Deck Repair Quote": 29,
+    "Backyard Shed Permit": 13,
+    "Email to Denise Tree Trimming Split": 4,
+    "Fence Stain Quote Truecoat": 8,
+    "Street Party Planning Gerrard East": 2
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c23_dormant_paraphrase_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm posts panels",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Email to Rui Deck Repair Quote": 11,
+    "Backyard Shed Permit": 42,
+    "Email to Denise Tree Trimming Split": 13,
+    "Fence Stain Quote Truecoat": 5,
+    "Street Party Planning Gerrard East": 4
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c24_dormant_paraphrase_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning appointment reschedule late afternoon (frontdesk@tidewaterdental.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Orthodontist Consult for Nephew": 100,
+    "Eye Exam Reschedule Brightlens": 19,
+    "Haircut Appointment Move": 2,
+    "Teeth Whitening Inquiry Lumina": 64
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c24_dormant_paraphrase_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental appointment reschedule late afternoon cleaning (frontdesk@tidewaterdental.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Orthodontist Consult for Nephew": 67,
+    "Eye Exam Reschedule Brightlens": 15,
+    "Haircut Appointment Move": 3,
+    "Teeth Whitening Inquiry Lumina": 47
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c24_dormant_paraphrase_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental appointment reschedule to around 5pm (frontdesk@tidewaterdental.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Orthodontist Consult for Nephew": 91,
+    "Eye Exam Reschedule Brightlens": 11,
+    "Haircut Appointment Move": 3,
+    "Teeth Whitening Inquiry Lumina": 60
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c25_new_familiar_topic_dentist",
+   "gold": "NEW",
+   "query": "Find dentist near Jules's office with evening appointments, ask about new patients",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Dentist Cleaning Reschedule": 1,
+    "Orthodontist Consult for Nephew": 2,
+    "Family Doctor Search Leslieville": 6,
+    "Teeth Whitening Inquiry Lumina": 9
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c25_new_familiar_topic_dentist",
+   "gold": "NEW",
+   "query": "find dentist near Jules's office with evening appointments and ask if taking new patients",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Dentist Cleaning Reschedule": 1,
+    "Orthodontist Consult for Nephew": 2,
+    "Family Doctor Search Leslieville": 6,
+    "Teeth Whitening Inquiry Lumina": 5
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c25_new_familiar_topic_dentist",
+   "gold": "NEW",
+   "query": "find dentist near Jules's office with evening appointments, ask about new patients",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Dentist Cleaning Reschedule": 1,
+    "Orthodontist Consult for Nephew": 2,
+    "Family Doctor Search Leslieville": 6,
+    "Teeth Whitening Inquiry Lumina": 3
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c26_new_familiar_topic_mechanic",
+   "gold": "NEW",
+   "query": "Theo Marchetti car mechanic pre-winter inspection near Leslieville Toronto, not Bramblewood Auto Service",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Inbox Catch-Up Scan": 3,
+    "Bramblewood Oil Change Receipt": 2,
+    "Car Insurance Renewal Wickham": 538,
+    "Winter Car Detailing Lustre": 5
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c26_new_familiar_topic_mechanic",
+   "gold": "NEW",
+   "query": "find mechanic near Leslieville Toronto for pre-winter car inspection, not Bramblewood Auto Service",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Inbox Catch-Up Scan": 2,
+    "Bramblewood Oil Change Receipt": 1,
+    "Car Insurance Renewal Wickham": 281,
+    "Winter Car Detailing Lustre": 98
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c26_new_familiar_topic_mechanic",
+   "gold": "NEW",
+   "query": "Find mechanic near Leslieville Toronto for pre-winter car inspection, not Bramblewood Auto Service",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Inbox Catch-Up Scan": 2,
+    "Bramblewood Oil Change Receipt": 1,
+    "Car Insurance Renewal Wickham": 313,
+    "Winter Car Detailing Lustre": 106
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c27_new_familiar_topic_restaurant",
+   "gold": "NEW",
+   "query": "Theo Marchetti restaurant lunch reservation near Northfold Studio office, Tue Oct 27 2026 noon for 2 with new client",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Jules Birthday Dinner": 722,
+    "Supper Club Reservation Thornfield": 925
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c27_new_familiar_topic_restaurant",
+   "gold": "NEW",
+   "query": "book lunch for 2 at noon Tuesday Oct 27 2026 near Northfold Studio office, quiet restaurant, client meeting",
+   "gold_rank": null,
+   "trap_ranks": {
+    "Jules Birthday Dinner": 7,
+    "Supper Club Reservation Thornfield": 45
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c28_dormant_typo_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor mortgage renewal Wendell Achebe rate lock",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Property Tax Installment Reminder": 402,
+    "Email to Nadia Mortgage Broker Referral": 5,
+    "Line of Credit Rate Change": 15,
+    "Cottage Mortgage Pre-Approval": 18,
+    "Home Insurance Renewal Bastion": 34,
+    "RRSP Contribution Halyard Bank": 294
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c28_dormant_typo_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor renewal Wendell Achebe rate lock decision before Nov 4 announcement",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Property Tax Installment Reminder": 262,
+    "Email to Nadia Mortgage Broker Referral": 240,
+    "Line of Credit Rate Change": 11,
+    "Cottage Mortgage Pre-Approval": 21,
+    "Home Insurance Renewal Bastion": 190,
+    "RRSP Contribution Halyard Bank": 317
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c28_dormant_typo_wendell",
+   "gold": "Mortgage Renewal Paperwork",
+   "query": "Brightmoor mortgage renewal Wendell Achebe rate lock",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Property Tax Installment Reminder": 402,
+    "Email to Nadia Mortgage Broker Referral": 5,
+    "Line of Credit Rate Change": 15,
+    "Cottage Mortgage Pre-Approval": 18,
+    "Home Insurance Renewal Bastion": 34,
+    "RRSP Contribution Halyard Bank": 294
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c29_dormant_typo_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning appointment reschedule request frontdesk@tidewaterdental.ca",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Orthodontist Consult for Nephew": 33,
+    "Eye Exam Reschedule Brightlens": 7,
+    "Haircut Appointment Move": 17,
+    "Teeth Whitening Inquiry Lumina": 49
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c29_dormant_typo_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning reschedule frontdesk@tidewaterdental.ca",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Orthodontist Consult for Nephew": 29,
+    "Eye Exam Reschedule Brightlens": 13,
+    "Haircut Appointment Move": 60,
+    "Teeth Whitening Inquiry Lumina": 38
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c29_dormant_typo_tidewater",
+   "gold": "Dentist Cleaning Reschedule",
+   "query": "Tidewater Dental cleaning appointment reschedule frontdesk@tidewaterdental.ca",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Orthodontist Consult for Nephew": 32,
+    "Eye Exam Reschedule Brightlens": 6,
+    "Haircut Appointment Move": 16,
+    "Teeth Whitening Inquiry Lumina": 48
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c30_dormant_typo_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze knee rehab hold extension (members@ironwoodathletic.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Climbing Gym Day Pass": 907,
+    "Jules Yoga Membership Pause": 12,
+    "Corporate Gym Rates Forge Fitness": 2,
+    "Harvest Crate Delivery Hold": 984
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c30_dormant_typo_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze knee rehab hold (members@ironwoodathletic.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Climbing Gym Day Pass": 899,
+    "Jules Yoga Membership Pause": 13,
+    "Corporate Gym Rates Forge Fitness": 2,
+    "Harvest Crate Delivery Hold": 945
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c30_dormant_typo_ironwood",
+   "gold": "Gym Membership Freeze",
+   "query": "Ironwood Athletic membership freeze knee rehab hold (members@ironwoodathletic.ca)",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Climbing Gym Day Pass": 899,
+    "Jules Yoga Membership Pause": 13,
+    "Corporate Gym Rates Forge Fitness": 2,
+    "Harvest Crate Delivery Hold": 945
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c31_dormant_typo_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair cost split $1,150",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Backyard Shed Permit": 26,
+    "Email to Rui Deck Repair Quote": 24,
+    "Email to Denise Tree Trimming Split": 3,
+    "Fence Stain Quote Truecoat": 7,
+    "Street Party Planning Gerrard East": 2
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c31_dormant_typo_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 thread 1a0f47a7448c6263",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Backyard Shed Permit": 18,
+    "Email to Rui Deck Repair Quote": 33,
+    "Email to Denise Tree Trimming Split": 6,
+    "Fence Stain Quote Truecoat": 3,
+    "Street Party Planning Gerrard East": 11
+   }
+  },
+  {
+   "size": 1600,
+   "case_id": "c31_dormant_typo_harold",
+   "gold": "Neighbour Fence Repair",
+   "query": "Harold Pemberton neighbour fence repair split $1,150 storm posts panels",
+   "gold_rank": 1,
+   "trap_ranks": {
+    "Backyard Shed Permit": 42,
+    "Email to Rui Deck Repair Quote": 11,
+    "Email to Denise Tree Trimming Split": 13,
+    "Fence Stain Quote Truecoat": 5,
+    "Street Party Planning Gerrard East": 4
+   }
+  }
+ ]
+}

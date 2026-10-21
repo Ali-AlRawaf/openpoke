@@ -27,7 +27,8 @@ Everything else is production code: the prompt, the model call, the tool loop, e
 ```
 run.py                 harness: python -m evals.routing.run
 score.py               scorer:  python -m evals.routing.score results/<run>
-add_agents.py          fixture tool: brief -> agent card (production card updater); `check` ranks traps offline
+recall.py              offline retrieval eval: where search ranks each case's gold and traps (no IA calls)
+add_agents.py          fixture tool: brief -> agent card (production card updater)
 fixtures/
   cases.json           31 cases: message, expected tasks (gold + traps), group, note on why the gold is right
   roster.json          1,600 agent cards in creation order; each has role (core/trap/noise) and min_size
@@ -73,7 +74,8 @@ python -m evals.routing.run --smoke --baseline results/<earlier run>   # adds a 
 
 python -m evals.routing.score results/<run>             # re-score an existing run
 python -m evals.routing.add_agents                      # build cards for new briefs in agent_briefs.json
-python -m evals.routing.add_agents check results/<run>  # do each case's traps reach the top 10 for the IA's queries?
+python -m evals.routing.recall                          # rank gold + traps for each case's raw message (no IA calls)
+python -m evals.routing.recall --from-run results/<run> # ...for the queries the IA actually wrote in a run
 ```
 
 ## Reading the report
@@ -98,7 +100,7 @@ The other columns:
 ## How the fixtures were made
 
 1. **v1.** The persona, the conversation, the 25 core agents and the cases were written by hand. 1,575 distractor agents were generated with Haiku, and their task logs were run through the production card updater to get their cards. That code is in `archive/` (see `archive/SPEC.md`).
-2. **v2.** The traps were redesigned so that each case meets real near-misses at scale. In v1, about a third of the cases never had their intended trap appear in search results at 1,600 agents. Each new trap is a written brief in `fixtures/agent_briefs.json`, turned into a card by `add_agents.py`: Haiku writes 2–3 tasks of history, the production log store records them, and the production card updater writes the card. Each new trap replaced one noise card of the same `min_size`, so roster sizes are unchanged. `add_agents.py check` verified against the queries the IA wrote in v1 that the traps now reach its top-10 results.
+2. **v2.** The traps were redesigned so that each case meets real near-misses at scale. In v1, about a third of the cases never had their intended trap appear in search results at 1,600 agents. Each new trap is a written brief in `fixtures/agent_briefs.json`, turned into a card by `add_agents.py`: Haiku writes 2–3 tasks of history, the production log store records them, and the production card updater writes the card. Each new trap replaced one noise card of the same `min_size`, so roster sizes are unchanged. `recall.py`, run on the queries the IA wrote in v1, verified that the traps now reach its top-10 results.
 
 The working-memory log, the core agents and the cases are unchanged from v1. The cases are now plain data: edit `cases.json` directly.
 
